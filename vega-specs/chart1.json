@@ -5,32 +5,41 @@
     "subtitle": "Rainfall lost (mm) across key Victorian hubs in the last 12 months",
     "anchor": "start",
     "color": "#ffffff",
-    "subtitleColor": "#94C1EA"
+    "subtitleColor": "#94C1EA",
+    "fontSize": 20,
+    "subtitleFontSize": 14,
+    "subtitlePadding": 10
   },
   "width": "container",
   "height": 500,
+  "data": {
+    "url": "data/final/chart1_vic_rainfall_deficit.csv"
+  },
+  "projection": {
+    "type": "mercator",
+    "center": [145, -37],
+    "scale": 3500
+  },
   "layer": [
     {
-      "data": {
-        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/vic_lga.json",
-        "format": {"type": "json", "property": "features"}
-      },
       "mark": {
-        "type": "geoshape",
-        "fill": "rgba(255,255,255,0.05)",
-        "stroke": "rgba(255,255,255,0.2)",
-        "strokeWidth": 0.5
+        "type": "circle",
+        "size": 2500,
+        "color": "rgba(255,255,255,0.05)",
+        "stroke": "rgba(255,255,255,0.1)",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"}
       }
     },
     {
-      "data": {
-        "url": "data/final/chart1_vic_rainfall_deficit.csv"
-      },
       "mark": {
         "type": "circle",
-        "opacity": 0.8,
+        "opacity": 0.9,
         "stroke": "white",
-        "strokeWidth": 1
+        "strokeWidth": 1.5
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -38,31 +47,49 @@
         "size": {
           "field": "Rainfall_Deficit_mm",
           "type": "quantitative",
-          "scale": {"range": [100, 2000]},
-          "legend": {"title": "Deficit (mm)", "orient": "bottom-right"}
+          "scale": {"range": [200, 3000]},
+          "legend": {
+            "title": "Deficit (mm)",
+            "orient": "bottom-right",
+            "titleColor": "#ffffff",
+            "labelColor": "#ffffff",
+            "symbolFillColor": "rgba(255,255,255,0.2)"
+          }
         },
         "color": {
           "field": "Rainfall_Deficit_mm",
           "type": "quantitative",
-          "scale": {"scheme": "magma", "reverse": true},
+          "scale": {
+            "type": "linear",
+            "domain": [0, 250],
+            "range": ["#FAD7A0", "#E67E22", "#A93226"]
+          },
           "legend": null
         },
         "tooltip": [
-          {"field": "LGA", "type": "nominal", "title": "Region"},
-          {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Deficit (mm)"}
+          {"field": "LGA", "type": "nominal", "title": "Hub Name"},
+          {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Rainfall Deficit (mm)"}
         ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 30,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#ffffff"
+      },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "text": {"field": "LGA", "type": "nominal"}
       }
     }
   ],
   "config": {
     "background": "transparent",
     "view": {"stroke": "transparent"},
-    "axis": {
-      "domainColor": "#ffffff", "tickColor": "#ffffff",
-      "labelColor": "#ffffff", "titleColor": "#ffffff",
-      "gridColor": "rgba(255,255,255,0.1)",
-      "titleFont": "Source Sans Pro", "labelFont": "Source Sans Pro"
-    },
-    "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff"}
+    "font": "Source Sans Pro"
   }
 }
