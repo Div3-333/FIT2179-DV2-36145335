@@ -1,20 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "The Arid Shift: Victorian Rainfall Deficit",
-    "subtitle": "Rainfall lost (mm) across Victoria over the last 12 months",
-    "anchor": "start",
-    "color": "#2C3E50",
-    "subtitleColor": "#5D6D7E",
-    "fontSize": 24,
-    "subtitleFontSize": 16,
-    "subtitlePadding": 10,
-    "offset": 20
-  },
   "width": "container",
-  "height": 500,
+  "height": 400,
   "autosize": {"type": "fit", "contains": "padding"},
-  "padding": {"left": 10, "top": 10, "right": 10, "bottom": 10},
+  "padding": {"left": 5, "top": 5, "right": 5, "bottom": 5},
   "data": {
     "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
     "format": {"type": "json", "property": "features"}
@@ -51,15 +40,14 @@
             "range": ["#FAD7A0", "#E67E22", "#512E5F"]
           },
           "legend": {
-            "title": "Deficit (mm)",
-            "orient": "right",
-            "direction": "vertical",
-            "gradientLength": 300,
+            "title": "Rainfall Deficit (mm)",
+            "orient": "bottom-right",
+            "direction": "horizontal",
+            "gradientLength": 200,
             "titleColor": "#2C3E50",
             "labelColor": "#2C3E50",
             "titleFontSize": 12,
-            "labelFontSize": 10,
-            "offset": 20
+            "labelFontSize": 10
           }
         },
         "tooltip": [
