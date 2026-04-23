@@ -4,10 +4,10 @@
     "text": "The Arid Shift: Victorian Rainfall Deficit",
     "subtitle": "Rainfall lost (mm) across key Victorian hubs in the last 12 months",
     "anchor": "start",
-    "color": "#ffffff",
-    "subtitleColor": "#94C1EA",
-    "fontSize": 20,
-    "subtitleFontSize": 14,
+    "color": "#2C3E50",
+    "subtitleColor": "#5D6D7E",
+    "fontSize": 24,
+    "subtitleFontSize": 16,
     "subtitlePadding": 10
   },
   "width": "container",
@@ -17,17 +17,16 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [145, -37],
-    "scale": 3500
+    "center": [145, -36.5],
+    "scale": 3800
   },
   "layer": [
     {
       "mark": {
         "type": "circle",
-        "size": 2500,
-        "color": "rgba(255,255,255,0.05)",
-        "stroke": "rgba(255,255,255,0.1)",
-        "strokeWidth": 1
+        "opacity": 0.4,
+        "color": "#BDC3C7",
+        "size": 4000
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -38,8 +37,8 @@
       "mark": {
         "type": "circle",
         "opacity": 0.9,
-        "stroke": "white",
-        "strokeWidth": 1.5
+        "stroke": "#ffffff",
+        "strokeWidth": 2
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -47,13 +46,12 @@
         "size": {
           "field": "Rainfall_Deficit_mm",
           "type": "quantitative",
-          "scale": {"range": [200, 3000]},
+          "scale": {"range": [400, 4000]},
           "legend": {
             "title": "Deficit (mm)",
             "orient": "bottom-right",
-            "titleColor": "#ffffff",
-            "labelColor": "#ffffff",
-            "symbolFillColor": "rgba(255,255,255,0.2)"
+            "titleColor": "#2C3E50",
+            "labelColor": "#2C3E50"
           }
         },
         "color": {
@@ -64,10 +62,14 @@
             "domain": [0, 250],
             "range": ["#FAD7A0", "#E67E22", "#A93226"]
           },
-          "legend": null
+          "legend": {
+            "title": "Severity",
+            "titleColor": "#2C3E50",
+            "labelColor": "#2C3E50"
+          }
         },
         "tooltip": [
-          {"field": "LGA", "type": "nominal", "title": "Hub Name"},
+          {"field": "LGA", "type": "nominal", "title": "Region"},
           {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Rainfall Deficit (mm)"}
         ]
       }
@@ -75,10 +77,10 @@
     {
       "mark": {
         "type": "text",
-        "dy": 30,
-        "fontSize": 11,
+        "dy": -25,
+        "fontSize": 12,
         "fontWeight": "bold",
-        "color": "#ffffff"
+        "color": "#2C3E50"
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
