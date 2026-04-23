@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 420,
+  "height": 480,
   "autosize": {"type": "fit", "contains": "padding"},
-  "padding": {"left": 5, "top": 5, "right": 5, "bottom": 30},
+  "padding": {"left": 0, "top": 0, "right": 0, "bottom": 0},
   "data": {
     "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
     "format": {"type": "json", "property": "features"}
@@ -22,8 +22,8 @@
   ],
   "projection": {
     "type": "mercator",
-    "center": [145, -36.5],
-    "scale": 3100
+    "center": [145.2, -36.6],
+    "scale": 3800
   },
   "layer": [
     {
@@ -45,12 +45,12 @@
             "title": "Rainfall Deficit (mm)",
             "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 250,
+            "gradientLength": {"signal": "width * 0.6"},
             "titleColor": "#2C3E50",
             "labelColor": "#2C3E50",
             "titleFontSize": 12,
             "labelFontSize": 10,
-            "offset": 25
+            "offset": -30
           }
         },
         "tooltip": [
