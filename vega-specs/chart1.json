@@ -2,57 +2,58 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "The Arid Shift: Victorian Rainfall Deficit",
-    "subtitle": "Percentage of average rainfall lost in the last 12 months",
+    "subtitle": "Rainfall lost (mm) across key Victorian hubs in the last 12 months",
     "anchor": "start",
     "color": "#ffffff",
     "subtitleColor": "#94C1EA"
   },
   "width": "container",
   "height": 500,
-  "data": {
-    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/vic_lga.geojson",
-    "format": {"type": "json", "property": "features"}
-  },
-  "transform": [
+  "layer": [
     {
-      "lookup": "properties.LGA_NAME",
-      "from": {
-        "data": {
-          "url": "data/final/chart1_vic_rainfall_deficit.csv"
-        },
-        "key": "LGA",
-        "fields": ["Rainfall_Deficit_mm"]
-      }
-    },
-    {"calculate": "datum.Rainfall_Deficit_mm ? datum.Rainfall_Deficit_mm : 40", "as": "Deficit"}
-  ],
-  "projection": {"type": "mercator"},
-  "mark": {
-    "type": "geoshape", 
-    "stroke": "#2c3e50", 
-    "strokeWidth": 0.5
-  },
-  "encoding": {
-    "color": {
-      "field": "Deficit",
-      "type": "quantitative",
-      "scale": {
-        "type": "linear",
-        "domain": [0, 250],
-        "range": ["#FAD7A0", "#E67E22", "#A93226"]
+      "data": {
+        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/vic_lga.json",
+        "format": {"type": "json", "property": "features"}
       },
-      "legend": {
-        "title": "Deficit (mm)",
-        "orient": "bottom-right",
-        "direction": "vertical",
-        "gradientLength": 200
+      "mark": {
+        "type": "geoshape",
+        "fill": "rgba(255,255,255,0.05)",
+        "stroke": "rgba(255,255,255,0.2)",
+        "strokeWidth": 0.5
       }
     },
-    "tooltip": [
-      {"field": "properties.LGA_NAME", "type": "nominal", "title": "LGA"},
-      {"field": "Deficit", "type": "quantitative", "title": "Deficit (mm)"}
-    ]
-  },
+    {
+      "data": {
+        "url": "data/final/chart1_vic_rainfall_deficit.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "size": {
+          "field": "Rainfall_Deficit_mm",
+          "type": "quantitative",
+          "scale": {"range": [100, 2000]},
+          "legend": {"title": "Deficit (mm)", "orient": "bottom-right"}
+        },
+        "color": {
+          "field": "Rainfall_Deficit_mm",
+          "type": "quantitative",
+          "scale": {"scheme": "magma", "reverse": true},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "LGA", "type": "nominal", "title": "Region"},
+          {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Deficit (mm)"}
+        ]
+      }
+    }
+  ],
   "config": {
     "background": "transparent",
     "view": {"stroke": "transparent"},
@@ -62,6 +63,6 @@
       "gridColor": "rgba(255,255,255,0.1)",
       "titleFont": "Source Sans Pro", "labelFont": "Source Sans Pro"
     },
-    "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff", "titleFontSize": 12}
+    "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff"}
   }
 }
