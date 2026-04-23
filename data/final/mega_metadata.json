@@ -1,9 +1,9 @@
 {
     "chart1": {
-        "description": "Spatial Map of VIC Rainfall Deficit",
-        "source": "Bureau of Meteorology",
+        "description": "Spatially modeled Victorian Rainfall Deficit map using distance-weighted interpolation from BoM regional hubs.",
+        "source": "Bureau of Meteorology + Spatial Modeling",
         "url": "http://www.bom.gov.au/climate/data/",
-        "citation": "Bureau of Meteorology. (2026). Climate Data Online: Rainfall Deciles. Australian Government."
+        "citation": "Bureau of Meteorology. (2026). Climate Data Online. Spatially modeled for regional resolution by D. Sharma (2026)."
     },
     "chart2": {
         "description": "Century Temp Heatmap",

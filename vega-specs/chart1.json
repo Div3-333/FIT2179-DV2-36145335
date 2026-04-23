@@ -8,10 +8,13 @@
     "subtitleColor": "#5D6D7E",
     "fontSize": 24,
     "subtitleFontSize": 16,
-    "subtitlePadding": 10
+    "subtitlePadding": 10,
+    "offset": 20
   },
   "width": "container",
-  "height": 550,
+  "height": 500,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "padding": {"left": 10, "top": 10, "right": 10, "bottom": 10},
   "data": {
     "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
     "format": {"type": "json", "property": "features"}
@@ -26,8 +29,7 @@
         "key": "LGA",
         "fields": ["Rainfall_Deficit_mm"]
       }
-    },
-    {"calculate": "datum.Rainfall_Deficit_mm ? datum.Rainfall_Deficit_mm : 45", "as": "Deficit"}
+    }
   ],
   "projection": {
     "type": "mercator"
@@ -36,32 +38,33 @@
     {
       "mark": {
         "type": "geoshape",
-        "stroke": "#ffffff",
-        "strokeWidth": 0.2
+        "stroke": "rgba(255,255,255,0.4)",
+        "strokeWidth": 0.3
       },
       "encoding": {
         "color": {
-          "field": "Deficit",
+          "field": "Rainfall_Deficit_mm",
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [0, 100, 220],
+            "domain": [40, 120, 220],
             "range": ["#FAD7A0", "#E67E22", "#512E5F"]
           },
           "legend": {
             "title": "Deficit (mm)",
-            "orient": "bottom-right",
+            "orient": "right",
             "direction": "vertical",
-            "gradientLength": 200,
+            "gradientLength": 300,
             "titleColor": "#2C3E50",
             "labelColor": "#2C3E50",
             "titleFontSize": 12,
-            "labelFontSize": 10
+            "labelFontSize": 10,
+            "offset": 20
           }
         },
         "tooltip": [
           {"field": "properties.vic_loca_2", "type": "nominal", "title": "Suburb"},
-          {"field": "Deficit", "type": "quantitative", "title": "Deficit (mm)"}
+          {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Deficit (mm)"}
         ]
       }
     }
