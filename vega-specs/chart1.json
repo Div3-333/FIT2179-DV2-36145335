@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Victoria Rainfall Deficit by Region",
+  "width": "container",
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
+    "format": {"type": "json", "property": "features"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.vic_loca_2",
+      "from": {
+        "data": {
+          "url": "data/final/chart1_vic_rainfall_deficit.csv"
+        },
+        "key": "LGA",
+        "fields": ["Rainfall_Deficit_mm"]
+      }
+    },
+    {"calculate": "datum.Rainfall_Deficit_mm ? datum.Rainfall_Deficit_mm : 0", "as": "Deficit"}
+  ],
+  "projection": {"type": "mercator"},
+  "mark": {"type": "geoshape", "stroke": "white"},
+  "encoding": {
+    "color": {
+      "field": "Deficit",
+      "type": "quantitative",
+      "scale": {"scheme": "oranges"},
+      "title": "Deficit (mm)"
+    },
+    "tooltip": [
+      {"field": "properties.vic_loca_2", "type": "nominal", "title": "Region"},
+      {"field": "Deficit", "type": "quantitative", "title": "Rainfall Deficit (mm)"}
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#ffffff", "tickColor": "#ffffff",
+      "labelColor": "#ffffff", "titleColor": "#ffffff",
+      "gridColor": "rgba(255,255,255,0.1)",
+      "titleFont": "Source Sans Pro", "labelFont": "Source Sans Pro"
+    },
+    "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff"}
+  }
+}
