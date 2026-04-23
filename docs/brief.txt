@@ -1,0 +1,91 @@
+This is exactly how a Technical Lead operates. If you are handing this off to autonomous agents (like AutoGPT, Devin, or a specialized coding agent), your prompt needs to be an ironclad specification. Autonomous agents are incredibly fast, but they are also profoundly literal and prone to hallucinating formats if you leave any ambiguity. 
+
+Here is the exhaustive documentation of your data architecture, followed by the exact execution brief you will feed to your agents, and finally, my brutal engineer's review of the plan.
+
+***
+
+### PART 1: Data Architecture & Citation Matrix
+
+This matrix maps your 10 final charts to their exact files and the professional citations you must use in your assignment bibliography. 
+
+| Chart | Description | Local File Reference | Professional Citation (APA/Harvard Style Base) |
+| :--- | :--- | :--- | :--- |
+| **1** | **Rainfall Deficit Map** (Choropleth) | `vic_rainfall_deficit.csv` (Pending manual 10-row creation) | Bureau of Meteorology. (2026). *Climate Data Online: Rainfall Deciles*. Australian Government. |
+| **2** | **Century Temp Heatmap** | `temperature.csv` (Extracted from `acorn_sat_v2.3.0_daily_tmax.tar`) | Bureau of Meteorology. (2026). *Australian Climate Observations Reference Network - Surface Air Temperature (ACORN-SAT)*. Australian Government. |
+| **3** | **Climate Drivers Line Chart** | `soi_monthly.csv` (Converted from `.txt`) & `caulfield_rain.csv` | Bureau of Meteorology. (2026). *Southern Oscillation Index (SOI) Archives*. Australian Government. |
+| **4** | **Evaporation Scatter Plot** | `evaporation_temp.csv` (Aggregated from `detailed_silo_88023.csv`) | Queensland Government (using BoM data). (2026). *SILO (Scientific Information for Land Owners) Database*. Department of Environment and Science. |
+| **5** | **Catchment Lag** (Custom Composite: Bar + Line) | `caulfield_rain.csv` & `Historical_Data.csv` (Dam storage) | Melbourne Water. (2026). *Historical Reservoir Levels*. Melbourne Water Corporation; Bureau of Meteorology (2026). *Climate Data Online*. |
+| **6** | **Dam Capacities** (Point Map) | `dam_locations.csv` (Manual extraction + Lat/Lon) | Victorian State Government. (2026). *2026/27 Desalinated Water Order Advice: Technical Analysis*. Department of Energy, Environment and Climate Action. |
+| **7** | **Groundwater Density** (Hexbin Map) | `bore_locations.csv` (Extracted from `bore_data.json` API) | Bureau of Meteorology. (2026). *Australian Groundwater Explorer: Bore Water Levels*. ArcGIS Hub. |
+| **8** | **Water Shift Slopegraph** | `total-use-by-resource-figure.csv` | Victorian State Government. (2026). *Victorian Water Accounts 2022-23: Total use by resource*. Department of Energy, Environment and Climate Action. |
+| **9** | **Desalination Pipeline** (Route Map) | `pipeline_route.csv` | AquaSure. (2026). *Victorian Desalination Project Map*. AquaSure. |
+| **10** | **Engineered Shift** (Stacked Area Chart) | `Greater_Melb_Potable.csv` & `desal_orders.csv` | Melbourne Water, et al. (2025). *Melbourne's Annual Water Outlook 2026*. |
+
+***
+
+### PART 2: The Autonomous Agent Execution Brief
+
+*Copy and paste the text below into your agent's initial prompt.*
+
+**[BEGIN AGENT BRIEF]**
+
+**SYSTEM ROLE:** Expert Vega-Lite Data Visualisation Engineer.
+**PROJECT:** Monash University FIT2179 Assignment. 10 interactive charts embedded in a scrollytelling HTML page.
+**OBJECTIVE:** Generate 10 `.json` files using Vega-Lite v5 specifications. Do NOT modify the `index.html` layout. Do NOT hallucinate data. You will assume all data files live in a local `./data/` directory. 
+
+**GLOBAL VEGA-LITE CONFIGURATION RULES (STRICT):**
+Because these charts are embedded in a dark-themed CSS scrollytelling layout, EVERY `.json` file must include this exact config block at the root level to ensure transparency and white axes:
+```json
+"config": {
+  "background": "transparent",
+  "view": {"stroke": "transparent"},
+  "axis": {
+    "domainColor": "#ffffff", "tickColor": "#ffffff",
+    "labelColor": "#ffffff", "titleColor": "#ffffff",
+    "gridColor": "rgba(255,255,255,0.1)",
+    "titleFont": "Source Sans Pro", "labelFont": "Source Sans Pro"
+  },
+  "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff"}
+}
+```
+*(Note: For Chart 10, which sits on a white CSS background, use standard dark axes `#2C3E50` and omit this specific config).*
+
+**CHART SPECIFICATIONS:**
+* **chart1.json (Rainfall Deficit):** Type: Choropleth Map. Data: `data/vic_rainfall_deficit.csv`. Topology: Must use external URL `https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson`. Color scheme: Orange/Red sequential.
+* **chart2.json (Temp Heatmap):** Type: Rect (Heatmap). Data: `data/temperature.csv`. X-axis: `Date` (timeUnit: month). Y-axis: `Date` (timeUnit: year). Color: `MaxTemp` (aggregate: mean, scheme: inferno).
+* **chart3.json (Climate Drivers):** Type: Dual-Axis Line. Data: `data/soi_monthly.csv` and `data/caulfield_rain.csv` (joined by Year). 
+* **chart4.json (Evaporation Scatter):** Type: Point. Data: `data/evaporation_temp.csv`. X-axis: `Avg_Summer_Max_Temp`. Y-axis: `Annual_Evaporation_mm`. Include a regression trendline.
+* **chart5.json (Catchment Lag Composite):** Type: `vconcat`. Top chart: Divergent Bar (Data: `data/caulfield_rain.csv`, calculate anomaly from 700mm baseline). Bottom chart: Line (Data: `data/Historical_Data.csv`, Y-axis domain `[30, 100]`). 
+* **chart6.json (Dam Point Map):** Type: Point Map over geographic bounds. Data: `data/dam_locations.csv`. Size: `Capacity_ML`. Color: `Percent_Full` (scheme: blues). 
+* **chart7.json (Groundwater Hexbin):** Type: Hexbin Map. Data: `data/bore_locations.csv` (Latitude/Longitude). Aggregate by count to show density. 
+* **chart8.json (Shift Slopegraph):** Type: Line. Data: `data/total-use-by-resource-figure.csv`. Filter for years '2016-17' and '2019-20'. Connect lines for 'Surface water - consumptive' vs 'Groundwater - consumptive'.
+* **chart9.json (Pipeline Route):** Type: Line map. Data: `data/pipeline_route.csv`. Order by `Point_Order`. 
+* **chart10.json (Desalination Shift):** Type: Stacked Area. Data: `data/Greater_Melb_Potable.csv`. X-axis: Year. Y-axis: GL. 
+
+**OUTPUT FORMAT:** Output strictly valid JSON. Do not wrap in markdown unless requested.
+
+**[END AGENT BRIEF]**
+
+***
+
+### PART 3: The Brutal & Paranoid Engineer Review
+
+Looking at this plan, here are the failure vectors I see that could crash your assignment right before submission. You need to watch your agents closely for these:
+
+1. **The Cross-Origin Resource Sharing (CORS) Trap on Maps:**
+   * *The Risk:* In `chart1.json`, we are pulling a GeoJSON map from a raw GitHub URL. Sometimes, browsers block this due to CORS policies if you are testing locally (opening the HTML file straight from your desktop).
+   * *The Fix:* If the map doesn't render locally, don't panic. You will need to either run a local Python server (`python -m http.server`) or download that GeoJSON file directly into your `data` folder and change the URL in the Vega-Lite code to `"url": "data/suburb-10-vic.geojson"`.
+
+2. **Temporal Parsing Nightmares:**
+   * *The Risk:* CSV dates are notoriously dirty. The agent might assume your `YearMonth` column in `soi_monthly.csv` (e.g., `201501`) is a standard date. Vega-Lite will fail silently and plot nothing.
+   * *The Fix:* Ensure the agents use Vega-Lite's specific time parsing directives in the data block: `"format": {"parse": {"YearMonth": "date:'%Y%m'"}}`. 
+
+3. **The "Wide" vs. "Long" Data Trap (Charts 5 & 8):**
+   * *The Risk:* Your rainfall data (`caulfield_rain.csv`) and water usage data (`total-use-by-resource.csv`) are currently in "wide" format (e.g., columns for Jan, Feb, Mar, or columns for Surface, Groundwater). Vega-Lite struggles to plot multiple lines from wide formats natively without complex `fold` transforms.
+   * *The Fix:* Ensure the agents write a `"transform": [{"fold": [...]}]` block in the JSON, or proactively convert those CSVs into a "long" format (e.g., Columns: `Year`, `Month`, `Rainfall_mm`) before feeding them to the agent.
+
+4. **Responsive Width Failures:**
+   * *The Risk:* If the agent hardcodes `"width": 800` into the JSON, it will break the mobile view of your beautiful CSS Bento/Scrollytelling layout. 
+   * *The Fix:* The agent MUST use `"width": "container"` in the root of every JSON file so the chart flexes to fit the HTML `div` we built. 
+
+Keep an eye on the agents. They are brilliant typists but terrible architects. Force them to test locally frequently!

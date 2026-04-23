@@ -1,0 +1,6 @@
+{
+    "description": "Century Temp Heatmap",
+    "source": "BoM ACORN-SAT",
+    "url": "http://www.bom.gov.au/climate/data/acorn-sat/",
+    "citation": "Bureau of Meteorology. (2026). Australian Climate Observations Reference Network - Surface Air Temperature (ACORN-SAT). Australian Government."
+}

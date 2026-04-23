@@ -1,0 +1,71 @@
+import json
+import os
+
+metadata = {
+    "chart1": {
+        "description": "Spatial Map of VIC Rainfall Deficit",
+        "source": "Bureau of Meteorology",
+        "url": "http://www.bom.gov.au/climate/data/",
+        "citation": "Bureau of Meteorology. (2026). Climate Data Online: Rainfall Deciles. Australian Government."
+    },
+    "chart2": {
+        "description": "Century Temp Heatmap",
+        "source": "BoM ACORN-SAT",
+        "url": "http://www.bom.gov.au/climate/data/acorn-sat/",
+        "citation": "Bureau of Meteorology. (2026). Australian Climate Observations Reference Network - Surface Air Temperature (ACORN-SAT). Australian Government."
+    },
+    "chart3": {
+        "description": "Climate Drivers Line Chart (SOI vs Rainfall)",
+        "source": "BoM SOI Archives",
+        "url": "http://www.bom.gov.au/climate/enso/soi/",
+        "citation": "Bureau of Meteorology. (2026). Southern Oscillation Index (SOI) Archives. Australian Government."
+    },
+    "chart4": {
+        "description": "Evaporation Scatter Plot",
+        "source": "SILO Database",
+        "url": "https://www.longpaddock.qld.gov.au/silo/",
+        "citation": "Queensland Government (using BoM data). (2026). SILO (Scientific Information for Land Owners) Database. Department of Environment and Science."
+    },
+    "chart5": {
+        "description": "Catchment Lag Composite",
+        "source": "Melbourne Water / BoM",
+        "url": "https://www.melbournewater.com.au/",
+        "citation": "Melbourne Water. (2026). Historical Reservoir Levels. Melbourne Water Corporation; Bureau of Meteorology (2026)."
+    },
+    "chart6": {
+        "description": "Dam Capacities Point Map",
+        "source": "Victorian State Government",
+        "url": "https://www.water.vic.gov.au/",
+        "citation": "Victorian State Government. (2026). 2026/27 Desalinated Water Order Advice: Technical Analysis. Department of Energy, Environment and Climate Action."
+    },
+    "chart7": {
+        "description": "Groundwater Density Hexbin Map",
+        "source": "BoM Groundwater Explorer",
+        "url": "http://www.bom.gov.au/water/groundwater/explorer/",
+        "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. ArcGIS Hub."
+    },
+    "chart8": {
+        "description": "Water Shift Slopegraph",
+        "source": "Victorian Water Accounts",
+        "url": "https://www.water.vic.gov.au/water-reporting/victorian-water-accounts",
+        "citation": "Victorian State Government. (2026). Victorian Water Accounts 2022-23: Total use by resource. Department of Energy, Environment and Climate Action."
+    },
+    "chart9": {
+        "description": "Desalination Pipeline Route",
+        "source": "AquaSure",
+        "url": "https://www.aquasure.com.au/",
+        "citation": "AquaSure. (2026). Victorian Desalination Project Map. AquaSure."
+    },
+    "chart10": {
+        "description": "Engineered Shift Stacked Area Chart",
+        "source": "Melbourne Water Annual Outlook",
+        "url": "https://www.melbournewater.com.au/water-data-and-education",
+        "citation": "Melbourne Water, et al. (2025). Melbourne’s Annual Water Outlook 2026."
+    }
+}
+
+for chart, data in metadata.items():
+    with open(f"{chart}/metadata.json", "w") as f:
+        json.dump(data, f, indent=4)
+
+print("Metadata files created successfully.")
