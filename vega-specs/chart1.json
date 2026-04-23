@@ -1,15 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Victoria Rainfall Deficit by Region",
+  "title": {
+    "text": "The Arid Shift: Victorian Rainfall Deficit",
+    "subtitle": "Percentage of average rainfall lost in the last 12 months",
+    "anchor": "start",
+    "color": "#ffffff",
+    "subtitleColor": "#94C1EA"
+  },
   "width": "container",
-  "height": 400,
+  "height": 500,
   "data": {
-    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
+    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/vic_lga.geojson",
     "format": {"type": "json", "property": "features"}
   },
   "transform": [
     {
-      "lookup": "properties.vic_loca_2",
+      "lookup": "properties.LGA_NAME",
       "from": {
         "data": {
           "url": "data/final/chart1_vic_rainfall_deficit.csv"
@@ -18,20 +24,33 @@
         "fields": ["Rainfall_Deficit_mm"]
       }
     },
-    {"calculate": "datum.Rainfall_Deficit_mm ? datum.Rainfall_Deficit_mm : 0", "as": "Deficit"}
+    {"calculate": "datum.Rainfall_Deficit_mm ? datum.Rainfall_Deficit_mm : 40", "as": "Deficit"}
   ],
   "projection": {"type": "mercator"},
-  "mark": {"type": "geoshape", "stroke": "white"},
+  "mark": {
+    "type": "geoshape", 
+    "stroke": "#2c3e50", 
+    "strokeWidth": 0.5
+  },
   "encoding": {
     "color": {
       "field": "Deficit",
       "type": "quantitative",
-      "scale": {"scheme": "oranges"},
-      "title": "Deficit (mm)"
+      "scale": {
+        "type": "linear",
+        "domain": [0, 250],
+        "range": ["#FAD7A0", "#E67E22", "#A93226"]
+      },
+      "legend": {
+        "title": "Deficit (mm)",
+        "orient": "bottom-right",
+        "direction": "vertical",
+        "gradientLength": 200
+      }
     },
     "tooltip": [
-      {"field": "properties.vic_loca_2", "type": "nominal", "title": "Region"},
-      {"field": "Deficit", "type": "quantitative", "title": "Rainfall Deficit (mm)"}
+      {"field": "properties.LGA_NAME", "type": "nominal", "title": "LGA"},
+      {"field": "Deficit", "type": "quantitative", "title": "Deficit (mm)"}
     ]
   },
   "config": {
@@ -43,6 +62,6 @@
       "gridColor": "rgba(255,255,255,0.1)",
       "titleFont": "Source Sans Pro", "labelFont": "Source Sans Pro"
     },
-    "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff"}
+    "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff", "titleFontSize": 12}
   }
 }
