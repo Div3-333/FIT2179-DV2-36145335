@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "The Arid Shift: Victorian Rainfall Deficit",
-    "subtitle": "Rainfall lost (mm) across key Victorian hubs in the last 12 months",
+    "subtitle": "Rainfall lost (mm) across Victoria over the last 12 months",
     "anchor": "start",
     "color": "#2C3E50",
     "subtitleColor": "#5D6D7E",
@@ -11,83 +11,58 @@
     "subtitlePadding": 10
   },
   "width": "container",
-  "height": 500,
+  "height": 550,
+  "data": {
+    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
+    "format": {"type": "json", "property": "features"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.vic_loca_2",
+      "from": {
+        "data": {
+          "url": "data/final/chart1_vic_rainfall_deficit.csv"
+        },
+        "key": "LGA",
+        "fields": ["Rainfall_Deficit_mm"]
+      }
+    },
+    {"calculate": "datum.Rainfall_Deficit_mm ? datum.Rainfall_Deficit_mm : 45", "as": "Deficit"}
+  ],
   "projection": {
-    "type": "mercator",
-    "center": [145.5, -36.5],
-    "scale": 3800
+    "type": "mercator"
   },
   "layer": [
     {
-      "data": {
-        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
-        "format": {"type": "json", "property": "features"}
-      },
       "mark": {
         "type": "geoshape",
-        "fill": "#F2F4F4",
-        "stroke": "#D5DBDB",
-        "strokeWidth": 0.5
-      }
-    },
-    {
-      "data": {
-        "url": "data/final/chart1_vic_rainfall_deficit.csv"
-      },
-      "mark": {
-        "type": "circle",
-        "opacity": 0.8,
         "stroke": "#ffffff",
-        "strokeWidth": 1.5,
-        "cursor": "pointer"
+        "strokeWidth": 0.2
       },
       "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "size": {
-          "field": "Rainfall_Deficit_mm",
-          "type": "quantitative",
-          "scale": {"range": [400, 3500]},
-          "legend": {
-            "title": "Deficit (mm)",
-            "orient": "bottom-right",
-            "titleColor": "#2C3E50",
-            "labelColor": "#2C3E50",
-            "format": ".0f",
-            "symbolFillColor": "#E67E22"
-          }
-        },
         "color": {
-          "field": "Rainfall_Deficit_mm",
+          "field": "Deficit",
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [0, 250],
-            "range": ["#FAD7A0", "#E67E22", "#A93226"]
+            "domain": [0, 100, 220],
+            "range": ["#FAD7A0", "#E67E22", "#512E5F"]
           },
-          "legend": null
+          "legend": {
+            "title": "Deficit (mm)",
+            "orient": "bottom-right",
+            "direction": "vertical",
+            "gradientLength": 200,
+            "titleColor": "#2C3E50",
+            "labelColor": "#2C3E50",
+            "titleFontSize": 12,
+            "labelFontSize": 10
+          }
         },
         "tooltip": [
-          {"field": "LGA", "type": "nominal", "title": "Hub"},
-          {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Deficit (mm)"}
+          {"field": "properties.vic_loca_2", "type": "nominal", "title": "Suburb"},
+          {"field": "Deficit", "type": "quantitative", "title": "Deficit (mm)"}
         ]
-      }
-    },
-    {
-      "data": {
-        "url": "data/final/chart1_vic_rainfall_deficit.csv"
-      },
-      "mark": {
-        "type": "text",
-        "dy": -22,
-        "fontSize": 11,
-        "fontWeight": "bold",
-        "color": "#34495E"
-      },
-      "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "text": {"field": "LGA", "type": "nominal"}
       }
     }
   ],
