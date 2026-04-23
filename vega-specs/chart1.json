@@ -12,33 +12,34 @@
   },
   "width": "container",
   "height": 500,
-  "data": {
-    "url": "data/final/chart1_vic_rainfall_deficit.csv"
-  },
   "projection": {
     "type": "mercator",
-    "center": [145, -36.5],
+    "center": [145.5, -36.5],
     "scale": 3800
   },
   "layer": [
     {
-      "mark": {
-        "type": "circle",
-        "opacity": 0.4,
-        "color": "#BDC3C7",
-        "size": 4000
+      "data": {
+        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
+        "format": {"type": "json", "property": "features"}
       },
-      "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"}
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F2F4F4",
+        "stroke": "#D5DBDB",
+        "strokeWidth": 0.5
       }
     },
     {
+      "data": {
+        "url": "data/final/chart1_vic_rainfall_deficit.csv"
+      },
       "mark": {
         "type": "circle",
-        "opacity": 0.9,
+        "opacity": 0.8,
         "stroke": "#ffffff",
-        "strokeWidth": 2
+        "strokeWidth": 1.5,
+        "cursor": "pointer"
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -46,12 +47,14 @@
         "size": {
           "field": "Rainfall_Deficit_mm",
           "type": "quantitative",
-          "scale": {"range": [400, 4000]},
+          "scale": {"range": [400, 3500]},
           "legend": {
             "title": "Deficit (mm)",
             "orient": "bottom-right",
             "titleColor": "#2C3E50",
-            "labelColor": "#2C3E50"
+            "labelColor": "#2C3E50",
+            "format": ".0f",
+            "symbolFillColor": "#E67E22"
           }
         },
         "color": {
@@ -62,25 +65,24 @@
             "domain": [0, 250],
             "range": ["#FAD7A0", "#E67E22", "#A93226"]
           },
-          "legend": {
-            "title": "Severity",
-            "titleColor": "#2C3E50",
-            "labelColor": "#2C3E50"
-          }
+          "legend": null
         },
         "tooltip": [
-          {"field": "LGA", "type": "nominal", "title": "Region"},
-          {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Rainfall Deficit (mm)"}
+          {"field": "LGA", "type": "nominal", "title": "Hub"},
+          {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Deficit (mm)"}
         ]
       }
     },
     {
+      "data": {
+        "url": "data/final/chart1_vic_rainfall_deficit.csv"
+      },
       "mark": {
         "type": "text",
-        "dy": -25,
-        "fontSize": 12,
+        "dy": -22,
+        "fontSize": 11,
         "fontWeight": "bold",
-        "color": "#2C3E50"
+        "color": "#34495E"
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
