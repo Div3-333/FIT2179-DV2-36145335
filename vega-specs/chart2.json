@@ -45,7 +45,7 @@
       "type": "quantitative",
       "scale": {
         "scheme": "magma",
-        "reverse": true,
+        "reverse": false,
         "domain": [12, 32]
       },
       "legend": null
