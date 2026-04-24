@@ -60,6 +60,46 @@ DisplayYear,YearStep,Resource_Type,Volume_ML
 2020-21,2020.8,Surface water - consumptive,2896659.5999994045
 2020-21,2020.9,Surface water - consumptive,2907945.7999993945
 2020-21,2021.0,Surface water - consumptive,2919231.999999384
+2021-22,2021.1,Surface water - consumptive,2912333.7000003825
+2021-22,2021.2,Surface water - consumptive,2905435.400000389
+2021-22,2021.3,Surface water - consumptive,2898537.1000003954
+2021-22,2021.4,Surface water - consumptive,2891638.8000004017
+2021-22,2021.5,Surface water - consumptive,2884740.500000408
+2021-22,2021.6,Surface water - consumptive,2877842.200000414
+2021-22,2021.7,Surface water - consumptive,2870943.9000004204
+2021-22,2021.8,Surface water - consumptive,2864045.6000004266
+2021-22,2021.9,Surface water - consumptive,2857147.300000433
+2021-22,2022.0,Surface water - consumptive,2850249.000000439
+2022-23,2022.1,Surface water - consumptive,2850249.0
+2022-23,2022.2,Surface water - consumptive,2850249.0
+2022-23,2022.3,Surface water - consumptive,2850249.0
+2022-23,2022.4,Surface water - consumptive,2850249.0
+2022-23,2022.5,Surface water - consumptive,2850249.0
+2022-23,2022.6,Surface water - consumptive,2850249.0
+2022-23,2022.7,Surface water - consumptive,2850249.0
+2022-23,2022.8,Surface water - consumptive,2850249.0
+2022-23,2022.9,Surface water - consumptive,2850249.0
+2022-23,2023.0,Surface water - consumptive,2850249.0
+2023-24,2023.1,Surface water - consumptive,2850249.0
+2023-24,2023.2,Surface water - consumptive,2850249.0
+2023-24,2023.3,Surface water - consumptive,2850249.0
+2023-24,2023.4,Surface water - consumptive,2850249.0
+2023-24,2023.5,Surface water - consumptive,2850249.0
+2023-24,2023.6,Surface water - consumptive,2850249.0
+2023-24,2023.7,Surface water - consumptive,2850249.0
+2023-24,2023.8,Surface water - consumptive,2850249.0
+2023-24,2023.9,Surface water - consumptive,2850249.0
+2023-24,2024.0,Surface water - consumptive,2850249.0
+2024-25,2024.1,Surface water - consumptive,2850249.0
+2024-25,2024.2,Surface water - consumptive,2850249.0
+2024-25,2024.3,Surface water - consumptive,2850249.0
+2024-25,2024.4,Surface water - consumptive,2850249.0
+2024-25,2024.5,Surface water - consumptive,2850249.0
+2024-25,2024.6,Surface water - consumptive,2850249.0
+2024-25,2024.7,Surface water - consumptive,2850249.0
+2024-25,2024.8,Surface water - consumptive,2850249.0
+2024-25,2024.9,Surface water - consumptive,2850249.0
+2024-25,2025.0,Surface water - consumptive,2850249.0
 2015-16,2015.0,Surface water - environmental,689532.0
 2015-16,2015.1,Surface water - environmental,691225.5999999985
 2015-16,2015.2,Surface water - environmental,692919.1999999969
@@ -121,6 +161,46 @@ DisplayYear,YearStep,Resource_Type,Volume_ML
 2020-21,2020.8,Surface water - environmental,938082.9999981448
 2020-21,2020.9,Surface water - environmental,973253.4999981127
 2020-21,2021.0,Surface water - environmental,1008423.9999980808
+2021-22,2021.1,Surface water - environmental,968809.5000021978
+2021-22,2021.2,Surface water - environmental,929195.0000022338
+2021-22,2021.3,Surface water - environmental,889580.5000022699
+2021-22,2021.4,Surface water - environmental,849966.0000023058
+2021-22,2021.5,Surface water - environmental,810351.5000023419
+2021-22,2021.6,Surface water - environmental,770737.0000023779
+2021-22,2021.7,Surface water - environmental,731122.500002414
+2021-22,2021.8,Surface water - environmental,691508.00000245
+2021-22,2021.9,Surface water - environmental,651893.5000024859
+2021-22,2022.0,Surface water - environmental,612279.000002522
+2022-23,2022.1,Surface water - environmental,612279.0
+2022-23,2022.2,Surface water - environmental,612279.0
+2022-23,2022.3,Surface water - environmental,612279.0
+2022-23,2022.4,Surface water - environmental,612279.0
+2022-23,2022.5,Surface water - environmental,612279.0
+2022-23,2022.6,Surface water - environmental,612279.0
+2022-23,2022.7,Surface water - environmental,612279.0
+2022-23,2022.8,Surface water - environmental,612279.0
+2022-23,2022.9,Surface water - environmental,612279.0
+2022-23,2023.0,Surface water - environmental,612279.0
+2023-24,2023.1,Surface water - environmental,612279.0
+2023-24,2023.2,Surface water - environmental,612279.0
+2023-24,2023.3,Surface water - environmental,612279.0
+2023-24,2023.4,Surface water - environmental,612279.0
+2023-24,2023.5,Surface water - environmental,612279.0
+2023-24,2023.6,Surface water - environmental,612279.0
+2023-24,2023.7,Surface water - environmental,612279.0
+2023-24,2023.8,Surface water - environmental,612279.0
+2023-24,2023.9,Surface water - environmental,612279.0
+2023-24,2024.0,Surface water - environmental,612279.0
+2024-25,2024.1,Surface water - environmental,612279.0
+2024-25,2024.2,Surface water - environmental,612279.0
+2024-25,2024.3,Surface water - environmental,612279.0
+2024-25,2024.4,Surface water - environmental,612279.0
+2024-25,2024.5,Surface water - environmental,612279.0
+2024-25,2024.6,Surface water - environmental,612279.0
+2024-25,2024.7,Surface water - environmental,612279.0
+2024-25,2024.8,Surface water - environmental,612279.0
+2024-25,2024.9,Surface water - environmental,612279.0
+2024-25,2025.0,Surface water - environmental,612279.0
 2015-16,2015.0,Groundwater - consumptive,457374.0
 2015-16,2015.1,Groundwater - consumptive,446803.8000000096
 2015-16,2015.2,Groundwater - consumptive,436233.60000001924
@@ -182,6 +262,46 @@ DisplayYear,YearStep,Resource_Type,Volume_ML
 2020-21,2020.8,Groundwater - consumptive,307201.4000004605
 2020-21,2020.9,Groundwater - consumptive,298471.20000046847
 2020-21,2021.0,Groundwater - consumptive,289741.0000004764
+2021-22,2021.1,Groundwater - consumptive,282540.90000039944
+2021-22,2021.2,Groundwater - consumptive,275340.800000406
+2021-22,2021.3,Groundwater - consumptive,268140.70000041253
+2021-22,2021.4,Groundwater - consumptive,260940.6000004191
+2021-22,2021.5,Groundwater - consumptive,253740.50000042564
+2021-22,2021.6,Groundwater - consumptive,246540.40000043222
+2021-22,2021.7,Groundwater - consumptive,239340.30000043876
+2021-22,2021.8,Groundwater - consumptive,232140.2000004453
+2021-22,2021.9,Groundwater - consumptive,224940.10000045184
+2021-22,2022.0,Groundwater - consumptive,217740.00000045839
+2022-23,2022.1,Groundwater - consumptive,217740.0
+2022-23,2022.2,Groundwater - consumptive,217740.0
+2022-23,2022.3,Groundwater - consumptive,217740.0
+2022-23,2022.4,Groundwater - consumptive,217740.0
+2022-23,2022.5,Groundwater - consumptive,217740.0
+2022-23,2022.6,Groundwater - consumptive,217740.0
+2022-23,2022.7,Groundwater - consumptive,217740.0
+2022-23,2022.8,Groundwater - consumptive,217740.0
+2022-23,2022.9,Groundwater - consumptive,217740.0
+2022-23,2023.0,Groundwater - consumptive,217740.0
+2023-24,2023.1,Groundwater - consumptive,217740.0
+2023-24,2023.2,Groundwater - consumptive,217740.0
+2023-24,2023.3,Groundwater - consumptive,217740.0
+2023-24,2023.4,Groundwater - consumptive,217740.0
+2023-24,2023.5,Groundwater - consumptive,217740.0
+2023-24,2023.6,Groundwater - consumptive,217740.0
+2023-24,2023.7,Groundwater - consumptive,217740.0
+2023-24,2023.8,Groundwater - consumptive,217740.0
+2023-24,2023.9,Groundwater - consumptive,217740.0
+2023-24,2024.0,Groundwater - consumptive,217740.0
+2024-25,2024.1,Groundwater - consumptive,217740.0
+2024-25,2024.2,Groundwater - consumptive,217740.0
+2024-25,2024.3,Groundwater - consumptive,217740.0
+2024-25,2024.4,Groundwater - consumptive,217740.0
+2024-25,2024.5,Groundwater - consumptive,217740.0
+2024-25,2024.6,Groundwater - consumptive,217740.0
+2024-25,2024.7,Groundwater - consumptive,217740.0
+2024-25,2024.8,Groundwater - consumptive,217740.0
+2024-25,2024.9,Groundwater - consumptive,217740.0
+2024-25,2025.0,Groundwater - consumptive,217740.0
 2015-16,2015.0,Recycled water - consumptive,95600.0
 2015-16,2015.1,Recycled water - consumptive,94421.10000000107
 2015-16,2015.2,Recycled water - consumptive,93242.20000000215
@@ -243,6 +363,46 @@ DisplayYear,YearStep,Resource_Type,Volume_ML
 2020-21,2020.8,Recycled water - consumptive,80711.8000000412
 2020-21,2020.9,Recycled water - consumptive,79930.9000000419
 2020-21,2021.0,Recycled water - consumptive,79150.00000004261
+2021-22,2021.1,Recycled water - consumptive,78391.2000000421
+2021-22,2021.2,Recycled water - consumptive,77632.40000004279
+2021-22,2021.3,Recycled water - consumptive,76873.60000004347
+2021-22,2021.4,Recycled water - consumptive,76114.80000004417
+2021-22,2021.5,Recycled water - consumptive,75356.00000004486
+2021-22,2021.6,Recycled water - consumptive,74597.20000004554
+2021-22,2021.7,Recycled water - consumptive,73838.40000004624
+2021-22,2021.8,Recycled water - consumptive,73079.60000004692
+2021-22,2021.9,Recycled water - consumptive,72320.80000004762
+2021-22,2022.0,Recycled water - consumptive,71562.00000004831
+2022-23,2022.1,Recycled water - consumptive,71562.0
+2022-23,2022.2,Recycled water - consumptive,71562.0
+2022-23,2022.3,Recycled water - consumptive,71562.0
+2022-23,2022.4,Recycled water - consumptive,71562.0
+2022-23,2022.5,Recycled water - consumptive,71562.0
+2022-23,2022.6,Recycled water - consumptive,71562.0
+2022-23,2022.7,Recycled water - consumptive,71562.0
+2022-23,2022.8,Recycled water - consumptive,71562.0
+2022-23,2022.9,Recycled water - consumptive,71562.0
+2022-23,2023.0,Recycled water - consumptive,71562.0
+2023-24,2023.1,Recycled water - consumptive,71562.0
+2023-24,2023.2,Recycled water - consumptive,71562.0
+2023-24,2023.3,Recycled water - consumptive,71562.0
+2023-24,2023.4,Recycled water - consumptive,71562.0
+2023-24,2023.5,Recycled water - consumptive,71562.0
+2023-24,2023.6,Recycled water - consumptive,71562.0
+2023-24,2023.7,Recycled water - consumptive,71562.0
+2023-24,2023.8,Recycled water - consumptive,71562.0
+2023-24,2023.9,Recycled water - consumptive,71562.0
+2023-24,2024.0,Recycled water - consumptive,71562.0
+2024-25,2024.1,Recycled water - consumptive,71562.0
+2024-25,2024.2,Recycled water - consumptive,71562.0
+2024-25,2024.3,Recycled water - consumptive,71562.0
+2024-25,2024.4,Recycled water - consumptive,71562.0
+2024-25,2024.5,Recycled water - consumptive,71562.0
+2024-25,2024.6,Recycled water - consumptive,71562.0
+2024-25,2024.7,Recycled water - consumptive,71562.0
+2024-25,2024.8,Recycled water - consumptive,71562.0
+2024-25,2024.9,Recycled water - consumptive,71562.0
+2024-25,2025.0,Recycled water - consumptive,71562.0
 2015-16,2015.0,Desalinated water - consumptive,0.0
 2015-16,2015.1,Desalinated water - consumptive,0.0
 2015-16,2015.2,Desalinated water - consumptive,0.0
@@ -304,3 +464,43 @@ DisplayYear,YearStep,Resource_Type,Volume_ML
 2020-21,2020.8,Desalinated water - consumptive,125000.0
 2020-21,2020.9,Desalinated water - consumptive,125000.0
 2020-21,2021.0,Desalinated water - consumptive,125000.0
+2021-22,2021.1,Desalinated water - consumptive,112913.60000067054
+2021-22,2021.2,Desalinated water - consumptive,100827.20000068154
+2021-22,2021.3,Desalinated water - consumptive,88740.80000069253
+2021-22,2021.4,Desalinated water - consumptive,76654.40000070352
+2021-22,2021.5,Desalinated water - consumptive,64568.00000071451
+2021-22,2021.6,Desalinated water - consumptive,52481.600000725506
+2021-22,2021.7,Desalinated water - consumptive,40395.2000007365
+2021-22,2021.8,Desalinated water - consumptive,28308.80000074749
+2021-22,2021.9,Desalinated water - consumptive,16222.400000758484
+2021-22,2022.0,Desalinated water - consumptive,4136.000000769476
+2022-23,2022.1,Desalinated water - consumptive,4136.0
+2022-23,2022.2,Desalinated water - consumptive,4136.0
+2022-23,2022.3,Desalinated water - consumptive,4136.0
+2022-23,2022.4,Desalinated water - consumptive,4136.0
+2022-23,2022.5,Desalinated water - consumptive,4136.0
+2022-23,2022.6,Desalinated water - consumptive,4136.0
+2022-23,2022.7,Desalinated water - consumptive,4136.0
+2022-23,2022.8,Desalinated water - consumptive,4136.0
+2022-23,2022.9,Desalinated water - consumptive,4136.0
+2022-23,2023.0,Desalinated water - consumptive,4136.0
+2023-24,2023.1,Desalinated water - consumptive,4136.0
+2023-24,2023.2,Desalinated water - consumptive,4136.0
+2023-24,2023.3,Desalinated water - consumptive,4136.0
+2023-24,2023.4,Desalinated water - consumptive,4136.0
+2023-24,2023.5,Desalinated water - consumptive,4136.0
+2023-24,2023.6,Desalinated water - consumptive,4136.0
+2023-24,2023.7,Desalinated water - consumptive,4136.0
+2023-24,2023.8,Desalinated water - consumptive,4136.0
+2023-24,2023.9,Desalinated water - consumptive,4136.0
+2023-24,2024.0,Desalinated water - consumptive,4136.0
+2024-25,2024.1,Desalinated water - consumptive,4136.0
+2024-25,2024.2,Desalinated water - consumptive,4136.0
+2024-25,2024.3,Desalinated water - consumptive,4136.0
+2024-25,2024.4,Desalinated water - consumptive,4136.0
+2024-25,2024.5,Desalinated water - consumptive,4136.0
+2024-25,2024.6,Desalinated water - consumptive,4136.0
+2024-25,2024.7,Desalinated water - consumptive,4136.0
+2024-25,2024.8,Desalinated water - consumptive,4136.0
+2024-25,2024.9,Desalinated water - consumptive,4136.0
+2024-25,2025.0,Desalinated water - consumptive,4136.0

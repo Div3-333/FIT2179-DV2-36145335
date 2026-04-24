@@ -4,9 +4,15 @@
   "width": 1100,
   "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
+  "params": [
+    {
+      "name": "showModern",
+      "value": false
+    }
+  ],
   "title": {
     "text": "The Desalination Pulse",
-    "subtitle": "Quantifying the 'Engineered Shift': Seawater Orders vs. Urban Demand (2012-2021)",
+    "subtitle": "Quantifying the 'Engineered Shift': Seawater Orders vs. Urban Demand (2012-2025)",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -15,6 +21,9 @@
     "offset": 40
   },
   "data": {"url": "data/final/chart9_supply_dynamics.csv"},
+  "transform": [
+    {"filter": "showModern || datum.YearInt <= 2021"}
+  ],
   "vconcat": [
     {
       "width": 1100,
@@ -32,7 +41,7 @@
             "x": {
               "field": "YearInt", 
               "type": "quantitative", 
-              "scale": {"domain": [2012, 2021]},
+              "scale": {"domain": [2012, 2025]},
               "axis": {"format": "d", "title": null, "grid": false}
             },
             "y": {"field": "Total_Demand_GL", "type": "quantitative", "title": "Gigalitres (GL)"},
@@ -87,12 +96,12 @@
       "transform": [
         {"calculate": "datum.Desalination_Delivered_GL / datum.Total_Demand_GL", "as": "ratio"}
       ],
-      "mark": {"type": "bar", "size": 50, "cornerRadius": 5},
+      "mark": {"type": "bar", "size": 30, "cornerRadius": 5},
       "encoding": {
         "x": {
           "field": "YearInt", 
           "type": "quantitative", 
-          "scale": {"domain": [2012, 2021]},
+          "scale": {"domain": [2012, 2025]},
           "axis": {"format": "d", "title": "Fiscal Year"}
         },
         "y": {"field": "ratio", "type": "quantitative", "axis": {"format": "%", "title": "% Dependency"}},

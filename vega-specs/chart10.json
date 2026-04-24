@@ -20,8 +20,7 @@
   "params": [
     {
       "name": "showModern",
-      "value": false,
-      "bind": {"input": "checkbox", "name": "Include Post-2021 Data (The Return): "}
+      "value": false
     }
   ],
   "transform": [
@@ -33,16 +32,12 @@
       "name": "CROSSHAIR_AXES",
       "layer": [
         {
-          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.1},
-          "encoding": {
-            "x": {"datum": 70, "type": "quantitative", "scale": {"domain": [40, 100]}}
-          }
+          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.2},
+          "encoding": {"x": {"datum": 70, "type": "quantitative", "scale": {"domain": [40, 100]}}}
         },
         {
-          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.1},
-          "encoding": {
-            "y": {"datum": 75, "type": "quantitative", "scale": {"domain": [-10, 150]}}
-          }
+          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.2},
+          "encoding": {"y": {"datum": 75, "type": "quantitative", "scale": {"domain": [-5, 150]}}}
         }
       ]
     },
@@ -52,11 +47,11 @@
         "values": [
           {"x": 55, "y": 140, "text": "ENGINEERED SURVIVAL"},
           {"x": 85, "y": 140, "text": "ARTIFICIAL RECHARGE"},
-          {"x": 85, "y": 5, "text": "SAFE ZONE"},
-          {"x": 55, "y": 5, "text": "CRITICAL STRESS"}
+          {"x": 85, "y": 10, "text": "SAFE ZONE"},
+          {"x": 55, "y": 10, "text": "CRITICAL STRESS"}
         ]
       },
-      "mark": {"type": "text", "fontSize": 14, "fontWeight": 900, "color": "black", "opacity": 0.3},
+      "mark": {"type": "text", "fontSize": 14, "fontWeight": 900, "color": "black", "opacity": 0.4},
       "encoding": {
         "x": {"field": "x", "type": "quantitative"},
         "y": {"field": "y", "type": "quantitative"},
@@ -80,12 +75,7 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
         }
       ],
-      "mark": {
-        "type": "circle", 
-        "size": 800, 
-        "stroke": "#2C3E50", 
-        "strokeWidth": 0.5
-      },
+      "mark": {"type": "circle", "size": 800, "stroke": "#2C3E50", "strokeWidth": 0.5},
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
