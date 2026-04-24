@@ -6,8 +6,8 @@
   "vconcat": [
     {
       "title": {
-        "text": "Rainfall Anomaly",
-        "subtitle": "Monthly Surplus/Deficit vs. 50mm Mean | 2004 - 2019",
+        "text": "The Catchment Stress",
+        "subtitle": "Rainfall Anomaly vs. Thermal Intensity | 2004 - 2019",
         "anchor": "start",
         "color": "#E0F2FE",
         "fontSize": 20,
@@ -40,24 +40,31 @@
           "axis": {"gridColor": "rgba(255,255,255,0.1)"}
         },
         "color": {
-          "field": "Anomaly",
+          "field": "MaxTemp",
           "type": "quantitative",
           "scale": {
-            "domain": [-50, 0, 50],
-            "range": ["#E67E22", "#E0F2FE", "#3498DB"]
+            "scheme": "magma",
+            "domain": [10, 35],
+            "reverse": false
           },
-          "legend": null
+          "legend": {
+            "title": "Temp Intensity (°C)",
+            "orient": "right",
+            "labelColor": "#E0F2FE",
+            "titleColor": "#E0F2FE"
+          }
         },
         "tooltip": [
           {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
           {"field": "Rainfall_mm", "type": "quantitative", "title": "Total Rain (mm)"},
-          {"field": "Anomaly", "type": "quantitative", "title": "vs Mean (mm)", "format": ".1f"}
+          {"field": "Anomaly", "type": "quantitative", "title": "Anomaly (mm)", "format": ".1f"},
+          {"field": "MaxTemp", "type": "quantitative", "title": "Avg Temp (°C)", "format": ".1f"}
         ]
       }
     },
     {
       "title": {
-        "text": "The Storage Response",
+        "text": "The Reservoir Response",
         "subtitle": "Melbourne Reservoir Storage Levels (%)",
         "anchor": "start",
         "color": "#E0F2FE",
