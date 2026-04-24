@@ -5,7 +5,7 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "Subterranean Stress Field",
-    "subtitle": "Thermal Density of Active Bore Permits | Victoria",
+    "subtitle": "High-Resolution Extraction Intensity (0.1° Grid) | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -33,79 +33,36 @@
     },
     {
       "data": {
-        "url": "data/final/chart7_symbol_density.csv"
+        "url": "data/final/chart7_hd_grid.csv"
       },
       "mark": {
-        "type": "circle",
-        "opacity": 0.3,
-        "blur": 15
+        "type": "rect",
+        "opacity": 0.9,
+        "cornerRadius": 1
       },
       "encoding": {
-        "longitude": {"field": "Lon", "type": "quantitative"},
-        "latitude": {"field": "Lat", "type": "quantitative"},
-        "size": {
-          "field": "BoreCount",
-          "type": "quantitative",
-          "scale": {"range": [400, 3000]},
-          "legend": null
-        },
+        "longitude": {"field": "lon1", "type": "quantitative"},
+        "latitude": {"field": "lat1", "type": "quantitative"},
+        "longitude2": {"field": "lon2"},
+        "latitude2": {"field": "lat2"},
         "color": {
-          "field": "BoreCount",
+          "field": "StressLevel",
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [1, 5, 12],
-            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
-          },
-          "legend": null
-        }
-      }
-    },
-    {
-      "data": {
-        "url": "data/final/chart7_symbol_density.csv"
-      },
-      "mark": {
-        "type": "circle",
-        "opacity": 0.6,
-        "blur": 5
-      },
-      "encoding": {
-        "longitude": {"field": "Lon", "type": "quantitative"},
-        "latitude": {"field": "Lat", "type": "quantitative"},
-        "size": {
-          "field": "BoreCount",
-          "type": "quantitative",
-          "scale": {"range": [100, 1500]},
-          "legend": {
-            "title": "Local Density", 
-            "labelColor": "#D7CCC8", 
-            "titleColor": "#D7CCC8",
-            "orient": "right",
-            "offset": 20
-          }
-        },
-        "color": {
-          "field": "BoreCount",
-          "type": "quantitative",
-          "scale": {
-            "type": "linear",
-            "domain": [1, 5, 12],
+            "domain": [1, 5, 15],
             "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
           },
           "legend": {
-            "title": "Permits per Hub", 
+            "title": "Bore Density", 
             "labelColor": "#D7CCC8", 
             "titleColor": "#D7CCC8",
             "orient": "right",
-            "gradientLength": 300,
-            "values": [1, 5, 10, 15],
-            "offset": 20
+            "gradientLength": 300
           }
         },
         "tooltip": [
-          {"field": "Suburb", "type": "nominal"},
-          {"field": "BoreCount", "type": "quantitative", "title": "Bore Permits"}
+          {"field": "StressLevel", "type": "quantitative", "title": "Bore Permits in Area"}
         ]
       }
     }
