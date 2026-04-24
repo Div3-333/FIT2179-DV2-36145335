@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 900,
+  "width": 800,
   "height": 500,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "The Extraction Core Sample",
-    "subtitle": "Use the 'Sample Year' menu to drill into specific supply proportions",
+    "subtitle": "Interactive Resource Proportions (100% Stacked) | 2015 - 2023",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -18,9 +18,8 @@
   },
   "params": [
     {
-      "name": "selectedYear",
+      "name": "sampleYear",
       "value": "2019-20",
-      "select": {"type": "point", "fields": ["Water year"]},
       "bind": {
         "input": "select",
         "options": [
@@ -33,7 +32,7 @@
           "2021-22",
           "2022-23"
         ],
-        "name": "Sample Year: "
+        "name": "Select Depth (Year): "
       }
     }
   ],
@@ -91,13 +90,13 @@
           }
         },
         "opacity": {
-          "condition": {"param": "selectedYear", "value": 1},
+          "condition": {"test": "datum['Water year'] == sampleYear", "value": 1},
           "value": 0.2
         }
       }
     },
     {
-      "transform": [{"filter": {"param": "selectedYear"}}],
+      "transform": [{"filter": "datum['Water year'] == sampleYear"}],
       "mark": {
         "type": "rule",
         "color": "white",
@@ -109,7 +108,7 @@
       }
     },
     {
-      "transform": [{"filter": {"param": "selectedYear"}}],
+      "transform": [{"filter": "datum['Water year'] == sampleYear"}],
       "mark": {
         "type": "text",
         "align": "center",
