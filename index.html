@@ -364,60 +364,16 @@
             </div>
 
             <div class="full-width-viz" style="margin-top: 80px;">
-                <div id="vis-chart-8" class="viz-canvas" style="min-height: 420px; position: relative;">
+                <div id="vis-chart-8" class="viz-canvas" style="min-height: 380px; position: relative;">
                     <!-- Chart 8 Renders here -->
-                </div>
-                <div style="text-align: center; margin-top: -10px; margin-bottom: 20px;">
-                    <button id="play-chart-8" style="background: #3498DB; color: white; border: none; padding: 10px 25px; border-radius: 25px; cursor: pointer; font-family: 'Source Sans Pro'; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 1rem;">
-                        ▶ Play Liquid Flow
-                    </button>
                 </div>
                 <div class="annotation" style="background: rgba(45, 36, 30, 0.9); color: #E0E6ED; border-left: 4px solid #BB8FCE; margin-top: 10px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
                     <h3 style="color: #D7CCC8; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Proportional Pivot</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        As the surface fails, the state performs a desperate pivot. This custom "Liquid Gauge" reveals our shifting water dependency by normalizing volumes into a continuous proportional flow. Click <span style="color: #3498DB; font-weight: bold;">Play</span> to watch the strata morph: the <span style="color: #3498DB; font-weight: bold;">Surface Water</span> bands are being compressed as the <span style="color: #BB8FCE; font-weight: bold;">Groundwater</span> and <span style="color: #F1C40F; font-weight: bold;">Desalinated</span> layers physically expand. We are no longer living off seasonal rain; we are withdrawing the subterranean and engineered capital of the state.
+                        As the surface fails, the state performs a desperate pivot. This custom "Liquid Gauge" reveals our shifting water dependency by normalizing volumes into a continuous proportional flow. Use the slider to watch the strata morph: the <span style="color: #3498DB; font-weight: bold;">Surface Water</span> bands are being compressed as the <span style="color: #BB8FCE; font-weight: bold;">Groundwater</span> and <span style="color: #F1C40F; font-weight: bold;">Desalinated</span> layers physically expand. We are no longer living off seasonal rain; we are withdrawing the subterranean and engineered capital of the state.
                     </p>
                 </div>
             </div>
-
-            <script>
-                // Robust Logic for Chart 8 Play Button
-                let chart8View = null;
-                let isPlaying = false;
-                let lastTime = 0;
-
-                function setupPlayButton(res) {
-                    chart8View = res.view;
-                    const btn = document.getElementById('play-chart-8');
-                    
-                    function animate(time) {
-                        if (!isPlaying) return;
-                        
-                        // Control animation speed (approx 10 steps per second)
-                        if (time - lastTime > 100) {
-                            let current = chart8View.signal('timeStep');
-                            let next = current + 0.1;
-                            if (next > 2022.1) next = 2015;
-                            
-                            chart8View.signal('timeStep', next).runAsync();
-                            lastTime = time;
-                        }
-                        requestAnimationFrame(animate);
-                    }
-
-                    btn.addEventListener('click', () => {
-                        isPlaying = !isPlaying;
-                        if (isPlaying) {
-                            btn.innerHTML = '⏸ Pause Flow';
-                            btn.style.background = '#E67E22';
-                            requestAnimationFrame(animate);
-                        } else {
-                            btn.innerHTML = '▶ Play Liquid Flow';
-                            btn.style.background = '#3498DB';
-                        }
-                    });
-                }
-            </script>
         </div>
     </section>
 
@@ -485,7 +441,7 @@
             vegaEmbed('#vis-chart-5', 'vega-specs/chart5.json').catch(console.error);
             vegaEmbed('#vis-chart-6', 'vega-specs/chart6.json').catch(console.error);
             vegaEmbed('#vis-chart-7', 'vega-specs/chart7.json').catch(console.error);
-            vegaEmbed('#vis-chart-8', 'vega-specs/chart8.json').then(setupPlayButton).catch(console.error);
+            vegaEmbed('#vis-chart-8', 'vega-specs/chart8.json').catch(console.error);
             vegaEmbed('#vis-chart-9', 'vega-specs/chart9.json').catch(console.error);
             vegaEmbed('#vis-chart-10', 'vega-specs/chart10.json').catch(console.error);
         });
