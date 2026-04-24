@@ -4,8 +4,8 @@
   "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
-    "text": "Subterranean Stress Field",
-    "subtitle": "Quantified Groundwater Extraction: Permits per 20km² | Victoria",
+    "text": "Subterranean Stress",
+    "subtitle": "Quantified Groundwater Extraction: Permits per Suburb Hub | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -15,8 +15,8 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [145.4, -36.5],
-    "scale": 4200
+    "center": [144.5, -36.5],
+    "scale": 4500
   },
   "layer": [
     {
@@ -33,36 +33,55 @@
     },
     {
       "data": {
-        "url": "data/final/chart7_spatial_grid.csv"
+        "url": "data/final/chart7_symbol_density.csv"
       },
       "mark": {
-        "type": "rect",
-        "opacity": 0.8,
-        "cornerRadius": 2
+        "type": "point",
+        "shape": "diamond",
+        "filled": true,
+        "stroke": "white",
+        "strokeWidth": 0.5
       },
       "encoding": {
-        "longitude": {"field": "lon1", "type": "quantitative"},
-        "latitude": {"field": "lat1", "type": "quantitative"},
-        "longitude2": {"field": "lon2"},
-        "latitude2": {"field": "lat2"},
-        "color": {
-          "field": "PermitCount",
+        "longitude": {"field": "Lon", "type": "quantitative"},
+        "latitude": {"field": "Lat", "type": "quantitative"},
+        "size": {
+          "field": "GlowIntensity",
           "type": "quantitative",
-          "scale": {
-            "type": "linear",
-            "domain": [1, 5, 10, 20],
-            "range": ["#3B0F70", "#8C2981", "#FE9F6D", "#FCFDBF"]
-          },
+          "scale": {"range": [20, 1000]},
           "legend": {
-            "title": "Permits in Area", 
+            "title": "Extraction Depth", 
             "labelColor": "#D7CCC8", 
             "titleColor": "#D7CCC8",
             "orient": "right",
-            "gradientLength": 300
+            "offset": 20
           }
         },
+        "color": {
+          "field": "GlowIntensity",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [1, 5, 12],
+            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
+          },
+          "legend": {
+            "title": "Permit Count", 
+            "labelColor": "#D7CCC8", 
+            "titleColor": "#D7CCC8",
+            "orient": "right",
+            "offset": 20
+          }
+        },
+        "opacity": {
+          "field": "GlowIntensity",
+          "type": "quantitative",
+          "scale": {"range": [0.6, 1]},
+          "legend": null
+        },
         "tooltip": [
-          {"field": "PermitCount", "type": "quantitative", "title": "Bore Permits in Area"}
+          {"field": "Suburb", "type": "nominal"},
+          {"field": "BoreCount", "type": "quantitative", "title": "Total Permits"}
         ]
       }
     }
