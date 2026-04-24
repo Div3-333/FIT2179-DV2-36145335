@@ -1,18 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 50,
+  "height": 100,
   "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 10, "top": 30, "right": 10, "bottom": 60},
+  "padding": {"left": 0, "top": 5, "right": 0, "bottom": 35},
   "title": {
     "text": "The Fluid Shift",
     "subtitle": "Resource Proportions (ML)",
     "anchor": "start",
     "color": "#D7CCC8",
-    "fontSize": 20,
+    "fontSize": 22,
     "subtitleFontSize": 12,
     "subtitleColor": "#B0BEC5",
-    "offset": 25
+    "offset": 5
   },
   "data": {
     "url": "data/final/chart8_liquid_data.csv"
@@ -39,10 +39,10 @@
     {
       "mark": {
         "type": "bar",
-        "height": 60,
-        "cornerRadius": 6,
+        "height": 100,
+        "cornerRadius": 8,
         "stroke": "white",
-        "strokeWidth": 1,
+        "strokeWidth": 1.5,
         "opacity": 0.95
       },
       "encoding": {
@@ -71,9 +71,9 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 5,
-            "offset": 30,
-            "labelFontSize": 10,
-            "symbolSize": 60
+            "offset": 10,
+            "labelFontSize": 12,
+            "symbolSize": 100
           }
         }
       }
@@ -83,10 +83,10 @@
         "type": "text",
         "align": "center",
         "baseline": "middle",
-        "fontSize": 70,
+        "fontSize": 90,
         "fontWeight": 900,
-        "color": "rgba(255,255,255,0.06)",
-        "y": 30
+        "color": "rgba(255,255,255,0.07)",
+        "y": 50
       },
       "encoding": {
         "text": {"field": "DisplayYear", "type": "nominal"}
