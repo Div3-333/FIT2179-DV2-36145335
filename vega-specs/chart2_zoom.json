@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "autosize": "fit",
   "data": {
     "url": "data/final/chart2_temperature.csv"
   },
@@ -16,7 +15,7 @@
         "offset": 10
       },
       "width": "container",
-      "height": 140,
+      "height": 180,
       "transform": [
         {"filter": "datum.Year >= 2010 && datum.Year <= 2020"}
       ],
@@ -42,11 +41,7 @@
           "field": "MaxTemp",
           "type": "quantitative",
           "scale": {"scheme": "magma", "domain": [12, 32]},
-          "legend": {
-            "title": "Temp (°C)",
-            "orient": "right",
-            "gradientLength": 100
-          }
+          "legend": {"title": "Temp (°C)"}
         }
       }
     },
@@ -59,7 +54,7 @@
         "offset": 10
       },
       "width": "container",
-      "height": 140,
+      "height": 180,
       "transform": [
         {"filter": "datum.Year >= 1910 && datum.Year <= 1920"}
       ],
