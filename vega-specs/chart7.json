@@ -5,61 +5,80 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "Subterranean Stress",
-    "subtitle": "Groundwater Extraction Density by Suburb (Active Bore Permits) | Victoria",
+    "subtitle": "Active Bore Permits: Visualizing Extraction Intensity Clusters | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
     "subtitleFontSize": 16,
     "subtitleColor": "#B0BEC5",
-    "offset": 20
+    "offset": 25
   },
-  "data": {
-    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
-    "format": {"type": "json", "property": "features"}
-  },
-  "transform": [
-    {
-      "lookup": "properties.vic_loca_2",
-      "from": {
-        "data": {
-          "url": "data/final/chart7_suburb_density.csv"
-        },
-        "key": "Suburb",
-        "fields": ["BoreCount", "Intensity"]
-      }
-    },
-    {"calculate": "datum.BoreCount ? datum.BoreCount : 0", "as": "Count"}
-  ],
   "projection": {
-    "type": "mercator"
+    "type": "mercator",
+    "center": [144.5, -36.5],
+    "scale": 4200
   },
   "layer": [
     {
+      "data": {
+        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
       "mark": {
         "type": "geoshape",
+        "fill": "rgba(45, 36, 30, 0.4)",
         "stroke": "rgba(255,255,255,0.05)",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart7_starfield_data.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "stroke": "white",
         "strokeWidth": 0.2
       },
       "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "size": {
+          "field": "LocalDensity",
+          "type": "quantitative",
+          "scale": {"range": [10, 400]},
+          "legend": {
+            "title": "Extraction Density", 
+            "labelColor": "#D7CCC8", 
+            "titleColor": "#D7CCC8",
+            "orient": "right"
+          }
+        },
         "color": {
-          "field": "Count",
+          "field": "LocalDensity",
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [0, 1, 3, 8],
-            "range": ["#3B0F70", "#8C2981", "#FE9F6D", "#FCFDBF"]
+            "domain": [1, 5, 20],
+            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
           },
           "legend": {
-            "title": "Bore Permits", 
+            "title": "Local Stress", 
             "labelColor": "#D7CCC8", 
             "titleColor": "#D7CCC8",
             "orient": "right",
-            "gradientLength": 300
+            "gradientLength": 250
           }
         },
+        "opacity": {
+          "field": "LocalDensity",
+          "type": "quantitative",
+          "scale": {"domain": [1, 20], "range": [0.4, 1]},
+          "legend": null
+        },
         "tooltip": [
-          {"field": "properties.vic_loca_2", "type": "nominal", "title": "Suburb"},
-          {"field": "Count", "type": "quantitative", "title": "Permits"}
+          {"field": "LocalDensity", "type": "quantitative", "title": "Permits in Radius"}
         ]
       }
     }
