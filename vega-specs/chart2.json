@@ -48,7 +48,12 @@
         "reverse": false,
         "domain": [12, 32]
       },
-      "legend": null
+      "legend": {
+        "title": "Temp (°C)",
+        "orient": "left",
+        "offset": 40,
+        "gradientLength": 300
+      }
     },
     "tooltip": [
       {"field": "Year", "type": "ordinal"},
