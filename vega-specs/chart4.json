@@ -34,6 +34,25 @@
     },
     {
       "mark": {
+        "type": "line",
+        "color": "#E67E22",
+        "strokeWidth": 3,
+        "opacity": 0.6,
+        "strokeDash": [4, 2]
+      },
+      "transform": [
+        {
+          "regression": "Annual_Evaporation_mm",
+          "on": "Year"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Year", "type": "quantitative"},
+        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
         "type": "circle",
         "filled": true,
         "opacity": 0.8,
