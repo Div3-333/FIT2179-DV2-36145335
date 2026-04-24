@@ -2,8 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 130,
-  "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 0, "top": 10, "right": 0, "bottom": 80},
+  "autosize": {"type": "fit", "contains": "padding"},
+  "padding": {"left": 10, "top": 50, "right": 10, "bottom": 80},
   "title": {
     "text": "The Fluid Shift",
     "subtitle": "Resource Proportions (ML) | 2015 - 2023",
@@ -12,7 +12,7 @@
     "fontSize": 24,
     "subtitleFontSize": 14,
     "subtitleColor": "#B0BEC5",
-    "offset": 25
+    "offset": 40
   },
   "data": {
     "url": "data/final/chart8_liquid_data.csv"
@@ -39,11 +39,12 @@
     {
       "mark": {
         "type": "bar",
-        "height": 130,
+        "height": 100,
         "cornerRadius": 8,
         "stroke": "white",
         "strokeWidth": 1.5,
-        "opacity": 0.9
+        "opacity": 0.9,
+        "y": 40
       },
       "encoding": {
         "x": {
@@ -83,10 +84,11 @@
       "mark": {
         "type": "text",
         "align": "center",
-        "baseline": "middle",
+        "baseline": "bottom",
         "fontSize": 12,
         "fontWeight": "bold",
-        "color": "white"
+        "color": "#E0F2FE",
+        "dy": -15
       },
       "encoding": {
         "x": {
@@ -95,16 +97,35 @@
           "stack": "normalize",
           "band": 0.5
         },
+        "y": {"datum": 40},
         "text": {
           "field": "Volume_ML", 
           "type": "quantitative", 
-          "format": ".2s"
+          "format": ",.2s"
         },
         "detail": {"field": "Resource_Type"},
         "opacity": {
           "condition": {"test": "datum.Volume_ML > 100000", "value": 1},
-          "value": 0
+          "value": 0.6
         }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "white",
+        "strokeWidth": 1,
+        "opacity": 0.5
+      },
+      "encoding": {
+        "x": {
+          "field": "Volume_ML",
+          "type": "quantitative",
+          "stack": "normalize",
+          "band": 0.5
+        },
+        "y": {"datum": 40},
+        "y2": {"datum": 60}
       }
     },
     {
@@ -115,7 +136,7 @@
         "fontSize": 90,
         "fontWeight": 900,
         "color": "rgba(255,255,255,0.06)",
-        "y": 65
+        "y": 90
       },
       "encoding": {
         "text": {"field": "DisplayYear", "type": "nominal"}
