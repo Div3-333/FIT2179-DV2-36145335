@@ -15,8 +15,8 @@
         "subtitleFontSize": 16,
         "subtitleColor": "#A9CCE3"
       },
-      "width": "container",
-      "height": 220,
+      "width": 800,
+      "height": 260,
       "data": {"url": "data/final/chart5_caulfield_rain.csv"},
       "transform": [
         {
@@ -81,7 +81,7 @@
         "subtitleColor": "#A9CCE3"
       },
       "width": "container",
-      "height": 280,
+      "height": 240,
       "data": {"url": "data/final/chart5_Historical_Data.csv"},
       "transform": [
         {"calculate": "datetime(datum.Year, datum.Month_Num - 1, 1)", "as": "Date"},
