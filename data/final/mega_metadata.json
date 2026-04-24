@@ -12,10 +12,10 @@
         "citation": "Bureau of Meteorology. (2026). Australian Climate Observations Reference Network - Surface Air Temperature (ACORN-SAT). Australian Government."
     },
     "chart3": {
-        "description": "Climate Drivers Line Chart (SOI vs Rainfall)",
-        "source": "BoM SOI Archives",
+        "description": "Climate Drivers Line Chart (SOI vs Rainfall). Note: Rainfall data for 2000-2003 and 2020-2026 is mathematically synthesized using SOI-correlation modeling to provide a continuous visual comparison.",
+        "source": "BoM SOI Archives + Synthesized Rainfall",
         "url": "http://www.bom.gov.au/climate/enso/soi/",
-        "citation": "Bureau of Meteorology. (2026). Southern Oscillation Index (SOI) Archives. Australian Government."
+        "citation": "Bureau of Meteorology. (2026). Southern Oscillation Index (SOI) Archives. Rainfall synthesis for visual continuity by D. Sharma (2026)."
     },
     "chart4": {
         "description": "Evaporation Scatter Plot",
