@@ -1,18 +1,19 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-fidelity industrial dashboard: The Survival Envelope.",
-  "width": 800,
-  "height": 550,
+  "description": "High-fidelity industrial dashboard: The Survival Matrix.",
+  "width": 1000,
+  "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
-  "background": "transparent",
+  "background": "white",
+  "padding": {"left": 20, "top": 50, "right": 20, "bottom": 20},
   "title": {
     "text": "The Survival Envelope",
-    "subtitle": "System Resilience Scan: Reservoir Health vs. Engineering Injection | 2012 - 2025",
+    "subtitle": "Temporal Matrix: Seawater Injection vs. Historical Reservoir Health | 2012 - 2021",
     "anchor": "start",
-    "color": "#D7CCC8",
+    "color": "#2C3E50",
     "fontSize": 28,
     "subtitleFontSize": 16,
-    "subtitleColor": "#B0BEC5",
+    "subtitleColor": "#7F8C8D",
     "offset": 40
   },
   "data": {"url": "data/final/chart10_resilience_matrix.csv"},
@@ -21,26 +22,17 @@
       "name": "QUADRANT_LABELS",
       "data": {
         "values": [
-          {"x": 90, "y": 10, "text": "SAFE ZONE"},
-          {"x": 50, "y": 10, "text": "CRITICAL STRESS"},
-          {"x": 50, "y": 130, "text": "ENGINEERED SURVIVAL"},
-          {"x": 90, "y": 130, "text": "ARTIFICIAL RECHARGE"}
+          {"x": 2013, "y": 120, "text": "ENGINEERED SURVIVAL"},
+          {"x": 2020, "y": 120, "text": "ARTIFICIAL RECHARGE"},
+          {"x": 2013, "y": 20, "text": "SAFE ZONE"},
+          {"x": 2020, "y": 20, "text": "CRITICAL STRESS"}
         ]
       },
-      "mark": {"type": "text", "fontSize": 14, "fontWeight": 900, "opacity": 0.2, "color": "#D7CCC8"},
+      "mark": {"type": "text", "fontSize": 16, "fontWeight": 900, "color": "black", "opacity": 0.4},
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [40, 100]}},
-        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [-5, 150]}},
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
         "text": {"field": "text"}
-      }
-    },
-    {
-      "name": "TRAJECTORY",
-      "mark": {"type": "line", "point": false, "strokeWidth": 2, "color": "white", "opacity": 0.2, "interpolate": "monotone"},
-      "encoding": {
-        "x": {"field": "Storage_Percentage", "type": "quantitative"},
-        "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
-        "order": {"field": "Year", "type": "quantitative"}
       }
     },
     {
@@ -51,69 +43,64 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
         }
       ],
-      "mark": {"type": "point", "size": 300, "filled": true, "stroke": "white", "strokeWidth": 1.5},
+      "mark": {"type": "point", "size": 600, "filled": true, "stroke": "#2C3E50", "strokeWidth": 2},
       "encoding": {
         "x": {
-          "field": "Storage_Percentage",
+          "field": "Year",
           "type": "quantitative",
-          "axis": {"title": "Reservoir Health (Average Storage %)", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "grid": false}
+          "scale": {"domain": [2011, 2022]},
+          "axis": {
+            "format": "d",
+            "title": "Timeline (Fiscal Year)",
+            "labelColor": "#2C3E50",
+            "titleColor": "#2C3E50",
+            "grid": true,
+            "gridColor": "#ECF0F1",
+            "domainWidth": 2,
+            "domainColor": "#2C3E50"
+          }
         },
         "y": {
           "field": "Desalination_Delivered_GL",
           "type": "quantitative",
-          "axis": {"title": "Engineering Injection (Desal GL)", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "grid": false}
+          "scale": {"domain": [-5, 150]},
+          "axis": {
+            "title": "Engineering Injection (Desal GL)",
+            "labelColor": "#2C3E50",
+            "titleColor": "#2C3E50",
+            "grid": true,
+            "gridColor": "#ECF0F1",
+            "domainWidth": 2,
+            "domainColor": "#2C3E50"
+          }
         },
         "color": {
-          "field": "Year",
+          "field": "Storage_Percentage",
           "type": "quantitative",
-          "scale": {"scheme": "magma"},
-          "legend": {"title": "Timeline", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "format": "d"}
+          "scale": {"scheme": "magma", "reverse": true},
+          "legend": {"title": "Reservoir Health (%)", "orient": "right", "labelColor": "#2C3E50", "titleColor": "#2C3E50"}
         },
         "opacity": {
           "condition": {"param": "hover", "value": 1, "empty": true},
-          "value": 0.4
-        },
-        "size": {
-          "condition": {"param": "hover", "value": 600, "empty": false},
-          "value": 300
+          "value": 0.3
         },
         "tooltip": [
           {"field": "Year", "type": "quantitative", "title": "Year"},
-          {"field": "Storage_Percentage", "type": "quantitative", "title": "Storage %", "format": ".1f"},
-          {"field": "Desalination_Delivered_GL", "type": "quantitative", "title": "Desal (GL)"}
+          {"field": "Storage_Percentage", "type": "quantitative", "title": "Storage Health %", "format": ".1f"},
+          {"field": "Desalination_Delivered_GL", "type": "quantitative", "title": "Desal GL"}
         ]
       }
     },
     {
       "name": "YEAR_LABELS",
-      "mark": {"type": "text", "dy": -20, "fontSize": 12, "fontWeight": "bold", "color": "white"},
+      "mark": {"type": "text", "dy": -25, "fontSize": 14, "fontWeight": 900, "color": "#2C3E50"},
       "encoding": {
-        "x": {"field": "Storage_Percentage", "type": "quantitative"},
+        "x": {"field": "Year", "type": "quantitative"},
         "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
         "text": {"field": "Year", "type": "nominal"},
         "opacity": {
           "condition": {"param": "hover", "value": 1, "empty": false},
-          "value": 0
-        }
-      }
-    },
-    {
-      "name": "FORENSIC_HUD",
-      "transform": [{"filter": {"param": "hover"}}],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "top",
-        "fontSize": 20,
-        "fontWeight": 900,
-        "color": "#F1C40F",
-        "x": 20,
-        "y": 20
-      },
-      "encoding": {
-        "text": {
-          "calculate": "'SYSTEM STATUS: ' + (datum.Storage_Percentage < 65 ? 'CRITICAL' : 'RECOVERY')",
-          "as": "statusText"
+          "value": 0.4
         }
       }
     }
