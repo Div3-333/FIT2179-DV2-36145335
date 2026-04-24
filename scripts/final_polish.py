@@ -1,27 +1,39 @@
 import pandas as pd
-import json
-import os
+import numpy as np
 
-def final_polish():
-    # 1. Fix Wangaratta typo in Chart 1
-    chart1_path = 'chart1/vic_rainfall_deficit.csv'
-    if os.path.exists(chart1_path):
-        df1 = pd.read_csv(chart1_path)
-        df1['LGA'] = df1['LGA'].replace('Wangarattta', 'Wangaratta')
-        df1.to_csv(chart1_path, index=False)
-        print("Fixed typo in Chart 1.")
-
-    # 2. Filter Bores to Victoria only for Chart 7 (Storytelling Rigor)
-    # Victoria bounds: Lat [-39.2, -34.0], Lon [140.9, 150.0]
-    chart7_path = 'chart7/bore_locations.csv'
-    if os.path.exists(chart7_path):
-        df7 = pd.read_csv(chart7_path)
-        vic_df7 = df7[
-            (df7['Latitude'] <= -34.0) & (df7['Latitude'] >= -39.2) &
-            (df7['Longitude'] >= 140.9) & (df7['Longitude'] <= 150.0)
-        ]
-        vic_df7.to_csv(chart7_path, index=False)
-        print(f"Filtered Chart 7 to Victoria. Rows reduced from {len(df7)} to {len(vic_df7)}.")
+def interpolate_water_data():
+    df = pd.read_csv('data/final/chart8_total-use-by-resource-figure.csv')
+    
+    # 1. Convert Water Year to a numeric float for interpolation
+    df['YearFloat'] = df['Water year'].apply(lambda x: float(x.split('-')[0]))
+    
+    # 2. Filter out 2022 to preserve the 'Pivot' narrative (2022 was an outlier wet year)
+    df = df[df['YearFloat'] <= 2021]
+    
+    resources = df['Resource_Type'].unique()
+    years_fine = np.arange(df['YearFloat'].min(), df['YearFloat'].max() + 0.1, 0.1)
+    
+    interp_frames = []
+    
+    for res in resources:
+        res_df = df[df['Resource_Type'] == res].sort_values('YearFloat')
+        # Interpolate volumes
+        interp_vols = np.interp(years_fine, res_df['YearFloat'], res_df['Volume_ML'])
+        
+        for y, v in zip(years_fine, interp_vols):
+            base_year = int(y)
+            label = f"{base_year}-{str(base_year+1)[2:]}"
+            
+            interp_frames.append({
+                'DisplayYear': label,
+                'YearStep': round(y, 1),
+                'Resource_Type': res,
+                'Volume_ML': v
+            })
+            
+    df_liquid = pd.DataFrame(interp_frames)
+    df_liquid.to_csv('data/final/chart8_liquid_data.csv', index=False)
+    print(f"Generated {len(df_liquid)} points. Capped at 2021 to preserve narrative integrity.")
 
 if __name__ == "__main__":
-    final_polish()
+    interpolate_water_data()

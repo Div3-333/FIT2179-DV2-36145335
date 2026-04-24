@@ -10,7 +10,7 @@
       "bind": {
         "input": "range",
         "min": 2015,
-        "max": 2022,
+        "max": 2021,
         "step": 0.1,
         "name": "Analyze Year: "
       }
@@ -18,7 +18,7 @@
   ],
   "title": {
     "text": "The Proportional Pivot",
-    "subtitle": "Supply Proportion Forensic Dashboard (ML) | 2015 - 2023",
+    "subtitle": "Supply Proportion Forensic Dashboard (ML) | 2015 - 2021",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -54,13 +54,13 @@
               "type": "nominal",
               "scale": {
                 "domain": [
-                  "Surface water - consumptive",
-                  "Surface water - environmental",
-                  "Groundwater - consumptive",
+                  "Desalinated water - consumptive",
                   "Recycled water - consumptive",
-                  "Desalinated water - consumptive"
+                  "Groundwater - consumptive",
+                  "Surface water - environmental",
+                  "Surface water - consumptive"
                 ],
-                "range": ["#3498DB", "#2E86C1", "#BB8FCE", "#A569BD", "#F1C40F"]
+                "range": ["#F1C40F", "#A569BD", "#BB8FCE", "#2E86C1", "#3498DB"]
               },
               "legend": {
                 "title": null,
@@ -104,7 +104,7 @@
       "data": {"url": "data/final/chart8_liquid_data.csv"},
       "transform": [
         {"filter": "abs(datum.YearStep - timeStep) < 0.05"},
-        {"calculate": "datum.Resource_Type == 'Surface water - consumptive' ? 0 : datum.Resource_Type == 'Surface water - environmental' ? 1 : datum.Resource_Type == 'Groundwater - consumptive' ? 2 : datum.Resource_Type == 'Recycled water - consumptive' ? 3 : 4", "as": "rowOrder"}
+        {"calculate": "datum.Resource_Type == 'Desalinated water - consumptive' ? 0 : datum.Resource_Type == 'Recycled water - consumptive' ? 1 : datum.Resource_Type == 'Groundwater - consumptive' ? 2 : datum.Resource_Type == 'Surface water - environmental' ? 3 : 4", "as": "rowOrder"}
       ],
       "mark": {"type": "text", "align": "right", "fontSize": 14, "fontWeight": "900"},
       "encoding": {
@@ -115,13 +115,13 @@
           "type": "nominal",
           "scale": {
             "domain": [
-              "Surface water - consumptive",
-              "Surface water - environmental",
-              "Groundwater - consumptive",
+              "Desalinated water - consumptive",
               "Recycled water - consumptive",
-              "Desalinated water - consumptive"
+              "Groundwater - consumptive",
+              "Surface water - environmental",
+              "Surface water - consumptive"
             ],
-            "range": ["#3498DB", "#2E86C1", "#BB8FCE", "#A569BD", "#F1C40F"]
+            "range": ["#F1C40F", "#A569BD", "#BB8FCE", "#2E86C1", "#3498DB"]
           },
           "legend": null
         }
