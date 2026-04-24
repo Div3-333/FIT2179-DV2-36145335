@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "title": {
+    "text": "The Evaporation Pump",
+    "subtitle": "Annual Evaporation (mm) vs. Avg Summer Max Temp (°C) | 1958 - 2026",
+    "anchor": "start",
+    "color": "#E0F2FE",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#A9CCE3",
+    "offset": 20
+  },
+  "data": {
+    "url": "data/final/chart4_evaporation_temp.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "opacity": 0.7,
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "Avg_Summer_Max_Temp",
+          "type": "quantitative",
+          "title": "Avg Summer Max Temp (°C)",
+          "scale": {"domain": [22, 32]}
+        },
+        "y": {
+          "field": "Annual_Evaporation_mm",
+          "type": "quantitative",
+          "title": "Annual Evaporation (mm)",
+          "scale": {"zero": false}
+        },
+        "color": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {"scheme": "viridis"},
+          "legend": {"title": "Timeline", "format": "d", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
+        },
+        "size": {
+          "field": "Annual_Evaporation_mm",
+          "type": "quantitative",
+          "scale": {"range": [50, 500]},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "Year", "type": "quantitative", "title": "Year"},
+          {"field": "Avg_Summer_Max_Temp", "type": "quantitative", "title": "Summer Temp", "format": ".1f"},
+          {"field": "Annual_Evaporation_mm", "type": "quantitative", "title": "Evaporation", "format": ".0f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#E67E22",
+        "strokeWidth": 3,
+        "opacity": 0.8
+      },
+      "transform": [
+        {
+          "regression": "Annual_Evaporation_mm",
+          "on": "Avg_Summer_Max_Temp"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Avg_Summer_Max_Temp", "type": "quantitative"},
+        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative"}
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#A9CCE3",
+      "tickColor": "#A9CCE3",
+      "labelColor": "#E0F2FE",
+      "titleColor": "#E0F2FE",
+      "gridColor": "rgba(255,255,255,0.1)",
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
+    }
+  }
+}

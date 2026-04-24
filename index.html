@@ -300,12 +300,15 @@
                 When the sky fails, the ground pays the price. Our massive holding tanks—the forested catchments—are bleeding water back into the atmosphere through evaporation.
             </p>
 
-            <div class="story-row">
-                <div class="viz-block">
-                    <div id="vis-chart-4" class="viz-canvas">[CHART 4: Scatter Plot - Evaporation vs Temp]</div>
+            <div class="story-row" style="grid-template-columns: 1.6fr 1fr; align-items: flex-start; gap: 40px; margin-top: 60px;">
+                <div id="vis-chart-4" class="viz-canvas" style="min-height: 480px;">
+                    <!-- Chart 4 Renders here -->
                 </div>
-                <div class="text-block">
-                    <p>Higher baseline temperatures act as a pump, pulling surface water straight back into the sky. As summer maximums breach 35°C, evaporation rates spike exponentially.</p>
+                <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Evaporation Pump</h2>
+                    <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
+                        When the sky heats up, our catchments bleed. This scatter plot reveals the brutal efficiency of the <span style="color: #E67E22; font-weight: bold;">Atmospheric Pump</span>. As average <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Summer Peaks</span> breach the 28°C threshold, we see an aggressive upward climb in annual evaporation. The <span style="color: #E67E22; font-weight: bold; text-decoration: underline;">Orange Trend Line</span> confirms a dangerous reality: even with average rainfall, the sheer intensity of modern heat is literally pulling our surface water back into the sky before it can ever be distributed.
+                    </p>
                 </div>
             </div>
 
@@ -390,10 +393,11 @@
             vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
             vegaEmbed('#vis-chart-2-comparison', 'vega-specs/chart2_comparison.json').catch(console.error);
             vegaEmbed('#vis-chart-3', 'vega-specs/chart3.json').catch(console.error);
+            vegaEmbed('#vis-chart-4', 'vega-specs/chart4.json').catch(console.error);
 
             /* 
             Remaining charts will be linked as we build them:
-            vegaEmbed('#vis-chart-4', 'vega-specs/chart4.json').catch(console.error);
+            vegaEmbed('#vis-chart-5', 'vega-specs/chart5.json').catch(console.error);
             ... 
             */
         });
