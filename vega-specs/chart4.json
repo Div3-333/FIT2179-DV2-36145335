@@ -75,16 +75,21 @@
             "domain": [25, 28, 31],
             "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
           },
-          "legend": {"title": "Summer Temp (°C)", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
+          "legend": {"title": "Temp Intensity", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
         },
         "size": {
           "field": "Avg_Summer_Max_Temp",
           "type": "quantitative",
           "scale": {
             "domain": [25, 32],
-            "range": [100, 1500]
+            "range": [50, 4000]
           },
-          "legend": null
+          "legend": {
+            "title": "Heat Magnitude",
+            "labelColor": "#E0F2FE",
+            "titleColor": "#E0F2FE",
+            "values": [26, 28, 30, 32]
+          }
         },
         "tooltip": [
           {"field": "Year", "type": "quantitative", "title": "Year"},
