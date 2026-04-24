@@ -1,0 +1,356 @@
+DisplayYear,YearStep,Resource_Type,Volume_ML
+2015-16,2015.0,Surface water - consumptive,3845196.0
+2015-16,2015.1,Surface water - consumptive,3780474.6000000588
+2015-16,2015.2,Surface water - consumptive,3715753.2000001175
+2015-16,2015.3,Surface water - consumptive,3651031.8000001768
+2015-16,2015.4,Surface water - consumptive,3586310.4000002355
+2015-16,2015.5,Surface water - consumptive,3521589.0000002943
+2015-16,2015.6,Surface water - consumptive,3456867.600000353
+2015-16,2015.7,Surface water - consumptive,3392146.200000412
+2015-16,2015.8,Surface water - consumptive,3327424.800000471
+2015-16,2015.9,Surface water - consumptive,3262703.40000053
+2015-16,2016.0,Surface water - consumptive,3197982.0000005886
+2016-17,2016.1,Surface water - consumptive,3233224.199999647
+2016-17,2016.2,Surface water - consumptive,3268466.3999996153
+2016-17,2016.3,Surface water - consumptive,3303708.5999995833
+2016-17,2016.4,Surface water - consumptive,3338950.7999995514
+2016-17,2016.5,Surface water - consumptive,3374192.9999995194
+2016-17,2016.6,Surface water - consumptive,3409435.199999487
+2016-17,2016.7,Surface water - consumptive,3444677.399999455
+2016-17,2016.8,Surface water - consumptive,3479919.599999423
+2016-17,2016.9,Surface water - consumptive,3515161.799999391
+2016-17,2017.0,Surface water - consumptive,3550403.999999359
+2017-18,2017.1,Surface water - consumptive,3529128.100000406
+2017-18,2017.2,Surface water - consumptive,3507852.200000426
+2017-18,2017.3,Surface water - consumptive,3486576.300000445
+2017-18,2017.4,Surface water - consumptive,3465300.400000464
+2017-18,2017.5,Surface water - consumptive,3444024.500000484
+2017-18,2017.6,Surface water - consumptive,3422748.600000503
+2017-18,2017.7,Surface water - consumptive,3401472.7000005227
+2017-18,2017.8,Surface water - consumptive,3380196.800000542
+2017-18,2017.9,Surface water - consumptive,3358920.900000561
+2017-18,2018.0,Surface water - consumptive,3337645.0000005807
+2018-19,2018.1,Surface water - consumptive,3274252.000001787
+2018-19,2018.2,Surface water - consumptive,3210859.000001845
+2018-19,2018.3,Surface water - consumptive,3147466.0000019027
+2018-19,2018.4,Surface water - consumptive,3084073.0000019604
+2018-19,2018.5,Surface water - consumptive,3020680.000002018
+2018-19,2018.6,Surface water - consumptive,2957287.0000020755
+2018-19,2018.7,Surface water - consumptive,2893894.000002133
+2018-19,2018.8,Surface water - consumptive,2830501.000002191
+2018-19,2018.9,Surface water - consumptive,2767108.0000022487
+2018-19,2019.0,Surface water - consumptive,2703715.000002306
+2019-20,2019.1,Surface water - consumptive,2713980.499999617
+2019-20,2019.2,Surface water - consumptive,2724245.999999608
+2019-20,2019.3,Surface water - consumptive,2734511.4999995986
+2019-20,2019.4,Surface water - consumptive,2744776.9999995893
+2019-20,2019.5,Surface water - consumptive,2755042.49999958
+2019-20,2019.6,Surface water - consumptive,2765307.9999995707
+2019-20,2019.7,Surface water - consumptive,2775573.4999995613
+2019-20,2019.8,Surface water - consumptive,2785838.999999552
+2019-20,2019.9,Surface water - consumptive,2796104.4999995427
+2019-20,2020.0,Surface water - consumptive,2806369.9999995334
+2020-21,2020.1,Surface water - consumptive,2817656.1999994763
+2020-21,2020.2,Surface water - consumptive,2828942.3999994663
+2020-21,2020.3,Surface water - consumptive,2840228.5999994557
+2020-21,2020.4,Surface water - consumptive,2851514.7999994457
+2020-21,2020.5,Surface water - consumptive,2862800.9999994356
+2020-21,2020.6,Surface water - consumptive,2874087.199999425
+2020-21,2020.7,Surface water - consumptive,2885373.399999415
+2020-21,2020.8,Surface water - consumptive,2896659.5999994045
+2020-21,2020.9,Surface water - consumptive,2907945.7999993945
+2020-21,2021.0,Surface water - consumptive,2919231.999999384
+2021-22,2021.1,Surface water - consumptive,2912333.7000003825
+2021-22,2021.2,Surface water - consumptive,2905435.400000389
+2021-22,2021.3,Surface water - consumptive,2898537.1000003954
+2021-22,2021.4,Surface water - consumptive,2891638.8000004017
+2021-22,2021.5,Surface water - consumptive,2884740.500000408
+2021-22,2021.6,Surface water - consumptive,2877842.200000414
+2021-22,2021.7,Surface water - consumptive,2870943.9000004204
+2021-22,2021.8,Surface water - consumptive,2864045.6000004266
+2021-22,2021.9,Surface water - consumptive,2857147.300000433
+2021-22,2022.0,Surface water - consumptive,2850249.000000439
+2015-16,2015.0,Surface water - environmental,689532.0
+2015-16,2015.1,Surface water - environmental,691225.5999999985
+2015-16,2015.2,Surface water - environmental,692919.1999999969
+2015-16,2015.3,Surface water - environmental,694612.7999999954
+2015-16,2015.4,Surface water - environmental,696306.3999999939
+2015-16,2015.5,Surface water - environmental,697999.9999999923
+2015-16,2015.6,Surface water - environmental,699693.5999999908
+2015-16,2015.7,Surface water - environmental,701387.1999999892
+2015-16,2015.8,Surface water - environmental,703080.7999999877
+2015-16,2015.9,Surface water - environmental,704774.3999999862
+2015-16,2016.0,Surface water - environmental,706467.9999999846
+2016-17,2016.1,Surface water - environmental,727682.6999997877
+2016-17,2016.2,Surface water - environmental,748897.3999997685
+2016-17,2016.3,Surface water - environmental,770112.0999997492
+2016-17,2016.4,Surface water - environmental,791326.7999997298
+2016-17,2016.5,Surface water - environmental,812541.4999997106
+2016-17,2016.6,Surface water - environmental,833756.1999996912
+2016-17,2016.7,Surface water - environmental,854970.899999672
+2016-17,2016.8,Surface water - environmental,876185.5999996527
+2016-17,2016.9,Surface water - environmental,897400.2999996333
+2016-17,2017.0,Surface water - environmental,918614.9999996141
+2017-18,2017.1,Surface water - environmental,881314.4000007124
+2017-18,2017.2,Surface water - environmental,844013.8000007464
+2017-18,2017.3,Surface water - environmental,806713.2000007803
+2017-18,2017.4,Surface water - environmental,769412.6000008142
+2017-18,2017.5,Surface water - environmental,732112.0000008481
+2017-18,2017.6,Surface water - environmental,694811.4000008821
+2017-18,2017.7,Surface water - environmental,657510.800000916
+2017-18,2017.8,Surface water - environmental,620210.2000009499
+2017-18,2017.9,Surface water - environmental,582909.6000009838
+2017-18,2018.0,Surface water - environmental,545609.0000010177
+2018-19,2018.1,Surface water - environmental,580226.899999024
+2018-19,2018.2,Surface water - environmental,614844.7999989925
+2018-19,2018.3,Surface water - environmental,649462.6999989611
+2018-19,2018.4,Surface water - environmental,684080.5999989295
+2018-19,2018.5,Surface water - environmental,718698.499998898
+2018-19,2018.6,Surface water - environmental,753316.3999988665
+2018-19,2018.7,Surface water - environmental,787934.2999988351
+2018-19,2018.8,Surface water - environmental,822552.1999988036
+2018-19,2018.9,Surface water - environmental,857170.0999987721
+2018-19,2019.0,Surface water - environmental,891787.9999987406
+2019-20,2019.1,Surface water - environmental,868281.1000008766
+2019-20,2019.2,Surface water - environmental,844774.200000898
+2019-20,2019.3,Surface water - environmental,821267.3000009193
+2019-20,2019.4,Surface water - environmental,797760.4000009407
+2019-20,2019.5,Surface water - environmental,774253.500000962
+2019-20,2019.6,Surface water - environmental,750746.6000009835
+2019-20,2019.7,Surface water - environmental,727239.7000010049
+2019-20,2019.8,Surface water - environmental,703732.8000010262
+2019-20,2019.9,Surface water - environmental,680225.9000010476
+2019-20,2020.0,Surface water - environmental,656719.0000010689
+2020-21,2020.1,Surface water - environmental,691889.4999983687
+2020-21,2020.2,Surface water - environmental,727059.9999983367
+2020-21,2020.3,Surface water - environmental,762230.4999983046
+2020-21,2020.4,Surface water - environmental,797400.9999982726
+2020-21,2020.5,Surface water - environmental,832571.4999982407
+2020-21,2020.6,Surface water - environmental,867741.9999982087
+2020-21,2020.7,Surface water - environmental,902912.4999981767
+2020-21,2020.8,Surface water - environmental,938082.9999981448
+2020-21,2020.9,Surface water - environmental,973253.4999981127
+2020-21,2021.0,Surface water - environmental,1008423.9999980808
+2021-22,2021.1,Surface water - environmental,968809.5000021978
+2021-22,2021.2,Surface water - environmental,929195.0000022338
+2021-22,2021.3,Surface water - environmental,889580.5000022699
+2021-22,2021.4,Surface water - environmental,849966.0000023058
+2021-22,2021.5,Surface water - environmental,810351.5000023419
+2021-22,2021.6,Surface water - environmental,770737.0000023779
+2021-22,2021.7,Surface water - environmental,731122.500002414
+2021-22,2021.8,Surface water - environmental,691508.00000245
+2021-22,2021.9,Surface water - environmental,651893.5000024859
+2021-22,2022.0,Surface water - environmental,612279.000002522
+2015-16,2015.0,Groundwater - consumptive,457374.0
+2015-16,2015.1,Groundwater - consumptive,446803.8000000096
+2015-16,2015.2,Groundwater - consumptive,436233.60000001924
+2015-16,2015.3,Groundwater - consumptive,425663.40000002884
+2015-16,2015.4,Groundwater - consumptive,415093.2000000385
+2015-16,2015.5,Groundwater - consumptive,404523.0000000481
+2015-16,2015.6,Groundwater - consumptive,393952.8000000577
+2015-16,2015.7,Groundwater - consumptive,383382.60000006726
+2015-16,2015.8,Groundwater - consumptive,372812.4000000769
+2015-16,2015.9,Groundwater - consumptive,362242.2000000865
+2015-16,2016.0,Groundwater - consumptive,351672.00000009616
+2016-17,2016.1,Groundwater - consumptive,360489.2999999118
+2016-17,2016.2,Groundwater - consumptive,369306.59999990376
+2016-17,2016.3,Groundwater - consumptive,378123.8999998958
+2016-17,2016.4,Groundwater - consumptive,386941.1999998877
+2016-17,2016.5,Groundwater - consumptive,395758.49999987974
+2016-17,2016.6,Groundwater - consumptive,404575.7999998717
+2016-17,2016.7,Groundwater - consumptive,413393.09999986365
+2016-17,2016.8,Groundwater - consumptive,422210.39999985567
+2016-17,2016.9,Groundwater - consumptive,431027.6999998476
+2016-17,2017.0,Groundwater - consumptive,439844.9999998396
+2017-18,2017.1,Groundwater - consumptive,445683.3999998885
+2017-18,2017.2,Groundwater - consumptive,451521.79999988317
+2017-18,2017.3,Groundwater - consumptive,457360.1999998779
+2017-18,2017.4,Groundwater - consumptive,463198.59999987256
+2017-18,2017.5,Groundwater - consumptive,469036.9999998672
+2017-18,2017.6,Groundwater - consumptive,474875.39999986195
+2017-18,2017.7,Groundwater - consumptive,480713.7999998566
+2017-18,2017.8,Groundwater - consumptive,486552.1999998513
+2017-18,2017.9,Groundwater - consumptive,492390.599999846
+2017-18,2018.0,Groundwater - consumptive,498228.9999998407
+2018-19,2018.1,Groundwater - consumptive,492271.000000168
+2018-19,2018.2,Groundwater - consumptive,486313.0000001734
+2018-19,2018.3,Groundwater - consumptive,480355.0000001788
+2018-19,2018.4,Groundwater - consumptive,474397.0000001842
+2018-19,2018.5,Groundwater - consumptive,468439.00000018964
+2018-19,2018.6,Groundwater - consumptive,462481.00000019505
+2018-19,2018.7,Groundwater - consumptive,456523.00000020047
+2018-19,2018.8,Groundwater - consumptive,450565.00000020594
+2018-19,2018.9,Groundwater - consumptive,444607.00000021135
+2018-19,2019.0,Groundwater - consumptive,438649.00000021677
+2019-20,2019.1,Groundwater - consumptive,432488.4000002297
+2019-20,2019.2,Groundwater - consumptive,426327.8000002353
+2019-20,2019.3,Groundwater - consumptive,420167.20000024093
+2019-20,2019.4,Groundwater - consumptive,414006.60000024654
+2019-20,2019.5,Groundwater - consumptive,407846.00000025216
+2019-20,2019.6,Groundwater - consumptive,401685.40000025777
+2019-20,2019.7,Groundwater - consumptive,395524.8000002633
+2019-20,2019.8,Groundwater - consumptive,389364.20000026893
+2019-20,2019.9,Groundwater - consumptive,383203.60000027454
+2019-20,2020.0,Groundwater - consumptive,377043.00000028015
+2020-21,2020.1,Groundwater - consumptive,368312.80000040494
+2020-21,2020.2,Groundwater - consumptive,359582.6000004129
+2020-21,2020.3,Groundwater - consumptive,350852.4000004208
+2020-21,2020.4,Groundwater - consumptive,342122.20000042877
+2020-21,2020.5,Groundwater - consumptive,333392.0000004367
+2020-21,2020.6,Groundwater - consumptive,324661.80000044464
+2020-21,2020.7,Groundwater - consumptive,315931.6000004526
+2020-21,2020.8,Groundwater - consumptive,307201.4000004605
+2020-21,2020.9,Groundwater - consumptive,298471.20000046847
+2020-21,2021.0,Groundwater - consumptive,289741.0000004764
+2021-22,2021.1,Groundwater - consumptive,282540.90000039944
+2021-22,2021.2,Groundwater - consumptive,275340.800000406
+2021-22,2021.3,Groundwater - consumptive,268140.70000041253
+2021-22,2021.4,Groundwater - consumptive,260940.6000004191
+2021-22,2021.5,Groundwater - consumptive,253740.50000042564
+2021-22,2021.6,Groundwater - consumptive,246540.40000043222
+2021-22,2021.7,Groundwater - consumptive,239340.30000043876
+2021-22,2021.8,Groundwater - consumptive,232140.2000004453
+2021-22,2021.9,Groundwater - consumptive,224940.10000045184
+2021-22,2022.0,Groundwater - consumptive,217740.00000045839
+2015-16,2015.0,Recycled water - consumptive,95600.0
+2015-16,2015.1,Recycled water - consumptive,94421.10000000107
+2015-16,2015.2,Recycled water - consumptive,93242.20000000215
+2015-16,2015.3,Recycled water - consumptive,92063.30000000322
+2015-16,2015.4,Recycled water - consumptive,90884.40000000429
+2015-16,2015.5,Recycled water - consumptive,89705.50000000536
+2015-16,2015.6,Recycled water - consumptive,88526.60000000644
+2015-16,2015.7,Recycled water - consumptive,87347.7000000075
+2015-16,2015.8,Recycled water - consumptive,86168.80000000857
+2015-16,2015.9,Recycled water - consumptive,84989.90000000966
+2015-16,2016.0,Recycled water - consumptive,83811.00000001072
+2016-17,2016.1,Recycled water - consumptive,85145.79999998664
+2016-17,2016.2,Recycled water - consumptive,86480.59999998542
+2016-17,2016.3,Recycled water - consumptive,87815.39999998422
+2016-17,2016.4,Recycled water - consumptive,89150.199999983
+2016-17,2016.5,Recycled water - consumptive,90484.9999999818
+2016-17,2016.6,Recycled water - consumptive,91819.79999998058
+2016-17,2016.7,Recycled water - consumptive,93154.59999997936
+2016-17,2016.8,Recycled water - consumptive,94489.39999997815
+2016-17,2016.9,Recycled water - consumptive,95824.19999997693
+2016-17,2017.0,Recycled water - consumptive,97158.99999997573
+2017-18,2017.1,Recycled water - consumptive,97477.29999999392
+2017-18,2017.2,Recycled water - consumptive,97795.59999999363
+2017-18,2017.3,Recycled water - consumptive,98113.89999999334
+2017-18,2017.4,Recycled water - consumptive,98432.19999999306
+2017-18,2017.5,Recycled water - consumptive,98750.49999999277
+2017-18,2017.6,Recycled water - consumptive,99068.79999999248
+2017-18,2017.7,Recycled water - consumptive,99387.09999999218
+2017-18,2017.8,Recycled water - consumptive,99705.39999999189
+2017-18,2017.9,Recycled water - consumptive,100023.6999999916
+2017-18,2018.0,Recycled water - consumptive,100341.99999999131
+2018-19,2018.1,Recycled water - consumptive,98246.70000005908
+2018-19,2018.2,Recycled water - consumptive,96151.40000006098
+2018-19,2018.3,Recycled water - consumptive,94056.10000006288
+2018-19,2018.4,Recycled water - consumptive,91960.80000006479
+2018-19,2018.5,Recycled water - consumptive,89865.5000000667
+2018-19,2018.6,Recycled water - consumptive,87770.20000006861
+2018-19,2018.7,Recycled water - consumptive,85674.90000007051
+2018-19,2018.8,Recycled water - consumptive,83579.60000007242
+2018-19,2018.9,Recycled water - consumptive,81484.30000007432
+2018-19,2019.0,Recycled water - consumptive,79389.00000007622
+2019-20,2019.1,Recycled water - consumptive,80145.99999997177
+2019-20,2019.2,Recycled water - consumptive,80902.99999997109
+2019-20,2019.3,Recycled water - consumptive,81659.9999999704
+2019-20,2019.4,Recycled water - consumptive,82416.9999999697
+2019-20,2019.5,Recycled water - consumptive,83173.99999996902
+2019-20,2019.6,Recycled water - consumptive,83930.99999996834
+2019-20,2019.7,Recycled water - consumptive,84687.99999996764
+2019-20,2019.8,Recycled water - consumptive,85444.99999996695
+2019-20,2019.9,Recycled water - consumptive,86201.99999996627
+2019-20,2020.0,Recycled water - consumptive,86958.99999996557
+2020-21,2020.1,Recycled water - consumptive,86178.10000003623
+2020-21,2020.2,Recycled water - consumptive,85397.20000003693
+2020-21,2020.3,Recycled water - consumptive,84616.30000003765
+2020-21,2020.4,Recycled water - consumptive,83835.40000003835
+2020-21,2020.5,Recycled water - consumptive,83054.50000003906
+2020-21,2020.6,Recycled water - consumptive,82273.60000003978
+2020-21,2020.7,Recycled water - consumptive,81492.70000004048
+2020-21,2020.8,Recycled water - consumptive,80711.8000000412
+2020-21,2020.9,Recycled water - consumptive,79930.9000000419
+2020-21,2021.0,Recycled water - consumptive,79150.00000004261
+2021-22,2021.1,Recycled water - consumptive,78391.2000000421
+2021-22,2021.2,Recycled water - consumptive,77632.40000004279
+2021-22,2021.3,Recycled water - consumptive,76873.60000004347
+2021-22,2021.4,Recycled water - consumptive,76114.80000004417
+2021-22,2021.5,Recycled water - consumptive,75356.00000004486
+2021-22,2021.6,Recycled water - consumptive,74597.20000004554
+2021-22,2021.7,Recycled water - consumptive,73838.40000004624
+2021-22,2021.8,Recycled water - consumptive,73079.60000004692
+2021-22,2021.9,Recycled water - consumptive,72320.80000004762
+2021-22,2022.0,Recycled water - consumptive,71562.00000004831
+2015-16,2015.0,Desalinated water - consumptive,0.0
+2015-16,2015.1,Desalinated water - consumptive,0.0
+2015-16,2015.2,Desalinated water - consumptive,0.0
+2015-16,2015.3,Desalinated water - consumptive,0.0
+2015-16,2015.4,Desalinated water - consumptive,0.0
+2015-16,2015.5,Desalinated water - consumptive,0.0
+2015-16,2015.6,Desalinated water - consumptive,0.0
+2015-16,2015.7,Desalinated water - consumptive,0.0
+2015-16,2015.8,Desalinated water - consumptive,0.0
+2015-16,2015.9,Desalinated water - consumptive,0.0
+2015-16,2016.0,Desalinated water - consumptive,0.0
+2016-17,2016.1,Desalinated water - consumptive,0.0
+2016-17,2016.2,Desalinated water - consumptive,0.0
+2016-17,2016.3,Desalinated water - consumptive,0.0
+2016-17,2016.4,Desalinated water - consumptive,0.0
+2016-17,2016.5,Desalinated water - consumptive,0.0
+2016-17,2016.6,Desalinated water - consumptive,0.0
+2016-17,2016.7,Desalinated water - consumptive,0.0
+2016-17,2016.8,Desalinated water - consumptive,0.0
+2016-17,2016.9,Desalinated water - consumptive,0.0
+2016-17,2017.0,Desalinated water - consumptive,0.0
+2017-18,2017.1,Desalinated water - consumptive,2196.5999999580463
+2017-18,2017.2,Desalinated water - consumptive,4393.1999999560485
+2017-18,2017.3,Desalinated water - consumptive,6589.799999954051
+2017-18,2017.4,Desalinated water - consumptive,8786.399999952053
+2017-18,2017.5,Desalinated water - consumptive,10982.999999950054
+2017-18,2017.6,Desalinated water - consumptive,13179.599999948057
+2017-18,2017.7,Desalinated water - consumptive,15376.19999994606
+2017-18,2017.8,Desalinated water - consumptive,17572.79999994406
+2017-18,2017.9,Desalinated water - consumptive,19769.399999942063
+2017-18,2018.0,Desalinated water - consumptive,21965.999999940068
+2018-19,2018.1,Desalinated water - consumptive,31601.799999728326
+2018-19,2018.2,Desalinated water - consumptive,41237.59999971956
+2018-19,2018.3,Desalinated water - consumptive,50873.3999997108
+2018-19,2018.4,Desalinated water - consumptive,60509.19999970203
+2018-19,2018.5,Desalinated water - consumptive,70144.99999969327
+2018-19,2018.6,Desalinated water - consumptive,79780.7999996845
+2018-19,2018.7,Desalinated water - consumptive,89416.59999967575
+2018-19,2018.8,Desalinated water - consumptive,99052.39999966697
+2018-19,2018.9,Desalinated water - consumptive,108688.19999965822
+2018-19,2019.0,Desalinated water - consumptive,118323.99999964944
+2019-20,2019.1,Desalinated water - consumptive,118991.59999997511
+2019-20,2019.2,Desalinated water - consumptive,119659.1999999745
+2019-20,2019.3,Desalinated water - consumptive,120326.7999999739
+2019-20,2019.4,Desalinated water - consumptive,120994.39999997328
+2019-20,2019.5,Desalinated water - consumptive,121661.99999997267
+2019-20,2019.6,Desalinated water - consumptive,122329.59999997207
+2019-20,2019.7,Desalinated water - consumptive,122997.19999997146
+2019-20,2019.8,Desalinated water - consumptive,123664.79999997086
+2019-20,2019.9,Desalinated water - consumptive,124332.39999997025
+2019-20,2020.0,Desalinated water - consumptive,124999.99999996964
+2020-21,2020.1,Desalinated water - consumptive,125000.0
+2020-21,2020.2,Desalinated water - consumptive,125000.0
+2020-21,2020.3,Desalinated water - consumptive,125000.0
+2020-21,2020.4,Desalinated water - consumptive,125000.0
+2020-21,2020.5,Desalinated water - consumptive,125000.0
+2020-21,2020.6,Desalinated water - consumptive,125000.0
+2020-21,2020.7,Desalinated water - consumptive,125000.0
+2020-21,2020.8,Desalinated water - consumptive,125000.0
+2020-21,2020.9,Desalinated water - consumptive,125000.0
+2020-21,2021.0,Desalinated water - consumptive,125000.0
+2021-22,2021.1,Desalinated water - consumptive,112913.60000067054
+2021-22,2021.2,Desalinated water - consumptive,100827.20000068154
+2021-22,2021.3,Desalinated water - consumptive,88740.80000069253
+2021-22,2021.4,Desalinated water - consumptive,76654.40000070352
+2021-22,2021.5,Desalinated water - consumptive,64568.00000071451
+2021-22,2021.6,Desalinated water - consumptive,52481.600000725506
+2021-22,2021.7,Desalinated water - consumptive,40395.2000007365
+2021-22,2021.8,Desalinated water - consumptive,28308.80000074749
+2021-22,2021.9,Desalinated water - consumptive,16222.400000758484
+2021-22,2022.0,Desalinated water - consumptive,4136.000000769476
