@@ -18,8 +18,8 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [145.4, -36.8],
-    "scale": 4500
+    "center": [145.4, -36.5],
+    "scale": 3800
   },
   "layer": [
     {
@@ -29,7 +29,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "rgba(255,255,255,0.05)",
+        "fill": "rgba(255,255,255,0.03)",
         "stroke": "rgba(255,255,255,0.1)",
         "strokeWidth": 0.5
       }
@@ -37,29 +37,31 @@
     {
       "mark": {
         "type": "circle",
-        "opacity": 0.8
+        "opacity": 0.8,
+        "stroke": "white",
+        "strokeWidth": 0.5
       },
       "encoding": {
         "longitude": {
-          "bin": {"maxbins": 60},
+          "bin": {"maxbins": 120},
           "field": "Longitude",
           "type": "quantitative"
         },
         "latitude": {
-          "bin": {"maxbins": 60},
+          "bin": {"maxbins": 120},
           "field": "Latitude",
           "type": "quantitative"
         },
         "size": {
           "aggregate": "count",
           "type": "quantitative",
-          "scale": {"range": [50, 600]},
+          "scale": {"range": [10, 500]},
           "legend": {"title": "Bore Density", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
         },
         "color": {
           "aggregate": "count",
           "type": "quantitative",
-          "scale": {"scheme": "magma", "domain": [1, 20]},
+          "scale": {"scheme": "magma", "domain": [1, 10]},
           "legend": {"title": "Permit Count", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
         }
       }
