@@ -1,18 +1,17 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 100,
-  "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 0, "top": 5, "right": 0, "bottom": 35},
+  "height": 130,
+  "padding": {"left": 10, "top": 10, "right": 10, "bottom": 10},
   "title": {
     "text": "The Fluid Shift",
-    "subtitle": "Resource Proportion HUD (ML) | 2015 - 2023",
+    "subtitle": "Supply Proportion HUD (ML) | 2015 - 2023",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 24,
     "subtitleFontSize": 12,
     "subtitleColor": "#B0BEC5",
-    "offset": 10
+    "offset": 20
   },
   "data": {
     "url": "data/final/chart8_liquid_data.csv"
@@ -26,25 +25,25 @@
         "min": 2015,
         "max": 2022,
         "step": 0.1,
-        "name": "Analyze Depth: "
+        "name": "Analyze: "
       }
     }
   ],
   "transform": [
     {
-      "filter": "abs(datum.YearStep - timeStep) < 0.05"
+      "filter": "abs(datum.YearStep - timeStep) < 0.01"
     },
     {
-      "calculate": "datum.Resource_Type == 'Surface water - consumptive' ? 10 : datum.Resource_Type == 'Surface water - environmental' ? 220 : datum.Resource_Type == 'Groundwater - consumptive' ? 450 : datum.Resource_Type == 'Recycled water - consumptive' ? 650 : 850",
-      "as": "xPosHUD"
+      "calculate": "datum.Resource_Type == 'Surface water - consumptive' ? 20 : datum.Resource_Type == 'Surface water - environmental' ? 220 : datum.Resource_Type == 'Groundwater - consumptive' ? 420 : datum.Resource_Type == 'Recycled water - consumptive' ? 620 : 820",
+      "as": "hudX"
     }
   ],
   "layer": [
     {
       "mark": {
         "type": "bar",
-        "size": 60,
-        "cornerRadius": 10,
+        "height": 80,
+        "cornerRadius": 8,
         "stroke": "white",
         "strokeWidth": 1.5,
         "opacity": 0.95
@@ -56,6 +55,7 @@
           "stack": "normalize",
           "axis": null
         },
+        "y": {"datum": 50, "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null},
         "color": {
           "field": "Resource_Type",
           "type": "nominal",
@@ -75,9 +75,9 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 5,
-            "offset": 30,
+            "offset": 20,
             "labelFontSize": 14,
-            "symbolSize": 200
+            "symbolSize": 300
           }
         }
       }
@@ -87,17 +87,17 @@
         "type": "text",
         "align": "left",
         "baseline": "bottom",
-        "fontSize": 13,
-        "fontWeight": "bold",
-        "dy": -40
+        "fontSize": 14,
+        "fontWeight": "bold"
       },
       "encoding": {
         "x": {
-          "field": "xPosHUD", 
+          "field": "hudX", 
           "type": "quantitative", 
           "scale": {"domain": [0, 1000]},
           "axis": null
         },
+        "y": {"datum": 95, "type": "quantitative"},
         "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.2s"},
         "color": {
           "field": "Resource_Type", 
@@ -113,11 +113,11 @@
         "baseline": "middle",
         "fontSize": 90,
         "fontWeight": 900,
-        "color": "rgba(255,255,255,0.08)",
-        "dy": 0
+        "color": "rgba(255,255,255,0.08)"
       },
       "encoding": {
-        "text": {"field": "DisplayYear", "type": "nominal"}
+        "text": {"field": "DisplayYear", "type": "nominal"},
+        "y": {"datum": 50, "type": "quantitative"}
       }
     }
   ],
