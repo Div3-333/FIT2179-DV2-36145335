@@ -1,21 +1,22 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "autosize": {"type": "fit", "contains": "padding"},
+  "autosize": "fit",
   "data": {
     "url": "data/final/chart2_temperature.csv"
   },
-  "spacing": 40,
+  "spacing": 60,
   "vconcat": [
     {
       "title": {
         "text": "Modern Furnace (2010-2020)",
         "fontSize": 14,
         "anchor": "start",
-        "color": "#2C3E50"
+        "color": "#2C3E50",
+        "offset": 10
       },
       "width": "container",
-      "height": 180,
+      "height": 140,
       "transform": [
         {"filter": "datum.Year >= 2010 && datum.Year <= 2020"}
       ],
@@ -41,7 +42,11 @@
           "field": "MaxTemp",
           "type": "quantitative",
           "scale": {"scheme": "magma", "domain": [12, 32]},
-          "legend": {"title": "Temp (°C)"}
+          "legend": {
+            "title": "Temp (°C)",
+            "orient": "right",
+            "gradientLength": 100
+          }
         }
       }
     },
@@ -50,10 +55,11 @@
         "text": "Historical Anchor (1910-1920)",
         "fontSize": 14,
         "anchor": "start",
-        "color": "#2C3E50"
+        "color": "#2C3E50",
+        "offset": 10
       },
       "width": "container",
-      "height": 180,
+      "height": 140,
       "transform": [
         {"filter": "datum.Year >= 1910 && datum.Year <= 1920"}
       ],
