@@ -1,21 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-fidelity supply-demand gap analysis for Greater Melbourne.",
+  "description": "Multi-idiom industrial console for water engineering.",
   "width": 1100,
-  "height": 450,
-  "autosize": {"type": "fit", "contains": "padding"},
+  "height": 400,
   "background": "transparent",
-  "title": {
-    "text": "The Survival Balance Sheet",
-    "subtitle": "Quantifying the 'Engineered Gap': Natural Reservoir Yield vs. The Desalination Wedge (2012-2021)",
-    "anchor": "start",
-    "color": "#2C3E50",
-    "fontSize": 28,
-    "subtitleFontSize": 16,
-    "subtitleColor": "#7F8C8D",
-    "offset": 40
-  },
-  "data": {"url": "data/final/chart10_engineered_shift.csv"},
   "params": [
     {
       "name": "selectYear",
@@ -25,68 +13,80 @@
   ],
   "hconcat": [
     {
-      "width": 800,
+      "width": 300,
       "height": 300,
+      "title": {"text": "Supply Blend (Engineered vs Natural)", "fontSize": 14, "color": "#2C3E50", "anchor": "middle"},
+      "data": {"url": "data/final/chart10_console_data.csv"},
+      "transform": [
+        {"filter": "datum.YearInt == selectYear"},
+        {"calculate": "(Residential_GL + Non_Residential_GL + Non_Revenue_GL)", "as": "Total"},
+        {"calculate": "datum.Desalination_Delivered_GL / datum.Total", "as": "desalRatio"}
+      ],
       "layer": [
+        {"mark": {"type": "arc", "innerRadius": 70, "outerRadius": 100, "theta": 1.57, "color": "#ECF0F1"}},
         {
-          "mark": {"type": "area", "color": "#BDC3C7", "opacity": 0.1},
+          "mark": {"type": "arc", "innerRadius": 70, "outerRadius": 100, "theta": 1.57},
           "encoding": {
-            "x": {"field": "YearInt", "type": "quantitative", "axis": {"format": "d", "title": "Fiscal Year", "grid": false}},
-            "y": {"field": "Total_Demand_GL", "type": "quantitative", "title": "Gigalitres (GL)", "scale": {"domain": [0, 500]}}
+            "theta": {"field": "desalRatio", "type": "quantitative", "scale": {"domain": [0, 1]}},
+            "color": {"value": "#F1C40F"}
           }
         },
         {
-          "mark": {"type": "area", "color": "#3498DB", "opacity": 0.8},
-          "encoding": {
-            "x": {"field": "YearInt", "type": "quantitative"},
-            "y": {"field": "Natural_Yield_GL", "type": "quantitative"}
-          }
+          "mark": {"type": "text", "fontSize": 32, "fontWeight": "bold", "color": "#2C3E50"},
+          "encoding": {"text": {"field": "desalRatio", "type": "quantitative", "format": ".1%"}}
         },
         {
-          "mark": {"type": "area", "color": "#F1C40F", "opacity": 0.9},
-          "encoding": {
-            "x": {"field": "YearInt", "type": "quantitative"},
-            "y": {"field": "Natural_Yield_GL", "type": "quantitative"},
-            "y2": {"field": "Total_Demand_GL", "type": "quantitative"},
-            "opacity": {
-              "condition": {"test": "datum.Desalination_Delivered_GL > 0", "value": 0.9},
-              "value": 0
-            }
-          }
-        },
-        {
-          "transform": [{"filter": "datum.YearInt == selectYear"}],
-          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "strokeDash": [4, 4]},
-          "encoding": {"x": {"field": "YearInt", "type": "quantitative"}}
+          "mark": {"type": "text", "fontSize": 12, "color": "#7F8C8D", "dy": 30},
+          "encoding": {"text": {"value": "SEAWATER RATIO"}}
         }
       ]
     },
     {
-      "width": 250,
+      "width": 400,
       "height": 300,
-      "title": {"text": "Forensic Supply HUD", "fontSize": 14, "color": "#2C3E50", "anchor": "middle"},
+      "title": {"text": "Usage Profile (Who Consumes?)", "fontSize": 14, "color": "#2C3E50", "anchor": "middle"},
+      "data": {"url": "data/final/chart10_console_data.csv"},
       "transform": [
         {"filter": "datum.YearInt == selectYear"},
-        {"calculate": "datum.Desalination_Delivered_GL / datum.Total_Demand_GL", "as": "resilience"}
+        {"fold": ["Residential_GL", "Non_Residential_GL"], "as": ["Type", "GL"]}
+      ],
+      "mark": {"type": "arc", "innerRadius": 50, "stroke": "white", "strokeWidth": 2},
+      "encoding": {
+        "theta": {"field": "GL", "type": "quantitative"},
+        "color": {
+          "field": "Type",
+          "type": "nominal",
+          "scale": {"range": ["#3498DB", "#2E86C1"]},
+          "legend": {"orient": "bottom", "title": null, "labelFontSize": 12}
+        },
+        "tooltip": [{"field": "Type", "type": "nominal"}, {"field": "GL", "type": "quantitative", "title": "Amount (GL)"}]
+      }
+    },
+    {
+      "width": 300,
+      "height": 300,
+      "title": {"text": "Network Efficiency (Loss HUD)", "fontSize": 14, "color": "#2C3E50", "anchor": "middle"},
+      "data": {"url": "data/final/chart10_console_data.csv"},
+      "transform": [
+        {"filter": "datum.YearInt == selectYear"},
+        {"calculate": "datum.Non_Revenue_GL", "as": "Loss"}
       ],
       "layer": [
         {
-          "mark": {"type": "arc", "innerRadius": 60, "outerRadius": 90, "theta": 1.57, "color": "#ECF0F1"}
+          "mark": {"type": "bar", "width": 40, "color": "#ECF0F1", "cornerRadius": 5},
+          "encoding": {"y": {"datum": 100, "type": "quantitative", "scale": {"domain": [0, 100]}, "title": "GL Loss / Leakage"}}
         },
         {
-          "mark": {"type": "arc", "innerRadius": 60, "outerRadius": 90, "theta": 1.57},
-          "encoding": {
-            "color": {"value": "#F1C40F"},
-            "theta": {"field": "resilience", "type": "quantitative", "scale": {"domain": [0, 1]}}
-          }
+          "mark": {"type": "bar", "width": 40, "color": "#E67E22", "cornerRadius": 5},
+          "encoding": {"y": {"field": "Loss", "type": "quantitative"}}
         },
         {
-          "mark": {"type": "text", "fontSize": 32, "fontWeight": "bold", "color": "#2C3E50", "dy": 0},
-          "encoding": {"text": {"field": "resilience", "type": "quantitative", "format": ".1%"}}
+          "mark": {"type": "text", "fontSize": 24, "fontWeight": "900", "color": "#E67E22", "dx": 60},
+          "encoding": {"text": {"field": "Loss", "type": "quantitative", "format": ".0f"}}
         },
         {
-          "mark": {"type": "text", "fontSize": 12, "color": "#7F8C8D", "dy": 30},
-          "encoding": {"text": {"value": "Engineered Dependency"}}
+          "mark": {"type": "text", "fontSize": 12, "color": "#7F8C8D", "dx": 60, "dy": 25},
+          "encoding": {"text": {"value": "GL LEAKAGE"}}
         }
       ]
     }
