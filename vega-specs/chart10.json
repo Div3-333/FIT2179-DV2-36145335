@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-fidelity forensic console showing the engineered survival math.",
+  "description": "High-fidelity forensic console showing the Engineering Paradox: Production vs. Waste.",
   "width": 1100,
   "height": 400,
   "background": "transparent",
@@ -8,15 +8,15 @@
     {
       "name": "selectYear",
       "value": 2021,
-      "bind": {"input": "range", "min": 2012, "max": 2021, "step": 1, "name": "Audit Year: "}
+      "bind": {"input": "range", "min": 2012, "max": 2021, "step": 1, "name": "Efficiency Audit: "}
     }
   ],
   "hconcat": [
     {
-      "width": 500,
+      "width": 450,
       "height": 350,
       "title": {
-        "text": "The Seawater Dependency Ratio",
+        "text": "The Net Survival Gain (GL)",
         "fontSize": 20,
         "color": "#D7CCC8",
         "anchor": "middle",
@@ -25,8 +25,8 @@
       "data": {"url": "data/final/chart10_console_data.csv"},
       "transform": [
         {"filter": "datum.YearInt == selectYear"},
-        {"calculate": "datum.Residential_GL + datum.Non_Residential_GL + datum.Non_Revenue_GL", "as": "Total"},
-        {"calculate": "datum.Desalination_Delivered_GL / datum.Total", "as": "desalRatio"}
+        {"calculate": "datum.Desalination_Delivered_GL - datum.Non_Revenue_GL", "as": "netGain"},
+        {"calculate": "datum.netGain > 0 ? 1 : 0", "as": "isPositive"}
       ],
       "layer": [
         {
@@ -35,28 +35,34 @@
         {
           "mark": {"type": "arc", "innerRadius": 100, "outerRadius": 140, "theta": 1.57},
           "encoding": {
-            "theta": {"field": "desalRatio", "type": "quantitative", "scale": {"domain": [0, 1]}},
+            "theta": {"datum": 1},
             "color": {
-              "condition": {"test": "datum.desalRatio > 0.2", "value": "#F1C40F"},
-              "value": "#3498DB"
+              "condition": {"test": "datum.isPositive == 1", "value": "#2ECC71"},
+              "value": "#E74C3C"
             }
           }
         },
         {
-          "mark": {"type": "text", "fontSize": 56, "fontWeight": 900, "color": "#F1C40F", "dy": -10},
-          "encoding": {"text": {"field": "desalRatio", "type": "quantitative", "format": ".1%"}}
+          "mark": {"type": "text", "fontSize": 56, "fontWeight": 900, "dy": -10},
+          "encoding": {
+            "text": {"field": "netGain", "type": "quantitative", "format": "+,.0f"},
+            "color": {
+              "condition": {"test": "datum.isPositive == 1", "value": "#2ECC71"},
+              "value": "#E74C3C"
+            }
+          }
         },
         {
           "mark": {"type": "text", "fontSize": 14, "fontWeight": "bold", "color": "#B0BEC5", "dy": 40},
-          "encoding": {"text": {"value": "ENGINEERED SURVIVAL"}}
+          "encoding": {"text": {"value": "NET GL ADDED TO SYSTEM"}}
         }
       ]
     },
     {
-      "width": 500,
+      "width": 550,
       "height": 350,
       "title": {
-        "text": "The Forensic Balance Sheet (Gigalitres)",
+        "text": "The Engineering Paradox (Production vs. Leakage)",
         "fontSize": 20,
         "color": "#D7CCC8",
         "anchor": "start",
@@ -64,37 +70,31 @@
       },
       "data": {"url": "data/final/chart10_console_data.csv"},
       "transform": [
-        {"filter": "datum.YearInt == selectYear"},
-        {"calculate": "datum.Residential_GL + datum.Non_Residential_GL + datum.Non_Revenue_GL", "as": "Demand"},
-        {"calculate": "datum.Demand - datum.Desalination_Delivered_GL", "as": "Natural"}
+        {"filter": "datum.YearInt == selectYear"}
       ],
       "layer": [
         {
-          "mark": {"type": "text", "align": "left", "fontSize": 18, "fontWeight": "bold", "color": "#94C1EA", "y": 50},
-          "encoding": {"text": {"datum": "Urban Hunger (Demand):"}}
+          "mark": {"type": "text", "align": "left", "fontSize": 18, "fontWeight": "bold", "color": "#3498DB", "y": 50},
+          "encoding": {"text": {"datum": "Engineered Production (Desal):"}}
         },
         {
-          "mark": {"type": "text", "align": "right", "fontSize": 24, "fontWeight": 900, "color": "white", "y": 50, "x": 450},
-          "encoding": {"text": {"field": "Demand", "type": "quantitative", "format": ",.0f"}}
-        },
-        {
-          "mark": {"type": "text", "align": "left", "fontSize": 18, "fontWeight": "bold", "color": "#3498DB", "y": 120},
-          "encoding": {"text": {"datum": "Nature's Gift (Reservoirs):"}}
-        },
-        {
-          "mark": {"type": "text", "align": "right", "fontSize": 24, "fontWeight": 900, "color": "#3498DB", "y": 120, "x": 450},
-          "encoding": {"text": {"field": "Natural", "type": "quantitative", "format": ",.0f"}}
-        },
-        {
-          "mark": {"type": "text", "align": "left", "fontSize": 18, "fontWeight": "bold", "color": "#F1C40F", "y": 190},
-          "encoding": {"text": {"datum": "Engineered Pulse (Desal):"}}
-        },
-        {
-          "mark": {"type": "text", "align": "right", "fontSize": 28, "fontWeight": 900, "color": "#F1C40F", "y": 190, "x": 450},
+          "mark": {"type": "text", "align": "right", "fontSize": 26, "fontWeight": 900, "color": "#3498DB", "y": 50, "x": 480},
           "encoding": {"text": {"field": "Desalination_Delivered_GL", "type": "quantitative", "format": ",.0f"}}
         },
         {
-          "mark": {"type": "text", "align": "center", "fontSize": 100, "fontWeight": 900, "color": "rgba(255,255,255,0.05)", "y": 280, "x": 225},
+          "mark": {"type": "text", "align": "left", "fontSize": 18, "fontWeight": "bold", "color": "#E67E22", "y": 130},
+          "encoding": {"text": {"datum": "Unseen Infrastructure Loss:"}}
+        },
+        {
+          "mark": {"type": "text", "align": "right", "fontSize": 26, "fontWeight": 900, "color": "#E67E22", "y": 130, "x": 480},
+          "encoding": {"text": {"field": "Non_Revenue_GL", "type": "quantitative", "format": ",.0f"}}
+        },
+        {
+          "mark": {"type": "text", "align": "left", "fontSize": 14, "fontStyle": "italic", "color": "#7F8C8D", "y": 160},
+          "encoding": {"text": {"datum": "(Water lost to leaks, theft, and errors)"}}
+        },
+        {
+          "mark": {"type": "text", "align": "center", "fontSize": 120, "fontWeight": 900, "color": "rgba(255,255,255,0.05)", "y": 280, "x": 275},
           "encoding": {"text": {"field": "YearInt", "type": "nominal"}}
         }
       ]
