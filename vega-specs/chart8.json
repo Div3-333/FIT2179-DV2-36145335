@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "spacing": 30,
+  "title": {
+    "text": "The Extraction Mirror",
+    "subtitle": "Comparing Surface vs. Subterranean Dependency | 2015 - 2023",
+    "anchor": "start",
+    "color": "#D7CCC8",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#B0BEC5",
+    "offset": 25
+  },
+  "data": {
+    "url": "data/final/chart8_total-use-by-resource-figure.csv"
+  },
+  "vconcat": [
+    {
+      "title": {
+        "text": "Primary Surface Flow (Consumptive + Environmental)",
+        "fontSize": 14,
+        "anchor": "start",
+        "color": "#D7CCC8"
+      },
+      "width": 800,
+      "height": 180,
+      "transform": [
+        {"filter": "datum.Resource_Type == 'Surface water - consumptive' || datum.Resource_Type == 'Surface water - environmental'"}
+      ],
+      "mark": {"type": "area", "opacity": 0.6, "line": {"strokeWidth": 2}},
+      "encoding": {
+        "x": {
+          "field": "Water year",
+          "type": "nominal",
+          "axis": {"title": null, "labelExpr": "''", "ticks": false, "domain": false}
+        },
+        "y": {
+          "field": "Volume_ML",
+          "type": "quantitative",
+          "title": "Millions of ML",
+          "scale": {"domain": [0, 4500000]},
+          "axis": {"format": ".1s", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
+        },
+        "color": {
+          "field": "Resource_Type",
+          "type": "nominal",
+          "scale": {"range": ["#3498DB", "#2E86C1"]},
+          "legend": {"orient": "top-right", "title": null, "labelColor": "#D7CCC8"}
+        },
+        "tooltip": [
+          {"field": "Water year", "type": "nominal"},
+          {"field": "Resource_Type", "type": "nominal"},
+          {"field": "Volume_ML", "type": "quantitative", "title": "Volume", "format": ","}
+        ]
+      }
+    },
+    {
+      "title": {
+        "text": "The Buffer Shift (Groundwater, Recycled, Desal)",
+        "fontSize": 14,
+        "anchor": "start",
+        "color": "#D7CCC8"
+      },
+      "width": 800,
+      "height": 220,
+      "transform": [
+        {"filter": "datum.Resource_Type != 'Surface water - consumptive' && datum.Resource_Type != 'Surface water - environmental'"}
+      ],
+      "mark": {"type": "bar", "opacity": 0.8},
+      "encoding": {
+        "x": {
+          "field": "Water year",
+          "type": "nominal",
+          "title": "Water Year",
+          "axis": {"labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "labelAngle": 0}
+        },
+        "y": {
+          "field": "Volume_ML",
+          "type": "quantitative",
+          "title": "Buffer Volume (ML)",
+          "scale": {"domain": [0, 600000]},
+          "axis": {"format": ".1s", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
+        },
+        "color": {
+          "field": "Resource_Type",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Groundwater - consumptive", "Recycled water - consumptive", "Desalinated water - consumptive"],
+            "range": ["#BB8FCE", "#A569BD", "#F1C40F"]
+          },
+          "legend": {"orient": "top-right", "title": null, "labelColor": "#D7CCC8"}
+        },
+        "tooltip": [
+          {"field": "Water year", "type": "nominal"},
+          {"field": "Resource_Type", "type": "nominal"},
+          {"field": "Volume_ML", "type": "quantitative", "title": "Volume", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": "transparent"},
+    "font": "Source Sans Pro"
+  }
+}
