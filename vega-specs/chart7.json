@@ -5,7 +5,7 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "Subterranean Stress",
-    "subtitle": "Heatmap of Active Bore Permits (Groundwater Extraction) | Victoria",
+    "subtitle": "Groundwater Extraction Density by Suburb (Active Bore Permits) | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -14,55 +14,52 @@
     "offset": 20
   },
   "data": {
-    "url": "data/final/chart7_hexbin_data.csv"
+    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
+    "format": {"type": "json", "property": "features"}
   },
+  "transform": [
+    {
+      "lookup": "properties.vic_loca_2",
+      "from": {
+        "data": {
+          "url": "data/final/chart7_suburb_density.csv"
+        },
+        "key": "Suburb",
+        "fields": ["BoreCount", "Intensity"]
+      }
+    },
+    {"calculate": "datum.BoreCount ? datum.BoreCount : 0", "as": "Count"}
+  ],
   "projection": {
-    "type": "mercator",
-    "center": [144.5, -36.5],
-    "scale": 4500
+    "type": "mercator"
   },
   "layer": [
     {
-      "data": {
-        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
-        "format": {"type": "json", "property": "features"}
-      },
       "mark": {
         "type": "geoshape",
-        "fill": "rgba(255,255,255,0.02)",
-        "stroke": "rgba(255,255,255,0.1)",
-        "strokeWidth": 0.5
-      }
-    },
-    {
-      "mark": {
-        "type": "point",
-        "shape": "diamond",
-        "filled": true,
-        "stroke": "white",
-        "strokeWidth": 0.5
+        "stroke": "rgba(255,255,255,0.05)",
+        "strokeWidth": 0.2
       },
       "encoding": {
-        "longitude": {"field": "Lon", "type": "quantitative"},
-        "latitude": {"field": "Lat", "type": "quantitative"},
-        "size": {
-          "field": "PermitCount",
-          "type": "quantitative",
-          "scale": {"range": [200, 1500]},
-          "legend": {"title": "Extraction Depth", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
-        },
         "color": {
-          "field": "Intensity",
+          "field": "Count",
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [1, 5, 20],
-            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
+            "domain": [0, 1, 3, 8],
+            "range": ["#3B0F70", "#8C2981", "#FE9F6D", "#FCFDBF"]
           },
-          "legend": {"title": "Pressure Level", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
+          "legend": {
+            "title": "Bore Permits", 
+            "labelColor": "#D7CCC8", 
+            "titleColor": "#D7CCC8",
+            "orient": "right",
+            "gradientLength": 300
+          }
         },
         "tooltip": [
-          {"field": "PermitCount", "type": "quantitative", "title": "Bore Permits"}
+          {"field": "properties.vic_loca_2", "type": "nominal", "title": "Suburb"},
+          {"field": "Count", "type": "quantitative", "title": "Permits"}
         ]
       }
     }
