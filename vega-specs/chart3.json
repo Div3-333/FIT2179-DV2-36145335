@@ -13,29 +13,20 @@
     "subtitleColor": "#5D6D7E",
     "offset": 20
   },
-  "data": {
-    "url": "data/final/chart3_caulfield_rain.csv"
-  },
-  "transform": [
-    {
-      "calculate": "{'Jan':1,'Feb':2,'Mar':3,'Apr':4,'May':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Oct':10,'Nov':11,'Dec':12}[datum.Month]",
-      "as": "MonthNum"
-    },
-    {"calculate": "datetime(datum.Year, datum.MonthNum - 1, 1)", "as": "Date"},
-    {
-      "lookup": "Date",
-      "from": {
-        "data": {"url": "data/final/chart3_soi_monthly.csv"},
-        "key": "Date",
-        "fields": ["SOI"]
-      },
-      "as": "SOI_Data"
-    },
-    {"filter": "datum.Year >= 2010"}
-  ],
   "layer": [
     {
-      "mark": {"type": "bar", "color": "#94C1EA", "opacity": 0.6, "width": 8},
+      "data": {
+        "url": "data/final/chart3_caulfield_rain.csv"
+      },
+      "transform": [
+        {
+          "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
+          "as": "MonthNum"
+        },
+        {"calculate": "datetime(datum.Year, datum.MonthNum, 1)", "as": "Date"},
+        {"filter": "datum.Year >= 2010"}
+      ],
+      "mark": {"type": "bar", "color": "#94C1EA", "opacity": 0.6, "width": {"band": 0.8}},
       "encoding": {
         "x": {
           "field": "Date",
@@ -81,12 +72,6 @@
           {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
           {"field": "SOI", "type": "quantitative", "title": "SOI Value"}
         ]
-      }
-    },
-    {
-      "mark": {"type": "rule", "color": "rgba(0,0,0,0.1)", "strokeDash": [4,4]},
-      "encoding": {
-        "y": {"datum": 0}
       }
     }
   ],
