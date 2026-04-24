@@ -229,20 +229,22 @@
         }
 
         /* Methodology Ledger Styling */
-        .audit-card { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px 0; }
-        .audit-card summary { cursor: pointer; font-weight: bold; color: #94C1EA; font-size: 1.2rem; list-style: none; display: flex; align-items: center; gap: 15px; transition: color 0.3s; }
+        .audit-card { border-bottom: 1px solid rgba(148, 193, 234, 0.2); padding: 20px 0; }
+        .audit-card[open] { background: rgba(0,0,0,0.15); border-radius: 8px; padding: 20px; }
+        .audit-card summary { cursor: pointer; font-weight: bold; color: #E0E6ED; font-size: 1.2rem; list-style: none; display: flex; align-items: center; gap: 15px; transition: all 0.3s; font-family: 'Merriweather', serif; }
+        .audit-card summary:hover { color: #3498DB; padding-left: 5px; }
         .audit-card summary:hover { color: #3498DB; }
         .audit-card summary::-webkit-details-marker { display: none; }
-        .audit-content { padding: 30px; background: rgba(0,0,0,0.2); border-radius: 12px; margin-top: 20px; }
-        .audit-section-title { color: #94C1EA; font-size: 0.8rem; font-variant: small-caps; letter-spacing: 1px; margin-bottom: 15px; opacity: 0.8; }
+        .audit-content { padding: 30px; background: rgba(13, 27, 42, 0.6); border: 1px solid rgba(148, 193, 234, 0.1); border-radius: 12px; margin-top: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+        .audit-section-title { color: #3498DB; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid rgba(52, 152, 219, 0.3); padding-bottom: 5px; }
         .audit-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 40px; align-items: start; }
         .audit-table { width: 100%; font-size: 0.85rem; border-collapse: collapse; }
-        .audit-table td { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: top; }
-        .audit-label { color: #94C1EA; font-weight: bold; width: 100px; }
+        .audit-table td { padding: 12px 0; border-bottom: 1px solid rgba(148, 193, 234, 0.1); vertical-align: top; font-family: monospace; font-size: 0.9rem; }
+        .audit-label { color: #94C1EA; font-weight: bold; width: 120px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
         .audit-desc { font-size: 0.95rem; line-height: 1.7; color: #B0BEC5; margin: 0; margin-bottom: 15px; }
         .audit-diag { background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
         .chart-num { color: #17202A; background: #94C1EA; border-radius: 50%; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 900; }
-        .framework-box { background: rgba(52, 152, 219, 0.1); border-left: 3px solid #3498DB; padding: 15px; margin-top: 15px; font-size: 0.9rem; }
+        .framework-box { background: rgba(23, 32, 42, 0.8); border: 1px solid rgba(52, 152, 219, 0.3); border-left: 4px solid #3498DB; padding: 20px; margin-top: 20px; font-size: 0.95rem; font-family: monospace; line-height: 1.6; color: #B0BEC5; }
     </style>
 </head>
 <body>
@@ -459,9 +461,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I wanted to establish the inciting incident of the crisis. A simple bar chart of 'less rain' lacked impact. I needed to show <em>where</em> the state was bleeding water. Sourced BoM decile data, but discrete station points looked disjointed. I engineered an IDW model via <code>scipy.spatial</code> to calculate Euclidean distances between 6 hubs and 2,957 centroids. This continuous surface visualizes the drought creeping from the arid north-west into the central catchments.</p>
+                                    <p class="audit-desc">The objective was to establish the spatial extent of the rainfall deficit, as aggregate state-wide averages obscure critical regional failures. Station-level data presented a disjointed narrative; therefore, an Inverse Distance Weighting (IDW) spatial model was engineered via <code>scipy.spatial</code> to calculate Euclidean distances between 6 primary weather hubs and 2,957 suburb centroids. This continuous surface visualizes the drought progression creeping from the arid north-west into the central catchments.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Suburb Centroids (Nominal), Deficit (Quantitative).<br>
                                         <em>Why:</em> Analyze spatial distribution and identify regional hotspots.<br>
                                         <em>How:</em> Idiom: Choropleth. Marks: Area (Geoshape). Channels: Spatial position, Color saturation.
@@ -493,9 +495,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I needed to prove the climate shift wasn't a temporary anomaly but a permanent structural change. A century-long heatmap shows the macro frequency of heat, but I needed the seasonal comparison line chart to prove the micro impact: every single month's baseline has lifted. I sourced ACORN-SAT data, grouped 116 years of daily maximums using <code>pandas.groupby</code>, and harmonized historical (1910-1920) vs modern (2010-2020) buckets to prove the "engine" of evaporation.</p>
+                                    <p class="audit-desc">To demonstrate that the climate shift is a permanent structural paradigm rather than a temporary anomaly, longitudinal aggregation was necessary. While a century-scale heatmap visualises the macro-frequency of heat events, a seasonal comparison idiom isolates the micro-impact, establishing that every monthly baseline has elevated. Processing 116 years of ACORN-SAT daily maximums via <code>pandas.groupby</code> allowed for the harmonisation of historical (1910-1920) and modern (2010-2020) strata, empirically proving the thermal engine driving contemporary evaporation.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Time (Ordinal), Temperature (Quantitative).<br>
                                         <em>Why:</em> Discover trends and compare historical vs modern baselines.<br>
                                         <em>How:</em> Idiom: Heatmap / Multi-series Line. Marks: Area (Rect) / Line. Channels: Color saturation, Y-position.
@@ -527,9 +529,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I wanted to explain <em>why</em> the rain stopped, connecting Pacific Ocean phenomena to local Victorian rainfall. I sourced raw monthly SOI archives and synchronized them with local rainfall records, filtering for the 2004-2019 window to isolate Millennium Drought causality. The dual-axis design was explicitly chosen to visualize the phase-lag, proving that when the SOI drops (El Niño), Victorian catchments inevitably suffer.</p>
+                                    <p class="audit-desc">Establishing the causality of the systemic rainfall collapse required connecting macroscopic Pacific Ocean phenomena to local Victorian hydrology. Raw monthly SOI archives were temporally synchronised with local rainfall records, restricted to the 2004-2019 epoch to isolate Millennium Drought causality. A dual-axis idiom was explicitly engineered to visualise the phase-lag correlation, providing statistical proof that negative SOI oscillations (El Niño events) dictate inevitable catchment failure.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> SOI (Quant), Rainfall (Quant), Time (Ordinal).<br>
                                         <em>Why:</em> Compare correlations and identify leading indicators.<br>
                                         <em>How:</em> Idiom: Dual-Axis Chart. Marks: Line / Bar. Channels: Shared X-axis, Y-position, Color hue.
@@ -561,9 +563,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I wanted to visualize the "Catchment Toll": how heat weaponizes dry years. A scatter plot was the best idiom to show multi-attribute correlation. I extracted 40 years of point-data for evaporation vs temperature, applied a linear regression OLS trendline, and sized the bubbles by rainfall. This triple-encoding mathematically proved the worst-case scenario: the state loses the most water to evaporation precisely when it receives the least rain.</p>
+                                    <p class="audit-desc">Visualising the compound effect of thermal stress required modelling how elevated temperatures weaponise dry periods. A scatter plot idiom was selected to expose multi-attribute correlation across 40 years of SILO point-data. Applying an Ordinary Least Squares (OLS) linear regression trendline—coupled with bubble sizing mapped to precipitation—yields a triple-encoded mathematical proof: Victoria surrenders the highest volume of water to atmospheric evaporation precisely during the years it receives the least rain.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Evap (Quant), Temp (Quant), Rain (Quant).<br>
                                         <em>Why:</em> Verify correlation and identify anomalous deficit years.<br>
                                         <em>How:</em> Idiom: Temporal Bubble Chart. Marks: Point (Bubble). Channels: X/Y-Position, Color, Size.
@@ -595,9 +597,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I needed to show that one good year of rain doesn't fix a multi-year drought. Catchments have inertia. I aggregated monthly storage data since 1990 and calculated diverging rainfall anomalies against a 700mm baseline. By engineering a vertical composite that synchronizes the anomalies (bars) with storage levels (lines), the chart visually proves the "Lag Effect": that catchments operate in a permanent state of water deficit.</p>
+                                    <p class="audit-desc">Demonstrating the hydrological inertia of catchment systems was required to disprove the assumption that a single surplus rainfall year nullifies multi-year drought. Monthly storage records since 1990 were aggregated, mapping diverging rainfall anomalies against a 700mm climatological baseline. The engineered vertical composite synchronises these meteorological anomalies (bar idiom) with physical storage responses (line idiom), empirically proving the "Lag Effect" and confirming that Victorian catchments operate in a sustained state of infrastructural deficit.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Storage % (Quant), Anomaly (Quant), Year (Ordinal).<br>
                                         <em>Why:</em> Summarize trends and analyze recovery lag times.<br>
                                         <em>How:</em> Idiom: Dual-Domain Composite. Marks: Line / Bar (Area). Channels: Y-position, Color hue.
@@ -629,9 +631,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I wanted to ground the abstract storage percentage in physical geography, as not all reservoirs are equal. I sourced geo-coordinates for 10 primary reservoirs and implemented logarithmic point scaling to normalize the massive volume variance. I then used an 'Aura-Halo' color ramp to map storage health, which successfully isolates the Thomson Reservoir as the critical failure node dictating the state's engineering shift.</p>
+                                    <p class="audit-desc">Contextualising abstract storage metrics within physical geography was necessary, given the extreme volumetric disparity between reservoir basins. Geocoordinates for the 10 primary nodes were sourced, with logarithmic point scaling implemented to normalise capacity variance. The application of an 'Aura-Halo' continuous colour ramp to encode operational health successfully isolates the massive Thomson Reservoir as the critical failure node driving the state’s mandatory shift toward engineered supply.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Lat/Long (Spatial), Capacity (Quant), Health (Quant).<br>
                                         <em>Why:</em> Locate critical nodes and rank node importance.<br>
                                         <em>How:</em> Idiom: Point Map. Marks: Point. Channels: Spatial position, Size, Color.
@@ -663,9 +665,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">The surface story was dire, but agriculture survives via groundwater. A simple point map of 42,000 bores was too noisy. I aggregated the bore records and performed a Kernel Density Estimation (KDE) using <code>scipy.stats</code>, binning the data into a 0.1-degree spatial mesh using KDTree. This grid-based heatmap idiom successfully revealed the "Unseen Buffer," physically locating the hidden stress hubs of subterranean mining.</p>
+                                    <p class="audit-desc">While surface reservoirs failed, regional agriculture relied heavily on groundwater reserves. To resolve the extreme overplotting of 42,000 discrete bore locations, the spatial data was aggregated via Kernel Density Estimation (KDE) using <code>scipy.stats</code>. This process binned the coordinates into a precise 0.1-degree spatial mesh leveraging KDTree algorithms. The resulting grid-based heatmap idiom effectively uncovers the "Unseen Buffer," successfully identifying the hidden spatial hubs subjected to intense subterranean stress.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> 42,000 Bore Points (Nominal), Density (Quant).<br>
                                         <em>Why:</em> Discover hidden spatial patterns of subterranean stress.<br>
                                         <em>How:</em> Idiom: Grid Heatmap. Marks: Area (Rect). Channels: Spatial position, Color saturation.
@@ -697,9 +699,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I wanted to show the exact moment Victoria shifted from natural to engineered water. A standard stacked bar felt static. I cleaned 8 annual reports and implemented linear temporal interpolation (0.1yr resolution) to generate 130 discrete steps, then extrapolated recovery baselines to 2025. This engineered a custom "Liquid Gauge" where the desalinated and groundwater layers physically expand, proving the 20% alternative supply record.</p>
+                                    <p class="audit-desc">Quantifying the precise inflection point where Victoria transitioned from natural to engineered water dependence required a continuous strata idiom. Standard stacked bars fail to communicate proportional fluidity; therefore, data from 8 annual Victorian Water Accounts was processed with linear temporal interpolation (0.1yr resolution) to generate 130 discrete steps, alongside a baseline extrapolation to 2025. This engineered "Liquid Gauge" visually expands the desalination and groundwater layers, mathematically substantiating the verified 20% alternative supply threshold.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Resource (Nominal), Volume % (Quant), Time (Ordinal).<br>
                                         <em>Why:</em> Analyze changes in resource composition over time.<br>
                                         <em>How:</em> Idiom: Normalized Stacked Bar. Marks: Area / Bar. Channels: X-position, Color hue.
@@ -731,9 +733,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I needed to quantify the engineered lifeline against total urban demand. I performed a harmonic join between demand categories and AquaSure desal delivery. By summing Residential and Non-Revenue data, I engineered a 'Total Demand' field, creating a high-fidelity grey "Silhouette" baseline. The vertical concatenation of this against the blue "Pulse" visually proves that desal peaked at nearly 30% dependency.</p>
+                                    <p class="audit-desc">Quantifying the engineered desalination lifeline against total systemic urban demand necessitated a harmonic time-series join. By aggregating Residential, Commercial, and Non-Revenue data, a 'Total Demand' baseline was computed to serve as a high-fidelity contextual silhouette. The vertical concatenation of this demand envelope against the precise AquaSure delivery data ("The Pulse") provides unassailable visual proof that engineered dependence peaked at nearly 30% of total urban consumption during the crisis.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Total Demand (Quant), Desal GL (Quant).<br>
                                         <em>Why:</em> Compare engineered intervention against natural supply.<br>
                                         <em>How:</em> Idiom: Vertical Concatenation. Marks: Area / Bar. Channels: Y-position, Color hue.
@@ -765,9 +767,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">I wanted a grand finale that summarized the entire 13-year journey. A scatter matrix mapping Health vs. Engineering Injection was the perfect diagnostic tool. I extracted yearly storage and injection means, and centered the crosshairs at mathematical breaking points (70% Storage, 75 GL Injection) to create 4 operational zones. The trajectory physically proves the state's loop from natural safety back to engineered survival.</p>
+                                    <p class="audit-desc">Synthesising the complete 13-year systemic trajectory required a definitive diagnostic idiom. A bi-variant scatter matrix was engineered, mapping catchment Health against Engineering Injection. By extracting annual means and anchoring the axes at mathematically determined critical thresholds (70% Storage, 75 GL Injection), the domain was partitioned into four distinct operational quadrants. The resulting temporal trajectory empirically maps the state's cyclical journey from natural safety, into critical deficit, and finally recovering via engineered survival.</p>
                                     <div class="framework-box">
-                                        <strong>Munzner Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Health % (Quant), Injection GL (Quant).<br>
                                         <em>Why:</em> Categorize system states and summarize 13-year trajectory.<br>
                                         <em>How:</em> Idiom: Bi-Variant Matrix. Marks: Point (Circle) / Line. Channels: Position, Line path.
