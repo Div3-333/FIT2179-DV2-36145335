@@ -48,8 +48,8 @@
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [40, 120, 220],
-            "range": ["#512E5F", "#E67E22", "#FAD7A0"]
+            "domain": [40, 100, 160, 220],
+            "range": ["#3B0F70", "#8C2981", "#FE9F6D", "#FCFDBF"]
           },
           "legend": {
             "title": "Rainfall Deficit (mm)",
