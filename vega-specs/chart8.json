@@ -5,7 +5,7 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "The Extraction Core Sample",
-    "subtitle": "Water Source Proportion (100% Stacked) | 2015 - 2023",
+    "subtitle": "Interactive Depth Probe: Hover to Sample Water Source Proportions",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 24,
@@ -16,6 +16,17 @@
   "data": {
     "url": "data/final/chart8_total-use-by-resource-figure.csv"
   },
+  "params": [
+    {
+      "name": "hover",
+      "select": {
+        "type": "point",
+        "fields": ["Water year"],
+        "on": "pointerover",
+        "clear": "pointerout"
+      }
+    }
+  ],
   "transform": [
     {
       "calculate": "toNumber(substring(datum['Water year'], 0, 4))",
@@ -28,22 +39,21 @@
         "type": "area",
         "orient": "horizontal",
         "interpolate": "monotone",
-        "opacity": 0.85
+        "cursor": "crosshair"
       },
       "encoding": {
         "y": {
           "field": "YearVal",
           "type": "quantitative",
           "title": "Depth of Time (Years)",
-          "scale": {"reverse": true, "domain": [2015, 2022]},
+          "scale": {"reverse": true, "domain": [2015, 2022.5]},
           "axis": {
             "format": "d",
             "domainColor": "#B0BEC5",
             "labelColor": "#D7CCC8",
             "titleColor": "#D7CCC8",
             "grid": false,
-            "tickCount": 8,
-            "labelFontSize": 12
+            "tickCount": 8
           }
         },
         "x": {
@@ -69,46 +79,42 @@
             "orient": "right",
             "title": "Strata (Resource)",
             "labelColor": "#D7CCC8",
-            "titleColor": "#D7CCC8",
-            "symbolType": "square"
+            "titleColor": "#D7CCC8"
           }
         },
-        "tooltip": [
-          {"field": "Water year", "type": "nominal", "title": "Year"},
-          {"field": "Resource_Type", "type": "nominal", "title": "Source"},
-          {"field": "Volume_ML", "type": "quantitative", "title": "Volume (ML)", "format": ","}
-        ]
+        "opacity": {
+          "condition": {"param": "hover", "value": 1},
+          "value": 0.4
+        }
       }
     },
     {
+      "transform": [{"filter": {"param": "hover"}}],
       "mark": {
-        "type": "point",
-        "shape": "triangle-down",
-        "filled": true,
-        "size": 80,
-        "opacity": 0.9,
-        "color": "#E0F2FE",
-        "stroke": "#2C3E50",
-        "strokeWidth": 0.5
+        "type": "rule",
+        "color": "white",
+        "strokeWidth": 2,
+        "strokeDash": [4, 4]
       },
       "encoding": {
-        "y": {
-          "field": "YearVal",
-          "type": "quantitative"
-        },
-        "x": {
-          "field": "Volume_ML",
-          "type": "quantitative",
-          "stack": "normalize"
-        },
-        "detail": {
-          "field": "Resource_Type"
-        },
-        "tooltip": [
-          {"field": "Water year", "type": "nominal", "title": "Year"},
-          {"field": "Resource_Type", "type": "nominal", "title": "Source Fracture"},
-          {"field": "Volume_ML", "type": "quantitative", "title": "Volume (ML)", "format": ","}
-        ]
+        "y": {"field": "YearVal", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [{"filter": {"param": "hover"}}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -15,
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "white"
+      },
+      "encoding": {
+        "y": {"field": "YearVal", "type": "quantitative"},
+        "x": {"datum": 0},
+        "text": {"field": "Water year", "type": "nominal"}
       }
     }
   ],
