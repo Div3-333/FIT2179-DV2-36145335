@@ -63,7 +63,7 @@
         "citation": "Melbourne Water. (2026). Greater Melbourne Potable Demand & Desalination Orders. Spatially and temporally harmonized by D. Sharma (2026)."
     },
     "chart10": {
-        "description": "The Survival Cycle: Forensic resilience-scan matrix mapping Victorian water survival.",
+        "description": "The Survival Cycle: Technical resilience-scan matrix mapping Victorian water survival.",
         "methodology": "Quadrant Modeling: Developed a bi-variant resilience scan mapping 'Reservoir Health' (Average Storage %) against 'Engineering Injection' (Desalination Orders). Axis Centering: Implemented a centered-crosshair layout at the mathematical thresholds of 70% Storage and 75 GL Injection to define four operational zones: Safe Zone, Critical Stress, Engineered Survival, and Artificial Recharge. Trajectory Scan: Engineered a connected temporal path to visualize the state's physical migration across quadrants. Circular Finish: Implemented a post-2021 toggle to reveal the state's physical loop back to safety in the 2023-2025 era.",
         "source": "Melbourne Water + Victorian State Government (DEECA)",
         "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",

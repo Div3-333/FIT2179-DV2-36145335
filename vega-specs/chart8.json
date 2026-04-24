@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "H-Sync Forensic Dashboard with High-Emphasis Chromatic Shift.",
+  "description": "H-Sync Technical Dashboard with High-Emphasis Chromatic Shift.",
   "background": "transparent",
   "spacing": 50,
   "data": {"url": "data/final/chart8_liquid_data.csv"},
@@ -23,7 +23,7 @@
   ],
   "title": {
     "text": "The Proportional Pivot",
-    "subtitle": "Supply Proportion Forensic Dashboard (ML) | 2012 - 2025",
+    "subtitle": "Supply Proportion Technical Dashboard (ML) | 2012 - 2025",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -104,7 +104,7 @@
       "width": 200,
       "height": 100,
       "title": {
-        "text": "Forensic Amount (ML)",
+        "text": "Technical Amount (ML)",
         "fontSize": 14,
         "color": "#94C1EA",
         "anchor": "start",
