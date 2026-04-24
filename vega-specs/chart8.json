@@ -5,7 +5,7 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "The Extraction Core Sample",
-    "subtitle": "Interactive Resource Proportions (100% Stacked) | 2015 - 2023",
+    "subtitle": "Use the 'Sample Year' menu to drill into specific supply proportions",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -16,24 +16,32 @@
   "data": {
     "url": "data/final/chart8_total-use-by-resource-figure.csv"
   },
+  "params": [
+    {
+      "name": "selectedYear",
+      "value": "2019-20",
+      "select": {"type": "point", "fields": ["Water year"]},
+      "bind": {
+        "input": "select",
+        "options": [
+          "2015-16",
+          "2016-17",
+          "2017-18",
+          "2018-19",
+          "2019-20",
+          "2020-21",
+          "2021-22",
+          "2022-23"
+        ],
+        "name": "Sample Year: "
+      }
+    }
+  ],
   "layer": [
     {
-      "params": [
-        {
-          "name": "hover",
-          "select": {
-            "type": "point",
-            "encodings": ["x"],
-            "on": "mouseover",
-            "clear": "mouseout",
-            "nearest": true
-          }
-        }
-      ],
       "mark": {
         "type": "area",
         "interpolate": "monotone",
-        "opacity": 0.8,
         "stroke": "white",
         "strokeWidth": 0.5
       },
@@ -83,33 +91,33 @@
           }
         },
         "opacity": {
-          "condition": {"param": "hover", "value": 1, "empty": false},
-          "value": 0.4
+          "condition": {"param": "selectedYear", "value": 1},
+          "value": 0.2
         }
       }
     },
     {
-      "transform": [{"filter": {"param": "hover"}}],
+      "transform": [{"filter": {"param": "selectedYear"}}],
       "mark": {
         "type": "rule",
         "color": "white",
-        "strokeWidth": 2,
-        "strokeDash": [4, 4]
+        "strokeWidth": 3,
+        "strokeDash": [6, 4]
       },
       "encoding": {
         "x": {"field": "Water year", "type": "nominal"}
       }
     },
     {
-      "transform": [{"filter": {"param": "hover"}}],
+      "transform": [{"filter": {"param": "selectedYear"}}],
       "mark": {
         "type": "text",
         "align": "center",
         "baseline": "bottom",
-        "dy": -10,
-        "fontSize": 14,
+        "dy": -15,
+        "fontSize": 18,
         "fontWeight": "bold",
-        "color": "white"
+        "color": "#FCFDBF"
       },
       "encoding": {
         "x": {"field": "Water year", "type": "nominal"},
