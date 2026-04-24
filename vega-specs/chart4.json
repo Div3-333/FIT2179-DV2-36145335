@@ -5,7 +5,7 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "The Evaporation Trend",
-    "subtitle": "Annual Water Loss and Summer Heat Intensity | 1958 - 2026",
+    "subtitle": "Annual Water Loss and Summer Heat Intensity | 1975 - 2026 (Modern Record)",
     "anchor": "start",
     "color": "#E0F2FE",
     "fontSize": 28,
@@ -20,7 +20,7 @@
     {
       "mark": {
         "type": "line",
-        "color": "rgba(255,255,255,0.1)",
+        "color": "rgba(255,255,255,0.05)",
         "strokeWidth": 1
       },
       "encoding": {
@@ -51,7 +51,7 @@
           "field": "Annual_Evaporation_mm",
           "type": "quantitative",
           "title": "Annual Evaporation (mm)",
-          "scale": {"domain": [400, 1600]},
+          "scale": {"domain": [700, 1300]},
           "axis": {"gridColor": "rgba(255,255,255,0.1)"}
         },
         "color": {
@@ -59,7 +59,7 @@
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [22, 28, 32],
+            "domain": [25, 28, 31],
             "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
           },
           "legend": {"title": "Summer Temp (°C)", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
@@ -75,6 +75,27 @@
           {"field": "Annual_Evaporation_mm", "type": "quantitative", "title": "Total Evaporation (mm)", "format": ".0f"},
           {"field": "Avg_Summer_Max_Temp", "type": "quantitative", "title": "Avg Summer Max (°C)", "format": ".1f"}
         ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Year == 1982 || datum.Year == 2009 || datum.Year == 2019"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 15,
+        "dy": -10,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#FCFDBF"
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "quantitative"},
+        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative"},
+        "text": {"field": "Year", "type": "nominal"}
       }
     }
   ],
