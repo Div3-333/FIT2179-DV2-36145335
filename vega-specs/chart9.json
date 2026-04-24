@@ -1,142 +1,98 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-Fidelity Pulsing Artery Dashboard",
-  "width": 1000,
-  "height": 550,
-  "padding": {"left": 20, "top": 20, "right": 20, "bottom": 20},
-  "params": [
+  "description": "Unique multi-idiom visualization of the Desalination Surge",
+  "width": 1150,
+  "height": 450,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "title": {
+    "text": "The Desalination Pulse",
+    "subtitle": "Quantifying the 'Engineered Shift': Seawater Orders vs. Urban Demand (2012-2025)",
+    "anchor": "start",
+    "color": "#2C3E50",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#7F8C8D",
+    "offset": 40
+  },
+  "data": {"url": "data/final/chart9_supply_dynamics.csv"},
+  "vconcat": [
     {
-      "name": "orderYear",
-      "value": 2020,
-      "bind": {
-        "input": "range",
-        "min": 2012,
-        "max": 2024,
-        "step": 1,
-        "name": "Arterial Load (Year): "
-      }
-    }
-  ],
-  "layer": [
-    {
-      "name": "GEOGRAPHIC_BASE",
-      "projection": {
-        "type": "mercator",
-        "center": [145.45, -38.25],
-        "scale": 20000
+      "width": 1150,
+      "height": 220,
+      "title": {
+        "text": "The Supply Collision: Traditional Catchments vs. The Pulse",
+        "fontSize": 14,
+        "anchor": "start",
+        "color": "#34495E"
       },
       "layer": [
         {
-          "data": {"url": "data/final/chart9_pipeline_route.csv"},
-          "mark": {
-            "type": "line",
-            "stroke": "#BDC3C7",
-            "strokeWidth": 2,
-            "opacity": 0.2
-          },
+          "mark": {"type": "area", "color": "#BDC3C7", "opacity": 0.2, "interpolate": "monotone"},
           "encoding": {
-            "longitude": {"field": "Longitude", "type": "quantitative"},
-            "latitude": {"field": "Latitude", "type": "quantitative"},
-            "order": {"field": "Point_Order", "type": "quantitative"}
+            "x": {"field": "YearInt", "type": "quantitative", "axis": {"format": "d", "title": "Year"}},
+            "y": {"field": "Total_Demand_GL", "type": "quantitative", "title": "Gigalitres (GL)"}
           }
         },
         {
-          "data": {
-            "url": "data/final/chart10_desal_orders.csv"
-          },
-          "transform": [
-            {"filter": "datum.Year == orderYear"},
-            {
-              "lookup": "Year",
-              "from": {
-                "data": {"url": "data/final/chart9_pipeline_route.csv"},
-                "key": "Location",
-                "fields": ["Latitude", "Longitude", "Point_Order"]
-              },
-              "as": "geo"
-            },
-            {
-              "calculate": "datum.Desalination_Delivered_GL == 0 ? 1 : datum.Desalination_Delivered_GL / 10",
-              "as": "pipeThickness"
-            }
-          ],
-          "mark": {
-            "type": "line",
-            "stroke": "#3498DB",
-            "strokeCap": "round",
-            "strokeJoin": "round"
-          },
-          "data": {"url": "data/final/chart9_pipeline_route.csv"},
-          "transform": [
-            {
-              "lookup": "Point_Order",
-              "from": {
-                "data": {"url": "data/final/chart10_desal_orders.csv"},
-                "key": "Year",
-                "fields": ["Desalination_Delivered_GL"]
-              },
-              "default": 0
-            },
-            {
-              "calculate": "parseInt(datum.Desalination_Delivered_GL) == 0 ? 2 : (datum.Desalination_Delivered_GL / 10) + 3",
-              "as": "dynamicWidth"
-            }
-          ],
+          "mark": {"type": "area", "color": "#3498DB", "opacity": 0.8, "interpolate": "step-after"},
           "encoding": {
-            "longitude": {"field": "Longitude", "type": "quantitative"},
-            "latitude": {"field": "Latitude", "type": "quantitative"},
-            "order": {"field": "Point_Order", "type": "quantitative"},
-            "strokeWidth": {
-              "condition": {"test": "orderYear == 2012", "value": 2},
-              "value": 10
-            },
-            "opacity": {
-              "condition": {"test": "orderYear > 2018", "value": 1},
-              "value": 0.4
+            "x": {"field": "YearInt", "type": "quantitative"},
+            "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
+            "tooltip": [
+              {"field": "YearInt", "type": "quantitative", "title": "Year"},
+              {"field": "Desalination_Delivered_GL", "type": "quantitative", "title": "Desal GL"},
+              {"field": "Total_Demand_GL", "type": "quantitative", "title": "Total Demand GL"}
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 5,
+            "dy": -10,
+            "fontSize": 11,
+            "fontWeight": "bold",
+            "color": "#2980B9"
+          },
+          "encoding": {
+            "x": {"field": "YearInt", "type": "quantitative"},
+            "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
+            "text": {
+              "condition": {"test": "datum.Desalination_Delivered_GL > 0", "field": "Desalination_Delivered_GL", "type": "quantitative"},
+              "value": ""
             }
           }
         }
       ]
     },
     {
-      "name": "DATA_OVERLAY",
-      "data": {"url": "data/final/chart10_desal_orders.csv"},
-      "transform": [{"filter": "datum.Year == orderYear"}],
-      "layer": [
-        {
-          "mark": {
-            "type": "text",
-            "align": "right",
-            "baseline": "top",
-            "fontSize": 40,
-            "fontWeight": 900,
-            "color": "rgba(44, 62, 80, 0.1)"
-          },
-          "encoding": {
-            "x": {"datum": 950},
-            "y": {"datum": 50},
-            "text": {"field": "Year", "type": "nominal"}
-          }
+      "width": 1150,
+      "height": 100,
+      "title": {
+        "text": "The Dependency Ratio (Desalination as % of Urban Demand)",
+        "fontSize": 14,
+        "anchor": "start",
+        "color": "#34495E"
+      },
+      "transform": [
+        {"calculate": "datum.Desalination_Delivered_GL / datum.Total_Demand_GL", "as": "ratio"}
+      ],
+      "mark": {"type": "bar", "size": 40, "cornerRadius": 5},
+      "encoding": {
+        "x": {"field": "YearInt", "type": "quantitative", "axis": {"format": "d", "title": null}},
+        "y": {"field": "ratio", "type": "quantitative", "axis": {"format": "%", "title": "% Dependency"}},
+        "color": {
+          "field": "ratio",
+          "type": "quantitative",
+          "scale": {"scheme": "blues"},
+          "legend": null
         },
-        {
-          "mark": {
-            "type": "text",
-            "align": "right",
-            "baseline": "top",
-            "fontSize": 18,
-            "fontWeight": "bold",
-            "color": "#3498DB"
-          },
-          "encoding": {
-            "x": {"datum": 950},
-            "y": {"datum": 100},
-            "text": {
-              "calculate": "datum.Desalination_Delivered_GL + ' Gigalitres Ordered'",
-              "as": "orderText"
-            }
-          }
-        }
-      ]
+        "tooltip": [
+          {"field": "YearInt", "type": "quantitative", "title": "Year"},
+          {"field": "ratio", "type": "quantitative", "title": "Dependency", "format": ".1%"}
+        ]
+      }
     }
   ],
   "config": {
