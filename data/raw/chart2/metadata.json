@@ -1,6 +1,7 @@
 {
-    "description": "Century Temp Heatmap",
-    "source": "BoM ACORN-SAT",
+    "description": "116-year longitudinal temperature heatmap for Greater Melbourne.",
+    "methodology": "Data was extracted from ACORN-SAT v2.3 daily maximum temperature records (Station 086338 - Olympic Park). Daily observations were aggregated into monthly means using a temporal grouping algorithm in Pandas to reduce high-frequency noise while preserving the 'Heat Wall' signal of the last decade. Data spans January 1910 to early 2026.",
+    "source": "Bureau of Meteorology (ACORN-SAT)",
     "url": "http://www.bom.gov.au/climate/data/acorn-sat/",
     "citation": "Bureau of Meteorology. (2026). Australian Climate Observations Reference Network - Surface Air Temperature (ACORN-SAT). Australian Government."
 }

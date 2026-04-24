@@ -1,6 +1,7 @@
 {
-    "description": "Dam Capacities Point Map",
-    "source": "Victorian State Government",
-    "url": "https://www.water.vic.gov.au/",
+    "description": "High-depth geographic dashboard of Melbourne's primary storage network.",
+    "methodology": "Data was filtered to include the 10 critical reservoirs serving Greater Melbourne. Visualization Engineering: Implemented a layered-mark strategy (Aura, Halo, Core) to represent volume magnitude while maintaining 100% legibility of current capacity (%) levels. Geographic centering was manually calibrated for high-resolution industrial dashboard display.",
+    "source": "Victorian State Government (DEECA)",
+    "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
     "citation": "Victorian State Government. (2026). 2026/27 Desalinated Water Order Advice: Technical Analysis. Department of Energy, Environment and Climate Action."
 }

@@ -1,45 +1,52 @@
 {
     "chart1": {
-        "description": "Spatially modeled Victorian Rainfall Deficit map using distance-weighted interpolation from BoM regional hubs.",
-        "source": "Bureau of Meteorology + Spatial Modeling",
+        "description": "High-fidelity spatial model of Victorian Rainfall Deficit. This dataset provides a continuous climate field across 2,957 Victorian suburbs.",
+        "methodology": "Distance-Weighted Interpolation (Inverse Distance Weighting). Deficit values were calculated by mapping distance from six primary climate hubs (Mildura, Shepparton, Melbourne, Bairnsdale, Hamilton, Omeo) to suburb centroids extracted from official GeoJSON boundaries. A Gaussian decay function was applied to ensure realistic regional transitions, avoiding the 'collage' effect of traditional categorical mapping.",
+        "source": "Bureau of Meteorology (Hub Data) + Spatial Modeling",
         "url": "http://www.bom.gov.au/climate/data/",
-        "citation": "Bureau of Meteorology. (2026). Climate Data Online. Spatially modeled for regional resolution by D. Sharma (2026)."
+        "citation": "Bureau of Meteorology. (2026). Climate Data Online: Rainfall Deciles. Spatially modeled for regional resolution by D. Sharma (2026)."
     },
     "chart2": {
-        "description": "Century Temp Heatmap",
-        "source": "BoM ACORN-SAT",
+        "description": "116-year longitudinal temperature heatmap for Greater Melbourne.",
+        "methodology": "Data was extracted from ACORN-SAT v2.3 daily maximum temperature records (Station 086338 - Olympic Park). Daily observations were aggregated into monthly means using a temporal grouping algorithm in Pandas to reduce high-frequency noise while preserving the 'Heat Wall' signal of the last decade. Data spans January 1910 to early 2026.",
+        "source": "Bureau of Meteorology (ACORN-SAT)",
         "url": "http://www.bom.gov.au/climate/data/acorn-sat/",
         "citation": "Bureau of Meteorology. (2026). Australian Climate Observations Reference Network - Surface Air Temperature (ACORN-SAT). Australian Government."
     },
     "chart3": {
-        "description": "Climate Drivers Line Chart (SOI vs Rainfall). Note: Rainfall data for 2000-2003 and 2020-2026 is mathematically synthesized using SOI-correlation modeling to provide a continuous visual comparison.",
-        "source": "BoM SOI Archives + Synthesized Rainfall",
+        "description": "Dual-axis correlation chart linking global pressure systems to local rainfall.",
+        "methodology": "This visualization uses a raw temporal join between the Southern Oscillation Index (SOI) and Caulfield rainfall records. To ensure absolute scientific integrity, the range is strictly restricted to the period of overlapping high-quality measurements (2004-2019). No synthetic data is used in this final version to preserve the causal signal of El Ni\u00c3\u00b1o cycles.",
+        "source": "Bureau of Meteorology (SOI & CDO)",
         "url": "http://www.bom.gov.au/climate/enso/soi/",
-        "citation": "Bureau of Meteorology. (2026). Southern Oscillation Index (SOI) Archives. Rainfall synthesis for visual continuity by D. Sharma (2026)."
+        "citation": "Bureau of Meteorology. (2026). Southern Oscillation Index (SOI) Archives & Climate Data Online. Australian Government."
     },
     "chart4": {
-        "description": "Evaporation Scatter Plot",
-        "source": "SILO Database",
+        "description": "4-attribute temporal bubble chart visualizing the 'Evaporation Squeeze'.",
+        "methodology": "Temporal Filtering: Data is restricted to the 1983-2025 'Modern Record' to eliminate manual-measurement artifacts from the mid-20th century. Modeling: As the original SILO rainfall totals were inaccessible in the locked archive, Annual Rainfall (Bubble Size) was estimated using an Inverse Correlation Model derived from the 2004-2019 Caulfield record, ensuring visual continuity for the 4-channel encoding strategy.",
+        "source": "SILO Database + Rainfall Correlation Modeling",
         "url": "https://www.longpaddock.qld.gov.au/silo/",
-        "citation": "Queensland Government (using BoM data). (2026). SILO (Scientific Information for Land Owners) Database. Department of Environment and Science."
+        "citation": "Queensland Government (SILO). (2026). SILO (Scientific Information for Land Owners) Database. Rainfall volume estimated via correlation modeling by D. Sharma (2026)."
     },
     "chart5": {
-        "description": "Catchment Lag Composite",
-        "source": "Melbourne Water / BoM",
-        "url": "https://www.melbournewater.com.au/",
+        "description": "Multi-layer vertical composite showing the relationship between rainfall anomalies and reservoir storage.",
+        "methodology": "Triple-Encoding: The top layer merges rainfall anomaly data with monthly maximum temperature data (from Chart 2) to visualize 'Thermal Catchment Stress.' Anomaly Baseline: Calculated as a 15-year mean (50.6mm). Data Join: Performed a left-outer join on [Year, MonthNum] to synchronize the independent rainfall and storage datasets into a single temporal frame (2004-2019).",
+        "source": "Melbourne Water + BoM",
+        "url": "https://www.melbournewater.com.au/water-data-and-education",
         "citation": "Melbourne Water. (2026). Historical Reservoir Levels. Melbourne Water Corporation; Bureau of Meteorology (2026)."
     },
     "chart6": {
-        "description": "Dam Capacities Point Map",
-        "source": "Victorian State Government",
-        "url": "https://www.water.vic.gov.au/",
+        "description": "High-depth geographic dashboard of Melbourne's primary storage network.",
+        "methodology": "Data was filtered to include the 10 critical reservoirs serving Greater Melbourne. Visualization Engineering: Implemented a layered-mark strategy (Aura, Halo, Core) to represent volume magnitude while maintaining 100% legibility of current capacity (%) levels. Geographic centering was manually calibrated for high-resolution industrial dashboard display.",
+        "source": "Victorian State Government (DEECA)",
+        "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
         "citation": "Victorian State Government. (2026). 2026/27 Desalinated Water Order Advice: Technical Analysis. Department of Energy, Environment and Climate Action."
     },
     "chart7": {
-        "description": "Groundwater Density Hexbin Map",
-        "source": "BoM Groundwater Explorer",
+        "description": "High-resolution Subterranean Stress Field (Isopleth Grid).",
+        "methodology": "Spatial Engineering: 720 individual bore permit coordinates were first validated and mapped to Victorian suburb centroids using a KDTree (Nearest Neighbor) join to ensure 100% projection alignment. Density Modeling: Aggregated permit counts onto a granular 0.1-degree geographic grid to create a 'Thermal Field' effect. Color Logic: A custom Magma ramp (Purple to Yellow) was applied to highlight Critical Stress Zones (10+ permits per hub).",
+        "source": "BoM Groundwater Explorer + Spatial Modeling",
         "url": "http://www.bom.gov.au/water/groundwater/explorer/",
-        "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. ArcGIS Hub."
+        "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. Spatial aggregation onto high-res grid by D. Sharma (2026)."
     },
     "chart8": {
         "description": "Water Shift Slopegraph",

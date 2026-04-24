@@ -1,6 +1,7 @@
 {
-    "description": "Evaporation Scatter Plot",
-    "source": "SILO Database",
+    "description": "4-attribute temporal bubble chart visualizing the 'Evaporation Squeeze'.",
+    "methodology": "Temporal Filtering: Data is restricted to the 1983-2025 'Modern Record' to eliminate manual-measurement artifacts from the mid-20th century. Modeling: As the original SILO rainfall totals were inaccessible in the locked archive, Annual Rainfall (Bubble Size) was estimated using an Inverse Correlation Model derived from the 2004-2019 Caulfield record, ensuring visual continuity for the 4-channel encoding strategy.",
+    "source": "SILO Database + Rainfall Correlation Modeling",
     "url": "https://www.longpaddock.qld.gov.au/silo/",
-    "citation": "Queensland Government (using BoM data). (2026). SILO (Scientific Information for Land Owners) Database. Department of Environment and Science."
+    "citation": "Queensland Government (SILO). (2026). SILO (Scientific Information for Land Owners) Database. Rainfall volume estimated via correlation modeling by D. Sharma (2026)."
 }

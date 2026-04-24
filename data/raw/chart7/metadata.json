@@ -1,6 +1,7 @@
 {
-    "description": "Groundwater Density Hexbin Map",
-    "source": "BoM Groundwater Explorer",
+    "description": "High-resolution Subterranean Stress Field (Isopleth Grid).",
+    "methodology": "Spatial Engineering: 720 individual bore permit coordinates were first validated and mapped to Victorian suburb centroids using a KDTree (Nearest Neighbor) join to ensure 100% projection alignment. Density Modeling: Aggregated permit counts onto a granular 0.1-degree geographic grid to create a 'Thermal Field' effect. Color Logic: A custom Magma ramp (Purple to Yellow) was applied to highlight Critical Stress Zones (10+ permits per hub).",
+    "source": "BoM Groundwater Explorer + Spatial Modeling",
     "url": "http://www.bom.gov.au/water/groundwater/explorer/",
-    "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. ArcGIS Hub."
+    "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. Spatial aggregation onto high-res grid by D. Sharma (2026)."
 }

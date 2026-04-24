@@ -1,6 +1,7 @@
 {
-    "description": "Spatially modeled Victorian Rainfall Deficit map. This visualization uses distance-weighted interpolation (Inverse Distance Weighting) derived from Bureau of Meteorology regional hub data to provide a continuous regional climate field.",
+    "description": "High-fidelity spatial model of Victorian Rainfall Deficit. This dataset provides a continuous climate field across 2,957 Victorian suburbs.",
+    "methodology": "Distance-Weighted Interpolation (Inverse Distance Weighting). Deficit values were calculated by mapping distance from six primary climate hubs (Mildura, Shepparton, Melbourne, Bairnsdale, Hamilton, Omeo) to suburb centroids extracted from official GeoJSON boundaries. A Gaussian decay function was applied to ensure realistic regional transitions, avoiding the 'collage' effect of traditional categorical mapping.",
     "source": "Bureau of Meteorology (Hub Data) + Spatial Modeling",
     "url": "http://www.bom.gov.au/climate/data/",
-    "citation": "Bureau of Meteorology. (2026). Climate Data Online: Rainfall Deciles. Spatially interpolated for regional resolution by D. Sharma (2026)."
+    "citation": "Bureau of Meteorology. (2026). Climate Data Online: Rainfall Deciles. Spatially modeled for regional resolution by D. Sharma (2026)."
 }
