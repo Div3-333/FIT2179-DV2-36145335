@@ -1,18 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 140,
+  "height": 130,
   "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 10, "top": 20, "right": 10, "bottom": 80},
+  "padding": {"left": 0, "top": 10, "right": 0, "bottom": 80},
   "title": {
     "text": "The Fluid Shift",
-    "subtitle": "Proportional 'Core Sample' of Victorian Supply | 2015 - 2023",
+    "subtitle": "Resource Proportions (ML) | 2015 - 2023",
     "anchor": "start",
     "color": "#D7CCC8",
-    "fontSize": 26,
+    "fontSize": 24,
     "subtitleFontSize": 14,
     "subtitleColor": "#B0BEC5",
-    "offset": 30
+    "offset": 25
   },
   "data": {
     "url": "data/final/chart8_liquid_data.csv"
@@ -26,7 +26,7 @@
         "min": 2015,
         "max": 2022,
         "step": 0.1,
-        "name": "Analyze Year: "
+        "name": "Depth: "
       }
     }
   ],
@@ -39,11 +39,11 @@
     {
       "mark": {
         "type": "bar",
-        "height": 100,
-        "cornerRadius": 10,
+        "height": 130,
+        "cornerRadius": 8,
         "stroke": "white",
-        "strokeWidth": 2,
-        "opacity": 0.95
+        "strokeWidth": 1.5,
+        "opacity": 0.9
       },
       "encoding": {
         "x": {
@@ -71,10 +71,10 @@
             "labelColor": "white",
             "orient": "bottom",
             "direction": "horizontal",
-            "columns": 3,
-            "offset": 50,
-            "labelFontSize": 14,
-            "symbolSize": 200
+            "columns": 5,
+            "offset": 40,
+            "labelFontSize": 11,
+            "symbolSize": 100
           }
         }
       }
@@ -84,10 +84,9 @@
         "type": "text",
         "align": "center",
         "baseline": "middle",
-        "fontSize": 14,
+        "fontSize": 12,
         "fontWeight": "bold",
-        "color": "white",
-        "dy": 0
+        "color": "white"
       },
       "encoding": {
         "x": {
@@ -99,7 +98,7 @@
         "text": {
           "field": "Volume_ML", 
           "type": "quantitative", 
-          "format": ",.2s"
+          "format": ".2s"
         },
         "detail": {"field": "Resource_Type"},
         "opacity": {
@@ -115,8 +114,8 @@
         "baseline": "middle",
         "fontSize": 90,
         "fontWeight": 900,
-        "color": "rgba(255,255,255,0.08)",
-        "y": 50
+        "color": "rgba(255,255,255,0.06)",
+        "y": 65
       },
       "encoding": {
         "text": {"field": "DisplayYear", "type": "nominal"}
