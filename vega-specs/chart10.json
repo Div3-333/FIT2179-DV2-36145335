@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-fidelity industrial dashboard: The Centred Crosshair Matrix.",
-  "width": 800,
-  "height": 550,
+  "description": "High-fidelity industrial dashboard: The Survival Matrix (Capped at 2021).",
+  "width": 1000,
+  "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
   "background": "white",
   "padding": {"left": 20, "top": 50, "right": 20, "bottom": 20},
@@ -17,16 +17,19 @@
     "offset": 40
   },
   "data": {"url": "data/final/chart10_resilience_matrix.csv"},
+  "transform": [
+    {"filter": "datum.Year <= 2021"}
+  ],
   "layer": [
     {
       "name": "CROSSHAIR_AXES",
       "layer": [
         {
-          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.3},
+          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.2},
           "encoding": {"x": {"datum": 70, "type": "quantitative", "scale": {"domain": [40, 100]}}}
         },
         {
-          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.3},
+          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.2},
           "encoding": {"y": {"datum": 75, "type": "quantitative", "scale": {"domain": [-5, 150]}}}
         }
       ]
@@ -50,7 +53,7 @@
     },
     {
       "name": "TRAJECTORY",
-      "mark": {"type": "line", "point": false, "strokeWidth": 2, "color": "#2C3E50", "opacity": 0.1, "interpolate": "monotone"},
+      "mark": {"type": "line", "point": false, "strokeWidth": 2, "color": "#2C3E50", "opacity": 0.05, "interpolate": "monotone"},
       "encoding": {
         "x": {"field": "Storage_Percentage", "type": "quantitative"},
         "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
@@ -65,7 +68,7 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
         }
       ],
-      "mark": {"type": "point", "size": 800, "filled": true, "stroke": "white", "strokeWidth": 2},
+      "mark": {"type": "point", "size": 900, "filled": true, "stroke": "#2C3E50", "strokeWidth": 1.5},
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
@@ -98,8 +101,8 @@
           "legend": {"title": "Fiscal Year", "orient": "right", "labelColor": "#2C3E50", "titleColor": "#2C3E50"}
         },
         "opacity": {
-          "condition": {"param": "hover", "value": 1, "empty": true},
-          "value": 0.6
+          "condition": {"param": "hover", "value": 0.9, "empty": true},
+          "value": 0.25
         },
         "tooltip": [
           {"field": "Year", "type": "quantitative", "title": "Year"},
@@ -110,7 +113,7 @@
     },
     {
       "name": "YEAR_LABELS",
-      "mark": {"type": "text", "dy": 0, "fontSize": 12, "fontWeight": 900, "color": "white"},
+      "mark": {"type": "text", "dy": 0, "fontSize": 14, "fontWeight": 900, "color": "white"},
       "encoding": {
         "x": {"field": "Storage_Percentage", "type": "quantitative"},
         "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
