@@ -7,8 +7,8 @@
     "url": "data/final/chart2_temperature.csv"
   },
   "title": {
-    "text": "The Modern Heat Wall",
-    "subtitle": "Detail: 2000 - 2026 High-Frequency Warming",
+    "text": "Then vs. Now: The Great Shift",
+    "subtitle": "Direct Comparison: 1910-1920 (Bottom) vs 2010-2020 (Top)",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -17,7 +17,7 @@
     "offset": 20
   },
   "transform": [
-    {"filter": "datum.Year >= 2000"}
+    {"filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"}
   ],
   "mark": {
     "type": "rect",
@@ -42,7 +42,7 @@
       "title": null,
       "sort": "descending",
       "axis": {
-        "labelExpr": "datum.label % 5 == 0 || datum.label == 2026 ? datum.label : ''"
+        "labelExpr": "datum.label"
       }
     },
     "color": {
