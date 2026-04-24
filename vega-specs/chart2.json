@@ -1,0 +1,78 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {
+    "url": "data/final/chart2_temperature.csv"
+  },
+  "title": {
+    "text": "116 Years of Melbourne Temperature",
+    "subtitle": "Mean Maximum Temperature (°C) by Month and Year (1910-2026)",
+    "anchor": "start",
+    "color": "#2C3E50",
+    "subtitleColor": "#5D6D7E",
+    "fontSize": 20,
+    "subtitleFontSize": 14,
+    "offset": 20
+  },
+  "transform": [
+    {"calculate": "datetime(datum.Year, datum.Month - 1, 1)", "as": "date"}
+  ],
+  "mark": {
+    "type": "rect",
+    "tooltip": true,
+    "stroke": "white",
+    "strokeWidth": 0.1
+  },
+  "encoding": {
+    "x": {
+      "field": "Month",
+      "type": "nominal",
+      "title": "Month",
+      "axis": {
+        "labelAngle": 0,
+        "labelExpr": "datum.label == 1 ? 'Jan' : datum.label == 2 ? 'Feb' : datum.label == 3 ? 'Mar' : datum.label == 4 ? 'Apr' : datum.label == 5 ? 'May' : datum.label == 6 ? 'Jun' : datum.label == 7 ? 'Jul' : datum.label == 8 ? 'Aug' : datum.label == 9 ? 'Sep' : datum.label == 10 ? 'Oct' : datum.label == 11 ? 'Nov' : 'Dec'"
+      }
+    },
+    "y": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "values": [1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2026]
+      }
+    },
+    "color": {
+      "field": "MaxTemp",
+      "type": "quantitative",
+      "scale": {
+        "scheme": "inferno",
+        "domain": [10, 35]
+      },
+      "legend": {
+        "title": "Temp (°C)",
+        "orient": "right",
+        "gradientLength": 300,
+        "titleColor": "#2C3E50",
+        "labelColor": "#2C3E50"
+      }
+    },
+    "tooltip": [
+      {"field": "Year", "type": "ordinal"},
+      {"field": "Month", "type": "nominal", "title": "Month (Num)"},
+      {"field": "MaxTemp", "type": "quantitative", "title": "Mean Max Temp (°C)", "format": ".1f"}
+    ]
+  },
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#2C3E50",
+      "tickColor": "#2C3E50",
+      "labelColor": "#2C3E50",
+      "titleColor": "#2C3E50",
+      "grid": false
+    }
+  }
+}

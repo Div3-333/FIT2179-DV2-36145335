@@ -256,13 +256,24 @@
                 </div>
             </div>
 
-            <div class="story-row">
+            <div class="story-row" style="grid-template-columns: 1fr 1.4fr; align-items: flex-start; gap: 30px; margin-top: 100px;">
+                <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">A Century of Heat</h2>
+                    <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
+                        The temperature profile of Victoria has fundamentally shifted. By mapping 116 years of data, we see a transition from the <span style="color: #4A148C; font-weight: bold;">Deep Indigo Winter Baselines</span> of the early 1900s toward a modern era dominated by <span style="color: #E67E22; font-weight: bold;">Intense Amber Summums</span> and <span style="color: #F7DC6F; font-weight: bold;">Persistent Warmth</span>. This heat isn't just higher; it's denser. The "heat wall" at the top of our century-long heatmap shows that extreme anomalies are no longer outliers—they are becoming the permanent atmospheric engine that drives our water descent.
+                    </p>
+                </div>
+                <div id="vis-chart-2" class="viz-canvas glass-canvas" style="min-height: 480px;">
+                    <!-- Chart 2 Renders here -->
+                </div>
+            </div>
+
+            <div class="story-row" style="margin-top: 100px;">
                 <div class="text-block">
                     <h2>The Atmospheric Engine</h2>
                     <p>The Southern Oscillation Index (SOI) dictates our climate fate. We are tracking a terrifying compression: extreme heat anomalies are stacking closer together, severely limiting the time our systems have to recover from drought.</p>
                 </div>
                 <div class="viz-block" style="display: flex; flex-direction: column; gap: 20px;">
-                    <div id="vis-chart-2" class="viz-canvas">[CHART 2: Heatmap of Temp Anomalies]</div>
                     <div id="vis-chart-3" class="viz-canvas">[CHART 3: Dual Axis SOI vs Rainfall]</div>
                 </div>
             </div>
@@ -372,10 +383,10 @@
     <script>
         // Linking the Vega-Lite JSON files from the vega-specs folder
         vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').catch(console.error);
+        vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
         
         /* 
         Remaining charts will be linked as we build them:
-        vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
         vegaEmbed('#vis-chart-3', 'vega-specs/chart3.json').catch(console.error);
         ... 
         */
