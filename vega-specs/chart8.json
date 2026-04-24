@@ -33,17 +33,22 @@
   "transform": [
     {
       "filter": "datum.YearStep == timeStep"
+    },
+    {
+      "calculate": "datum.Resource_Type == 'Surface water - consumptive' ? 50 : datum.Resource_Type == 'Surface water - environmental' ? 250 : datum.Resource_Type == 'Groundwater - consumptive' ? 500 : datum.Resource_Type == 'Recycled water - consumptive' ? 700 : 900",
+      "as": "xPos"
     }
   ],
   "layer": [
     {
       "mark": {
         "type": "bar",
-        "height": 100,
+        "height": 80,
         "cornerRadius": 8,
         "stroke": "white",
         "strokeWidth": 1.5,
-        "opacity": 0.95
+        "opacity": 0.95,
+        "y": 20
       },
       "encoding": {
         "x": {
@@ -81,12 +86,31 @@
     {
       "mark": {
         "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "y": -5
+      },
+      "encoding": {
+        "x": {"field": "xPos", "type": "quantitative", "axis": null, "scale": {"domain": [0, 1000]}},
+        "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.2s"},
+        "color": {
+          "field": "Resource_Type", 
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
         "align": "center",
         "baseline": "middle",
         "fontSize": 90,
         "fontWeight": 900,
         "color": "rgba(255,255,255,0.07)",
-        "y": 50
+        "y": 60
       },
       "encoding": {
         "text": {"field": "DisplayYear", "type": "nominal"}
