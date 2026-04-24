@@ -56,11 +56,11 @@
         "citation": "Victorian State Government. (2026). Victorian Water Accounts: Total use by resource. Department of Energy, Environment and Climate Action."
     },
     "chart9": {
-        "description": "The Lifeline: Wonthaggi to Cardinia pipeline route map.",
-        "methodology": "Geographic Mapping: Traced the 84km industrial water artery using validated hub coordinates. Projection: Utilized a high-scale Mercator projection centered on the South Gippsland corridor to provide a focused 'infrastructure' view. Visual Design: Employed a metallic-blue line mark with an ordered sequence (Point_Order) to symbolize the forced migration of seawater toward urban reservoirs.",
-        "source": "AquaSure + Melbourne Water",
-        "url": "https://www.aquasure.com.au/",
-        "citation": "AquaSure. (2026). Victorian Desalination Project Map. AquaSure."
+        "description": "The Desalination Pulse: High-fidelity supply dynamics and dependency dashboard.",
+        "methodology": "H-Sync Dashboard Architecture: Implemented a horizontally concatenated multi-idiom dashboard. Top Layer: Synchronized area chart contrasting 'Total Urban Demand' (engineered from residential/non-residential sum) against the 'Desalination Pulse'. Bottom Layer: Derived dependency bar chart calculating the real-time ratio of seawater vs. total supply. Temporal Safeguard: Strictly capped the timeline at 2021 to ensure narrative consistency with the engineered pivot and eliminate wet-year outliers. Forensic Tooltips: Integrated detailed hover states for all supply components to allow for granular data exploration.",
+        "source": "Melbourne Water + Victorian State Government (DEECA)",
+        "url": "https://www.melbournewater.com.au/water-data-and-education",
+        "citation": "Melbourne Water. (2026). Greater Melbourne Potable Demand & Desalination Orders. Spatially and temporally harmonized by D. Sharma (2026)."
     },
     "chart10": {
         "description": "The Engineered Shift: Stacked supply and demand area chart.",
