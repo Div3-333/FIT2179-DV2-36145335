@@ -16,12 +16,6 @@
     "offset": 40
   },
   "data": {"url": "data/final/chart10_resilience_matrix.csv"},
-  "params": [
-    {
-      "name": "hover",
-      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
-    }
-  ],
   "layer": [
     {
       "name": "QUADRANT_LABELS",
@@ -35,8 +29,8 @@
       },
       "mark": {"type": "text", "fontSize": 14, "fontWeight": 900, "opacity": 0.2, "color": "#D7CCC8"},
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [40, 100]}},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [-5, 150]}},
         "text": {"field": "text"}
       }
     },
@@ -51,18 +45,22 @@
     },
     {
       "name": "DATA_POINTS",
+      "params": [
+        {
+          "name": "hover",
+          "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
+        }
+      ],
       "mark": {"type": "point", "size": 300, "filled": true, "stroke": "white", "strokeWidth": 1.5},
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
           "type": "quantitative",
-          "scale": {"domain": [40, 100]},
           "axis": {"title": "Reservoir Health (Average Storage %)", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "grid": false}
         },
         "y": {
           "field": "Desalination_Delivered_GL",
           "type": "quantitative",
-          "scale": {"domain": [-5, 150]},
           "axis": {"title": "Engineering Injection (Desal GL)", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "grid": false}
         },
         "color": {
@@ -102,26 +100,22 @@
     {
       "name": "FORENSIC_HUD",
       "transform": [{"filter": {"param": "hover"}}],
-      "layer": [
-        {
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "top",
-            "fontSize": 20,
-            "fontWeight": 900,
-            "color": "#F1C40F",
-            "x": 20,
-            "y": 20
-          },
-          "encoding": {
-            "text": {
-              "calculate": "'SYSTEM STATUS: ' + (datum.Storage_Percentage < 65 ? 'CRITICAL' : 'RECOVERY')",
-              "as": "statusText"
-            }
-          }
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 20,
+        "fontWeight": 900,
+        "color": "#F1C40F",
+        "x": 20,
+        "y": 20
+      },
+      "encoding": {
+        "text": {
+          "calculate": "'SYSTEM STATUS: ' + (datum.Storage_Percentage < 65 ? 'CRITICAL' : 'RECOVERY')",
+          "as": "statusText"
         }
-      ]
+      }
     }
   ],
   "config": {
