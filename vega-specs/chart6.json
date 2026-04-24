@@ -55,7 +55,7 @@
             "format": ".1s",
             "orient": "none",
             "legendX": 10,
-            "legendY": 350,
+            "legendY": 280,
             "symbolFillColor": "rgba(255,255,255,0.2)"
           }
         },
@@ -90,8 +90,8 @@
         "dy": -30,
         "fontSize": 13,
         "fontWeight": 900,
-        "color": "#FFFFFF",
-        "stroke": "#0A4A7A",
+        "color": "#00E5FF",
+        "stroke": "#17202A",
         "strokeWidth": 3
       },
       "encoding": {
