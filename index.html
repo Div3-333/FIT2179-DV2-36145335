@@ -269,13 +269,15 @@
                 </div>
             </div>
 
-            <div class="story-row" style="margin-top: 100px;">
-                <div class="text-block">
-                    <h2>The Atmospheric Engine</h2>
-                    <p>The Southern Oscillation Index (SOI) dictates our climate fate. We are tracking a terrifying compression: extreme heat anomalies are stacking closer together, severely limiting the time our systems have to recover from drought.</p>
+            <div class="story-row" style="grid-template-columns: 1fr 1.6fr; align-items: flex-start; gap: 40px; margin-top: 100px;">
+                <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Atmospheric Engine</h2>
+                    <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
+                        The <span style="color: #E67E22; font-weight: bold;">Southern Oscillation Index (SOI)</span> is the invisible hand dictating Victoria's climate fate. By mapping atmospheric pressure differentials, we can see the direct correlation between "Negative SOI" (El Niño) and our <span style="color: #94C1EA; font-weight: bold;">Drying Catchments</span>. When the orange line plunges below the baseline, our rainfall bars effectively collapse. We are tracking a terrifying cycle: as these oscillations become more volatile, the recovery time between droughts is shrinking, leaving our reservoirs perpetually starved.
+                    </p>
                 </div>
-                <div class="viz-block" style="display: flex; flex-direction: column; gap: 20px;">
-                    <div id="vis-chart-3" class="viz-canvas">[CHART 3: Dual Axis SOI vs Rainfall]</div>
+                <div id="vis-chart-3" class="viz-canvas glass-canvas" style="min-height: 480px;">
+                    <!-- Chart 3 Renders here -->
                 </div>
             </div>
         </div>

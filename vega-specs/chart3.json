@@ -1,0 +1,103 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 450,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "title": {
+    "text": "The Atmospheric Engine",
+    "subtitle": "Correlation: Southern Oscillation Index (Line) vs. Rainfall (Bars)",
+    "anchor": "start",
+    "color": "#2C3E50",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#5D6D7E",
+    "offset": 20
+  },
+  "data": {
+    "url": "data/final/chart3_caulfield_rain.csv"
+  },
+  "transform": [
+    {
+      "calculate": "{'Jan':1,'Feb':2,'Mar':3,'Apr':4,'May':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Oct':10,'Nov':11,'Dec':12}[datum.Month]",
+      "as": "MonthNum"
+    },
+    {"calculate": "datetime(datum.Year, datum.MonthNum - 1, 1)", "as": "Date"},
+    {
+      "lookup": "Date",
+      "from": {
+        "data": {"url": "data/final/chart3_soi_monthly.csv"},
+        "key": "Date",
+        "fields": ["SOI"]
+      },
+      "as": "SOI_Data"
+    },
+    {"filter": "datum.Year >= 2010"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "#94C1EA", "opacity": 0.6, "width": 8},
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "title": "Year",
+          "axis": {"grid": false}
+        },
+        "y": {
+          "field": "Rainfall_mm",
+          "type": "quantitative",
+          "title": "Monthly Rainfall (mm)",
+          "axis": {"titleColor": "#3498DB"}
+        },
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
+          {"field": "Rainfall_mm", "type": "quantitative", "title": "Rainfall (mm)"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart3_soi_monthly.csv"
+      },
+      "transform": [
+        {"calculate": "datetime(datum.Year, datum.Month - 1, 1)", "as": "Date"},
+        {"filter": "datum.Year >= 2010"}
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#E67E22",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {
+          "field": "SOI",
+          "type": "quantitative",
+          "title": "Southern Oscillation Index (SOI)",
+          "axis": {"orient": "right", "titleColor": "#E67E22"}
+        },
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
+          {"field": "SOI", "type": "quantitative", "title": "SOI Value"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "rule", "color": "rgba(0,0,0,0.1)", "strokeDash": [4,4]},
+      "encoding": {
+        "y": {"datum": 0}
+      }
+    }
+  ],
+  "resolve": {"scale": {"y": "independent"}},
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#2C3E50",
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
+    }
+  }
+}
