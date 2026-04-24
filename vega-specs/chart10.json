@@ -22,6 +22,10 @@
       "name": "showModern",
       "value": false,
       "bind": {"input": "checkbox", "name": "Include Post-2021 Data (The Return): "}
+    },
+    {
+      "name": "hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
     }
   ],
   "transform": [
@@ -75,7 +79,7 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
         }
       ],
-      "mark": {"type": "point", "size": 800, "filled": true, "stroke": "#2C3E50", "strokeWidth": 1.5, "opacity": 0.5},
+      "mark": {"type": "point", "size": 800, "filled": true, "stroke": null},
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
@@ -108,7 +112,7 @@
           "legend": {"title": "Fiscal Year", "orient": "right", "labelColor": "#2C3E50", "titleColor": "#2C3E50"}
         },
         "opacity": {
-          "condition": {"param": "hover", "value": 0.95},
+          "condition": {"param": "hover", "value": 1},
           "value": 0.5
         },
         "tooltip": [
