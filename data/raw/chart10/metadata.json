@@ -1,7 +1,7 @@
 {
-    "description": "The Survival Envelope: High-fidelity system resilience scan mapping Victorian water survival.",
-    "methodology": "Resilience Mapping: Implemented a high-fidelity scatter-trajectory idiom plotting 'Reservoir Health' (Average Storage %) against 'Engineering Injection' (Desalination Orders). System Trajectory: Connected temporal data points (2012-2025) to visualize the state's physical movement across stress quadrants. Quadrant Modeling: Modeled four distinct operational zones: Safe Zone, Critical Stress, Engineered Survival, and Artificial Recharge. Forensic HUD: Integrated a real-time status indicator (Critical vs Recovery) based on storage thresholds. Aesthetic: Industrial tech-scan theme with 'Magma' temporal encoding.",
+    "description": "The Survival Cycle: Forensic resilience-scan matrix mapping Victorian water survival.",
+    "methodology": "Quadrant Modeling: Developed a bi-variant resilience scan mapping 'Reservoir Health' (Average Storage %) against 'Engineering Injection' (Desalination Orders). Axis Centering: Implemented a centered-crosshair layout at the mathematical thresholds of 70% Storage and 75 GL Injection to define four operational zones: Safe Zone, Critical Stress, Engineered Survival, and Artificial Recharge. Trajectory Scan: Engineered a connected temporal path to visualize the state's physical migration across quadrants. Circular Finish: Implemented a post-2021 toggle to reveal the state's physical loop back to safety in the 2023-2025 era.",
     "source": "Melbourne Water + Victorian State Government (DEECA)",
-    "url": "https://www.melbournewater.com.au/water-data-and-education",
+    "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
     "citation": "Melbourne Water. (2026). Historical Reservoir Levels & Desalination Orders. Spatially and temporally harmonized for resilience scanning by D. Sharma (2026)."
 }

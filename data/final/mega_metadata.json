@@ -49,24 +49,24 @@
         "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. ArcGIS Hub."
     },
     "chart8": {
-        "description": "High-fidelity forensic dashboard of Victorian water supply proportions.",
-        "methodology": "Structural Pivot: Implemented a reversed-stacking 100% area gauge where alternative sources (Desal, Groundwater, Recycled) expand from the left to physically 'push back' surface water reliance. Temporal Filtering: Data is capped at 2021 to preserve the narrative integrity of the structural shift, excluding the 2022 outlier wet year. Emphasis Engineering: Integrated a chromatic background shift that triggers at the 2018 threshold, changing background text from Blue to Amber to signal the transition to an engineered supply era. H-Sync Architecture: Uses horizontal concatenation to sync a massive 950px morphing bar with a live-updating numeric data panel.",
-        "source": "Victorian State Government (DEECA)",
+        "description": "The Proportional Pivot: High-fidelity dashboard of Victorian supply shift (2012-2025).",
+        "methodology": "Data Engineering: Implemented a High-Resolution Linear Interpolation model in Python, expanding the 8-year record to 130 discrete time-steps (0.1 year resolution) to achieve 'liquid' visual transitions. Extrapolation Logic: For the post-2022 recovery era, 2022-23 baselines were extrapolated to 2025 to visualize the 'Return to Safety' in a complete circular narrative. Global Control: Integrated a 'showModern' parameter to synchronize the 2022-2025 revelation across the entire Engineering section.",
+        "source": "Victorian State Government (DEECA) + Data Interpolation",
         "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
         "citation": "Victorian State Government. (2026). Victorian Water Accounts: Total use by resource. Department of Energy, Environment and Climate Action."
     },
     "chart9": {
-        "description": "The Desalination Pulse: High-fidelity supply dynamics and dependency dashboard.",
-        "methodology": "H-Sync Dashboard Architecture: Implemented a horizontally concatenated multi-idiom dashboard. Top Layer: Synchronized area chart contrasting 'Total Urban Demand' (engineered from residential/non-residential sum) against the 'Desalination Pulse'. Bottom Layer: Derived dependency bar chart calculating the real-time ratio of seawater vs. total supply. Temporal Safeguard: Strictly capped the timeline at 2021 to ensure narrative consistency with the engineered pivot and eliminate wet-year outliers. Forensic Tooltips: Integrated detailed hover states for all supply components to allow for granular data exploration.",
+        "description": "The Desalination Pulse: High-fidelity supply dynamics and dependency dashboard (2012-2024).",
+        "methodology": "Data Harmonization: Performed a many-to-one join between the Greater Melbourne Potable Demand dataset and Desalination Order records. Engineered Field: Manually calculated 'Total Demand' by summing Residential, Non-Residential, and Non-Revenue categories to create a high-fidelity grey 'Silhouette' baseline. Narrative Sync: Strictly capped the X-axis at 2024 to match verified desal delivery data, avoiding speculative gaps for 2025 while maintaining the 2012-2024 'Pulse' story.",
         "source": "Melbourne Water + Victorian State Government (DEECA)",
         "url": "https://www.melbournewater.com.au/water-data-and-education",
         "citation": "Melbourne Water. (2026). Greater Melbourne Potable Demand & Desalination Orders. Spatially and temporally harmonized by D. Sharma (2026)."
     },
     "chart10": {
-        "description": "The Survival Envelope: High-fidelity system resilience scan mapping Victorian water survival.",
-        "methodology": "Resilience Mapping: Implemented a high-fidelity scatter-trajectory idiom plotting 'Reservoir Health' (Average Storage %) against 'Engineering Injection' (Desalination Orders). System Trajectory: Connected temporal data points (2012-2025) to visualize the state's physical movement across stress quadrants. Quadrant Modeling: Modeled four distinct operational zones: Safe Zone, Critical Stress, Engineered Survival, and Artificial Recharge. Forensic HUD: Integrated a real-time status indicator (Critical vs Recovery) based on storage thresholds. Aesthetic: Industrial tech-scan theme with 'Magma' temporal encoding.",
+        "description": "The Survival Cycle: Forensic resilience-scan matrix mapping Victorian water survival.",
+        "methodology": "Quadrant Modeling: Developed a bi-variant resilience scan mapping 'Reservoir Health' (Average Storage %) against 'Engineering Injection' (Desalination Orders). Axis Centering: Implemented a centered-crosshair layout at the mathematical thresholds of 70% Storage and 75 GL Injection to define four operational zones: Safe Zone, Critical Stress, Engineered Survival, and Artificial Recharge. Trajectory Scan: Engineered a connected temporal path to visualize the state's physical migration across quadrants. Circular Finish: Implemented a post-2021 toggle to reveal the state's physical loop back to safety in the 2023-2025 era.",
         "source": "Melbourne Water + Victorian State Government (DEECA)",
-        "url": "https://www.melbournewater.com.au/water-data-and-education",
+        "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
         "citation": "Melbourne Water. (2026). Historical Reservoir Levels & Desalination Orders. Spatially and temporally harmonized for resilience scanning by D. Sharma (2026)."
     }
 }

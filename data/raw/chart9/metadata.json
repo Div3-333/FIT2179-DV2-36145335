@@ -1,6 +1,6 @@
 {
-    "description": "The Desalination Pulse: High-fidelity supply dynamics and dependency dashboard.",
-    "methodology": "H-Sync Dashboard Architecture: Implemented a horizontally concatenated multi-idiom dashboard. Top Layer: Synchronized area chart contrasting 'Total Urban Demand' (engineered from residential/non-residential sum) against the 'Desalination Pulse'. Bottom Layer: Derived dependency bar chart calculating the real-time ratio of seawater vs. total supply. Temporal Safeguard: Strictly capped the timeline at 2021 to ensure narrative consistency with the engineered pivot and eliminate wet-year outliers. Forensic Tooltips: Integrated detailed hover states for all supply components to allow for granular data exploration.",
+    "description": "The Desalination Pulse: High-fidelity supply dynamics and dependency dashboard (2012-2024).",
+    "methodology": "Data Harmonization: Performed a many-to-one join between the Greater Melbourne Potable Demand dataset and Desalination Order records. Engineered Field: Manually calculated 'Total Demand' by summing Residential, Non-Residential, and Non-Revenue categories to create a high-fidelity grey 'Silhouette' baseline. Narrative Sync: Strictly capped the X-axis at 2024 to match verified desal delivery data, avoiding speculative gaps for 2025 while maintaining the 2012-2024 'Pulse' story.",
     "source": "Melbourne Water + Victorian State Government (DEECA)",
     "url": "https://www.melbournewater.com.au/water-data-and-education",
     "citation": "Melbourne Water. (2026). Greater Melbourne Potable Demand & Desalination Orders. Spatially and temporally harmonized by D. Sharma (2026)."

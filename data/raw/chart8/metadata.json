@@ -1,7 +1,7 @@
 {
-    "description": "High-fidelity forensic dashboard of Victorian water supply proportions.",
-    "methodology": "Structural Pivot: Implemented a reversed-stacking 100% area gauge where alternative sources (Desal, Groundwater, Recycled) expand from the left to physically 'push back' surface water reliance. Temporal Filtering: Data is capped at 2021 to preserve the narrative integrity of the structural shift, excluding the 2022 outlier wet year. Emphasis Engineering: Integrated a chromatic background shift that triggers at the 2018 threshold, changing background text from Blue to Amber to signal the transition to an engineered supply era. H-Sync Architecture: Uses horizontal concatenation to sync a massive 950px morphing bar with a live-updating numeric data panel.",
-    "source": "Victorian State Government (DEECA)",
+    "description": "The Proportional Pivot: High-fidelity dashboard of Victorian supply shift (2012-2025).",
+    "methodology": "Data Engineering: Implemented a High-Resolution Linear Interpolation model in Python, expanding the 8-year record to 130 discrete time-steps (0.1 year resolution) to achieve 'liquid' visual transitions. Extrapolation Logic: For the post-2022 recovery era, 2022-23 baselines were extrapolated to 2025 to visualize the 'Return to Safety' in a complete circular narrative. Global Control: Integrated a 'showModern' parameter to synchronize the 2022-2025 revelation across the entire Engineering section.",
+    "source": "Victorian State Government (DEECA) + Data Interpolation",
     "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
     "citation": "Victorian State Government. (2026). Victorian Water Accounts: Total use by resource. Department of Energy, Environment and Climate Action."
 }
