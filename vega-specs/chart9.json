@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 550,
+  "padding": {"left": 20, "top": 20, "right": 20, "bottom": 20},
+  "projection": {
+    "type": "mercator",
+    "center": [145.5, -38.25],
+    "scale": 15000
+  },
+  "title": {
+    "text": "The Metallic Artery",
+    "subtitle": "84km Industrial Pipeline: Forced Migration of Seawater | Wonthaggi to Cardinia",
+    "anchor": "start",
+    "color": "#2C3E50",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#7F8C8D",
+    "offset": 30
+  },
+  "layer": [
+    {
+      "data": {"url": "data/final/chart9_pipeline_route.csv"},
+      "mark": {
+        "type": "line",
+        "stroke": "#BDC3C7",
+        "strokeWidth": 8,
+        "strokeCap": "round",
+        "opacity": 0.3
+      },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "order": {"field": "Point_Order", "type": "quantitative"}
+      }
+    },
+    {
+      "data": {"url": "data/final/chart9_pipeline_route.csv"},
+      "mark": {
+        "type": "line",
+        "stroke": "#3498DB",
+        "strokeWidth": 4,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "order": {"field": "Point_Order", "type": "quantitative"}
+      }
+    },
+    {
+      "data": {"url": "data/final/chart9_pipeline_route.csv"},
+      "mark": {
+        "type": "line",
+        "stroke": "#AED6F1",
+        "strokeWidth": 1.5,
+        "strokeDash": [8, 4]
+      },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "order": {"field": "Point_Order", "type": "quantitative"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"Location": "Wonthaggi Desal Plant", "Lat": -38.583, "Lon": 145.581, "Type": "Source"},
+          {"Location": "Cardinia Reservoir", "Lat": -37.962, "Lon": 145.413, "Type": "Sink"}
+        ]
+      },
+      "layer": [
+        {
+          "mark": {"type": "point", "shape": "circle", "size": 300, "filled": true, "opacity": 0.2},
+          "encoding": {
+            "longitude": {"field": "Lon", "type": "quantitative"},
+            "latitude": {"field": "Lat", "type": "quantitative"},
+            "color": {
+              "field": "Type",
+              "type": "nominal",
+              "scale": {"domain": ["Source", "Sink"], "range": ["#F1C40F", "#3498DB"]},
+              "legend": null
+            }
+          }
+        },
+        {
+          "mark": {"type": "point", "shape": "circle", "size": 80, "filled": true, "stroke": "white", "strokeWidth": 1.5},
+          "encoding": {
+            "longitude": {"field": "Lon", "type": "quantitative"},
+            "latitude": {"field": "Lat", "type": "quantitative"},
+            "color": {"field": "Type", "type": "nominal"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 15,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#2C3E50",
+            "font": "Merriweather"
+          },
+          "encoding": {
+            "longitude": {"field": "Lon", "type": "quantitative"},
+            "latitude": {"field": "Lat", "type": "quantitative"},
+            "text": {"field": "Location", "type": "nominal"}
+          }
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "#34495E",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {"datum": 780},
+        "y": {"datum": 530},
+        "text": {"datum": "Capacity: 450 Million Litres / Day"}
+      }
+    }
+  ],
+  "config": {
+    "background": "white",
+    "view": {"stroke": "transparent"},
+    "font": "Source Sans Pro"
+  }
+}
