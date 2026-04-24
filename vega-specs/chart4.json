@@ -80,7 +80,10 @@
         "size": {
           "field": "Avg_Summer_Max_Temp",
           "type": "quantitative",
-          "scale": {"range": [50, 800]},
+          "scale": {
+            "domain": [25, 32],
+            "range": [100, 1500]
+          },
           "legend": null
         },
         "tooltip": [
