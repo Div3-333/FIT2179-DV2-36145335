@@ -5,7 +5,7 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "The Extraction Core Sample",
-    "subtitle": "Interactive Resource Proportions (100% Stacked) | 2015 - 2023",
+    "subtitle": "Select a year to probe the precise extraction volumes (ML) across all strata",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -32,7 +32,7 @@
           "2021-22",
           "2022-23"
         ],
-        "name": "Select Depth (Year): "
+        "name": "Forensic Year: "
       }
     }
   ],
@@ -41,6 +41,7 @@
       "mark": {
         "type": "area",
         "interpolate": "monotone",
+        "opacity": 0.8,
         "stroke": "white",
         "strokeWidth": 0.5
       },
@@ -91,8 +92,29 @@
         },
         "opacity": {
           "condition": {"test": "datum['Water year'] == sampleYear", "value": 1},
-          "value": 0.2
+          "value": 0.15
         }
+      }
+    },
+    {
+      "transform": [{"filter": "datum['Water year'] == sampleYear"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "white"
+      },
+      "encoding": {
+        "x": {"field": "Water year", "type": "nominal"},
+        "y": {
+          "field": "Volume_ML",
+          "type": "quantitative",
+          "stack": "normalize",
+          "band": 0.5
+        },
+        "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.0s"}
       }
     },
     {
@@ -100,28 +122,11 @@
       "mark": {
         "type": "rule",
         "color": "white",
-        "strokeWidth": 3,
-        "strokeDash": [6, 4]
+        "strokeWidth": 2,
+        "strokeDash": [4, 4]
       },
       "encoding": {
         "x": {"field": "Water year", "type": "nominal"}
-      }
-    },
-    {
-      "transform": [{"filter": "datum['Water year'] == sampleYear"}],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "bottom",
-        "dy": -15,
-        "fontSize": 18,
-        "fontWeight": "bold",
-        "color": "#FCFDBF"
-      },
-      "encoding": {
-        "x": {"field": "Water year", "type": "nominal"},
-        "y": {"datum": 1},
-        "text": {"field": "Water year", "type": "nominal"}
       }
     }
   ],
