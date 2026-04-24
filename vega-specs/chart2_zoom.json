@@ -7,16 +7,21 @@
     "url": "data/final/chart2_temperature.csv"
   },
   "title": {
-    "text": "116 Years of Melbourne Temperature",
-    "subtitle": "Mean Maximum Temperature (°C) by Month and Year (1910-2026)",
+    "text": "The Modern Heat Wall",
+    "subtitle": "Detail: 2015 - 2026 High-Frequency Warming",
     "anchor": "start",
     "color": "#2C3E50",
     "subtitleFontSize": 14,
     "offset": 20
   },
+  "transform": [
+    {"filter": "datum.Year >= 2015"}
+  ],
   "mark": {
     "type": "rect",
-    "tooltip": true
+    "tooltip": true,
+    "stroke": "white",
+    "strokeWidth": 1
   },
   "encoding": {
     "x": {
@@ -32,12 +37,8 @@
     "y": {
       "field": "Year",
       "type": "ordinal",
-      "title": "Year",
-      "sort": "descending",
-      "axis": {
-        "labelExpr": "datum.label % 10 == 0 || datum.label == 2026 || datum.label == 1910 ? datum.label : ''",
-        "tickCount": 15
-      }
+      "title": null,
+      "sort": "descending"
     },
     "color": {
       "field": "MaxTemp",
@@ -47,7 +48,10 @@
         "reverse": true,
         "domain": [12, 32]
       },
-      "legend": null
+      "legend": {
+        "title": "Temp (°C)",
+        "orient": "right"
+      }
     },
     "tooltip": [
       {"field": "Year", "type": "ordinal"},
