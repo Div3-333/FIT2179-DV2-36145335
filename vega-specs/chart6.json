@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 450,
+  "height": 550,
   "autosize": {"type": "fit", "contains": "padding"},
-  "padding": {"left": 20, "top": 20, "right": 160, "bottom": 20},
+  "padding": 0,
   "title": {
     "text": "The Reservoir Network",
     "subtitle": "Current Capacity (%) and Infrastructure Magnitude (ML) | Victoria",
@@ -16,8 +16,8 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [145.8, -37.8],
-    "scale": 8500
+    "center": [145.7, -37.85],
+    "scale": 16000
   },
   "layer": [
     {
@@ -28,7 +28,7 @@
       "mark": {
         "type": "geoshape",
         "fill": "rgba(255,255,255,0.03)",
-        "stroke": "rgba(255,255,255,0.08)",
+        "stroke": "rgba(255,255,255,0.1)",
         "strokeWidth": 0.5
       }
     },
@@ -36,28 +36,10 @@
       "data": {"url": "data/final/chart6_dam_locations.csv"},
       "mark": {
         "type": "circle",
-        "opacity": 0.1,
-        "color": "#FCFDBF"
-      },
-      "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "size": {
-          "field": "Capacity_ML",
-          "type": "quantitative",
-          "scale": {"range": [400, 6000]},
-          "legend": null
-        }
-      }
-    },
-    {
-      "data": {"url": "data/final/chart6_dam_locations.csv"},
-      "mark": {
-        "type": "circle",
         "filled": true,
-        "opacity": 0.7,
+        "opacity": 0.8,
         "stroke": "white",
-        "strokeWidth": 1
+        "strokeWidth": 1.5
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -65,16 +47,16 @@
         "size": {
           "field": "Capacity_ML",
           "type": "quantitative",
-          "scale": {"range": [100, 2500]},
+          "scale": {"range": [200, 5000]},
           "legend": {
             "title": "Capacity (ML)", 
             "labelColor": "#E0F2FE", 
             "titleColor": "#E0F2FE", 
             "format": ".1s",
-            "orient": "right",
-            "symbolType": "circle",
-            "symbolFillColor": "rgba(255,255,255,0.2)",
-            "offset": 40
+            "orient": "none",
+            "legendX": 10,
+            "legendY": 350,
+            "symbolFillColor": "rgba(255,255,255,0.2)"
           }
         },
         "color": {
@@ -89,8 +71,9 @@
             "title": "% Full", 
             "labelColor": "#E0F2FE", 
             "titleColor": "#E0F2FE",
-            "orient": "right",
-            "offset": 40
+            "orient": "none",
+            "legendX": 10,
+            "legendY": 10
           }
         },
         "tooltip": [
@@ -102,17 +85,14 @@
     },
     {
       "data": {"url": "data/final/chart6_dam_locations.csv"},
-      "transform": [{"filter": "datum.Capacity_ML > 10000"}],
       "mark": {
         "type": "text",
-        "dy": -22,
-        "fontSize": 11,
-        "fontWeight": "bold",
-        "color": "white",
-        "stroke": "#17202A",
-        "strokeWidth": 2,
-        "strokeOpacity": 0.8,
-        "baseline": "bottom"
+        "dy": -30,
+        "fontSize": 13,
+        "fontWeight": 900,
+        "color": "#FFFFFF",
+        "stroke": "#0A4A7A",
+        "strokeWidth": 3
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
