@@ -1,14 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-fidelity industrial dashboard: The Survival Matrix (Capped at 2021).",
+  "description": "High-fidelity industrial dashboard: The Circular Survival Matrix.",
   "width": 1000,
   "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
   "background": "white",
   "padding": {"left": 20, "top": 50, "right": 20, "bottom": 20},
   "title": {
-    "text": "The Survival Matrix",
-    "subtitle": "4-Quadrant Resilience Scan: Reservoir Health vs. Engineering Injection | 2012 - 2021",
+    "text": "The Survival Cycle",
+    "subtitle": "Circular Resilience Scan: The Journey from Nature to Engineering and Back | 2012 - 2025",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -17,8 +17,19 @@
     "offset": 40
   },
   "data": {"url": "data/final/chart10_resilience_matrix.csv"},
+  "params": [
+    {
+      "name": "showModern",
+      "value": false,
+      "bind": {"input": "checkbox", "name": "Include Post-2021 Data (The Return): "}
+    },
+    {
+      "name": "hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
+    }
+  ],
   "transform": [
-    {"filter": "datum.Year <= 2021"}
+    {"filter": "showModern || datum.Year <= 2021"}
   ],
   "layer": [
     {
@@ -53,7 +64,7 @@
     },
     {
       "name": "TRAJECTORY",
-      "mark": {"type": "line", "point": false, "strokeWidth": 2, "color": "#2C3E50", "opacity": 0.05, "interpolate": "monotone"},
+      "mark": {"type": "line", "point": false, "strokeWidth": 2.5, "color": "#2C3E50", "opacity": 0.15, "interpolate": "monotone"},
       "encoding": {
         "x": {"field": "Storage_Percentage", "type": "quantitative"},
         "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
@@ -62,13 +73,7 @@
     },
     {
       "name": "DATA_POINTS",
-      "params": [
-        {
-          "name": "hover",
-          "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
-        }
-      ],
-      "mark": {"type": "point", "size": 900, "filled": true, "stroke": "#2C3E50", "strokeWidth": 1.5},
+      "mark": {"type": "point", "size": 800, "filled": true, "stroke": "white", "strokeWidth": 2},
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
@@ -101,8 +106,8 @@
           "legend": {"title": "Fiscal Year", "orient": "right", "labelColor": "#2C3E50", "titleColor": "#2C3E50"}
         },
         "opacity": {
-          "condition": {"param": "hover", "value": 0.9, "empty": true},
-          "value": 0.25
+          "condition": {"param": "hover", "value": 0.95},
+          "value": 0.5
         },
         "tooltip": [
           {"field": "Year", "type": "quantitative", "title": "Year"},
@@ -113,7 +118,7 @@
     },
     {
       "name": "YEAR_LABELS",
-      "mark": {"type": "text", "dy": 0, "fontSize": 14, "fontWeight": 900, "color": "white"},
+      "mark": {"type": "text", "dy": 0, "fontSize": 12, "fontWeight": 900, "color": "white"},
       "encoding": {
         "x": {"field": "Storage_Percentage", "type": "quantitative"},
         "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
