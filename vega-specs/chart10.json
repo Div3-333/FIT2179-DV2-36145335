@@ -75,7 +75,7 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
         }
       ],
-      "mark": {"type": "point", "size": 800, "filled": true, "stroke": null, "opacity": 0.5},
+      "mark": {"type": "circle", "size": 800},
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
