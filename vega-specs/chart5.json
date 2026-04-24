@@ -2,6 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "autosize": {"type": "fit", "contains": "padding"},
+  "padding": {"left": 80, "top": 20, "right": 80, "bottom": 20},
   "spacing": 60,
   "vconcat": [
     {
@@ -37,7 +38,12 @@
           "field": "Anomaly",
           "type": "quantitative",
           "title": "Anomaly (mm)",
-          "axis": {"gridColor": "rgba(255,255,255,0.1)", "labelFontSize": 11}
+          "axis": {
+            "gridColor": "rgba(255,255,255,0.1)", 
+            "labelFontSize": 11,
+            "labelColor": "white",
+            "titleColor": "white"
+          }
         },
         "color": {
           "field": "MaxTemp",
@@ -52,8 +58,8 @@
             "orient": "bottom",
             "direction": "horizontal",
             "gradientLength": 300,
-            "labelColor": "#E0F2FE",
-            "titleColor": "#E0F2FE"
+            "labelColor": "white",
+            "titleColor": "white"
           }
         },
         "tooltip": [
@@ -99,14 +105,23 @@
           "type": "temporal",
           "title": "Timeline",
           "scale": {"domain": ["2004-01-01", "2019-12-01"]},
-          "axis": {"domainColor": "#A9CCE3", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE", "labelFontSize": 11}
+          "axis": {
+            "domainColor": "#A9CCE3", 
+            "labelColor": "white", 
+            "titleColor": "white", 
+            "labelFontSize": 11
+          }
         },
         "y": {
           "field": "Storage_Percentage",
           "type": "quantitative",
           "title": "Storage %",
           "scale": {"domain": [0, 100]},
-          "axis": {"titleColor": "#E0F2FE", "labelColor": "#E0F2FE", "labelFontSize": 11}
+          "axis": {
+            "titleColor": "white", 
+            "labelColor": "white", 
+            "labelFontSize": 11
+          }
         },
         "tooltip": [
           {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
