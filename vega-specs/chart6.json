@@ -54,7 +54,7 @@
             "titleColor": "#E0F2FE", 
             "format": ".1s",
             "orient": "none",
-            "legendX": 620,
+            "legendX": 580,
             "legendY": 230,
             "symbolFillColor": "rgba(255,255,255,0.2)"
           }
