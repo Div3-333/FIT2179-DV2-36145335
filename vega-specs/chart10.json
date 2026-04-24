@@ -1,14 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-fidelity industrial dashboard: The Survival Matrix.",
-  "width": 1000,
-  "height": 450,
+  "description": "High-fidelity industrial dashboard: The Centred Crosshair Matrix.",
+  "width": 800,
+  "height": 550,
   "autosize": {"type": "fit", "contains": "padding"},
   "background": "white",
   "padding": {"left": 20, "top": 50, "right": 20, "bottom": 20},
   "title": {
     "text": "The Survival Matrix",
-    "subtitle": "Resilience Scan: Reservoir Health (%) vs. Engineering Injection (GL) | 2012 - 2021",
+    "subtitle": "4-Quadrant Resilience Scan: Reservoir Health vs. Engineering Injection | 2012 - 2021",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -19,19 +19,32 @@
   "data": {"url": "data/final/chart10_resilience_matrix.csv"},
   "layer": [
     {
+      "name": "CROSSHAIR_AXES",
+      "layer": [
+        {
+          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.3},
+          "encoding": {"x": {"datum": 70, "type": "quantitative", "scale": {"domain": [40, 100]}}}
+        },
+        {
+          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.3},
+          "encoding": {"y": {"datum": 75, "type": "quantitative", "scale": {"domain": [-5, 150]}}}
+        }
+      ]
+    },
+    {
       "name": "QUADRANT_LABELS",
       "data": {
         "values": [
-          {"x": 55, "y": 130, "text": "ENGINEERED SURVIVAL"},
-          {"x": 85, "y": 130, "text": "ARTIFICIAL RECHARGE"},
-          {"x": 85, "y": 15, "text": "SAFE ZONE"},
-          {"x": 55, "y": 15, "text": "CRITICAL STRESS"}
+          {"x": 55, "y": 140, "text": "ENGINEERED SURVIVAL"},
+          {"x": 85, "y": 140, "text": "ARTIFICIAL RECHARGE"},
+          {"x": 85, "y": 10, "text": "SAFE ZONE"},
+          {"x": 55, "y": 10, "text": "CRITICAL STRESS"}
         ]
       },
-      "mark": {"type": "text", "fontSize": 18, "fontWeight": 900, "color": "black", "opacity": 0.5},
+      "mark": {"type": "text", "fontSize": 14, "fontWeight": 900, "color": "black", "opacity": 0.4},
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [40, 100]}},
-        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [-5, 150]}},
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
         "text": {"field": "text"}
       }
     },
@@ -52,32 +65,30 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
         }
       ],
-      "mark": {"type": "point", "size": 700, "filled": true, "stroke": "#2C3E50", "strokeWidth": 1.5},
+      "mark": {"type": "point", "size": 800, "filled": true, "stroke": "white", "strokeWidth": 2},
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
           "type": "quantitative",
           "axis": {
-            "title": "Reservoir Health (Average Storage %)",
+            "title": "Reservoir Health (Storage %)",
             "labelColor": "#2C3E50",
             "titleColor": "#2C3E50",
-            "grid": true,
-            "gridColor": "#ECF0F1",
-            "domainWidth": 2,
-            "domainColor": "#2C3E50"
+            "grid": false,
+            "domain": false,
+            "ticks": false
           }
         },
         "y": {
           "field": "Desalination_Delivered_GL",
           "type": "quantitative",
           "axis": {
-            "title": "Engineering Injection (Desal GL)",
+            "title": "Engineering Injection (GL)",
             "labelColor": "#2C3E50",
             "titleColor": "#2C3E50",
-            "grid": true,
-            "gridColor": "#ECF0F1",
-            "domainWidth": 2,
-            "domainColor": "#2C3E50"
+            "grid": false,
+            "domain": false,
+            "ticks": false
           }
         },
         "color": {
@@ -88,7 +99,7 @@
         },
         "opacity": {
           "condition": {"param": "hover", "value": 1, "empty": true},
-          "value": 0.3
+          "value": 0.6
         },
         "tooltip": [
           {"field": "Year", "type": "quantitative", "title": "Year"},
@@ -99,14 +110,14 @@
     },
     {
       "name": "YEAR_LABELS",
-      "mark": {"type": "text", "dy": -25, "fontSize": 14, "fontWeight": 900, "color": "#2C3E50"},
+      "mark": {"type": "text", "dy": 0, "fontSize": 12, "fontWeight": 900, "color": "white"},
       "encoding": {
         "x": {"field": "Storage_Percentage", "type": "quantitative"},
         "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
         "text": {"field": "Year", "type": "nominal"},
         "opacity": {
           "condition": {"param": "hover", "value": 1, "empty": false},
-          "value": 0.4
+          "value": 0
         }
       }
     }
