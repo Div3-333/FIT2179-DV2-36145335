@@ -31,11 +31,13 @@
     },
     "y": {
       "field": "Year",
-      "type": "ordinal",
+      "type": "quantitative",
       "title": "Year",
+      "scale": {"zero": false},
       "axis": {
-        "tickCount": 15,
-        "values": [1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2026]
+        "values": [1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2026],
+        "format": "d",
+        "tickCount": 15
       }
     },
     "color": {
@@ -55,7 +57,7 @@
       }
     },
     "tooltip": [
-      {"field": "Year", "type": "ordinal"},
+      {"field": "Year", "type": "quantitative", "title": "Year"},
       {"field": "Month", "type": "ordinal", "title": "Month"},
       {"field": "MaxTemp", "type": "quantitative", "title": "Mean Max Temp (°C)", "format": ".1f"}
     ]
