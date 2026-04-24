@@ -5,7 +5,7 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "Subterranean Stress",
-    "subtitle": "Active Bore Permits and Groundwater Extraction Density | Victoria",
+    "subtitle": "Concentration of Active Bore Permits and Groundwater Extraction Density | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -18,8 +18,8 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [145, -36.5],
-    "scale": 3500
+    "center": [144.5, -36.5],
+    "scale": 4500
   },
   "layer": [
     {
@@ -37,17 +37,37 @@
     {
       "mark": {
         "type": "circle",
-        "size": 4,
-        "opacity": 0.6,
-        "color": "#FE9F6D"
+        "opacity": 0.8,
+        "stroke": "white",
+        "strokeWidth": 0.2
       },
       "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "tooltip": [
-          {"field": "Latitude", "type": "quantitative"},
-          {"field": "Longitude", "type": "quantitative"}
-        ]
+        "longitude": {
+          "bin": {"maxbins": 150},
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "bin": {"maxbins": 150},
+          "field": "Latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "scale": {"range": [10, 800]},
+          "legend": {"title": "Bore Density", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
+        },
+        "color": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "domain": [1, 5, 15],
+            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
+          },
+          "legend": {"title": "Extraction Hubs", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
+        }
       }
     }
   ],
