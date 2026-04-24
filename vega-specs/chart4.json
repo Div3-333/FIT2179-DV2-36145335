@@ -6,7 +6,7 @@
   "padding": 20,
   "title": {
     "text": "The Evaporation Trend",
-    "subtitle": "Annual Water Loss and Summer Heat Intensity | 1975 - 2025",
+    "subtitle": "Annual Water Loss and Summer Heat Intensity | 1983 - 2025 (Reliable Record)",
     "anchor": "start",
     "color": "#E0F2FE",
     "fontSize": 28,
@@ -24,17 +24,6 @@
     {
       "mark": {
         "type": "line",
-        "color": "rgba(255,255,255,0.05)",
-        "strokeWidth": 1
-      },
-      "encoding": {
-        "x": {"field": "Year", "type": "quantitative", "scale": {"domain": [1972, 2028]}, "axis": {"format": "d"}},
-        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative", "scale": {"domain": [600, 1200]}}
-      }
-    },
-    {
-      "mark": {
-        "type": "line",
         "color": "#E67E22",
         "strokeWidth": 3,
         "opacity": 0.6,
@@ -47,8 +36,8 @@
         }
       ],
       "encoding": {
-        "x": {"field": "Year", "type": "quantitative"},
-        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative"}
+        "x": {"field": "Year", "type": "quantitative", "scale": {"domain": [1980, 2028]}},
+        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative", "scale": {"domain": [700, 1200]}}
       }
     },
     {
@@ -64,7 +53,7 @@
           "field": "Year",
           "type": "quantitative",
           "title": "Timeline",
-          "scale": {"domain": [1972, 2028]},
+          "scale": {"domain": [1980, 2028]},
           "axis": {
             "format": "d",
             "gridColor": "rgba(255,255,255,0.1)",
@@ -75,7 +64,7 @@
           "field": "Annual_Evaporation_mm",
           "type": "quantitative",
           "title": "Annual Evaporation (mm)",
-          "scale": {"domain": [600, 1200]},
+          "scale": {"domain": [700, 1200]},
           "axis": {"gridColor": "rgba(255,255,255,0.1)"}
         },
         "color": {
@@ -104,7 +93,7 @@
     {
       "transform": [
         {
-          "filter": "datum.Year == 1982 || datum.Year == 2009 || datum.Year == 2019"
+          "filter": "datum.Year == 1983 || datum.Year == 2009 || datum.Year == 2019"
         }
       ],
       "mark": {
