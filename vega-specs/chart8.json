@@ -16,17 +16,20 @@
       }
     }
   ],
+  "title": {
+    "text": "The Proportional Pivot",
+    "subtitle": "Supply Proportion Forensic Dashboard (ML) | 2015 - 2023",
+    "anchor": "start",
+    "color": "#D7CCC8",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#B0BEC5",
+    "offset": 30
+  },
   "hconcat": [
     {
       "width": 950,
       "height": 100,
-      "title": {
-        "text": "Proportional Shift",
-        "fontSize": 18,
-        "color": "#D7CCC8",
-        "anchor": "start",
-        "offset": 10
-      },
       "data": {"url": "data/final/chart8_liquid_data.csv"},
       "transform": [{"filter": "abs(datum.YearStep - timeStep) < 0.05"}],
       "layer": [
@@ -65,9 +68,9 @@
                 "orient": "bottom",
                 "direction": "horizontal",
                 "columns": 5,
-                "offset": 30,
-                "labelFontSize": 12,
-                "symbolSize": 150
+                "offset": 40,
+                "labelFontSize": 14,
+                "symbolSize": 200
               }
             }
           }
