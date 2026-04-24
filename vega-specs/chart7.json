@@ -4,8 +4,8 @@
   "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
-    "text": "Subterranean Stress",
-    "subtitle": "Active Bore Permits: Visualizing Extraction Intensity Clusters | Victoria",
+    "text": "Subterranean Stress Field",
+    "subtitle": "High-Resolution Extraction Intensity (KDE Model) | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -16,7 +16,7 @@
   "projection": {
     "type": "mercator",
     "center": [144.5, -36.5],
-    "scale": 4200
+    "scale": 4500
   },
   "layer": [
     {
@@ -26,59 +26,45 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "rgba(45, 36, 30, 0.4)",
-        "stroke": "rgba(255,255,255,0.05)",
+        "fill": "rgba(255,255,255,0.02)",
+        "stroke": "rgba(255,255,255,0.1)",
         "strokeWidth": 0.5
       }
     },
     {
       "data": {
-        "url": "data/final/chart7_starfield_data.csv"
+        "url": "data/final/chart7_highres_density.csv"
       },
       "mark": {
-        "type": "circle",
-        "filled": true,
-        "stroke": "white",
-        "strokeWidth": 0.2
+        "type": "rect",
+        "width": 18,
+        "height": 18,
+        "opacity": 0.7,
+        "blur": 10
       },
       "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "size": {
-          "field": "LocalDensity",
-          "type": "quantitative",
-          "scale": {"range": [10, 400]},
-          "legend": {
-            "title": "Extraction Density", 
-            "labelColor": "#D7CCC8", 
-            "titleColor": "#D7CCC8",
-            "orient": "right"
-          }
-        },
+        "longitude": {"field": "Lon", "type": "quantitative"},
+        "latitude": {"field": "Lat", "type": "quantitative"},
         "color": {
-          "field": "LocalDensity",
+          "field": "Intensity",
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [1, 5, 20],
-            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
+            "domain": [0.1, 0.4, 0.8, 1],
+            "range": ["#3B0F70", "#8C2981", "#FE9F6D", "#FCFDBF"]
           },
           "legend": {
-            "title": "Local Stress", 
+            "title": "Extraction Stress", 
             "labelColor": "#D7CCC8", 
             "titleColor": "#D7CCC8",
             "orient": "right",
-            "gradientLength": 250
+            "gradientLength": 300,
+            "values": [0, 1],
+            "labelExpr": "datum.label == 0 ? 'Low' : 'Critical'"
           }
         },
-        "opacity": {
-          "field": "LocalDensity",
-          "type": "quantitative",
-          "scale": {"domain": [1, 20], "range": [0.4, 1]},
-          "legend": null
-        },
         "tooltip": [
-          {"field": "LocalDensity", "type": "quantitative", "title": "Permits in Radius"}
+          {"field": "Intensity", "type": "quantitative", "title": "Stress Level", "format": ".1%"}
         ]
       }
     }
