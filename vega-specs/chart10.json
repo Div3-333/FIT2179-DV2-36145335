@@ -7,8 +7,8 @@
   "background": "white",
   "padding": {"left": 20, "top": 50, "right": 20, "bottom": 20},
   "title": {
-    "text": "The Survival Envelope",
-    "subtitle": "Temporal Matrix: Seawater Injection vs. Historical Reservoir Health | 2012 - 2021",
+    "text": "The Survival Matrix",
+    "subtitle": "Resilience Scan: Reservoir Health (%) vs. Engineering Injection (GL) | 2012 - 2021",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -22,17 +22,26 @@
       "name": "QUADRANT_LABELS",
       "data": {
         "values": [
-          {"x": 2013, "y": 120, "text": "ENGINEERED SURVIVAL"},
-          {"x": 2020, "y": 120, "text": "ARTIFICIAL RECHARGE"},
-          {"x": 2013, "y": 20, "text": "SAFE ZONE"},
-          {"x": 2020, "y": 20, "text": "CRITICAL STRESS"}
+          {"x": 55, "y": 130, "text": "ENGINEERED SURVIVAL"},
+          {"x": 85, "y": 130, "text": "ARTIFICIAL RECHARGE"},
+          {"x": 85, "y": 15, "text": "SAFE ZONE"},
+          {"x": 55, "y": 15, "text": "CRITICAL STRESS"}
         ]
       },
-      "mark": {"type": "text", "fontSize": 16, "fontWeight": 900, "color": "black", "opacity": 0.4},
+      "mark": {"type": "text", "fontSize": 18, "fontWeight": 900, "color": "black", "opacity": 0.5},
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [40, 100]}},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [-5, 150]}},
         "text": {"field": "text"}
+      }
+    },
+    {
+      "name": "TRAJECTORY",
+      "mark": {"type": "line", "point": false, "strokeWidth": 2, "color": "#2C3E50", "opacity": 0.1, "interpolate": "monotone"},
+      "encoding": {
+        "x": {"field": "Storage_Percentage", "type": "quantitative"},
+        "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
+        "order": {"field": "Year", "type": "quantitative"}
       }
     },
     {
@@ -43,15 +52,13 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
         }
       ],
-      "mark": {"type": "point", "size": 600, "filled": true, "stroke": "#2C3E50", "strokeWidth": 2},
+      "mark": {"type": "point", "size": 700, "filled": true, "stroke": "#2C3E50", "strokeWidth": 1.5},
       "encoding": {
         "x": {
-          "field": "Year",
+          "field": "Storage_Percentage",
           "type": "quantitative",
-          "scale": {"domain": [2011, 2022]},
           "axis": {
-            "format": "d",
-            "title": "Timeline (Fiscal Year)",
+            "title": "Reservoir Health (Average Storage %)",
             "labelColor": "#2C3E50",
             "titleColor": "#2C3E50",
             "grid": true,
@@ -63,7 +70,6 @@
         "y": {
           "field": "Desalination_Delivered_GL",
           "type": "quantitative",
-          "scale": {"domain": [-5, 150]},
           "axis": {
             "title": "Engineering Injection (Desal GL)",
             "labelColor": "#2C3E50",
@@ -75,10 +81,10 @@
           }
         },
         "color": {
-          "field": "Storage_Percentage",
-          "type": "quantitative",
-          "scale": {"scheme": "magma", "reverse": true},
-          "legend": {"title": "Reservoir Health (%)", "orient": "right", "labelColor": "#2C3E50", "titleColor": "#2C3E50"}
+          "field": "Year",
+          "type": "ordinal",
+          "scale": {"scheme": "magma"},
+          "legend": {"title": "Fiscal Year", "orient": "right", "labelColor": "#2C3E50", "titleColor": "#2C3E50"}
         },
         "opacity": {
           "condition": {"param": "hover", "value": 1, "empty": true},
@@ -95,7 +101,7 @@
       "name": "YEAR_LABELS",
       "mark": {"type": "text", "dy": -25, "fontSize": 14, "fontWeight": 900, "color": "#2C3E50"},
       "encoding": {
-        "x": {"field": "Year", "type": "quantitative"},
+        "x": {"field": "Storage_Percentage", "type": "quantitative"},
         "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
         "text": {"field": "Year", "type": "nominal"},
         "opacity": {
