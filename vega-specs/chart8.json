@@ -1,12 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "H-Sync Forensic Dashboard for Water Supply",
+  "description": "H-Sync Forensic Dashboard with High-Emphasis Chromatic Shift",
   "background": "transparent",
   "spacing": 50,
   "params": [
     {
       "name": "timeStep",
-      "value": 2019,
+      "value": 2015,
       "bind": {
         "input": "range",
         "min": 2015,
@@ -81,11 +81,14 @@
             "align": "center",
             "baseline": "middle",
             "fontSize": 80,
-            "fontWeight": 900,
-            "color": "rgba(255,255,255,0.06)"
+            "fontWeight": 900
           },
           "encoding": {
-            "text": {"field": "DisplayYear", "type": "nominal"}
+            "text": {"field": "DisplayYear", "type": "nominal"},
+            "color": {
+              "condition": {"test": "timeStep > 2018", "value": "rgba(241, 196, 15, 0.1)"},
+              "value": "rgba(52, 152, 219, 0.06)"
+            }
           }
         }
       ]
