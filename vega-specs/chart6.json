@@ -1,22 +1,22 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 450,
+  "height": 500,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "The Reservoir Network",
-    "subtitle": "Current Capacity (%) and Total Volume (ML) across Major Victorian Dams",
+    "subtitle": "Current Capacity (%) and Infrastructure Magnitude (ML) | Victoria",
     "anchor": "start",
     "color": "#E0F2FE",
     "fontSize": 28,
     "subtitleFontSize": 16,
     "subtitleColor": "#A9CCE3",
-    "offset": 20
+    "offset": 25
   },
   "projection": {
     "type": "mercator",
-    "center": [146.0, -37.8],
-    "scale": 12000
+    "center": [146.1, -37.85],
+    "scale": 15000
   },
   "layer": [
     {
@@ -26,15 +26,31 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "rgba(255,255,255,0.05)",
-        "stroke": "rgba(255,255,255,0.1)",
+        "fill": "rgba(255,255,255,0.03)",
+        "stroke": "rgba(255,255,255,0.08)",
         "strokeWidth": 0.5
       }
     },
     {
-      "data": {
-        "url": "data/final/chart6_dam_locations.csv"
+      "data": {"url": "data/final/chart6_dam_locations.csv"},
+      "mark": {
+        "type": "circle",
+        "opacity": 0.2,
+        "color": "#FCFDBF"
       },
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "size": {
+          "field": "Capacity_ML",
+          "type": "quantitative",
+          "scale": {"range": [500, 8000]},
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {"url": "data/final/chart6_dam_locations.csv"},
       "mark": {
         "type": "circle",
         "filled": true,
@@ -48,8 +64,15 @@
         "size": {
           "field": "Capacity_ML",
           "type": "quantitative",
-          "scale": {"range": [100, 4000]},
-          "legend": {"title": "Capacity (ML)", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE", "format": ".0s"}
+          "scale": {"range": [100, 3500]},
+          "legend": {
+            "title": "Total Capacity (ML)", 
+            "labelColor": "#E0F2FE", 
+            "titleColor": "#E0F2FE", 
+            "format": ".2s",
+            "orient": "bottom-left",
+            "offset": 10
+          }
         },
         "color": {
           "field": "Percent_Full",
@@ -59,25 +82,31 @@
             "domain": [40, 70, 100],
             "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
           },
-          "legend": {"title": "% Full", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
+          "legend": {
+            "title": "% Full", 
+            "labelColor": "#E0F2FE", 
+            "titleColor": "#E0F2FE",
+            "orient": "bottom-right",
+            "offset": 10
+          }
         },
         "tooltip": [
           {"field": "Reservoir", "type": "nominal"},
-          {"field": "Percent_Full", "type": "quantitative", "title": "% Full", "format": ".1f"},
-          {"field": "Capacity_ML", "type": "quantitative", "title": "Max Capacity (ML)", "format": ","}
+          {"field": "Percent_Full", "type": "quantitative", "title": "Current Status (%)", "format": ".1f"},
+          {"field": "Capacity_ML", "type": "quantitative", "title": "Max Volume (ML)", "format": ","}
         ]
       }
     },
     {
-      "data": {
-        "url": "data/final/chart6_dam_locations.csv"
-      },
+      "data": {"url": "data/final/chart6_dam_locations.csv"},
+      "transform": [{"filter": "datum.Capacity_ML > 50000"}],
       "mark": {
         "type": "text",
-        "dy": -25,
-        "fontSize": 11,
+        "dy": -28,
+        "fontSize": 12,
         "fontWeight": "bold",
-        "color": "#E0F2FE"
+        "color": "white",
+        "font": "Merriweather"
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
