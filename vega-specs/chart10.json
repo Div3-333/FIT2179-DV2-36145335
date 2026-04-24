@@ -22,10 +22,6 @@
       "name": "showModern",
       "value": false,
       "bind": {"input": "checkbox", "name": "Include Post-2021 Data (The Return): "}
-    },
-    {
-      "name": "hover",
-      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
     }
   ],
   "transform": [
@@ -73,6 +69,12 @@
     },
     {
       "name": "DATA_POINTS",
+      "params": [
+        {
+          "name": "hover",
+          "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
+        }
+      ],
       "mark": {"type": "point", "size": 800, "filled": true, "stroke": "white", "strokeWidth": 2},
       "encoding": {
         "x": {
