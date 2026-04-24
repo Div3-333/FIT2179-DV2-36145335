@@ -35,7 +35,11 @@
               "scale": {"domain": [2012, 2024]},
               "axis": {"format": "d", "title": null, "grid": false}
             },
-            "y": {"field": "Total_Demand_GL", "type": "quantitative", "title": "Gigalitres (GL)"}
+            "y": {"field": "Total_Demand_GL", "type": "quantitative", "title": "Gigalitres (GL)"},
+            "tooltip": [
+              {"field": "YearInt", "type": "quantitative", "title": "Year"},
+              {"field": "Total_Demand_GL", "type": "quantitative", "title": "Total Demand (GL)"}
+            ]
           }
         },
         {
