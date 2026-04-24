@@ -271,7 +271,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2); margin-top: 30px; width: 100%; box-sizing: border-box;">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">A Century of Heat & The Seasonal Fever</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The temperature profile of Victoria has fundamentally shifted. While 116 years of monthly data (Left) reveal the intensifying frequency of heat, the <span style="color: #94C1EA; font-weight: bold;">Seasonal Fever (Right)</span> isolates the damage. By comparing the average monthly cycles of the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> and the <span style="color: #FE9F6D; font-weight: bold;">Modern Furnace (2010-2020)</span>, we see a consistent, quantitative lift. Every month is now hotter than its historical counterpart - this persistent baseline elevation is the engine that drives our permanent water descent.
+                        The temperature profile of Victoria has fundamentally shifted. While 116 years of monthly data (Left) reveal the intensifying frequency of heat, the <span style="color: #94C1EA; font-weight: bold;">Seasonal Fever (Right)</span> isolates the damage. By comparing the average monthly cycles of the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> and the <span style="color: #FE9F6D; font-weight: bold;">Modern Furnace (2010-2020)</span>, we see a consistent, quantitative lift. Every month is now hotter than its historical counterpart: this persistent baseline elevation is the engine that drives our permanent water descent.
                     </p>
                 </div>
             </div>
@@ -374,7 +374,7 @@
                 <div class="annotation" style="background: rgba(45, 36, 30, 0.9); color: #E0E6ED; border-left: 4px solid #BB8FCE; margin-top: 10px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
                     <h3 style="color: #D7CCC8; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Proportional Pivot</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        As the surface fails, the state performs a desperate pivot. This custom "Liquid Gauge" reveals our shifting water dependency by normalizing volumes into a continuous flow between 2015 and 2021. Use the slider to watch the strata morph: the <span style="color: #F1C40F; font-weight: bold;">Desalinated</span> and <span style="color: #BB8FCE; font-weight: bold;">Groundwater</span> layers physically expand from the left, "pushing back" the <span style="color: #3498DB; font-weight: bold;">Surface Water</span> bands. Notice the background year: as you enter the 2019-21 era, it shifts from <span style="color: #3498DB; font-weight: bold;">Natural Blue</span> to <span style="color: #F1C40F; font-weight: bold;">Engineered Amber</span>—a visual warning that we are no longer living off seasonal rain, but are withdrawing the subterranean and energy-intensive capital of the state.
+                        As the surface fails, the state performs a desperate pivot. This custom "Liquid Gauge" reveals our shifting water dependency by normalizing volumes into a continuous flow between 2015 and 2021. Use the slider to watch the strata morph: the <span style="color: #F1C40F; font-weight: bold;">Desalinated</span> and <span style="color: #BB8FCE; font-weight: bold;">Groundwater</span> layers physically expand from the left, "pushing back" the <span style="color: #3498DB; font-weight: bold;">Surface Water</span> bands. Notice the background year: as you enter the 2019-21 era, it shifts from <span style="color: #3498DB; font-weight: bold;">Natural Blue</span> to <span style="color: #F1C40F; font-weight: bold;">Engineered Amber</span>: a visual warning that we are no longer living off seasonal rain, but are withdrawing the subterranean and energy-intensive capital of the state.
                     </p>
                 </div>
             </div>
@@ -389,10 +389,18 @@
         <div class="container">
             <h2 style="text-align: center; color: var(--text-dark); margin-top: 20px;">Engineering Survival</h2>
             <p class="narrative-text" style="color: var(--text-dark);">
-                The natural cycle is broken. To guarantee urban survival, Victoria has engineered a permanent, artificial catchment: The Wonthaggi Desalination Plant.
+                The natural cycle is broken. To guarantee urban survival, Victoria has engineered a permanent, artificial catchment.
             </p>
 
-            <div class="full-width-viz" style="margin-top: 60px;">
+            <!-- Global Narrative Toggle -->
+            <div style="text-align: center; margin-bottom: 40px; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 50px; display: inline-block; left: 50%; transform: translateX(-50%); position: relative; border: 2px solid #3498DB; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000;">
+                <label style="cursor: pointer; font-weight: bold; color: #2C3E50; font-family: 'Source Sans Pro'; display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="global-cycle-toggle" style="width: 20px; height: 20px; cursor: pointer;">
+                    Reveal Full 13-Year Survival Cycle (Include 2022-2025 Recovery)
+                </label>
+            </div>
+
+            <div class="full-width-viz" style="margin-top: 20px;">
                 <div id="vis-chart-9" class="viz-canvas" style="min-height: 550px; background: white;">
                     <!-- Chart 9 Renders here -->
                 </div>
@@ -415,7 +423,7 @@
                     </p>
                     <ul style="font-size: 1rem; line-height: 1.8; margin-top: 15px; padding-left: 20px; color: #34495E;">
                         <li><span style="font-weight: bold; color: #000004;">The Safe Zone (Bottom-Right):</span> Occupied by the <span style="color: #3B0F70; font-weight: bold;">Dark Purple era (2012-2015)</span>. Toggle the "Return" to see the <span style="color: #FCFDBF; background: #2C3E50; padding: 0 4px; border-radius: 4px;">Bright Yellow points (2023-2025)</span> completing the cycle. This proves the state physically returned to safety after a decade of stress.</li>
-                        <li><span style="font-weight: bold; color: #B63679;">Critical Stress (Bottom-Left):</span> As the rainfall deficit intensified, the <span style="color: #B63679; font-weight: bold;">Dark Red points (2016-2019)</span> slid into this quadrant. Nature failed to meet demand, yet the engineering response was still ramping up.</li>
+                        <li><span style="font-weight: bold; color: #B63679;">Critical Stress (Bottom-Left):</span> As the rainfall deficit intensified, the <span style="color: #B63679; font-weight: bold;">Dark Red points (2016-2019)</span> slid into this quadrant. Nature failed to meet demand, yet the state's engineering response was still ramping up.</li>
                         <li><span style="font-weight: bold; color: #E74C3C;">Engineered Survival (Top-Left):</span> The <span style="color: #E74C3C; font-weight: bold;">Bright Red point (2020)</span> marks the tipping point. With storage hitting dangerous lows, the state physically forced 125 GL of seawater inland to prevent system collapse.</li>
                         <li><span style="font-weight: bold; color: #E67E22;">Artificial Recharge (Top-Right):</span> The <span style="color: #E67E22; font-weight: bold;">Orange points (2021-2022)</span> show a tactical pivot. Even as rain returned, maximum desalination was maintained to build a future buffer, "buying" resilience through technology.</li>
                     </ul>
@@ -444,8 +452,23 @@
     </section>
 
     <script>
+        // Site-Wide View Management
+        let chartViews = {};
+
+        function registerView(name, res) {
+            chartViews[name] = res.view;
+        }
+
+        document.getElementById('global-cycle-toggle').addEventListener('change', (e) => {
+            const show = e.target.checked;
+            ['chart8', 'chart9', 'chart10'].forEach(id => {
+                if (chartViews[id]) {
+                    chartViews[id].signal('showModern', show).runAsync();
+                }
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Linking the Vega-Lite JSON files from the vega-specs folder
             vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').catch(console.error);
             vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
             vegaEmbed('#vis-chart-2-comparison', 'vega-specs/chart2_comparison.json').catch(console.error);
@@ -454,9 +477,11 @@
             vegaEmbed('#vis-chart-5', 'vega-specs/chart5.json').catch(console.error);
             vegaEmbed('#vis-chart-6', 'vega-specs/chart6.json').catch(console.error);
             vegaEmbed('#vis-chart-7', 'vega-specs/chart7.json').catch(console.error);
-            vegaEmbed('#vis-chart-8', 'vega-specs/chart8.json').catch(console.error);
-            vegaEmbed('#vis-chart-9', 'vega-specs/chart9.json').catch(console.error);
-            vegaEmbed('#vis-chart-10', 'vega-specs/chart10.json').catch(console.error);
+            
+            // Registering interactive section
+            vegaEmbed('#vis-chart-8', 'vega-specs/chart8.json').then(res => registerView('chart8', res)).catch(console.error);
+            vegaEmbed('#vis-chart-9', 'vega-specs/chart9.json').then(res => registerView('chart9', res)).catch(console.error);
+            vegaEmbed('#vis-chart-10', 'vega-specs/chart10.json').then(res => registerView('chart10', res)).catch(console.error);
         });
     </script>
 </body>
