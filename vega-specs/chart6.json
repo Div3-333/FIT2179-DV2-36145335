@@ -55,7 +55,7 @@
             "format": ".1s",
             "orient": "none",
             "legendX": 10,
-            "legendY": 280,
+            "legendY": 230,
             "symbolFillColor": "rgba(255,255,255,0.2)"
           }
         },
@@ -87,12 +87,9 @@
       "data": {"url": "data/final/chart6_dam_locations.csv"},
       "mark": {
         "type": "text",
-        "dy": -30,
-        "fontSize": 13,
-        "fontWeight": 900,
-        "color": "#00E5FF",
-        "stroke": "#17202A",
-        "strokeWidth": 3
+        "dy": -25,
+        "fontSize": 11,
+        "color": "#00E5FF"
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
