@@ -16,17 +16,6 @@
   "data": {
     "url": "data/final/chart8_total-use-by-resource-figure.csv"
   },
-  "params": [
-    {
-      "name": "hover",
-      "select": {
-        "type": "point",
-        "fields": ["Water year"],
-        "on": "pointerover",
-        "clear": "pointerout"
-      }
-    }
-  ],
   "transform": [
     {
       "calculate": "toNumber(substring(datum['Water year'], 0, 4))",
@@ -35,6 +24,17 @@
   ],
   "layer": [
     {
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "fields": ["YearVal"],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
       "mark": {
         "type": "area",
         "orient": "horizontal",
@@ -83,7 +83,7 @@
           }
         },
         "opacity": {
-          "condition": {"param": "hover", "value": 1},
+          "condition": {"param": "hover", "value": 1, "empty": true},
           "value": 0.4
         }
       }
@@ -107,9 +107,9 @@
         "align": "left",
         "dx": 10,
         "dy": -15,
-        "fontSize": 14,
+        "fontSize": 16,
         "fontWeight": "bold",
-        "color": "white"
+        "color": "#FCFDBF"
       },
       "encoding": {
         "y": {"field": "YearVal", "type": "quantitative"},
