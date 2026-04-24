@@ -70,8 +70,8 @@
             "labelColor": "#E0F2FE", 
             "titleColor": "#E0F2FE", 
             "format": ".1s",
-            "orient": "bottom-left",
-            "offset": 10
+            "orient": "right",
+            "offset": 20
           }
         },
         "color": {
@@ -86,8 +86,8 @@
             "title": "% Full", 
             "labelColor": "#E0F2FE", 
             "titleColor": "#E0F2FE",
-            "orient": "bottom-right",
-            "offset": 10
+            "orient": "right",
+            "offset": 20
           }
         },
         "tooltip": [
