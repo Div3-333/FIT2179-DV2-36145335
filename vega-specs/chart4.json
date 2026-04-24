@@ -4,8 +4,8 @@
   "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
-    "text": "The Evaporation Pump",
-    "subtitle": "Relationship between Summer Heat and Annual Water Loss | 1958 - 2026",
+    "text": "The Evaporation Trend",
+    "subtitle": "Annual Water Loss and Summer Heat Intensity | 1958 - 2026",
     "anchor": "start",
     "color": "#E0F2FE",
     "fontSize": 28,
@@ -20,43 +20,38 @@
     {
       "mark": {
         "type": "line",
-        "color": "#E67E22",
-        "strokeWidth": 3,
-        "opacity": 0.4
+        "color": "rgba(255,255,255,0.1)",
+        "strokeWidth": 1
       },
-      "transform": [
-        {
-          "regression": "Annual_Evaporation_mm",
-          "on": "Avg_Summer_Max_Temp"
-        }
-      ],
       "encoding": {
-        "x": {"field": "Avg_Summer_Max_Temp", "type": "quantitative"},
+        "x": {"field": "Year", "type": "quantitative", "axis": {"format": "d"}},
         "y": {"field": "Annual_Evaporation_mm", "type": "quantitative"}
       }
     },
     {
       "mark": {
-        "type": "point",
+        "type": "circle",
         "filled": true,
         "opacity": 0.8,
         "stroke": "white",
-        "strokeWidth": 1,
-        "size": 120
+        "strokeWidth": 1
       },
       "encoding": {
         "x": {
-          "field": "Avg_Summer_Max_Temp",
+          "field": "Year",
           "type": "quantitative",
-          "title": "Avg Summer Max Temp (°C)",
-          "scale": {"domain": [22, 33]},
-          "axis": {"gridColor": "rgba(255,255,255,0.1)"}
+          "title": "Timeline",
+          "axis": {
+            "format": "d",
+            "gridColor": "rgba(255,255,255,0.1)",
+            "tickCount": 10
+          }
         },
         "y": {
           "field": "Annual_Evaporation_mm",
           "type": "quantitative",
           "title": "Annual Evaporation (mm)",
-          "scale": {"domain": [500, 1600]},
+          "scale": {"domain": [400, 1600]},
           "axis": {"gridColor": "rgba(255,255,255,0.1)"}
         },
         "color": {
@@ -67,34 +62,19 @@
             "domain": [22, 28, 32],
             "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
           },
-          "legend": {"title": "Temp Intensity", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
+          "legend": {"title": "Summer Temp (°C)", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
+        },
+        "size": {
+          "field": "Avg_Summer_Max_Temp",
+          "type": "quantitative",
+          "scale": {"range": [50, 800]},
+          "legend": null
         },
         "tooltip": [
           {"field": "Year", "type": "quantitative", "title": "Year"},
-          {"field": "Avg_Summer_Max_Temp", "type": "quantitative", "title": "Summer Temp", "format": ".1f"},
-          {"field": "Annual_Evaporation_mm", "type": "quantitative", "title": "Evaporation", "format": ".0f"}
+          {"field": "Annual_Evaporation_mm", "type": "quantitative", "title": "Total Evaporation (mm)", "format": ".0f"},
+          {"field": "Avg_Summer_Max_Temp", "type": "quantitative", "title": "Avg Summer Max (°C)", "format": ".1f"}
         ]
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.Year == 1972 || datum.Year == 2009 || datum.Year == 2019 || datum.Year == 2026"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 10,
-        "dy": -10,
-        "fontSize": 13,
-        "fontWeight": "bold",
-        "color": "#FCFDBF"
-      },
-      "encoding": {
-        "x": {"field": "Avg_Summer_Max_Temp", "type": "quantitative"},
-        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative"},
-        "text": {"field": "Year", "type": "nominal"}
       }
     }
   ],
