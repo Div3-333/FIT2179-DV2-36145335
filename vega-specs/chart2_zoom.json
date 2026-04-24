@@ -1,78 +1,94 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {
     "url": "data/final/chart2_temperature.csv"
   },
-  "title": {
-    "text": "Then vs. Now: The Great Shift",
-    "subtitle": "Direct Comparison: 1910-1920 (Bottom) vs 2010-2020 (Top)",
-    "anchor": "start",
-    "color": "#2C3E50",
-    "fontSize": 28,
-    "subtitleFontSize": 16,
-    "subtitleColor": "#5D6D7E",
-    "offset": 20
-  },
-  "transform": [
-    {"filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"}
-  ],
-  "mark": {
-    "type": "rect",
-    "tooltip": true,
-    "stroke": "white",
-    "strokeWidth": 0.5
-  },
-  "encoding": {
-    "x": {
-      "field": "Month",
-      "type": "ordinal",
-      "title": "Month",
-      "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "axis": {
-        "labelAngle": 0,
-        "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]"
-      }
-    },
-    "y": {
-      "field": "Year",
-      "type": "ordinal",
-      "title": null,
-      "sort": "descending",
-      "axis": {
-        "labelExpr": "datum.label"
-      }
-    },
-    "color": {
-      "field": "MaxTemp",
-      "type": "quantitative",
-      "scale": {
-        "scheme": "magma",
-        "reverse": false,
-        "domain": [12, 32]
+  "spacing": 40,
+  "vconcat": [
+    {
+      "title": {
+        "text": "Modern Furnace (2010-2020)",
+        "fontSize": 14,
+        "anchor": "start",
+        "color": "#2C3E50"
       },
-      "legend": {
-        "title": "Temp (°C)",
-        "orient": "right"
+      "width": "container",
+      "height": 180,
+      "transform": [
+        {"filter": "datum.Year >= 2010 && datum.Year <= 2020"}
+      ],
+      "mark": {"type": "rect", "tooltip": true, "stroke": "white", "strokeWidth": 0.5},
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal",
+          "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          "axis": {
+            "labelAngle": 0,
+            "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]",
+            "title": null
+          }
+        },
+        "y": {
+          "field": "Year",
+          "type": "ordinal",
+          "sort": "descending",
+          "axis": {"title": null}
+        },
+        "color": {
+          "field": "MaxTemp",
+          "type": "quantitative",
+          "scale": {"scheme": "magma", "domain": [12, 32]},
+          "legend": {"title": "Temp (°C)"}
+        }
       }
     },
-    "tooltip": [
-      {"field": "Year", "type": "ordinal"},
-      {"field": "Month", "type": "ordinal", "title": "Month"},
-      {"field": "MaxTemp", "type": "quantitative", "title": "Mean Max Temp (°C)", "format": ".1f"}
-    ]
-  },
+    {
+      "title": {
+        "text": "Historical Anchor (1910-1920)",
+        "fontSize": 14,
+        "anchor": "start",
+        "color": "#2C3E50"
+      },
+      "width": "container",
+      "height": 180,
+      "transform": [
+        {"filter": "datum.Year >= 1910 && datum.Year <= 1920"}
+      ],
+      "mark": {"type": "rect", "tooltip": true, "stroke": "white", "strokeWidth": 0.5},
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal",
+          "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          "axis": {
+            "labelAngle": 0,
+            "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]",
+            "title": "Month"
+          }
+        },
+        "y": {
+          "field": "Year",
+          "type": "ordinal",
+          "sort": "descending",
+          "axis": {"title": null}
+        },
+        "color": {
+          "field": "MaxTemp",
+          "type": "quantitative",
+          "scale": {"scheme": "magma", "domain": [12, 32]}
+        }
+      }
+    }
+  ],
+  "resolve": {"scale": {"color": "shared"}},
   "config": {
     "background": "transparent",
     "view": {"stroke": "transparent"},
     "axis": {
       "domainColor": "#2C3E50",
-      "tickColor": "#2C3E50",
-      "labelColor": "#2C3E50",
-      "titleColor": "#2C3E50",
-      "grid": false,
       "labelFont": "Source Sans Pro",
       "titleFont": "Source Sans Pro"
     }
