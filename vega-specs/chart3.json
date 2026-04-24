@@ -5,7 +5,7 @@
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "The Atmospheric Engine",
-    "subtitle": "Correlation: Southern Oscillation Index (Line) vs. Rainfall (Bars)",
+    "subtitle": "Correlation: Southern Oscillation Index (Line) vs. Rainfall (Bars) | 2000 - 2020",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -24,7 +24,7 @@
           "as": "MonthNum"
         },
         {"calculate": "datetime(datum.Year, datum.MonthNum, 1)", "as": "Date"},
-        {"filter": "datum.Year >= 2010"}
+        {"filter": "datum.Year >= 2000 && datum.Year <= 2020"}
       ],
       "mark": {"type": "bar", "color": "#94C1EA", "opacity": 0.6, "width": {"band": 0.8}},
       "encoding": {
@@ -52,12 +52,12 @@
       },
       "transform": [
         {"calculate": "datetime(datum.Year, datum.Month - 1, 1)", "as": "Date"},
-        {"filter": "datum.Year >= 2010"}
+        {"filter": "datum.Year >= 2000 && datum.Year <= 2020"}
       ],
       "mark": {
         "type": "line",
         "color": "#E67E22",
-        "strokeWidth": 2.5,
+        "strokeWidth": 2,
         "interpolate": "monotone"
       },
       "encoding": {
