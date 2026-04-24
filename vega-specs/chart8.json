@@ -1,23 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Robust Forensic Dashboard for Water Supply",
+  "description": "H-Sync Forensic Dashboard for Water Supply",
   "background": "transparent",
-  "width": 1100,
-  "height": 160,
-  "padding": {"left": 10, "top": 10, "right": 10, "bottom": 10},
-  "title": {
-    "text": "The Fluid Shift",
-    "subtitle": "Supply Proportion Forensic Dashboard | 2015 - 2023",
-    "anchor": "start",
-    "color": "#D7CCC8",
-    "fontSize": 24,
-    "subtitleFontSize": 12,
-    "subtitleColor": "#B0BEC5",
-    "offset": 20
-  },
-  "data": {
-    "url": "data/final/chart8_liquid_data.csv"
-  },
+  "spacing": 40,
   "params": [
     {
       "name": "timeStep",
@@ -27,39 +12,101 @@
         "min": 2015,
         "max": 2022,
         "step": 0.1,
-        "name": "Analyze Depth: "
+        "name": "Analyze Year: "
       }
     }
   ],
-  "transform": [
+  "hconcat": [
     {
-      "filter": "abs(datum.YearStep - timeStep) < 0.05"
+      "width": 750,
+      "height": 100,
+      "title": {
+        "text": "Proportional Shift",
+        "fontSize": 18,
+        "color": "#D7CCC8",
+        "anchor": "start",
+        "offset": 10
+      },
+      "data": {"url": "data/final/chart8_liquid_data.csv"},
+      "transform": [{"filter": "abs(datum.YearStep - timeStep) < 0.05"}],
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "height": 80,
+            "cornerRadius": 10,
+            "stroke": "white",
+            "strokeWidth": 1.5,
+            "opacity": 0.9
+          },
+          "encoding": {
+            "x": {
+              "field": "Volume_ML",
+              "type": "quantitative",
+              "stack": "normalize",
+              "axis": null
+            },
+            "color": {
+              "field": "Resource_Type",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Surface water - consumptive",
+                  "Surface water - environmental",
+                  "Groundwater - consumptive",
+                  "Recycled water - consumptive",
+                  "Desalinated water - consumptive"
+                ],
+                "range": ["#3498DB", "#2E86C1", "#BB8FCE", "#A569BD", "#F1C40F"]
+              },
+              "legend": {
+                "title": null,
+                "labelColor": "white",
+                "orient": "bottom",
+                "direction": "horizontal",
+                "columns": 5,
+                "offset": 30,
+                "labelFontSize": 12,
+                "symbolSize": 150
+              }
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "fontSize": 80,
+            "fontWeight": 900,
+            "color": "rgba(255,255,255,0.06)"
+          },
+          "encoding": {
+            "text": {"field": "DisplayYear", "type": "nominal"}
+          }
+        }
+      ]
     },
     {
-      "calculate": "datum.Resource_Type == 'Surface water - consumptive' ? 30 : datum.Resource_Type == 'Surface water - environmental' ? 55 : datum.Resource_Type == 'Groundwater - consumptive' ? 80 : datum.Resource_Type == 'Recycled water - consumptive' ? 105 : 130",
-      "as": "rowY"
-    }
-  ],
-  "layer": [
-    {
-      "name": "THE_BAR",
-      "mark": {
-        "type": "bar",
-        "height": 100,
-        "cornerRadius": 10,
-        "stroke": "white",
-        "strokeWidth": 1.5,
-        "opacity": 0.9
+      "width": 250,
+      "height": 100,
+      "title": {
+        "text": "Forensic Amount (ML)",
+        "fontSize": 14,
+        "color": "#94C1EA",
+        "anchor": "start",
+        "fontStyle": "italic",
+        "offset": 10
       },
+      "data": {"url": "data/final/chart8_liquid_data.csv"},
+      "transform": [
+        {"filter": "abs(datum.YearStep - timeStep) < 0.05"},
+        {"calculate": "datum.Resource_Type == 'Surface water - consumptive' ? 0 : datum.Resource_Type == 'Surface water - environmental' ? 1 : datum.Resource_Type == 'Groundwater - consumptive' ? 2 : datum.Resource_Type == 'Recycled water - consumptive' ? 3 : 4", "as": "rowOrder"}
+      ],
+      "mark": {"type": "text", "align": "right", "fontSize": 14, "fontWeight": "900"},
       "encoding": {
-        "x": {
-          "field": "Volume_ML",
-          "type": "quantitative",
-          "stack": "normalize",
-          "scale": {"domain": [0, 0.7]},
-          "axis": null
-        },
-        "y": {"datum": 80, "type": "quantitative", "scale": {"domain": [0, 160]}, "axis": null},
+        "y": {"field": "rowOrder", "type": "ordinal", "axis": null},
+        "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.0f"},
         "color": {
           "field": "Resource_Type",
           "type": "nominal",
@@ -73,80 +120,13 @@
             ],
             "range": ["#3498DB", "#2E86C1", "#BB8FCE", "#A569BD", "#F1C40F"]
           },
-          "legend": {
-            "title": null,
-            "labelColor": "white",
-            "orient": "bottom",
-            "direction": "horizontal",
-            "columns": 5,
-            "offset": 40,
-            "labelFontSize": 14,
-            "symbolSize": 200
-          }
+          "legend": null
         }
-      }
-    },
-    {
-      "name": "TABLE_HEADERS",
-      "layer": [
-        {
-          "mark": {"type": "text", "align": "left", "fontSize": 11, "fontWeight": "bold", "color": "#94C1EA", "fontStyle": "italic"},
-          "encoding": {
-            "x": {"datum": 800, "type": "quantitative"},
-            "y": {"datum": 10, "type": "quantitative"},
-            "text": {"datum": "Resource Stratum"}
-          }
-        },
-        {
-          "mark": {"type": "text", "align": "right", "fontSize": 11, "fontWeight": "bold", "color": "#94C1EA", "fontStyle": "italic"},
-          "encoding": {
-            "x": {"datum": 1100, "type": "quantitative"},
-            "y": {"datum": 10, "type": "quantitative"},
-            "text": {"datum": "Amount (ML)"}
-          }
-        }
-      ]
-    },
-    {
-      "name": "TABLE_BODY",
-      "layer": [
-        {
-          "mark": {"type": "text", "align": "left", "fontSize": 13, "fontWeight": "bold", "color": "#D7CCC8"},
-          "encoding": {
-            "x": {"datum": 800, "type": "quantitative"},
-            "y": {"field": "rowY", "type": "quantitative"},
-            "text": {"field": "Resource_Type", "type": "nominal"}
-          }
-        },
-        {
-          "mark": {"type": "text", "align": "right", "fontSize": 14, "fontWeight": "900"},
-          "encoding": {
-            "x": {"datum": 1100, "type": "quantitative"},
-            "y": {"field": "rowY", "type": "quantitative"},
-            "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.0f"},
-            "color": {"field": "Resource_Type", "type": "nominal", "legend": null}
-          }
-        }
-      ]
-    },
-    {
-      "name": "YEAR_BG",
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "middle",
-        "fontSize": 90,
-        "fontWeight": 900,
-        "color": "rgba(255,255,255,0.06)"
-      },
-      "encoding": {
-        "x": {"datum": 380, "type": "quantitative"},
-        "y": {"datum": 80, "type": "quantitative"},
-        "text": {"field": "DisplayYear", "type": "nominal"}
       }
     }
   ],
   "config": {
+    "background": "transparent",
     "view": {"stroke": "transparent"},
     "font": "Source Sans Pro"
   }
