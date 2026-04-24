@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
+  "width": 1200,
   "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 80, "top": 20, "right": 40, "bottom": 20},
+  "padding": {"left": 20, "top": 20, "right": 20, "bottom": 20},
   "spacing": 60,
   "vconcat": [
     {
@@ -15,8 +15,8 @@
         "subtitleFontSize": 16,
         "subtitleColor": "#A9CCE3"
       },
-      "width": 800,
-      "height": 260,
+      "width": 1200,
+      "height": 300,
       "data": {"url": "data/final/chart5_caulfield_rain.csv"},
       "transform": [
         {
@@ -26,7 +26,7 @@
         {"calculate": "datetime(datum.Year, datum.MonthNum, 1)", "as": "Date"},
         {"calculate": "datum.Rainfall_mm - 50.6", "as": "Anomaly"}
       ],
-      "mark": {"type": "bar", "tooltip": true, "width": 5},
+      "mark": {"type": "bar", "tooltip": true, "width": 6},
       "encoding": {
         "x": {
           "field": "Date",
@@ -57,7 +57,7 @@
             "title": "Heat (°C)",
             "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 300,
+            "gradientLength": 500,
             "labelColor": "white",
             "titleColor": "white"
           }
@@ -80,8 +80,8 @@
         "subtitleFontSize": 16,
         "subtitleColor": "#A9CCE3"
       },
-      "width": 800,
-      "height": 240,
+      "width": 1200,
+      "height": 200,
       "data": {"url": "data/final/chart5_Historical_Data.csv"},
       "transform": [
         {"calculate": "datetime(datum.Year, datum.Month_Num - 1, 1)", "as": "Date"},
