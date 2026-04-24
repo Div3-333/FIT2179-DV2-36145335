@@ -25,19 +25,24 @@
     }
   ],
   "transform": [
-    {"filter": "showModern || datum.Year <= 2021"}
+    {"calculate": "toNumber(datum.Year)", "as": "YearNum"},
+    {"filter": "showModern || datum.YearNum <= 2021"}
   ],
   "layer": [
     {
       "name": "CROSSHAIR_AXES",
       "layer": [
         {
-          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.2},
-          "encoding": {"x": {"datum": 70, "type": "quantitative", "scale": {"domain": [40, 100]}}}
+          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.1},
+          "encoding": {
+            "x": {"datum": 70, "type": "quantitative", "scale": {"domain": [40, 100]}}
+          }
         },
         {
-          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.2},
-          "encoding": {"y": {"datum": 75, "type": "quantitative", "scale": {"domain": [-5, 150]}}}
+          "mark": {"type": "rule", "color": "#2C3E50", "strokeWidth": 2, "opacity": 0.1},
+          "encoding": {
+            "y": {"datum": 75, "type": "quantitative", "scale": {"domain": [-10, 150]}}
+          }
         }
       ]
     },
@@ -47,11 +52,11 @@
         "values": [
           {"x": 55, "y": 140, "text": "ENGINEERED SURVIVAL"},
           {"x": 85, "y": 140, "text": "ARTIFICIAL RECHARGE"},
-          {"x": 85, "y": 10, "text": "SAFE ZONE"},
-          {"x": 55, "y": 10, "text": "CRITICAL STRESS"}
+          {"x": 85, "y": 5, "text": "SAFE ZONE"},
+          {"x": 55, "y": 5, "text": "CRITICAL STRESS"}
         ]
       },
-      "mark": {"type": "text", "fontSize": 14, "fontWeight": 900, "color": "black", "opacity": 0.4},
+      "mark": {"type": "text", "fontSize": 14, "fontWeight": 900, "color": "black", "opacity": 0.3},
       "encoding": {
         "x": {"field": "x", "type": "quantitative"},
         "y": {"field": "y", "type": "quantitative"},
@@ -64,7 +69,7 @@
       "encoding": {
         "x": {"field": "Storage_Percentage", "type": "quantitative"},
         "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
-        "order": {"field": "Year", "type": "quantitative"}
+        "order": {"field": "YearNum", "type": "quantitative"}
       }
     },
     {
@@ -75,7 +80,12 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
         }
       ],
-      "mark": {"type": "circle", "size": 800},
+      "mark": {
+        "type": "circle", 
+        "size": 800, 
+        "stroke": "#2C3E50", 
+        "strokeWidth": 0.5
+      },
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
@@ -104,16 +114,16 @@
         "color": {
           "field": "Year",
           "type": "ordinal",
-          "scale": {"scheme": "magma", "domain": [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]},
+          "scale": {"scheme": "magma", "domain": ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"]},
           "legend": {"title": "Fiscal Year", "orient": "right", "labelColor": "#2C3E50", "titleColor": "#2C3E50"}
         },
         "opacity": {
-          "condition": {"param": "hover", "value": 0.95},
+          "condition": {"param": "hover", "value": 1},
           "value": 0.5
         },
         "tooltip": [
-          {"field": "Year", "type": "quantitative", "title": "Year"},
-          {"field": "Storage_Percentage", "type": "quantitative", "title": "Storage Health %", "format": ".1f"},
+          {"field": "Year", "type": "nominal", "title": "Year"},
+          {"field": "Storage_Percentage", "type": "quantitative", "title": "Storage %", "format": ".1f"},
           {"field": "Desalination_Delivered_GL", "type": "quantitative", "title": "Desal GL"}
         ]
       }
