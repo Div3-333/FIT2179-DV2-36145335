@@ -60,7 +60,7 @@
             "labelColor": "#2C3E50",
             "titleFontSize": 12,
             "labelFontSize": 10,
-            "offset": -30
+            "offset": 50
           }
         },
         "tooltip": [

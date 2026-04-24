@@ -28,7 +28,7 @@
       "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       "axis": {
         "labelAngle": 0,
-        "labelExpr": "datum.label == 1 ? 'Jan' : datum.label == 2 ? 'Feb' : datum.label == 3 ? 'Mar' : datum.label == 4 ? 'Apr' : datum.label == 5 ? 'May' : datum.label == 6 ? 'Jun' : datum.label == 7 ? 'Jul' : datum.label == 8 ? 'Aug' : datum.label == 9 ? 'Sep' : datum.label == 10 ? 'Oct' : datum.label == 11 ? 'Nov' : 'Dec'"
+        "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]"
       }
     },
     "y": {
