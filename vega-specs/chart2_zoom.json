@@ -8,20 +8,22 @@
   },
   "title": {
     "text": "The Modern Heat Wall",
-    "subtitle": "Detail: 2015 - 2026 High-Frequency Warming",
+    "subtitle": "Detail: 2000 - 2026 High-Frequency Warming",
     "anchor": "start",
     "color": "#2C3E50",
-    "subtitleFontSize": 14,
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#5D6D7E",
     "offset": 20
   },
   "transform": [
-    {"filter": "datum.Year >= 2015"}
+    {"filter": "datum.Year >= 2000"}
   ],
   "mark": {
     "type": "rect",
     "tooltip": true,
     "stroke": "white",
-    "strokeWidth": 1
+    "strokeWidth": 0.5
   },
   "encoding": {
     "x": {
@@ -31,14 +33,17 @@
       "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       "axis": {
         "labelAngle": 0,
-        "labelExpr": "datum.label == 1 ? 'Jan' : datum.label == 2 ? 'Feb' : datum.label == 3 ? 'Mar' : datum.label == 4 ? 'Apr' : datum.label == 5 ? 'May' : datum.label == 6 ? 'Jun' : datum.label == 7 ? 'Jul' : datum.label == 8 ? 'Aug' : datum.label == 9 ? 'Sep' : datum.label == 10 ? 'Oct' : datum.label == 11 ? 'Nov' : 'Dec'"
+        "labelExpr": "datum.label == 1 ? 'Jan' : datum.label == 2 ? 'Feb' : datum.label == 3 ? 'Mar' : datum.label == 4 ? 'Apr' : datum.label == 5 ? 'May' : datum.label == 6 ? 'Jun' : datum.label == 7 ? 'Jul' : datum.label == 8 ? 'Aug' : datum.label == 9 ? 'Sep' : datum.label == 10 ? 'Oct' : datum.label : 'Dec'"
       }
     },
     "y": {
       "field": "Year",
       "type": "ordinal",
       "title": null,
-      "sort": "descending"
+      "sort": "descending",
+      "axis": {
+        "labelExpr": "datum.label % 5 == 0 || datum.label == 2026 ? datum.label : ''"
+      }
     },
     "color": {
       "field": "MaxTemp",

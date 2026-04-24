@@ -4,6 +4,16 @@
   "height": 480,
   "autosize": {"type": "fit", "contains": "padding"},
   "padding": {"left": 0, "top": 0, "right": 0, "bottom": 0},
+  "title": {
+    "text": "The Arid Shift: Victorian Rainfall Deficit",
+    "subtitle": "Rainfall lost (mm) across Victoria over the last 12 months",
+    "anchor": "start",
+    "color": "#2C3E50",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#5D6D7E",
+    "offset": 25
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
     "format": {"type": "json", "property": "features"}
