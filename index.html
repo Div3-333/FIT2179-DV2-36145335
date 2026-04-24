@@ -58,16 +58,28 @@
             transition: transform 0.1s ease-out;
             pointer-events: none;
         }
-        .cloud-1 { width: 350px; height: 120px; top: 8%; left: -400px; animation: drift 40s linear infinite; opacity: 0.8; }
-        .cloud-2 { width: 250px; height: 90px; top: 25%; left: -300px; animation: drift 30s linear infinite; animation-delay: -10s; opacity: 0.6; }
-        .cloud-3 { width: 400px; height: 140px; top: 60%; left: -500px; animation: drift 50s linear infinite; animation-delay: -25s; opacity: 0.9; }
-        .cloud-4 { width: 200px; height: 80px; top: 80%; left: -250px; animation: drift 35s linear infinite; animation-delay: -5s; opacity: 0.7; }
-        .cloud-5 { width: 300px; height: 110px; top: 40%; left: -350px; animation: drift 45s linear infinite; animation-delay: -18s; opacity: 0.5; }
-        .cloud-6 { width: 180px; height: 70px; top: 15%; left: -200px; animation: drift 25s linear infinite; animation-delay: -2s; opacity: 0.8; }
-        .cloud-7 { width: 450px; height: 160px; top: 50%; left: -600px; animation: drift 55s linear infinite; animation-delay: -12s; opacity: 0.4; }
-        .cloud-8 { width: 220px; height: 85px; top: 75%; left: -300px; animation: drift 28s linear infinite; animation-delay: -20s; opacity: 0.9; }
-        .cloud-9 { width: 320px; height: 100px; top: 5%; left: -450px; animation: drift 38s linear infinite; animation-delay: -8s; opacity: 0.6; }
-        .cloud-10 { width: 280px; height: 95px; top: 35%; left: -350px; animation: drift 32s linear infinite; animation-delay: -30s; opacity: 0.7; }
+        .cloud-1 { width: 350px; height: 120px; top: 8%; left: -400px; animation: drift 20s linear infinite; opacity: 0.8; }
+        .cloud-2 { width: 250px; height: 90px; top: 25%; left: -300px; animation: drift 15s linear infinite; animation-delay: -10s; opacity: 0.6; }
+        .cloud-3 { width: 400px; height: 140px; top: 60%; left: -500px; animation: drift 25s linear infinite; animation-delay: -25s; opacity: 0.9; }
+        .cloud-4 { width: 200px; height: 80px; top: 80%; left: -250px; animation: drift 17s linear infinite; animation-delay: -5s; opacity: 0.7; }
+        .cloud-5 { width: 300px; height: 110px; top: 40%; left: -350px; animation: drift 22s linear infinite; animation-delay: -18s; opacity: 0.5; }
+        .cloud-6 { width: 180px; height: 70px; top: 15%; left: -200px; animation: drift 12s linear infinite; animation-delay: -2s; opacity: 0.8; }
+        .cloud-7 { width: 450px; height: 160px; top: 50%; left: -600px; animation: drift 27s linear infinite; animation-delay: -12s; opacity: 0.4; }
+        .cloud-8 { width: 220px; height: 85px; top: 75%; left: -300px; animation: drift 14s linear infinite; animation-delay: -20s; opacity: 0.9; }
+        .cloud-9 { width: 320px; height: 100px; top: 5%; left: -450px; animation: drift 19s linear infinite; animation-delay: -8s; opacity: 0.6; }
+        .cloud-10 { width: 280px; height: 95px; top: 35%; left: -350px; animation: drift 16s linear infinite; animation-delay: -30s; opacity: 0.7; }
+
+        .cloud-11 { width: 380px; height: 130px; top: 12%; left: -500px; animation: drift 10s linear infinite; animation-delay: -5s; opacity: 0.85; }
+        .cloud-12 { width: 200px; height: 75px; top: 28%; left: -300px; animation: drift 7s linear infinite; animation-delay: -12s; opacity: 0.65; }
+        .cloud-13 { width: 420px; height: 145px; top: 65%; left: -600px; animation: drift 12s linear infinite; animation-delay: -2s; opacity: 0.95; }
+        .cloud-14 { width: 250px; height: 85px; top: 85%; left: -350px; animation: drift 9s linear infinite; animation-delay: -9s; opacity: 0.75; }
+        .cloud-15 { width: 310px; height: 115px; top: 45%; left: -450px; animation: drift 11s linear infinite; animation-delay: -16s; opacity: 0.55; }
+        .cloud-16 { width: 190px; height: 70px; top: 18%; left: -250px; animation: drift 6s linear infinite; animation-delay: -7s; opacity: 0.8; }
+        .cloud-17 { width: 460px; height: 165px; top: 55%; left: -650px; animation: drift 14s linear infinite; animation-delay: -14s; opacity: 0.45; }
+        .cloud-18 { width: 230px; height: 90px; top: 78%; left: -320px; animation: drift 8s linear infinite; animation-delay: -4s; opacity: 0.9; }
+        .cloud-19 { width: 330px; height: 105px; top: 8%; left: -480px; animation: drift 12s linear infinite; animation-delay: -19s; opacity: 0.6; }
+        .cloud-20 { width: 290px; height: 100px; top: 38%; left: -400px; animation: drift 9s linear infinite; animation-delay: -11s; opacity: 0.7; }
+
 
         /* --- ENHANCED GLASSMORPHIC WAVE --- */
         .custom-shape-divider-top {
@@ -99,7 +111,7 @@
         }
         .rain-drop {
             position: absolute; width: 2px; height: 30px;
-            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.25)); width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08)); width: 1px;
             border-radius: 50%;
             animation: fall linear infinite;
         }
@@ -167,7 +179,7 @@
             perspective: 1000px; transform-style: preserve-3d;
             opacity: 0.5; transition: transform 0.2s ease-out;
         }
-        .section-pipe { background-color: #0d151c; color: #E0E6ED; overflow: hidden; } /* Darken background for grid visibility */
+        .section-pipe { background-color: #0d151c !important; color: #E0E6ED; overflow: hidden; } /* Darken background for grid visibility */
         .section-pipe h2, .section-pipe .narrative-text { color: #E0E6ED !important; }
 
         /* --- 1. THE SKY & PURE CSS CLOUDS --- */
@@ -261,7 +273,7 @@
         
         .section-earth::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.06) 15px, transparent 25px);
+            background-image: radial-gradient(rgba(255,255,255,0.08) 35px, transparent 40px);
             background-size: 80px 80px;
             animation: pulse-wedges 4s infinite alternate ease-in-out;
             pointer-events: none;
@@ -387,6 +399,18 @@
         <div class="css-cloud cloud-8" data-depth="0.45"></div>
         <div class="css-cloud cloud-9" data-depth="0.25"></div>
         <div class="css-cloud cloud-10" data-depth="0.35"></div>
+
+        <div class="css-cloud cloud-11" data-depth="0.22"></div>
+        <div class="css-cloud cloud-12" data-depth="0.42"></div>
+        <div class="css-cloud cloud-13" data-depth="0.12"></div>
+        <div class="css-cloud cloud-14" data-depth="0.52"></div>
+        <div class="css-cloud cloud-15" data-depth="0.32"></div>
+        <div class="css-cloud cloud-16" data-depth="0.62"></div>
+        <div class="css-cloud cloud-17" data-depth="0.18"></div>
+        <div class="css-cloud cloud-18" data-depth="0.48"></div>
+        <div class="css-cloud cloud-19" data-depth="0.28"></div>
+        <div class="css-cloud cloud-20" data-depth="0.38"></div>
+
         
         <div class="container">
             <h1 style="text-align: center; font-size: 3.5rem; letter-spacing: -1px; position: relative; z-index: 10;">From Sky to Tap</h1>
@@ -542,7 +566,7 @@
         </div>
         <div class="cyber-grid" id="interactive-grid">
             <svg class="snake-stream" viewBox="0 0 2000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0.8;">
-                <path d="M -40,40 L 160,40 L 160,200 L 400,200 L 400,80 L 720,80 L 720,320 L 1000,320 L 1000,120 L 1400,120 L 1400,400 L 2040,400" 
+                <path id="random-snake-path" d="M -40,40 L 2040,400" 
                       stroke="#3498DB" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="drop-shadow(0 0 8px #3498DB)"/>
             </svg>
         </div>
@@ -974,7 +998,7 @@
                     drop.style.left = Math.random() * 100 + '%';
                     drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
                     drop.style.animationDelay = Math.random() * 2 + 's';
-                    drop.style.opacity = Math.random() * 0.3 + 0.1;
+                    drop.style.opacity = Math.random() * 0.15 + 0.05;
                     rainContainer.appendChild(drop);
                 }
             }
@@ -1005,6 +1029,28 @@
                 }
             });
             
+            
+            // 4. Random Snake Stream
+            const snakePath = document.getElementById('random-snake-path');
+            function randomizeSnake() {
+                if (!snakePath) return;
+                let path = 'M -40,40 ';
+                let x = -40, y = 40;
+                for(let i=0; i<12; i++) {
+                    if(i % 2 === 0) {
+                        x += Math.random() * 250 + 100;
+                    } else {
+                        y += (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 300 + 50);
+                        y = Math.max(40, Math.min(y, 900));
+                    }
+                    path += `L ${x},${y} `;
+                }
+                path += `L 2200,${y}`;
+                snakePath.setAttribute('d', path);
+            }
+            randomizeSnake();
+            setInterval(randomizeSnake, 10000); // Change path every 10 seconds
+
             // 3. Scroll reacting pipe flow speed
             const pipeFlow = document.querySelector('.liquid-flow');
             let lastScroll = window.scrollY;
