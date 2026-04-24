@@ -1,18 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 100,
+  "height": 50,
   "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 10, "top": 40, "right": 10, "bottom": 80},
+  "padding": {"left": 10, "top": 30, "right": 10, "bottom": 60},
   "title": {
     "text": "The Fluid Shift",
-    "subtitle": "Resource Proportion HUD (ML) | 2015 - 2023",
+    "subtitle": "Resource Proportions (ML)",
     "anchor": "start",
     "color": "#D7CCC8",
-    "fontSize": 24,
-    "subtitleFontSize": 13,
+    "fontSize": 20,
+    "subtitleFontSize": 12,
     "subtitleColor": "#B0BEC5",
-    "offset": 20
+    "offset": 25
   },
   "data": {
     "url": "data/final/chart8_liquid_data.csv"
@@ -26,7 +26,7 @@
         "min": 2015,
         "max": 2022,
         "step": 0.1,
-        "name": "Analyze Depth: "
+        "name": "Depth: "
       }
     }
   ],
@@ -39,22 +39,17 @@
     {
       "mark": {
         "type": "bar",
-        "height": 80,
-        "cornerRadius": 10,
+        "height": 60,
+        "cornerRadius": 6,
         "stroke": "white",
-        "strokeWidth": 1.5,
-        "opacity": 0.9
+        "strokeWidth": 1,
+        "opacity": 0.95
       },
       "encoding": {
         "x": {
           "field": "Volume_ML",
           "type": "quantitative",
           "stack": "normalize",
-          "axis": null
-        },
-        "y": {
-          "datum": "Core",
-          "type": "nominal",
           "axis": null
         },
         "color": {
@@ -76,9 +71,9 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 5,
-            "offset": 50,
-            "labelFontSize": 14,
-            "symbolSize": 200
+            "offset": 30,
+            "labelFontSize": 10,
+            "symbolSize": 60
           }
         }
       }
@@ -88,13 +83,13 @@
         "type": "text",
         "align": "center",
         "baseline": "middle",
-        "fontSize": 90,
+        "fontSize": 70,
         "fontWeight": 900,
-        "color": "rgba(255,255,255,0.08)"
+        "color": "rgba(255,255,255,0.06)",
+        "y": 30
       },
       "encoding": {
-        "text": {"field": "DisplayYear", "type": "nominal"},
-        "y": {"datum": "Core", "type": "nominal"}
+        "text": {"field": "DisplayYear", "type": "nominal"}
       }
     }
   ],
