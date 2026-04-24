@@ -4,7 +4,7 @@
         "methodology": "Distance-Weighted Interpolation (Inverse Distance Weighting). Deficit values were calculated by mapping distance from six primary climate hubs (Mildura, Shepparton, Melbourne, Bairnsdale, Hamilton, Omeo) to suburb centroids extracted from official GeoJSON boundaries. A Gaussian decay function was applied to ensure realistic regional transitions, avoiding the 'collage' effect of traditional categorical mapping.",
         "source": "Bureau of Meteorology (Hub Data) + Spatial Modeling",
         "url": "http://www.bom.gov.au/climate/data/",
-        "citation": "Bureau of Meteorology. (2026). Climate Data Online: Rainfall Deciles. Spatially modeled for regional resolution by D. Sharma (2026)."
+        "citation": "Bureau of Meteorology. (2026). Climate Data Online: Rainfall Deciles. Australian Government."
     },
     "chart2": {
         "description": "116-year longitudinal temperature heatmap for Greater Melbourne.",
@@ -18,21 +18,21 @@
         "methodology": "This visualization uses a raw temporal join between the Southern Oscillation Index (SOI) and Caulfield rainfall records. To ensure absolute scientific integrity, the range is strictly restricted to the period of overlapping high-quality measurements (2004-2019). No synthetic data is used in this final version to preserve the causal signal of El Ni\u00c3\u00b1o cycles.",
         "source": "Bureau of Meteorology (SOI & CDO)",
         "url": "http://www.bom.gov.au/climate/enso/soi/",
-        "citation": "Bureau of Meteorology. (2026). Southern Oscillation Index (SOI) Archives & Climate Data Online. Australian Government."
+        "citation": "Bureau of Meteorology. (2026). Southern Oscillation Index (SOI) Archives. Australian Government."
     },
     "chart4": {
         "description": "4-attribute temporal bubble chart visualizing the 'Evaporation Squeeze'.",
         "methodology": "Temporal Filtering: Data is restricted to the 1983-2025 'Modern Record' to eliminate manual-measurement artifacts from the mid-20th century. Modeling: As the original SILO rainfall totals were inaccessible in the locked archive, Annual Rainfall (Bubble Size) was estimated using an Inverse Correlation Model derived from the 2004-2019 Caulfield record, ensuring visual continuity for the 4-channel encoding strategy.",
         "source": "SILO Database + Rainfall Correlation Modeling",
         "url": "https://www.longpaddock.qld.gov.au/silo/",
-        "citation": "Queensland Government (SILO). (2026). SILO (Scientific Information for Land Owners) Database. Rainfall volume estimated via correlation modeling by D. Sharma (2026)."
+        "citation": "Queensland Government (using BoM data). (2026). SILO (Scientific Information for Land Owners) Database. Department of Environment and Science."
     },
     "chart5": {
         "description": "Multi-layer vertical composite showing the relationship between rainfall anomalies and reservoir storage.",
         "methodology": "Triple-Encoding: The top layer merges rainfall anomaly data with monthly maximum temperature data (from Chart 2) to visualize 'Thermal Catchment Stress.' Anomaly Baseline: Calculated as a 15-year mean (50.6mm). Data Join: Performed a left-outer join on [Year, MonthNum] to synchronize the independent rainfall and storage datasets into a single temporal frame (2004-2019).",
         "source": "Melbourne Water + BoM",
         "url": "https://www.melbournewater.com.au/water-data-and-education",
-        "citation": "Melbourne Water. (2026). Historical Reservoir Levels. Melbourne Water Corporation; Bureau of Meteorology (2026)."
+        "citation": "Melbourne Water. (2026). Historical Reservoir Levels. Melbourne Water Corporation; Bureau of Meteorology (2026). Climate Data Online."
     },
     "chart6": {
         "description": "High-depth geographic dashboard of Melbourne's primary storage network.",
@@ -46,7 +46,7 @@
         "methodology": "Spatial Engineering: 720 individual bore permit coordinates were first validated and mapped to Victorian suburb centroids using a KDTree (Nearest Neighbor) join to ensure 100% projection alignment. Density Modeling: Aggregated permit counts onto a granular 0.1-degree geographic grid to create a 'Thermal Field' effect. Color Logic: A custom Magma ramp (Purple to Yellow) was applied to highlight Critical Stress Zones (10+ permits per hub).",
         "source": "BoM Groundwater Explorer + Spatial Modeling",
         "url": "http://www.bom.gov.au/water/groundwater/explorer/",
-        "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. Spatial aggregation onto high-res grid by D. Sharma (2026)."
+        "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. ArcGIS Hub."
     },
     "chart8": {
         "description": "Water Shift Slopegraph",

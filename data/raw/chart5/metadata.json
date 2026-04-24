@@ -3,5 +3,5 @@
     "methodology": "Triple-Encoding: The top layer merges rainfall anomaly data with monthly maximum temperature data (from Chart 2) to visualize 'Thermal Catchment Stress.' Anomaly Baseline: Calculated as a 15-year mean (50.6mm). Data Join: Performed a left-outer join on [Year, MonthNum] to synchronize the independent rainfall and storage datasets into a single temporal frame (2004-2019).",
     "source": "Melbourne Water + BoM",
     "url": "https://www.melbournewater.com.au/water-data-and-education",
-    "citation": "Melbourne Water. (2026). Historical Reservoir Levels. Melbourne Water Corporation; Bureau of Meteorology (2026)."
+    "citation": "Melbourne Water. (2026). Historical Reservoir Levels. Melbourne Water Corporation; Bureau of Meteorology (2026). Climate Data Online."
 }
