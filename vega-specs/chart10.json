@@ -1,91 +1,127 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-fidelity power-meter showing the tug-of-war between production and leakage.",
-  "width": 1000,
-  "height": 220,
+  "description": "High-fidelity industrial dashboard: The Survival Envelope.",
+  "width": 800,
+  "height": 550,
+  "autosize": {"type": "fit", "contains": "padding"},
   "background": "transparent",
-  "padding": {"left": 20, "top": 20, "right": 20, "bottom": 20},
   "title": {
-    "text": "The Net Resilience Meter",
-    "subtitle": "Engineering Tug-of-War: Production (Gain) vs. Leakage (Drain) | Gigalitres (GL)",
+    "text": "The Survival Envelope",
+    "subtitle": "System Resilience Scan: Reservoir Health vs. Engineering Injection | 2012 - 2025",
     "anchor": "start",
     "color": "#D7CCC8",
-    "fontSize": 26,
-    "subtitleFontSize": 14,
+    "fontSize": 28,
+    "subtitleFontSize": 16,
     "subtitleColor": "#B0BEC5",
-    "offset": 30
+    "offset": 40
   },
-  "data": {"url": "data/final/chart10_console_data.csv"},
+  "data": {"url": "data/final/chart10_resilience_matrix.csv"},
   "params": [
     {
-      "name": "selectYear",
-      "value": 2021,
-      "bind": {"input": "range", "min": 2012, "max": 2021, "step": 1, "name": "Audit Year: "}
+      "name": "hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true}
     }
-  ],
-  "transform": [
-    {"filter": "datum.YearInt == selectYear"},
-    {"calculate": "-datum.Non_Revenue_GL", "as": "LossNeg"},
-    {"calculate": "datum.Desalination_Delivered_GL - datum.Non_Revenue_GL", "as": "NetGain"}
   ],
   "layer": [
     {
-      "name": "ZERO_LINE",
-      "mark": {"type": "rule", "color": "white", "strokeWidth": 2, "opacity": 0.3},
-      "encoding": {"x": {"datum": 0, "type": "quantitative", "scale": {"domain": [-100, 150]}, "axis": {"title": "Gigalitres (GL)", "labelColor": "#B0BEC5", "titleColor": "#B0BEC5", "grid": false}}}
-    },
-    {
-      "name": "DRAIN_BAR",
-      "mark": {"type": "bar", "height": 60, "color": "#E67E22", "opacity": 0.8, "cornerRadiusLeft": 5},
+      "name": "QUADRANT_LABELS",
+      "data": {
+        "values": [
+          {"x": 90, "y": 10, "text": "SAFE ZONE"},
+          {"x": 50, "y": 10, "text": "CRITICAL STRESS"},
+          {"x": 50, "y": 130, "text": "ENGINEERED SURVIVAL"},
+          {"x": 90, "y": 130, "text": "ARTIFICIAL RECHARGE"}
+        ]
+      },
+      "mark": {"type": "text", "fontSize": 14, "fontWeight": 900, "opacity": 0.2, "color": "#D7CCC8"},
       "encoding": {
-        "x": {"field": "LossNeg", "type": "quantitative"},
-        "x2": {"datum": 0}
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "text"}
       }
     },
     {
-      "name": "GAIN_BAR",
-      "mark": {"type": "bar", "height": 60, "color": "#3498DB", "opacity": 0.8, "cornerRadiusRight": 5},
+      "name": "TRAJECTORY",
+      "mark": {"type": "line", "point": false, "strokeWidth": 2, "color": "white", "opacity": 0.2, "interpolate": "monotone"},
       "encoding": {
-        "x": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
-        "x2": {"datum": 0}
+        "x": {"field": "Storage_Percentage", "type": "quantitative"},
+        "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
+        "order": {"field": "Year", "type": "quantitative"}
       }
     },
     {
-      "name": "NET_MARKER",
-      "mark": {"type": "rule", "color": "white", "strokeWidth": 4, "strokeCap": "round"},
-      "encoding": {"x": {"field": "NetGain", "type": "quantitative"}}
+      "name": "DATA_POINTS",
+      "mark": {"type": "point", "size": 300, "filled": true, "stroke": "white", "strokeWidth": 1.5},
+      "encoding": {
+        "x": {
+          "field": "Storage_Percentage",
+          "type": "quantitative",
+          "scale": {"domain": [40, 100]},
+          "axis": {"title": "Reservoir Health (Average Storage %)", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "grid": false}
+        },
+        "y": {
+          "field": "Desalination_Delivered_GL",
+          "type": "quantitative",
+          "scale": {"domain": [-5, 150]},
+          "axis": {"title": "Engineering Injection (Desal GL)", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "grid": false}
+        },
+        "color": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {"scheme": "magma"},
+          "legend": {"title": "Timeline", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8", "format": "d"}
+        },
+        "opacity": {
+          "condition": {"param": "hover", "value": 1, "empty": true},
+          "value": 0.4
+        },
+        "size": {
+          "condition": {"param": "hover", "value": 600, "empty": false},
+          "value": 300
+        },
+        "tooltip": [
+          {"field": "Year", "type": "quantitative", "title": "Year"},
+          {"field": "Storage_Percentage", "type": "quantitative", "title": "Storage %", "format": ".1f"},
+          {"field": "Desalination_Delivered_GL", "type": "quantitative", "title": "Desal (GL)"}
+        ]
+      }
     },
     {
-      "name": "LABELS",
+      "name": "YEAR_LABELS",
+      "mark": {"type": "text", "dy": -20, "fontSize": 12, "fontWeight": "bold", "color": "white"},
+      "encoding": {
+        "x": {"field": "Storage_Percentage", "type": "quantitative"},
+        "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
+        "text": {"field": "Year", "type": "nominal"},
+        "opacity": {
+          "condition": {"param": "hover", "value": 1, "empty": false},
+          "value": 0
+        }
+      }
+    },
+    {
+      "name": "FORENSIC_HUD",
+      "transform": [{"filter": {"param": "hover"}}],
       "layer": [
         {
-          "mark": {"type": "text", "align": "right", "dx": -10, "fontSize": 24, "fontWeight": 900, "color": "#E67E22", "y": -20},
-          "encoding": {"x": {"field": "LossNeg", "type": "quantitative"}, "text": {"field": "Non_Revenue_GL", "type": "quantitative", "format": ".0f"}}
-        },
-        {
-          "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 24, "fontWeight": 900, "color": "#3498DB", "y": -20},
-          "encoding": {"x": {"field": "Desalination_Delivered_GL", "type": "quantitative"}, "text": {"field": "Desalination_Delivered_GL", "type": "quantitative", "format": ".0f"}}
-        },
-        {
-          "mark": {"type": "text", "align": "center", "fontSize": 14, "fontWeight": "bold", "color": "white", "y": 60},
-          "encoding": {"x": {"field": "NetGain", "type": "quantitative"}, "text": {"datum": "NET BALANCE"}}
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "fontSize": 20,
+            "fontWeight": 900,
+            "color": "#F1C40F",
+            "x": 20,
+            "y": 20
+          },
+          "encoding": {
+            "text": {
+              "calculate": "'SYSTEM STATUS: ' + (datum.Storage_Percentage < 65 ? 'CRITICAL' : 'RECOVERY')",
+              "as": "statusText"
+            }
+          }
         }
       ]
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "middle",
-        "fontSize": 100,
-        "fontWeight": 900,
-        "color": "rgba(255,255,255,0.05)",
-        "y": 100
-      },
-      "encoding": {
-        "x": {"datum": 25},
-        "text": {"field": "YearInt", "type": "nominal"}
-      }
     }
   ],
   "config": {

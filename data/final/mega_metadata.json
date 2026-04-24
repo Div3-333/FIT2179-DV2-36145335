@@ -63,10 +63,10 @@
         "citation": "Melbourne Water. (2026). Greater Melbourne Potable Demand & Desalination Orders. Spatially and temporally harmonized by D. Sharma (2026)."
     },
     "chart10": {
-        "description": "The Engineering Paradox: Forensic dashboard of production vs. infrastructure loss.",
-        "methodology": "Forensic Synchronicity: Implemented an H-Sync dashboard architecture. Module A (Net Gain): A central radial gauge that mathematically derives the 'Net Survival Gain' by subtracting infrastructure leakage from engineered production. Module B (The Paradox): A high-fidelity text-based HUD contrasting 'Engineered Production' (Desal) against 'Unseen Infrastructure Loss' (Non-Revenue Water). Mathematical Derivation: Production and Loss volumes were harmonized from the Victorian Water Accounts to reveal years of negative engineered net-gain (e.g., 2018). Aesthetic: Industrial control-room theme with chromatic shift logic.",
+        "description": "The Survival Envelope: High-fidelity system resilience scan mapping Victorian water survival.",
+        "methodology": "Resilience Mapping: Implemented a high-fidelity scatter-trajectory idiom plotting 'Reservoir Health' (Average Storage %) against 'Engineering Injection' (Desalination Orders). System Trajectory: Connected temporal data points (2012-2025) to visualize the state's physical movement across stress quadrants. Quadrant Modeling: Modeled four distinct operational zones: Safe Zone, Critical Stress, Engineered Survival, and Artificial Recharge. Forensic HUD: Integrated a real-time status indicator (Critical vs Recovery) based on storage thresholds. Aesthetic: Industrial tech-scan theme with 'Magma' temporal encoding.",
         "source": "Melbourne Water + Victorian State Government (DEECA)",
-        "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
-        "citation": "Melbourne Water. (2026). Greater Melbourne Potable Demand & Infrastructure Loss Data. Spatially and temporally harmonized by D. Sharma (2026)."
+        "url": "https://www.melbournewater.com.au/water-data-and-education",
+        "citation": "Melbourne Water. (2026). Historical Reservoir Levels & Desalination Orders. Spatially and temporally harmonized for resilience scanning by D. Sharma (2026)."
     }
 }
