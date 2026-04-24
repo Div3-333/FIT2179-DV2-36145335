@@ -382,16 +382,18 @@
     </section>
 
     <script>
-        // Linking the Vega-Lite JSON files from the vega-specs folder
-        vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').catch(console.error);
-        vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
-        vegaEmbed('#vis-chart-2-zoom', 'vega-specs/chart2_zoom.json').catch(console.error);
-        
-        /* 
-        Remaining charts will be linked as we build them:
-        vegaEmbed('#vis-chart-3', 'vega-specs/chart3.json').catch(console.error);
-        ... 
-        */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Linking the Vega-Lite JSON files from the vega-specs folder
+            vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').catch(console.error);
+            vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
+            vegaEmbed('#vis-chart-2-zoom', 'vega-specs/chart2_zoom.json').catch(console.error);
+            
+            /* 
+            Remaining charts will be linked as we build them:
+            vegaEmbed('#vis-chart-3', 'vega-specs/chart3.json').catch(console.error);
+            ... 
+            */
+        });
     </script>
 </body>
 </html>
