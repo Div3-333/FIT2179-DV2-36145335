@@ -49,11 +49,11 @@
         "citation": "Bureau of Meteorology. (2026). Australian Groundwater Explorer: Bore Water Levels. ArcGIS Hub."
     },
     "chart8": {
-        "description": "The Extraction Core Sample: Proportional supply shift streamgraph.",
-        "methodology": "Idiom Engineering: Implemented a 100% normalized stacked area chart (streamgraph) to visualize the relative change in water source reliance. Data was aggregated from the Victorian Water Accounts. Interaction: Developed a custom 'Interactive Probe' using a point selection on the X-axis (Water Year) to trigger a dynamic vertical rule and text callouts, allowing for precise forensic sampling of supply strata over time.",
+        "description": "High-fidelity forensic dashboard of Victorian water supply proportions.",
+        "methodology": "Structural Pivot: Implemented a reversed-stacking 100% area gauge where alternative sources (Desal, Groundwater, Recycled) expand from the left to physically 'push back' surface water reliance. Temporal Filtering: Data is capped at 2021 to preserve the narrative integrity of the structural shift, excluding the 2022 outlier wet year. Emphasis Engineering: Integrated a chromatic background shift that triggers at the 2018 threshold, changing background text from Blue to Amber to signal the transition to an engineered supply era. H-Sync Architecture: Uses horizontal concatenation to sync a massive 950px morphing bar with a live-updating numeric data panel.",
         "source": "Victorian State Government (DEECA)",
         "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
-        "citation": "Victorian State Government. (2026). Victorian Water Accounts 2022-23: Total use by resource. Department of Energy, Environment and Climate Action."
+        "citation": "Victorian State Government. (2026). Victorian Water Accounts: Total use by resource. Department of Energy, Environment and Climate Action."
     },
     "chart9": {
         "description": "The Lifeline: Wonthaggi to Cardinia pipeline route map.",
