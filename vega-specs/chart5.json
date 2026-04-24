@@ -80,7 +80,7 @@
         "subtitleFontSize": 16,
         "subtitleColor": "#A9CCE3"
       },
-      "width": "container",
+      "width": 800,
       "height": 240,
       "data": {"url": "data/final/chart5_Historical_Data.csv"},
       "transform": [
