@@ -1,8 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 500,
+  "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
+  "padding": {"left": 20, "top": 20, "right": 160, "bottom": 20},
   "title": {
     "text": "The Reservoir Network",
     "subtitle": "Current Capacity (%) and Infrastructure Magnitude (ML) | Victoria",
@@ -16,7 +17,7 @@
   "projection": {
     "type": "mercator",
     "center": [145.8, -37.8],
-    "scale": 9000
+    "scale": 8500
   },
   "layer": [
     {
@@ -27,7 +28,7 @@
       "mark": {
         "type": "geoshape",
         "fill": "rgba(255,255,255,0.03)",
-        "stroke": "rgba(255,255,255,0.1)",
+        "stroke": "rgba(255,255,255,0.08)",
         "strokeWidth": 0.5
       }
     },
@@ -35,7 +36,7 @@
       "data": {"url": "data/final/chart6_dam_locations.csv"},
       "mark": {
         "type": "circle",
-        "opacity": 0.15,
+        "opacity": 0.1,
         "color": "#FCFDBF"
       },
       "encoding": {
@@ -44,7 +45,7 @@
         "size": {
           "field": "Capacity_ML",
           "type": "quantitative",
-          "scale": {"range": [400, 7000]},
+          "scale": {"range": [400, 6000]},
           "legend": null
         }
       }
@@ -54,9 +55,9 @@
       "mark": {
         "type": "circle",
         "filled": true,
-        "opacity": 0.95,
+        "opacity": 0.7,
         "stroke": "white",
-        "strokeWidth": 1.5
+        "strokeWidth": 1
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -64,14 +65,16 @@
         "size": {
           "field": "Capacity_ML",
           "type": "quantitative",
-          "scale": {"range": [100, 3000]},
+          "scale": {"range": [100, 2500]},
           "legend": {
             "title": "Capacity (ML)", 
             "labelColor": "#E0F2FE", 
             "titleColor": "#E0F2FE", 
             "format": ".1s",
             "orient": "right",
-            "offset": 20
+            "symbolType": "circle",
+            "symbolFillColor": "rgba(255,255,255,0.2)",
+            "offset": 40
           }
         },
         "color": {
@@ -87,7 +90,7 @@
             "labelColor": "#E0F2FE", 
             "titleColor": "#E0F2FE",
             "orient": "right",
-            "offset": 20
+            "offset": 40
           }
         },
         "tooltip": [
@@ -103,9 +106,13 @@
       "mark": {
         "type": "text",
         "dy": -22,
-        "fontSize": 10,
+        "fontSize": 11,
         "fontWeight": "bold",
-        "color": "white"
+        "color": "white",
+        "stroke": "#17202A",
+        "strokeWidth": 2,
+        "strokeOpacity": 0.8,
+        "baseline": "bottom"
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
