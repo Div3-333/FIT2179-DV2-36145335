@@ -324,12 +324,15 @@
                 </div>
             </div>
 
-            <div class="story-row">
-                <div class="text-block">
-                    <p>By plotting current capacities, we can see the uneven distribution of this lag across the network. The system is fundamentally stressed.</p>
+            <div class="story-row" style="grid-template-columns: 1fr 1.6fr; align-items: flex-start; gap: 40px; margin-top: 80px;">
+                <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Reservoir Network</h2>
+                    <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
+                        This geographic audit shows the state of our "tanks" in real-time. By mapping the network, we see the uneven distribution of the recovery lag. While some <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Healthy Basins</span> (Yellow) maintain high levels, the massive <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Purple Anchors</span> like the Thomson Reservoir dictate our long-term security. The larger the bubble, the more critical its failure: as the color shifts toward the dark spectrum, the urban centers that rely on these points move closer to a forced engineering shift.
+                    </p>
                 </div>
-                <div id="vis-chart-6" class="viz-canvas" style="width: 100%;">
-                    [CHART 6: Point Map of Current Dam Capacities]
+                <div id="vis-chart-6" class="viz-canvas" style="min-height: 480px;">
+                    <!-- Chart 6 Renders here -->
                 </div>
             </div>
         </div>
@@ -397,10 +400,12 @@
             vegaEmbed('#vis-chart-2-comparison', 'vega-specs/chart2_comparison.json').catch(console.error);
             vegaEmbed('#vis-chart-3', 'vega-specs/chart3.json').catch(console.error);
             vegaEmbed('#vis-chart-4', 'vega-specs/chart4.json').catch(console.error);
+            vegaEmbed('#vis-chart-5', 'vega-specs/chart5.json').catch(console.error);
+            vegaEmbed('#vis-chart-6', 'vega-specs/chart6.json').catch(console.error);
 
             /* 
             Remaining charts will be linked as we build them:
-            vegaEmbed('#vis-chart-5', 'vega-specs/chart5.json').catch(console.error);
+            vegaEmbed('#vis-chart-7', 'vega-specs/chart7.json').catch(console.error);
             ... 
             */
         });
