@@ -1,127 +1,139 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
+  "description": "High-Fidelity Pulsing Artery Dashboard",
+  "width": 1000,
   "height": 550,
   "padding": {"left": 20, "top": 20, "right": 20, "bottom": 20},
-  "projection": {
-    "type": "mercator",
-    "center": [145.5, -38.25],
-    "scale": 18000
-  },
-  "title": {
-    "text": "The Metallic Artery",
-    "subtitle": "84km Industrial Pipeline: Forced Migration of Seawater | Wonthaggi to Cardinia",
-    "anchor": "start",
-    "color": "#2C3E50",
-    "fontSize": 28,
-    "subtitleFontSize": 16,
-    "subtitleColor": "#7F8C8D",
-    "offset": 30
-  },
+  "params": [
+    {
+      "name": "orderYear",
+      "value": 2020,
+      "bind": {
+        "input": "range",
+        "min": 2012,
+        "max": 2024,
+        "step": 1,
+        "name": "Arterial Load (Year): "
+      }
+    }
+  ],
   "layer": [
     {
-      "data": {"url": "data/final/chart9_pipeline_route.csv"},
-      "mark": {
-        "type": "line",
-        "stroke": "#BDC3C7",
-        "strokeWidth": 10,
-        "strokeCap": "round",
-        "opacity": 0.2
-      },
-      "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "order": {"field": "Point_Order", "type": "quantitative"}
-      }
-    },
-    {
-      "data": {"url": "data/final/chart9_pipeline_route.csv"},
-      "mark": {
-        "type": "line",
-        "stroke": "#3498DB",
-        "strokeWidth": 5,
-        "strokeJoin": "round"
-      },
-      "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "order": {"field": "Point_Order", "type": "quantitative"}
-      }
-    },
-    {
-      "data": {"url": "data/final/chart9_pipeline_route.csv"},
-      "mark": {
-        "type": "line",
-        "stroke": "#AED6F1",
-        "strokeWidth": 2,
-        "strokeDash": [10, 5]
-      },
-      "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "order": {"field": "Point_Order", "type": "quantitative"}
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {"Location": "Wonthaggi Desal Plant", "Lat": -38.583, "Lon": 145.581, "Type": "Source", "Spec": "450 ML / Day"},
-          {"Location": "Cardinia Reservoir", "Lat": -37.962, "Lon": 145.413, "Type": "Sink", "Spec": "Urban Storage"}
-        ]
+      "name": "GEOGRAPHIC_BASE",
+      "projection": {
+        "type": "mercator",
+        "center": [145.45, -38.25],
+        "scale": 20000
       },
       "layer": [
         {
-          "mark": {"type": "point", "shape": "circle", "size": 500, "filled": true, "opacity": 0.15},
+          "data": {"url": "data/final/chart9_pipeline_route.csv"},
+          "mark": {
+            "type": "line",
+            "stroke": "#BDC3C7",
+            "strokeWidth": 2,
+            "opacity": 0.2
+          },
           "encoding": {
-            "longitude": {"field": "Lon", "type": "quantitative"},
-            "latitude": {"field": "Lat", "type": "quantitative"},
-            "color": {
-              "field": "Type",
-              "type": "nominal",
-              "scale": {"domain": ["Source", "Sink"], "range": ["#F1C40F", "#3498DB"]},
-              "legend": null
+            "longitude": {"field": "Longitude", "type": "quantitative"},
+            "latitude": {"field": "Latitude", "type": "quantitative"},
+            "order": {"field": "Point_Order", "type": "quantitative"}
+          }
+        },
+        {
+          "data": {
+            "url": "data/final/chart10_desal_orders.csv"
+          },
+          "transform": [
+            {"filter": "datum.Year == orderYear"},
+            {
+              "lookup": "Year",
+              "from": {
+                "data": {"url": "data/final/chart9_pipeline_route.csv"},
+                "key": "Location",
+                "fields": ["Latitude", "Longitude", "Point_Order"]
+              },
+              "as": "geo"
+            },
+            {
+              "calculate": "datum.Desalination_Delivered_GL == 0 ? 1 : datum.Desalination_Delivered_GL / 10",
+              "as": "pipeThickness"
+            }
+          ],
+          "mark": {
+            "type": "line",
+            "stroke": "#3498DB",
+            "strokeCap": "round",
+            "strokeJoin": "round"
+          },
+          "data": {"url": "data/final/chart9_pipeline_route.csv"},
+          "transform": [
+            {
+              "lookup": "Point_Order",
+              "from": {
+                "data": {"url": "data/final/chart10_desal_orders.csv"},
+                "key": "Year",
+                "fields": ["Desalination_Delivered_GL"]
+              },
+              "default": 0
+            },
+            {
+              "calculate": "parseInt(datum.Desalination_Delivered_GL) == 0 ? 2 : (datum.Desalination_Delivered_GL / 10) + 3",
+              "as": "dynamicWidth"
+            }
+          ],
+          "encoding": {
+            "longitude": {"field": "Longitude", "type": "quantitative"},
+            "latitude": {"field": "Latitude", "type": "quantitative"},
+            "order": {"field": "Point_Order", "type": "quantitative"},
+            "strokeWidth": {
+              "condition": {"test": "orderYear == 2012", "value": 2},
+              "value": 10
+            },
+            "opacity": {
+              "condition": {"test": "orderYear > 2018", "value": 1},
+              "value": 0.4
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "name": "DATA_OVERLAY",
+      "data": {"url": "data/final/chart10_desal_orders.csv"},
+      "transform": [{"filter": "datum.Year == orderYear"}],
+      "layer": [
         {
-          "mark": {"type": "point", "shape": "circle", "size": 100, "filled": true, "stroke": "white", "strokeWidth": 2},
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "top",
+            "fontSize": 40,
+            "fontWeight": 900,
+            "color": "rgba(44, 62, 80, 0.1)"
+          },
           "encoding": {
-            "longitude": {"field": "Lon", "type": "quantitative"},
-            "latitude": {"field": "Lat", "type": "quantitative"},
-            "color": {"field": "Type", "type": "nominal"}
+            "x": {"datum": 950},
+            "y": {"datum": 50},
+            "text": {"field": "Year", "type": "nominal"}
           }
         },
         {
           "mark": {
             "type": "text",
-            "align": "left",
-            "dx": 15,
-            "dy": -5,
-            "fontSize": 14,
+            "align": "right",
+            "baseline": "top",
+            "fontSize": 18,
             "fontWeight": "bold",
-            "color": "#2C3E50",
-            "font": "Merriweather"
+            "color": "#3498DB"
           },
           "encoding": {
-            "longitude": {"field": "Lon", "type": "quantitative"},
-            "latitude": {"field": "Lat", "type": "quantitative"},
-            "text": {"field": "Location", "type": "nominal"}
-          }
-        },
-        {
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "dx": 15,
-            "dy": 15,
-            "fontSize": 12,
-            "fontStyle": "italic",
-            "color": "#7F8C8D"
-          },
-          "encoding": {
-            "longitude": {"field": "Lon", "type": "quantitative"},
-            "latitude": {"field": "Lat", "type": "quantitative"},
-            "text": {"field": "Spec", "type": "nominal"}
+            "x": {"datum": 950},
+            "y": {"datum": 100},
+            "text": {
+              "calculate": "datum.Desalination_Delivered_GL + ' Gigalitres Ordered'",
+              "as": "orderText"
+            }
           }
         }
       ]
