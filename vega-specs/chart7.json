@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
+  "width": 500,
   "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
@@ -8,15 +8,15 @@
     "subtitle": "High-Resolution Extraction Intensity (0.1° Grid) | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
-    "fontSize": 28,
-    "subtitleFontSize": 16,
+    "fontSize": 24,
+    "subtitleFontSize": 14,
     "subtitleColor": "#B0BEC5",
     "offset": 25
   },
   "projection": {
     "type": "mercator",
     "center": [144.5, -36.5],
-    "scale": 3500
+    "scale": 4000
   },
   "layer": [
     {
@@ -59,7 +59,7 @@
             "labelColor": "#D7CCC8", 
             "titleColor": "#D7CCC8",
             "orient": "right",
-            "gradientLength": 300,
+            "gradientLength": 250,
             "values": [0, 5, 10, 15]
           }
         },

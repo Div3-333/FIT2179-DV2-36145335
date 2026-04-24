@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 450,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "title": {
+    "text": "The Engineered Shift",
+    "subtitle": "Greater Melbourne Water Supply Composition: Traditional vs. Desalinated (GL) | 2000 - 2025",
+    "anchor": "start",
+    "color": "#2C3E50",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#5D6D7E",
+    "offset": 20
+  },
+  "data": {
+    "url": "data/final/chart10_Greater_Melb_Potable.csv"
+  },
+  "transform": [
+    {
+      "fold": ["Residential_GL", "Non_Residential_GL", "Non_Revenue_GL"],
+      "as": ["Usage_Type", "Volume_GL"]
+    },
+    {
+      "lookup": "Year",
+      "from": {
+        "data": {
+          "url": "data/final/chart10_desal_orders.csv"
+        },
+        "key": "Year",
+        "fields": ["Desalination_Delivered_GL"]
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "area", "opacity": 0.8},
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Financial Year",
+          "axis": {"labelAngle": -45, "grid": false}
+        },
+        "y": {
+          "field": "Volume_GL",
+          "type": "quantitative",
+          "title": "Volume (Gigalitres)",
+          "stack": "zero"
+        },
+        "color": {
+          "field": "Usage_Type",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Residential_GL", "Non_Residential_GL", "Non_Revenue_GL"],
+            "range": ["#3498DB", "#2E86C1", "#1B4F72"]
+          },
+          "legend": {"orient": "top-left", "title": "Potable Demand"}
+        },
+        "tooltip": [
+          {"field": "Year", "type": "nominal"},
+          {"field": "Usage_Type", "type": "nominal", "title": "Type"},
+          {"field": "Volume_GL", "type": "quantitative", "title": "Volume (GL)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "area",
+        "color": "#F1C40F",
+        "opacity": 0.5,
+        "line": {"color": "#F39C12", "strokeWidth": 2}
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "nominal"},
+        "y": {
+          "field": "Desalination_Delivered_GL",
+          "type": "quantitative",
+          "title": "Desalinated Supply (GL)"
+        },
+        "tooltip": [
+          {"field": "Year", "type": "nominal"},
+          {"field": "Desalination_Delivered_GL", "type": "quantitative", "title": "Desal (GL)"}
+        ]
+      }
+    }
+  ],
+  "resolve": {"scale": {"y": "shared"}},
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": "transparent"},
+    "font": "Source Sans Pro"
+  }
+}
