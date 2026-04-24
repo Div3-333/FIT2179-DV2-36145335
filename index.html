@@ -364,11 +364,11 @@
             </div>
 
             <div class="full-width-viz" style="margin-top: 80px;">
-                <div id="vis-chart-8" class="viz-canvas" style="min-height: 480px; position: relative;">
+                <div id="vis-chart-8" class="viz-canvas" style="min-height: 420px; position: relative;">
                     <!-- Chart 8 Renders here -->
                 </div>
-                <div style="text-align: center; margin-top: -30px; margin-bottom: 30px;">
-                    <button id="play-chart-8" style="background: #3498DB; color: white; border: none; padding: 12px 30px; border-radius: 30px; cursor: pointer; font-family: 'Source Sans Pro'; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 1rem;">
+                <div style="text-align: center; margin-top: -10px; margin-bottom: 20px;">
+                    <button id="play-chart-8" style="background: #3498DB; color: white; border: none; padding: 10px 25px; border-radius: 25px; cursor: pointer; font-family: 'Source Sans Pro'; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 1rem;">
                         ▶ Play Liquid Flow
                     </button>
                 </div>
@@ -381,30 +381,39 @@
             </div>
 
             <script>
-                // Logic for Chart 8 Play Button
+                // Robust Logic for Chart 8 Play Button
                 let chart8View = null;
                 let isPlaying = false;
-                let playInterval = null;
+                let lastTime = 0;
 
                 function setupPlayButton(res) {
                     chart8View = res.view;
                     const btn = document.getElementById('play-chart-8');
                     
+                    function animate(time) {
+                        if (!isPlaying) return;
+                        
+                        // Control animation speed (approx 10 steps per second)
+                        if (time - lastTime > 100) {
+                            let current = chart8View.signal('timeStep');
+                            let next = current + 0.1;
+                            if (next > 2022.1) next = 2015;
+                            
+                            chart8View.signal('timeStep', next).runAsync();
+                            lastTime = time;
+                        }
+                        requestAnimationFrame(animate);
+                    }
+
                     btn.addEventListener('click', () => {
                         isPlaying = !isPlaying;
                         if (isPlaying) {
                             btn.innerHTML = '⏸ Pause Flow';
                             btn.style.background = '#E67E22';
-                            playInterval = setInterval(() => {
-                                let current = chart8View.signal('timeStep');
-                                let next = current + 0.1;
-                                if (next > 2022) next = 2015;
-                                chart8View.signal('timeStep', next).run();
-                            }, 100);
+                            requestAnimationFrame(animate);
                         } else {
                             btn.innerHTML = '▶ Play Liquid Flow';
                             btn.style.background = '#3498DB';
-                            clearInterval(playInterval);
                         }
                     });
                 }

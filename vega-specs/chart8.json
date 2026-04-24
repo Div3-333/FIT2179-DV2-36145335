@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1000,
+  "width": "container",
   "height": 220,
   "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 40, "top": 20, "right": 40, "bottom": 20},
+  "padding": {"left": 0, "top": 20, "right": 0, "bottom": 120},
   "title": {
     "text": "The Fluid Shift",
     "subtitle": "Continuous 'Core Sample' of Victorian Supply Proportions | 2015 - 2023",
@@ -39,8 +39,8 @@
     {
       "mark": {
         "type": "bar",
-        "height": 140,
-        "cornerRadius": 15,
+        "height": 180,
+        "cornerRadius": 10,
         "stroke": "white",
         "strokeWidth": 2,
         "opacity": 0.95
@@ -67,15 +67,13 @@
             "range": ["#3498DB", "#2E86C1", "#BB8FCE", "#A569BD", "#F1C40F"]
           },
           "legend": {
-            "title": "Water Source",
+            "title": null,
             "labelColor": "#D7CCC8",
-            "titleColor": "#D7CCC8",
-            "orient": "none",
-            "legendX": 750,
-            "legendY": -30,
-            "columns": 2,
-            "labelFontSize": 11,
-            "titleFontSize": 12
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 5,
+            "offset": 60,
+            "labelFontSize": 11
           }
         }
       }
@@ -88,7 +86,7 @@
         "fontSize": 120,
         "fontWeight": 900,
         "color": "rgba(255,255,255,0.06)",
-        "y": 70
+        "y": 100
       },
       "encoding": {
         "text": {"field": "DisplayYear", "type": "nominal"}
