@@ -1,18 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 130,
-  "autosize": {"type": "fit", "contains": "padding"},
-  "padding": {"left": 10, "top": 50, "right": 10, "bottom": 80},
+  "height": 80,
+  "autosize": {"type": "fit-x", "contains": "padding"},
+  "padding": {"left": 10, "top": 40, "right": 10, "bottom": 50},
   "title": {
     "text": "The Fluid Shift",
     "subtitle": "Resource Proportions (ML) | 2015 - 2023",
     "anchor": "start",
     "color": "#D7CCC8",
-    "fontSize": 24,
-    "subtitleFontSize": 14,
+    "fontSize": 22,
+    "subtitleFontSize": 12,
     "subtitleColor": "#B0BEC5",
-    "offset": 40
+    "offset": 30
   },
   "data": {
     "url": "data/final/chart8_liquid_data.csv"
@@ -39,12 +39,12 @@
     {
       "mark": {
         "type": "bar",
-        "height": 100,
-        "cornerRadius": 8,
+        "height": 70,
+        "cornerRadius": 6,
         "stroke": "white",
         "strokeWidth": 1.5,
         "opacity": 0.9,
-        "y": 40
+        "y": 10
       },
       "encoding": {
         "x": {
@@ -73,9 +73,9 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 5,
-            "offset": 40,
-            "labelFontSize": 11,
-            "symbolSize": 100
+            "offset": 30,
+            "labelFontSize": 10,
+            "symbolSize": 80
           }
         }
       }
@@ -85,10 +85,10 @@
         "type": "text",
         "align": "center",
         "baseline": "bottom",
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#E0F2FE",
-        "dy": -15
+        "dy": -10
       },
       "encoding": {
         "x": {
@@ -97,7 +97,7 @@
           "stack": "normalize",
           "band": 0.5
         },
-        "y": {"datum": 40},
+        "y": {"datum": 10},
         "text": {
           "field": "Volume_ML", 
           "type": "quantitative", 
@@ -106,7 +106,7 @@
         "detail": {"field": "Resource_Type"},
         "opacity": {
           "condition": {"test": "datum.Volume_ML > 100000", "value": 1},
-          "value": 0.6
+          "value": 0
         }
       }
     },
@@ -115,7 +115,7 @@
         "type": "rule",
         "color": "white",
         "strokeWidth": 1,
-        "opacity": 0.5
+        "opacity": 0.4
       },
       "encoding": {
         "x": {
@@ -124,8 +124,8 @@
           "stack": "normalize",
           "band": 0.5
         },
-        "y": {"datum": 40},
-        "y2": {"datum": 60}
+        "y": {"datum": 10},
+        "y2": {"datum": 25}
       }
     },
     {
@@ -133,10 +133,10 @@
         "type": "text",
         "align": "center",
         "baseline": "middle",
-        "fontSize": 90,
+        "fontSize": 80,
         "fontWeight": 900,
         "color": "rgba(255,255,255,0.06)",
-        "y": 90
+        "y": 45
       },
       "encoding": {
         "text": {"field": "DisplayYear", "type": "nominal"}
