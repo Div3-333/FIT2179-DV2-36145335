@@ -6,7 +6,7 @@
   "projection": {
     "type": "mercator",
     "center": [145.5, -38.25],
-    "scale": 15000
+    "scale": 18000
   },
   "title": {
     "text": "The Metallic Artery",
@@ -24,9 +24,9 @@
       "mark": {
         "type": "line",
         "stroke": "#BDC3C7",
-        "strokeWidth": 8,
+        "strokeWidth": 10,
         "strokeCap": "round",
-        "opacity": 0.3
+        "opacity": 0.2
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -39,7 +39,7 @@
       "mark": {
         "type": "line",
         "stroke": "#3498DB",
-        "strokeWidth": 4,
+        "strokeWidth": 5,
         "strokeJoin": "round"
       },
       "encoding": {
@@ -53,8 +53,8 @@
       "mark": {
         "type": "line",
         "stroke": "#AED6F1",
-        "strokeWidth": 1.5,
-        "strokeDash": [8, 4]
+        "strokeWidth": 2,
+        "strokeDash": [10, 5]
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -65,13 +65,13 @@
     {
       "data": {
         "values": [
-          {"Location": "Wonthaggi Desal Plant", "Lat": -38.583, "Lon": 145.581, "Type": "Source"},
-          {"Location": "Cardinia Reservoir", "Lat": -37.962, "Lon": 145.413, "Type": "Sink"}
+          {"Location": "Wonthaggi Desal Plant", "Lat": -38.583, "Lon": 145.581, "Type": "Source", "Spec": "450 ML / Day"},
+          {"Location": "Cardinia Reservoir", "Lat": -37.962, "Lon": 145.413, "Type": "Sink", "Spec": "Urban Storage"}
         ]
       },
       "layer": [
         {
-          "mark": {"type": "point", "shape": "circle", "size": 300, "filled": true, "opacity": 0.2},
+          "mark": {"type": "point", "shape": "circle", "size": 500, "filled": true, "opacity": 0.15},
           "encoding": {
             "longitude": {"field": "Lon", "type": "quantitative"},
             "latitude": {"field": "Lat", "type": "quantitative"},
@@ -84,7 +84,7 @@
           }
         },
         {
-          "mark": {"type": "point", "shape": "circle", "size": 80, "filled": true, "stroke": "white", "strokeWidth": 1.5},
+          "mark": {"type": "point", "shape": "circle", "size": 100, "filled": true, "stroke": "white", "strokeWidth": 2},
           "encoding": {
             "longitude": {"field": "Lon", "type": "quantitative"},
             "latitude": {"field": "Lat", "type": "quantitative"},
@@ -96,7 +96,8 @@
             "type": "text",
             "align": "left",
             "dx": 15,
-            "fontSize": 12,
+            "dy": -5,
+            "fontSize": 14,
             "fontWeight": "bold",
             "color": "#2C3E50",
             "font": "Merriweather"
@@ -106,24 +107,24 @@
             "latitude": {"field": "Lat", "type": "quantitative"},
             "text": {"field": "Location", "type": "nominal"}
           }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 15,
+            "dy": 15,
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "color": "#7F8C8D"
+          },
+          "encoding": {
+            "longitude": {"field": "Lon", "type": "quantitative"},
+            "latitude": {"field": "Lat", "type": "quantitative"},
+            "text": {"field": "Spec", "type": "nominal"}
+          }
         }
       ]
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "baseline": "bottom",
-        "fontSize": 14,
-        "fontWeight": "bold",
-        "color": "#34495E",
-        "fontStyle": "italic"
-      },
-      "encoding": {
-        "x": {"datum": 780},
-        "y": {"datum": 530},
-        "text": {"datum": "Capacity: 450 Million Litres / Day"}
-      }
     }
   ],
   "config": {
