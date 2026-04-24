@@ -1,6 +1,7 @@
 {
-    "description": "Water Shift Slopegraph",
-    "source": "Victorian Water Accounts",
-    "url": "https://www.water.vic.gov.au/water-reporting/victorian-water-accounts",
+    "description": "The Extraction Core Sample: Proportional supply shift streamgraph.",
+    "methodology": "Idiom Engineering: Implemented a 100% normalized stacked area chart (streamgraph) to visualize the relative change in water source reliance. Data was aggregated from the Victorian Water Accounts. Interaction: Developed a custom 'Interactive Probe' using a point selection on the X-axis (Water Year) to trigger a dynamic vertical rule and text callouts, allowing for precise forensic sampling of supply strata over time.",
+    "source": "Victorian State Government (DEECA)",
+    "url": "https://www.water.vic.gov.au/water-reporting/vic-water-accounts",
     "citation": "Victorian State Government. (2026). Victorian Water Accounts 2022-23: Total use by resource. Department of Energy, Environment and Climate Action."
 }

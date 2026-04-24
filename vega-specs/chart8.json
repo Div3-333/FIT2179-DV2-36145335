@@ -23,9 +23,10 @@
           "name": "hover",
           "select": {
             "type": "point",
-            "fields": ["Water year"],
-            "on": "pointerover",
-            "clear": "pointerout"
+            "encodings": ["x"],
+            "on": "mouseover",
+            "clear": "mouseout",
+            "nearest": true
           }
         }
       ],
@@ -82,8 +83,8 @@
           }
         },
         "opacity": {
-          "condition": {"param": "hover", "value": 1, "empty": true},
-          "value": 0.3
+          "condition": {"param": "hover", "value": 1, "empty": false},
+          "value": 0.4
         }
       }
     },
@@ -97,6 +98,23 @@
       },
       "encoding": {
         "x": {"field": "Water year", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [{"filter": {"param": "hover"}}],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -10,
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "white"
+      },
+      "encoding": {
+        "x": {"field": "Water year", "type": "nominal"},
+        "y": {"datum": 1},
+        "text": {"field": "Water year", "type": "nominal"}
       }
     }
   ],

@@ -1,6 +1,7 @@
 {
-    "description": "Engineered Shift Stacked Area Chart",
-    "source": "Melbourne Water Annual Outlook",
+    "description": "The Engineered Shift: Stacked supply and demand area chart.",
+    "methodology": "Data Harmonization: Performed a many-to-one join between the Greater Melbourne Potable Demand dataset and the Desalination Order records. Transformation: Used a 'fold' transform to normalize multiple demand columns into a stackable long format. Layering: Superimposed a semi-transparent 'Buffer' layer (Desalination) over the base demand area to visually represent the engineered gap-filling of traditional catchments.",
+    "source": "Melbourne Water + Annual Water Outlook",
     "url": "https://www.melbournewater.com.au/water-data-and-education",
-    "citation": "Melbourne Water, et al. (2025). Melbourne\u2019s Annual Water Outlook 2026."
+    "citation": "Melbourne Water, et al. (2025). Melbourne's Annual Water Outlook 2026."
 }
