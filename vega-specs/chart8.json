@@ -1,16 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "H-Sync Forensic Dashboard with High-Emphasis Chromatic Shift",
+  "description": "H-Sync Forensic Dashboard with High-Emphasis Chromatic Shift.",
   "background": "transparent",
   "spacing": 50,
+  "data": {"url": "data/final/chart8_liquid_data.csv"},
   "params": [
+    {
+      "name": "showModern",
+      "value": false
+    },
     {
       "name": "timeStep",
       "value": 2015,
       "bind": {
         "input": "range",
         "min": 2015,
-        "max": 2021,
+        "max": 2024,
         "step": 0.1,
         "name": "Analyze Year: "
       }
@@ -18,7 +23,7 @@
   ],
   "title": {
     "text": "The Proportional Pivot",
-    "subtitle": "Supply Proportion Forensic Dashboard (ML) | 2015 - 2021",
+    "subtitle": "Supply Proportion Forensic Dashboard (ML) | 2012 - 2025",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -26,12 +31,14 @@
     "subtitleColor": "#B0BEC5",
     "offset": 30
   },
+  "transform": [
+    {"filter": "showModern || datum.YearStep <= 2021"},
+    {"filter": "abs(datum.YearStep - timeStep) < 0.01"}
+  ],
   "hconcat": [
     {
-      "width": 950,
+      "width": 850,
       "height": 100,
-      "data": {"url": "data/final/chart8_liquid_data.csv"},
-      "transform": [{"filter": "abs(datum.YearStep - timeStep) < 0.05"}],
       "layer": [
         {
           "mark": {
@@ -68,9 +75,9 @@
                 "orient": "bottom",
                 "direction": "horizontal",
                 "columns": 5,
-                "offset": 40,
-                "labelFontSize": 14,
-                "symbolSize": 200
+                "offset": 30,
+                "labelFontSize": 12,
+                "symbolSize": 150
               }
             }
           }
@@ -104,9 +111,7 @@
         "fontStyle": "italic",
         "offset": 10
       },
-      "data": {"url": "data/final/chart8_liquid_data.csv"},
       "transform": [
-        {"filter": "abs(datum.YearStep - timeStep) < 0.05"},
         {"calculate": "datum.Resource_Type == 'Desalinated water - consumptive' ? 0 : datum.Resource_Type == 'Recycled water - consumptive' ? 1 : datum.Resource_Type == 'Groundwater - consumptive' ? 2 : datum.Resource_Type == 'Surface water - environmental' ? 3 : 4", "as": "rowOrder"}
       ],
       "mark": {"type": "text", "align": "right", "fontSize": 14, "fontWeight": "900"},
