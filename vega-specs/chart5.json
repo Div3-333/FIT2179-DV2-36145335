@@ -26,7 +26,7 @@
         {"calculate": "datetime(datum.Year, datum.MonthNum, 1)", "as": "Date"},
         {"calculate": "datum.Rainfall_mm - 50.6", "as": "Anomaly"}
       ],
-      "mark": {"type": "bar", "tooltip": true, "width": {"band": 0.8}},
+      "mark": {"type": "bar", "tooltip": true, "width": 5},
       "encoding": {
         "x": {
           "field": "Date",

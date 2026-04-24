@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
+  "width": 800,
   "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
     "text": "Subterranean Stress",
-    "subtitle": "Concentration of Active Bore Permits (Groundwater Extraction) | Victoria",
+    "subtitle": "Active Bore Permits and Groundwater Extraction Density | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 28,
@@ -18,8 +18,8 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [145.4, -36.5],
-    "scale": 3800
+    "center": [145, -36.5],
+    "scale": 3500
   },
   "layer": [
     {
@@ -29,7 +29,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "rgba(255,255,255,0.03)",
+        "fill": "rgba(255,255,255,0.02)",
         "stroke": "rgba(255,255,255,0.1)",
         "strokeWidth": 0.5
       }
@@ -37,33 +37,17 @@
     {
       "mark": {
         "type": "circle",
-        "opacity": 0.8,
-        "stroke": "white",
-        "strokeWidth": 0.5
+        "size": 4,
+        "opacity": 0.6,
+        "color": "#FE9F6D"
       },
       "encoding": {
-        "longitude": {
-          "bin": {"maxbins": 120},
-          "field": "Longitude",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "bin": {"maxbins": 120},
-          "field": "Latitude",
-          "type": "quantitative"
-        },
-        "size": {
-          "aggregate": "count",
-          "type": "quantitative",
-          "scale": {"range": [10, 500]},
-          "legend": {"title": "Bore Density", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
-        },
-        "color": {
-          "aggregate": "count",
-          "type": "quantitative",
-          "scale": {"scheme": "magma", "domain": [1, 10]},
-          "legend": {"title": "Permit Count", "labelColor": "#D7CCC8", "titleColor": "#D7CCC8"}
-        }
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "tooltip": [
+          {"field": "Latitude", "type": "quantitative"},
+          {"field": "Longitude", "type": "quantitative"}
+        ]
       }
     }
   ],

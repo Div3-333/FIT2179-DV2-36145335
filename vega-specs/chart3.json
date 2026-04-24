@@ -26,7 +26,7 @@
         {"calculate": "datetime(datum.Year, datum.MonthNum, 1)", "as": "Date"},
         {"filter": "datum.Year >= 2004 && datum.Year <= 2019"}
       ],
-      "mark": {"type": "bar", "color": "#94C1EA", "opacity": 0.6, "width": {"band": 0.8}},
+      "mark": {"type": "bar", "color": "#94C1EA", "opacity": 0.6, "width": 4},
       "encoding": {
         "x": {
           "field": "Date",
