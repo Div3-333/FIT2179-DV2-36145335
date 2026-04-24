@@ -15,8 +15,8 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [146.1, -37.85],
-    "scale": 15000
+    "center": [145.8, -37.8],
+    "scale": 9000
   },
   "layer": [
     {
@@ -27,7 +27,7 @@
       "mark": {
         "type": "geoshape",
         "fill": "rgba(255,255,255,0.03)",
-        "stroke": "rgba(255,255,255,0.08)",
+        "stroke": "rgba(255,255,255,0.1)",
         "strokeWidth": 0.5
       }
     },
@@ -35,7 +35,7 @@
       "data": {"url": "data/final/chart6_dam_locations.csv"},
       "mark": {
         "type": "circle",
-        "opacity": 0.2,
+        "opacity": 0.15,
         "color": "#FCFDBF"
       },
       "encoding": {
@@ -44,7 +44,7 @@
         "size": {
           "field": "Capacity_ML",
           "type": "quantitative",
-          "scale": {"range": [500, 8000]},
+          "scale": {"range": [400, 7000]},
           "legend": null
         }
       }
@@ -54,7 +54,7 @@
       "mark": {
         "type": "circle",
         "filled": true,
-        "opacity": 0.9,
+        "opacity": 0.95,
         "stroke": "white",
         "strokeWidth": 1.5
       },
@@ -64,12 +64,12 @@
         "size": {
           "field": "Capacity_ML",
           "type": "quantitative",
-          "scale": {"range": [100, 3500]},
+          "scale": {"range": [100, 3000]},
           "legend": {
-            "title": "Total Capacity (ML)", 
+            "title": "Capacity (ML)", 
             "labelColor": "#E0F2FE", 
             "titleColor": "#E0F2FE", 
-            "format": ".2s",
+            "format": ".1s",
             "orient": "bottom-left",
             "offset": 10
           }
@@ -79,7 +79,7 @@
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [40, 70, 100],
+            "domain": [65, 80, 100],
             "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
           },
           "legend": {
@@ -99,14 +99,13 @@
     },
     {
       "data": {"url": "data/final/chart6_dam_locations.csv"},
-      "transform": [{"filter": "datum.Capacity_ML > 50000"}],
+      "transform": [{"filter": "datum.Capacity_ML > 10000"}],
       "mark": {
         "type": "text",
-        "dy": -28,
-        "fontSize": 12,
+        "dy": -22,
+        "fontSize": 10,
         "fontWeight": "bold",
-        "color": "white",
-        "font": "Merriweather"
+        "color": "white"
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
