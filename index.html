@@ -257,14 +257,14 @@
             </div>
 
             <div class="full-width-viz" style="margin-top: 100px;">
-                <div class="glass-canvas" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; border-radius: 12px;">
-                    <div id="vis-chart-2" style="min-height: 450px;"></div>
-                    <div id="vis-chart-2-zoom" style="min-height: 450px;"></div>
+                <div class="glass-canvas" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 30px; border-radius: 12px; align-items: start;">
+                    <div id="vis-chart-2" style="min-height: 480px;"></div>
+                    <div id="vis-chart-2-comparison" style="min-height: 480px;"></div>
                 </div>
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2); margin-top: 30px; width: 100%; box-sizing: border-box;">
-                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">A Century of Heat & The Modern Shift</h2>
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">A Century of Heat & The Seasonal Fever</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The temperature profile of Victoria has fundamentally shifted. By mapping 116 years of data (Left), we see the long-term trend, but the true impact is hidden in the compression. When we isolate the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> against the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Modern Furnace (2010-2020)</span> on the right, the contrast is stark. Extreme anomalies are no longer outliers; they are the new seasonal baseline. This high-frequency warming act as a permanent atmospheric engine, evaporating moisture before it ever reaches our catchments.
+                        The temperature profile of Victoria has fundamentally shifted. While 116 years of monthly data (Left) reveal the intensifying frequency of heat, the **Seasonal Fever (Right)** isolates the damage. By comparing the average monthly cycles of the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> and the <span style="color: #FE9F6D; font-weight: bold;">Modern Furnace (2010-2020)</span>, we see a consistent, quantitative lift. Every month is now hotter than its historical counterpart—this persistent baseline elevation is the engine that drives our permanent water descent.
                     </p>
                 </div>
             </div>
@@ -386,7 +386,7 @@
             // Linking the Vega-Lite JSON files from the vega-specs folder
             vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').catch(console.error);
             vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
-            vegaEmbed('#vis-chart-2-zoom', 'vega-specs/chart2_zoom.json').catch(console.error);
+            vegaEmbed('#vis-chart-2-comparison', 'vega-specs/chart2_comparison.json').catch(console.error);
             
             /* 
             Remaining charts will be linked as we build them:

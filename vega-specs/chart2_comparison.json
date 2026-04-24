@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {
+    "url": "data/final/chart2_temperature.csv"
+  },
+  "title": {
+    "text": "The Seasonal Fever: 100 Year Shift",
+    "subtitle": "Average Monthly Max Temp: 1910-1920 vs. 2010-2020",
+    "anchor": "start",
+    "color": "#2C3E50",
+    "fontSize": 28,
+    "subtitleFontSize": 16,
+    "subtitleColor": "#5D6D7E",
+    "offset": 20
+  },
+  "transform": [
+    {
+      "filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"
+    },
+    {
+      "calculate": "datum.Year <= 1920 ? 'Historical (1910-20)' : 'Modern (2010-20)'",
+      "as": "Era"
+    },
+    {
+      "aggregate": [{"op": "mean", "field": "MaxTemp", "as": "AvgMax"}],
+      "groupby": ["Month", "Era"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone",
+        "strokeWidth": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal",
+          "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          "axis": {
+            "labelAngle": 0,
+            "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]"
+          }
+        },
+        "y": {
+          "field": "AvgMax",
+          "type": "quantitative",
+          "title": "Mean Max Temperature (°C)",
+          "scale": {"domain": [10, 32]}
+        },
+        "color": {
+          "field": "Era",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Historical (1910-20)", "Modern (2010-20)"],
+            "range": ["#3B0F70", "#FE9F6D"]
+          },
+          "legend": {"orient": "top-right", "title": null}
+        }
+      }
+    },
+    {
+      "mark": {"type": "point", "size": 80, "filled": true},
+      "encoding": {
+        "x": {"field": "Month", "type": "ordinal"},
+        "y": {"field": "AvgMax", "type": "quantitative"},
+        "color": {"field": "Era", "type": "nominal"},
+        "tooltip": [
+          {"field": "Era", "type": "nominal"},
+          {"field": "AvgMax", "type": "quantitative", "title": "Avg Temp", "format": ".1f"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#2C3E50",
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
+    }
+  }
+}
