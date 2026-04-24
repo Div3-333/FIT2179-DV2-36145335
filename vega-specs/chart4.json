@@ -29,7 +29,7 @@
       },
       "encoding": {
         "x": {"field": "Year", "type": "quantitative", "scale": {"domain": [1972, 2028]}, "axis": {"format": "d"}},
-        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative", "scale": {"domain": [800, 1300]}}
+        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative", "scale": {"domain": [600, 1200]}}
       }
     },
     {
@@ -56,7 +56,7 @@
           "field": "Annual_Evaporation_mm",
           "type": "quantitative",
           "title": "Annual Evaporation (mm)",
-          "scale": {"domain": [800, 1300]},
+          "scale": {"domain": [600, 1200]},
           "axis": {"gridColor": "rgba(255,255,255,0.1)"}
         },
         "color": {
