@@ -28,19 +28,19 @@
         }
 
         body {
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text-dark);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7; letter-spacing: 0.01em;
         }
 
         h1, h2, h3 { font-family: 'Merriweather', serif; margin-top: 0; }
         
         .narrative-text {
             font-family: 'Merriweather', serif;
-            font-size: 1.15rem;
+            font-size: 1.25rem; font-weight: 300;
             max-width: 650px;
             margin: 0 auto 40px auto;
             text-align: center;
@@ -244,7 +244,7 @@
         .audit-desc { font-size: 0.95rem; line-height: 1.7; color: #B0BEC5; margin: 0; margin-bottom: 15px; }
         .audit-diag { background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
         .chart-num { color: #17202A; background: #94C1EA; border-radius: 50%; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 900; }
-        .framework-box { background: rgba(23, 32, 42, 0.8); border: 1px solid rgba(52, 152, 219, 0.3); border-left: 4px solid #3498DB; padding: 20px; margin-top: 20px; font-size: 0.95rem; font-family: monospace; line-height: 1.6; color: #B0BEC5; }
+        .framework-box { background: rgba(23, 32, 42, 0.8); border: 1px solid rgba(52, 152, 219, 0.3); border-left: 4px solid #3498DB; padding: 20px; margin-top: 20px; font-size: 0.95rem; font-family: monospace; line-height: 1.7; letter-spacing: 0.01em; color: #B0BEC5; }
     </style>
 </head>
 <body>
@@ -257,7 +257,7 @@
         <div class="container">
             <h1 style="text-align: center; font-size: 3.5rem; letter-spacing: -1px; position: relative; z-index: 10;">From Sky to Tap</h1>
             <p class="narrative-text" style="color: #34495E;">
-                Australia's weather is breaking historical models. As atmospheric rivers run dry and evaporation climbs, Victoria's traditional water infrastructure is failing. 
+                Australian hydroclimatology is diverging from historical baselines. As atmospheric moisture transport degrades and surface evaporation accelerates, Victoria's legacy water infrastructure is experiencing systemic failure. 
             </p>
 
             <div class="story-row" style="grid-template-columns: 1.4fr 1fr; align-items: flex-start; gap: 30px;">
@@ -267,7 +267,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Dessicated State</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        Victoria is currently trapped in a spatial squeeze. While the <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Indigo South</span> still maintains a fragile equilibrium, the <span style="color: #FE9F6D; font-weight: bold;">Orange Scorched Mallee</span> and <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Sun-Bleached North</span> are hemorrhaging over 200mm of expected rainfall. This isn't a localized drought: it is a <span style="color: #D1BBFF; font-weight: bold; text-decoration: underline;">Systemic Rainfall Deficit</span> that ripples from the arid NW borders toward the central catchments. As the lighter core expands, the atmospheric buffer that once protected our "Garden State" is effectively evaporating into a permanent climatic shift.
+                        Victoria is currently constrained by a tightening spatial precipitation gradient. While the <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Indigo South</span> still maintains a fragile equilibrium, the <span style="color: #FE9F6D; font-weight: bold;">Orange Scorched Mallee</span> and <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Sun-Bleached North</span> are hemorrhaging over 200mm of expected rainfall. This is not a localised anomaly; it is a <span style="color: #D1BBFF; font-weight: bold; text-decoration: underline;">Systemic Rainfall Deficit</span> propagating from the arid north-western boundary directly into the primary catchment zones. As this deficit perimeter expands, the atmospheric buffering capacity that historically sustained regional agriculture is evaporating into a permanent structural shift.
                     </p>
                 </div>
             </div>
@@ -280,7 +280,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2); margin-top: 30px; width: 100%; box-sizing: border-box;">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">A Century of Heat & The Seasonal Fever</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The temperature profile of Victoria has fundamentally shifted. While 116 years of monthly data (Left) reveal the intensifying frequency of heat, the <span style="color: #94C1EA; font-weight: bold;">Seasonal Fever (Right)</span> isolates the damage. By comparing the average monthly cycles of the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> and the <span style="color: #FE9F6D; font-weight: bold;">Modern Furnace (2010-2020)</span>, we see a consistent, quantitative lift. Every month is now hotter than its historical counterpart: this persistent baseline elevation is the engine that drives our permanent water descent.
+                        The thermodynamic profile of Victoria has undergone a fundamental structural shift. While 116 years of monthly data (Left) reveal the intensifying frequency of heat, the <span style="color: #94C1EA; font-weight: bold;">Seasonal Fever (Right)</span> isolates the damage. By comparing the average monthly cycles of the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> and the <span style="color: #FE9F6D; font-weight: bold;">Modern Furnace (2010-2020)</span>, we see a consistent, quantitative lift. Every calendar month now records an elevated mean maximum compared to its historical counterpart. This persistent baseline elevation constitutes the thermodynamic engine driving the permanent water descent.
                     </p>
                 </div>
             </div>
@@ -289,7 +289,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Atmospheric Engine</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        Think of the <span style="color: #E67E22; font-weight: bold;">Southern Oscillation Index (SOI)</span> as Australia's "Climate Pulse." It measures the atmospheric pressure difference across the Pacific. When this pulse turns <span style="color: #E67E22; font-weight: bold;">Negative (El Niño)</span>, the trade winds that normally bring rain to Victoria effectively stall or reverse. By mapping this index against our <span style="color: #94C1EA; font-weight: bold;">Monthly Rainfall (2004-2019)</span>, we see the engine in action: every major rainfall collapse is preceded by the orange line diving below the baseline. These global pressure shifts are the primary force driving our local water descent.
+                        The <span style="color: #E67E22; font-weight: bold;">Southern Oscillation Index (SOI)</span> serves as the primary macro-climatic indicator for Australian precipitation. It measures the atmospheric pressure difference across the Pacific. When the index enters a sustained <span style="color: #E67E22; font-weight: bold;">Negative phase (El Niño)</span>, the equatorial trade winds governing moisture delivery to Victoria stall or reverse. By mapping this index against our <span style="color: #94C1EA; font-weight: bold;">Monthly Rainfall (2004-2019)</span>, we see the engine in action: every major rainfall collapse is preceded by the orange line diving below the baseline. These global pressure shifts are the primary force driving our local water descent.
                     </p>
                 </div>
                 <div id="vis-chart-3" class="viz-canvas glass-canvas" style="min-height: 480px;">
@@ -313,7 +313,7 @@
         <div class="container">
             <h2 style="text-align: center; display: block;">The Catchment Toll</h2>
             <p class="narrative-text" style="color: #E0F2FE;">
-                When the sky fails, the ground pays the price. Our massive holding tanks - the forested catchments - are bleeding water back into the atmosphere through evaporation.
+                Meteorological deficits compound physical storage losses. Victoria's primary catchment basins are now bleeding critical reserves back into the atmosphere through accelerated evaporation.
             </p>
 
             <div class="story-row" style="grid-template-columns: 1.6fr 1fr; align-items: flex-start; gap: 40px; margin-top: 60px;">
@@ -323,7 +323,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Evaporation Squeeze</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        This 40-year audit reveals the mechanics of our water debt. By mapping the <span style="color: #94C1EA; font-weight: bold;">Modern Record (1983-2025)</span>, we see a dangerous divergence: as the years progress, the bubbles climb higher on the <span style="color: #FE9F6D; font-weight: bold;">Evaporation Axis</span>. Notice how the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Yellow Peaks</span> (2009, 2019) consistently sit above the trendline. Most critically, several of our hottest years are physically <span style="color: #D1BBFF; font-weight: bold;">smaller in size</span>, proving that we are losing the most water precisely when we are receiving the least rainfall.
+                        This 40-year audit reveals the mechanics of our water debt. By mapping the <span style="color: #94C1EA; font-weight: bold;">Modern Record (1983-2025)</span>, we see a dangerous divergence: as the years progress, the bubbles climb higher on the <span style="color: #FE9F6D; font-weight: bold;">Evaporation Axis</span>. Notice how the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Yellow Peaks</span> (2009, 2019) consistently sit above the trendline. Crucially, the extreme thermal peaks inversely correlate with bubble scale, mathematically proving that the system surrenders the highest volume of water to evaporation precisely during years of minimum precipitation.
                     </p>
                 </div>
             </div>
@@ -335,7 +335,7 @@
                 <div class="annotation" style="background: #17202A; color: #E0E6ED; border-left: 4px solid #3498DB; margin-top: 30px; padding: 20px; border-radius: 0 8px 8px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
                     <h3 style="color: #94C1EA; margin-bottom: 10px; font-size: 1.2rem;">The Multi-Year Deficit</h3>
                     <p style="font-size: 1.05rem; line-height: 1.7; margin: 0;">
-                        This composite view reveals the <span style="color: #3498DB; font-weight: bold;">Lag Effect</span>. During the <span style="color: #FCFDBF; font-weight: bold;">2006-2009 Millennial Peak</span>, a relentless cluster of <span style="color: #FE9F6D; font-weight: bold;">Rainfall Deficits</span> (Top) triggered a massive plunge in the <span style="color: #3498DB; font-weight: bold;">Reservoir Storage Line</span> (Bottom). Our catchments are massive thermal batteries: even when "average" rain returns, it can take half a decade of surplus to climb back to 100%. We are currently operating in a permanent state of catchment debt, where the "Tank" is never allowed to fully recharge.
+                        This composite view reveals the <span style="color: #3498DB; font-weight: bold;">Lag Effect</span>. During the <span style="color: #FCFDBF; font-weight: bold;">2006-2009 Millennial Peak</span>, a relentless cluster of <span style="color: #FE9F6D; font-weight: bold;">Rainfall Deficits</span> (Top) triggered a massive plunge in the <span style="color: #3498DB; font-weight: bold;">Reservoir Storage Line</span> (Bottom). Our catchments are massive thermal batteries: even when "average" rain returns, it can take half a decade of surplus to climb back to 100%. Victoria is currently operating under a state of permanent infrastructural debt, where the physical catchments are mathematically precluded from achieving full recharge.
                     </p>
                 </div>
             </div>
@@ -358,14 +358,14 @@
         <div class="container">
             <h2 style="text-align: center;">The Unseen Buffer</h2>
             <p class="narrative-text">
-                When surface tanks run dry, regional Victoria taps into ancient aquifers. This subterranean pumping masks the true severity of the drought from the urban centers.
+                As surface storage fails, regional agriculture pivots to ancient subterranean aquifers. This intensive groundwater extraction mathematically masks the true severity of the drought from metropolitan observation.
             </p>
 
             <div class="story-row" style="grid-template-columns: 0.7fr 1.3fr; align-items: flex-start; gap: 40px; margin-top: 80px;">
                 <div class="text-block" style="background: rgba(45, 36, 30, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
                     <h2 style="color: #D7CCC8; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">Subterranean Stress</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #B0BEC5;">
-                        When the sky and catchments fail, Victoria taps into its secret buffer: ancient aquifers. This high-resolution scan reveals the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Critical Stress Zones</span> - regional hubs where <span style="color: #FCFDBF; font-weight: bold;">10 or more bore permits</span> have been issued in a single 15km grid area. This subterranean "mining" masks the true severity of the drought: while urban centers watch the reservoirs, the agricultural heartlands are surviving on the <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Purple Baselines</span> which are being hollowed out at unsustainable rates.
+                        When the sky and catchments fail, Victoria taps into its secret buffer: ancient aquifers. This high-resolution scan reveals the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Critical Stress Zones</span> - regional hubs where <span style="color: #FCFDBF; font-weight: bold;">10 or more bore permits</span> have been issued in a single 15km grid area. This subsurface extraction masks the systemic deficit: while metropolitan policy focuses on reservoir levels, the agricultural sector relies entirely on the <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Purple Baselines</span>, which are being depleted at unsustainable extraction rates.
                     </p>
                 </div>
                 <div id="vis-chart-7" class="viz-canvas" style="min-height: 480px;">
@@ -406,7 +406,7 @@
         <div class="container">
             <h2 style="text-align: center; color: var(--text-dark); margin-top: 20px;">Engineering Survival</h2>
             <p class="narrative-text" style="color: var(--text-dark);">
-                The natural cycle is broken. To guarantee urban survival, Victoria has engineered a permanent, artificial catchment.
+                The natural hydrological cycle has fractured. To mathematically guarantee urban water security, Victoria has been forced to engineer a permanent, artificial catchment via desalination.
             </p>
 
             <div class="full-width-viz" style="margin-top: 40px;">
@@ -416,7 +416,7 @@
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #3498DB; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
                     <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Desalination Pulse</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        To read this dashboard, compare the <span style="color: #7F8C8D; font-weight: bold;">Faint Grey Silhouette</span> (Total Urban Demand) with the <span style="color: #3498DB; font-weight: bold;">Pulsing Blue Core</span>. Data proves that by 2021, the engineered lifeline reached a critical peak, supplying nearly <span style="color: #3498DB; font-weight: bold;">30% of entire urban consumption</span>. Toggle the "Full Cycle" to observe the recent pivot: in the 2023-2024 recovery years, this pulse retracted to less than 5% as reservoirs recharged. This trajectory confirms that desalination is no longer an "emergency" backup, but a dynamic valve that opens and closes to safeguard the state against climatic failure.
+                        To read this dashboard, compare the <span style="color: #7F8C8D; font-weight: bold;">Faint Grey Silhouette</span> (Total Urban Demand) with the <span style="color: #3498DB; font-weight: bold;">Pulsing Blue Core</span>. Empirical data confirms that by 2021, this engineered lifeline reached a critical operational peak, supplying nearly <span style="color: #3498DB; font-weight: bold;">30% of the state's total urban consumption</span>. Toggle the "Full Cycle" to observe the recent pivot: in the 2023-2024 recovery years, this pulse retracted to less than 5% as reservoirs recharged. This trajectory confirms that desalination has transitioned from an emergency contingency to a dynamic, structural valve, artificially regulating the state against climate failure.
                     </p>
                 </div>
             </div>
