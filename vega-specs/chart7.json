@@ -16,7 +16,7 @@
   "projection": {
     "type": "mercator",
     "center": [144.5, -36.5],
-    "scale": 4500
+    "scale": 3500
   },
   "layer": [
     {
@@ -26,9 +26,10 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "rgba(45, 36, 30, 0.4)",
-        "stroke": "rgba(255,255,255,0.05)",
-        "strokeWidth": 0.5
+        "fill": "#3B0F70",
+        "stroke": "rgba(255,255,255,0.1)",
+        "strokeWidth": 0.5,
+        "opacity": 0.4
       }
     },
     {
@@ -37,7 +38,7 @@
       },
       "mark": {
         "type": "rect",
-        "opacity": 0.9,
+        "opacity": 1,
         "cornerRadius": 1
       },
       "encoding": {
@@ -50,15 +51,16 @@
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [1, 5, 15],
-            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
+            "domain": [0, 2, 8, 15],
+            "range": ["#3B0F70", "#8C2981", "#FE9F6D", "#FCFDBF"]
           },
           "legend": {
-            "title": "Bore Density", 
+            "title": "Bore Permits", 
             "labelColor": "#D7CCC8", 
             "titleColor": "#D7CCC8",
             "orient": "right",
-            "gradientLength": 300
+            "gradientLength": 300,
+            "values": [0, 5, 10, 15]
           }
         },
         "tooltip": [
