@@ -1,73 +1,61 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 500,
+  "description": "A dynamic morphing gauge showing proportional water supply shift.",
+  "width": 400,
+  "height": 550,
   "autosize": {"type": "fit", "contains": "padding"},
   "title": {
-    "text": "The Extraction Core Sample",
-    "subtitle": "Select a year to probe the precise extraction volumes (ML) across all strata",
-    "anchor": "start",
+    "text": "The Fluid Shift",
+    "subtitle": "Proportional 'Core Sample' of Victoria's Supply | 2015 - 2023",
+    "anchor": "middle",
     "color": "#D7CCC8",
     "fontSize": 28,
     "subtitleFontSize": 16,
     "subtitleColor": "#B0BEC5",
-    "offset": 25
+    "offset": 30
   },
   "data": {
     "url": "data/final/chart8_total-use-by-resource-figure.csv"
   },
   "params": [
     {
-      "name": "sampleYear",
-      "value": "2019-20",
+      "name": "yearSlider",
+      "value": 2019,
       "bind": {
-        "input": "select",
-        "options": [
-          "2015-16",
-          "2016-17",
-          "2017-18",
-          "2018-19",
-          "2019-20",
-          "2020-21",
-          "2021-22",
-          "2022-23"
-        ],
-        "name": "Forensic Year: "
+        "input": "range",
+        "min": 2015,
+        "max": 2022,
+        "step": 1,
+        "name": "Drill Depth (Year): "
       }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "toNumber(substring(datum['Water year'], 0, 4))",
+      "as": "YearVal"
+    },
+    {
+      "filter": "datum.YearVal == yearSlider"
     }
   ],
   "layer": [
     {
       "mark": {
-        "type": "area",
-        "interpolate": "monotone",
-        "opacity": 0.8,
+        "type": "bar",
+        "width": 180,
+        "cornerRadius": 10,
         "stroke": "white",
-        "strokeWidth": 0.5
+        "strokeWidth": 2,
+        "opacity": 0.9
       },
       "encoding": {
-        "x": {
-          "field": "Water year",
-          "type": "nominal",
-          "title": "Timeline",
-          "axis": {
-            "labelColor": "#D7CCC8",
-            "titleColor": "#D7CCC8",
-            "grid": false,
-            "labelAngle": 0
-          }
-        },
         "y": {
           "field": "Volume_ML",
           "type": "quantitative",
           "stack": "normalize",
-          "title": "Supply Proportion (%)",
-          "axis": {
-            "format": "%",
-            "labelColor": "#D7CCC8",
-            "titleColor": "#D7CCC8",
-            "grid": false
-          }
+          "title": null,
+          "axis": null
         },
         "color": {
           "field": "Resource_Type",
@@ -87,46 +75,52 @@
             "labelColor": "#D7CCC8",
             "titleColor": "#D7CCC8",
             "orient": "right",
-            "offset": 20
+            "offset": 40
           }
         },
-        "opacity": {
-          "condition": {"test": "datum['Water year'] == sampleYear", "value": 1},
-          "value": 0.15
-        }
+        "tooltip": [
+          {"field": "Water year", "type": "nominal", "title": "Fiscal Year"},
+          {"field": "Resource_Type", "type": "nominal", "title": "Source"},
+          {"field": "Volume_ML", "type": "quantitative", "title": "Volume (ML)", "format": ","}
+        ]
       }
     },
     {
-      "transform": [{"filter": "datum['Water year'] == sampleYear"}],
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 10,
+        "dx": 100,
         "fontSize": 14,
         "fontWeight": "bold",
         "color": "white"
       },
       "encoding": {
-        "x": {"field": "Water year", "type": "nominal"},
         "y": {
           "field": "Volume_ML",
           "type": "quantitative",
           "stack": "normalize",
           "band": 0.5
         },
-        "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.0s"}
+        "text": {
+          "field": "Volume_ML", 
+          "type": "quantitative", 
+          "format": ",.2s"
+        },
+        "detail": {"field": "Resource_Type"}
       }
     },
     {
-      "transform": [{"filter": "datum['Water year'] == sampleYear"}],
       "mark": {
-        "type": "rule",
-        "color": "white",
-        "strokeWidth": 2,
-        "strokeDash": [4, 4]
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 40,
+        "fontWeight": 900,
+        "color": "rgba(255,255,255,0.1)",
+        "y": 275
       },
       "encoding": {
-        "x": {"field": "Water year", "type": "nominal"}
+        "text": {"field": "Water year", "type": "nominal"}
       }
     }
   ],
