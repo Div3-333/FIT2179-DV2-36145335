@@ -19,7 +19,7 @@
       "data": {"url": "data/final/chart10_console_data.csv"},
       "transform": [
         {"filter": "datum.YearInt == selectYear"},
-        {"calculate": "(Residential_GL + Non_Residential_GL + Non_Revenue_GL)", "as": "Total"},
+        {"calculate": "datum.Residential_GL + datum.Non_Residential_GL + datum.Non_Revenue_GL", "as": "Total"},
         {"calculate": "datum.Desalination_Delivered_GL / datum.Total", "as": "desalRatio"}
       ],
       "layer": [
