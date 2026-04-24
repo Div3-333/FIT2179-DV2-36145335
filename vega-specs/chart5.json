@@ -6,53 +6,68 @@
   "vconcat": [
     {
       "title": {
-        "text": "The Recovery Lag",
-        "subtitle": "Rainfall Input vs. Total Reservoir Storage | 2004 - 2019",
+        "text": "Rainfall Anomaly",
+        "subtitle": "Monthly Surplus/Deficit vs. 50mm Mean | 2004 - 2019",
         "anchor": "start",
         "color": "#E0F2FE",
-        "fontSize": 28,
-        "subtitleFontSize": 16,
-        "subtitleColor": "#A9CCE3",
-        "offset": 20
+        "fontSize": 20,
+        "subtitleFontSize": 14,
+        "subtitleColor": "#A9CCE3"
       },
       "width": "container",
       "height": 180,
-      "data": {
-        "url": "data/final/chart5_caulfield_rain.csv"
-      },
+      "data": {"url": "data/final/chart5_caulfield_rain.csv"},
       "transform": [
         {
           "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
           "as": "MonthNum"
         },
         {"calculate": "datetime(datum.Year, datum.MonthNum, 1)", "as": "Date"},
-        {"filter": "datum.Year >= 2004 && datum.Year <= 2019"}
+        {"calculate": "datum.Rainfall_mm - 50.6", "as": "Anomaly"}
       ],
-      "mark": {"type": "bar", "color": "#94C1EA", "opacity": 0.7, "width": {"band": 0.8}},
+      "mark": {"type": "bar", "tooltip": true, "width": {"band": 0.8}},
       "encoding": {
         "x": {
           "field": "Date",
           "type": "temporal",
-          "axis": {"title": null, "labelExpr": "''", "ticks": false, "domain": false}
+          "axis": {"title": null, "labelExpr": "''", "ticks": false, "domain": false},
+          "scale": {"domain": ["2004-01-01", "2019-12-01"]}
         },
         "y": {
-          "field": "Rainfall_mm",
+          "field": "Anomaly",
           "type": "quantitative",
-          "title": "Rainfall (mm)",
-          "axis": {"titleColor": "#E0F2FE", "labelColor": "#E0F2FE"}
+          "title": "Anomaly (mm)",
+          "axis": {"gridColor": "rgba(255,255,255,0.1)"}
+        },
+        "color": {
+          "field": "Anomaly",
+          "type": "quantitative",
+          "scale": {
+            "domain": [-50, 0, 50],
+            "range": ["#E67E22", "#E0F2FE", "#3498DB"]
+          },
+          "legend": null
         },
         "tooltip": [
           {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
-          {"field": "Rainfall_mm", "type": "quantitative", "title": "Rainfall", "format": ".1f"}
+          {"field": "Rainfall_mm", "type": "quantitative", "title": "Total Rain (mm)"},
+          {"field": "Anomaly", "type": "quantitative", "title": "vs Mean (mm)", "format": ".1f"}
         ]
       }
     },
     {
+      "title": {
+        "text": "The Storage Response",
+        "subtitle": "Melbourne Reservoir Storage Levels (%)",
+        "anchor": "start",
+        "color": "#E0F2FE",
+        "fontSize": 20,
+        "subtitleFontSize": 14,
+        "subtitleColor": "#A9CCE3"
+      },
       "width": "container",
       "height": 220,
-      "data": {
-        "url": "data/final/chart5_Historical_Data.csv"
-      },
+      "data": {"url": "data/final/chart5_Historical_Data.csv"},
       "transform": [
         {"calculate": "datetime(datum.Year, datum.Month_Num - 1, 1)", "as": "Date"},
         {"filter": "datum.Year >= 2004 && datum.Year <= 2019"}
@@ -74,6 +89,7 @@
           "field": "Date",
           "type": "temporal",
           "title": "Timeline",
+          "scale": {"domain": ["2004-01-01", "2019-12-01"]},
           "axis": {"domainColor": "#A9CCE3", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
         },
         "y": {
