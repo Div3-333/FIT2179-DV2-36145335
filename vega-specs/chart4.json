@@ -3,9 +3,10 @@
   "width": "container",
   "height": 450,
   "autosize": {"type": "fit", "contains": "padding"},
+  "padding": 20,
   "title": {
     "text": "The Evaporation Trend",
-    "subtitle": "Annual Water Loss and Summer Heat Intensity | 1975 - 2026 (Modern Record)",
+    "subtitle": "Annual Water Loss and Summer Heat Intensity | 1975 - 2025",
     "anchor": "start",
     "color": "#E0F2FE",
     "fontSize": 28,
@@ -16,6 +17,9 @@
   "data": {
     "url": "data/final/chart4_evaporation_temp.csv"
   },
+  "transform": [
+    {"filter": "datum.Year < 2026"}
+  ],
   "layer": [
     {
       "mark": {
@@ -24,8 +28,8 @@
         "strokeWidth": 1
       },
       "encoding": {
-        "x": {"field": "Year", "type": "quantitative", "axis": {"format": "d"}},
-        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative"}
+        "x": {"field": "Year", "type": "quantitative", "scale": {"domain": [1972, 2028]}, "axis": {"format": "d"}},
+        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative", "scale": {"domain": [800, 1300]}}
       }
     },
     {
@@ -41,6 +45,7 @@
           "field": "Year",
           "type": "quantitative",
           "title": "Timeline",
+          "scale": {"domain": [1972, 2028]},
           "axis": {
             "format": "d",
             "gridColor": "rgba(255,255,255,0.1)",
@@ -51,7 +56,7 @@
           "field": "Annual_Evaporation_mm",
           "type": "quantitative",
           "title": "Annual Evaporation (mm)",
-          "scale": {"domain": [700, 1300]},
+          "scale": {"domain": [800, 1300]},
           "axis": {"gridColor": "rgba(255,255,255,0.1)"}
         },
         "color": {
