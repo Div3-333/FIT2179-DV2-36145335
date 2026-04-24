@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "autosize": {"type": "fit", "contains": "padding"},
+  "spacing": 20,
+  "vconcat": [
+    {
+      "title": {
+        "text": "The Recovery Lag",
+        "subtitle": "Rainfall Input vs. Total Reservoir Storage | 2004 - 2019",
+        "anchor": "start",
+        "color": "#E0F2FE",
+        "fontSize": 28,
+        "subtitleFontSize": 16,
+        "subtitleColor": "#A9CCE3",
+        "offset": 20
+      },
+      "width": "container",
+      "height": 180,
+      "data": {
+        "url": "data/final/chart5_caulfield_rain.csv"
+      },
+      "transform": [
+        {
+          "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
+          "as": "MonthNum"
+        },
+        {"calculate": "datetime(datum.Year, datum.MonthNum, 1)", "as": "Date"},
+        {"filter": "datum.Year >= 2004 && datum.Year <= 2019"}
+      ],
+      "mark": {"type": "bar", "color": "#94C1EA", "opacity": 0.7, "width": {"band": 0.8}},
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "axis": {"title": null, "labelExpr": "''", "ticks": false, "domain": false}
+        },
+        "y": {
+          "field": "Rainfall_mm",
+          "type": "quantitative",
+          "title": "Rainfall (mm)",
+          "axis": {"titleColor": "#E0F2FE", "labelColor": "#E0F2FE"}
+        },
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
+          {"field": "Rainfall_mm", "type": "quantitative", "title": "Rainfall", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "width": "container",
+      "height": 220,
+      "data": {
+        "url": "data/final/chart5_Historical_Data.csv"
+      },
+      "transform": [
+        {"calculate": "datetime(datum.Year, datum.Month_Num - 1, 1)", "as": "Date"},
+        {"filter": "datum.Year >= 2004 && datum.Year <= 2019"}
+      ],
+      "mark": {
+        "type": "area",
+        "line": {"color": "#3498DB", "strokeWidth": 3},
+        "color": {
+          "gradient": "linear",
+          "stops": [
+            {"offset": 0, "color": "rgba(52, 152, 219, 0.4)"},
+            {"offset": 1, "color": "rgba(52, 152, 219, 0)"}
+          ]
+        },
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "title": "Timeline",
+          "axis": {"domainColor": "#A9CCE3", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
+        },
+        "y": {
+          "field": "Storage_Percentage",
+          "type": "quantitative",
+          "title": "Storage %",
+          "scale": {"domain": [0, 100]},
+          "axis": {"titleColor": "#E0F2FE", "labelColor": "#E0F2FE"}
+        },
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
+          {"field": "Storage_Percentage", "type": "quantitative", "title": "Storage %", "format": ".1f"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFont": "Source Sans Pro", "titleFont": "Source Sans Pro"}
+  }
+}
