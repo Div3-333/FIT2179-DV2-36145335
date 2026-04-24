@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "autosize": {"type": "fit", "contains": "padding"},
-  "padding": {"left": 80, "top": 20, "right": 80, "bottom": 20},
+  "autosize": {"type": "fit-x", "contains": "padding"},
+  "padding": {"left": 80, "top": 20, "right": 40, "bottom": 20},
   "spacing": 60,
   "vconcat": [
     {
@@ -32,7 +32,7 @@
           "field": "Date",
           "type": "temporal",
           "axis": {"title": null, "labelExpr": "''", "ticks": false, "domain": false},
-          "scale": {"domain": ["2004-01-01", "2019-12-01"]}
+          "scale": {"domain": ["2003-12-01", "2020-02-01"]}
         },
         "y": {
           "field": "Anomaly",
@@ -104,12 +104,13 @@
           "field": "Date",
           "type": "temporal",
           "title": "Timeline",
-          "scale": {"domain": ["2004-01-01", "2019-12-01"]},
+          "scale": {"domain": ["2003-12-01", "2020-02-01"]},
           "axis": {
             "domainColor": "#A9CCE3", 
             "labelColor": "white", 
             "titleColor": "white", 
-            "labelFontSize": 11
+            "labelFontSize": 11,
+            "grid": false
           }
         },
         "y": {
