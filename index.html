@@ -48,6 +48,110 @@
             z-index: 10;
         }
 
+        
+        /* --- ENHANCED CLOUDS --- */
+        .css-cloud {
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0.4) 60%, transparent 80%);
+            border-radius: 50%;
+            position: absolute;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+            transition: transform 0.1s ease-out;
+            pointer-events: none;
+        }
+        .cloud-1 { width: 350px; height: 120px; top: 8%; left: -400px; animation: drift 40s linear infinite; opacity: 0.8; }
+        .cloud-2 { width: 250px; height: 90px; top: 25%; left: -300px; animation: drift 30s linear infinite; animation-delay: -10s; opacity: 0.6; }
+        .cloud-3 { width: 400px; height: 140px; top: 60%; left: -500px; animation: drift 50s linear infinite; animation-delay: -25s; opacity: 0.9; }
+        .cloud-4 { width: 200px; height: 80px; top: 80%; left: -250px; animation: drift 35s linear infinite; animation-delay: -5s; opacity: 0.7; }
+        .cloud-5 { width: 300px; height: 110px; top: 40%; left: -350px; animation: drift 45s linear infinite; animation-delay: -18s; opacity: 0.5; }
+
+        /* --- ENHANCED GLASSMORPHIC WAVE --- */
+        .custom-shape-divider-top {
+            position: absolute; top: -120px; left: 0; width: 100%; height: 125px;
+            overflow: hidden; line-height: 0; z-index: 5;
+            background: linear-gradient(to bottom, transparent, rgba(10, 74, 122, 0.4));
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .glass-wave {
+            position: absolute; bottom: 0; left: 0; width: 200%; height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C300,100 600,-20 900,40 C1200,100 1200,40 1200,40 L1200,120 L0,120 Z" fill="%230A4A7A"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            animation: wave-flow 15s linear infinite;
+            opacity: 0.9;
+        }
+        .glass-wave-2 {
+            position: absolute; bottom: -10px; left: 0; width: 200%; height: 120px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,60 C400,-20 800,120 1200,60 L1200,120 L0,120 Z" fill="rgba(148,193,234,0.3)"/></svg>') repeat-x;
+            background-size: 50% 100%;
+            animation: wave-flow 10s linear infinite reverse;
+            backdrop-filter: blur(4px);
+        }
+
+        /* --- ENHANCED RAIN --- */
+        #rain-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1; overflow: hidden;
+        }
+        .rain-drop {
+            position: absolute; width: 2px; height: 30px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.8));
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) translateX(var(--wind-x, 0px)); opacity: 0; }
+        }
+
+        /* --- ENHANCED INDUSTRIAL PIPES --- */
+        .section-pipe { padding-top: 140px; }
+        .industrial-pipe-network {
+            position: absolute; top: 0; left: 0; width: 100%; height: 120px;
+            background: #17202A; border-bottom: 5px solid #000;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.8), 0 15px 30px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column; justify-content: space-around; padding: 10px 0; z-index: 5;
+        }
+        .main-pipe {
+            height: 45px; width: 100%;
+            background: linear-gradient(to bottom, #5D6D7E 0%, #BFC9CA 20%, #34495E 80%, #17202A 100%);
+            position: relative; border-top: 2px solid rgba(255,255,255,0.3); border-bottom: 2px solid rgba(0,0,0,0.8);
+            box-shadow: inset 0 5px 10px rgba(255,255,255,0.2);
+        }
+        .secondary-pipe {
+            height: 20px; width: 100%; margin-top: 10px;
+            background: linear-gradient(to bottom, #7F8C8D 0%, #D5D8DC 20%, #2C3E50 80%, #17202A 100%);
+            position: relative; border-top: 1px solid rgba(255,255,255,0.2); border-bottom: 2px solid rgba(0,0,0,0.8);
+        }
+        .pipe-joint {
+            position: absolute; top: -5px; left: 20%; width: 40px; height: calc(100% + 10px);
+            background: linear-gradient(to right, #2C3E50, #7F8C8D, #2C3E50);
+            border-radius: 5px; border: 1px solid #000; box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        }
+        .pipe-joint:nth-child(2) { left: 70%; }
+        .liquid-flow {
+            position: absolute; top: 25%; left: 0; width: 100%; height: 50%;
+            background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(52, 152, 219, 0.4) 40px, rgba(52, 152, 219, 0.4) 80px);
+            background-size: 80px 100%;
+            animation: pumpFlow 2s linear infinite;
+            filter: drop-shadow(0 0 8px #3498DB); opacity: 0.8;
+        }
+        @keyframes pumpFlow { 0% { background-position: 0 0; } 100% { background-position: 80px 0; } }
+
+        /* --- INTERACTIVE GRID FOR LAST SECTION --- */
+        .cyber-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(52, 152, 219, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(52, 152, 219, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0; pointer-events: none;
+            perspective: 1000px; transform-style: preserve-3d;
+            opacity: 0.5; transition: transform 0.2s ease-out;
+        }
+        .section-pipe { background-color: #0d151c; color: #E0E6ED; overflow: hidden; } /* Darken background for grid visibility */
+        .section-pipe h2, .section-pipe .narrative-text { color: #E0E6ED !important; }
+
         /* --- 1. THE SKY & PURE CSS CLOUDS --- */
         .section-sky {
             background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
@@ -250,14 +354,16 @@
 <body>
 
     <section class="section-sky">
-        <div class="css-cloud cloud-1"></div>
-        <div class="css-cloud cloud-2"></div>
-        <div class="css-cloud cloud-3"></div>
+        <div class="css-cloud cloud-1" data-depth="0.2"></div>
+        <div class="css-cloud cloud-2" data-depth="0.4"></div>
+        <div class="css-cloud cloud-3" data-depth="0.1"></div>
+        <div class="css-cloud cloud-4" data-depth="0.5"></div>
+        <div class="css-cloud cloud-5" data-depth="0.3"></div>
         
         <div class="container">
             <h1 style="text-align: center; font-size: 3.5rem; letter-spacing: -1px; position: relative; z-index: 10;">From Sky to Tap</h1>
             <p class="narrative-text" style="color: #34495E;">
-                Australian hydroclimatology is diverging from historical baselines. As atmospheric moisture transport degrades and surface evaporation accelerates, Victoria's legacy water infrastructure is experiencing systemic failure. 
+                Australia's weather patterns are rapidly shifting away from historical norms. As rain-bearing winds fail and intense heat drives up evaporation, Victoria's traditional water infrastructure is struggling to keep up. 
             </p>
 
             <div class="story-row" style="grid-template-columns: 1.4fr 1fr; align-items: flex-start; gap: 30px;">
@@ -267,7 +373,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Dessicated State</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        Victoria is currently constrained by a tightening spatial precipitation gradient. While the <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Indigo South</span> still maintains a fragile equilibrium, the <span style="color: #FE9F6D; font-weight: bold;">Orange Scorched Mallee</span> and <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Sun-Bleached North</span> are hemorrhaging over 200mm of expected rainfall. This is not a localised anomaly; it is a <span style="color: #D1BBFF; font-weight: bold; text-decoration: underline;">Systemic Rainfall Deficit</span> propagating from the arid north-western boundary directly into the primary catchment zones. As this deficit perimeter expands, the atmospheric buffering capacity that historically sustained regional agriculture is evaporating into a permanent structural shift.
+                        Victoria is currently trapped in a tightening squeeze of disappearing rainfall. While the <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Indigo South</span> still maintains a fragile equilibrium, the <span style="color: #FE9F6D; font-weight: bold;">Orange Scorched Mallee</span> and <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Sun-Bleached North</span> are hemorrhaging over 200mm of expected rainfall. This isn't just a local dry spell; it's a <span style="color: #D1BBFF; font-weight: bold; text-decoration: underline;">Systemic Rainfall Deficit</span> sweeping from the arid north-west straight into our crucial water catchments. As this dry zone expands, the reliable weather that once earned us the 'Garden State' title is evaporating, signalling a permanent shift in our climate.
                     </p>
                 </div>
             </div>
@@ -280,7 +386,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2); margin-top: 30px; width: 100%; box-sizing: border-box;">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">A Century of Heat & The Seasonal Fever</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The thermodynamic profile of Victoria has undergone a fundamental structural shift. While 116 years of monthly data (Left) reveal the intensifying frequency of heat, the <span style="color: #94C1EA; font-weight: bold;">Seasonal Fever (Right)</span> isolates the damage. By comparing the average monthly cycles of the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> and the <span style="color: #FE9F6D; font-weight: bold;">Modern Furnace (2010-2020)</span>, we see a consistent, quantitative lift. Every calendar month now records an elevated mean maximum compared to its historical counterpart. This persistent baseline elevation constitutes the thermodynamic engine driving the permanent water descent.
+                        The temperature profile of Victoria has fundamentally changed. While 116 years of monthly data (Left) reveal the intensifying frequency of heat, the <span style="color: #94C1EA; font-weight: bold;">Seasonal Fever (Right)</span> isolates the damage. By comparing the average monthly cycles of the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> and the <span style="color: #FE9F6D; font-weight: bold;">Modern Furnace (2010-2020)</span>, we see a consistent, quantitative lift. Every single month is now hotter on average than it was a century ago. This relentless baseline heat is the invisible engine driving our state's permanent water descent.
                     </p>
                 </div>
             </div>
@@ -289,7 +395,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Atmospheric Engine</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The <span style="color: #E67E22; font-weight: bold;">Southern Oscillation Index (SOI)</span> serves as the primary macro-climatic indicator for Australian precipitation. It measures the atmospheric pressure difference across the Pacific. When the index enters a sustained <span style="color: #E67E22; font-weight: bold;">Negative phase (El Niño)</span>, the equatorial trade winds governing moisture delivery to Victoria stall or reverse. By mapping this index against our <span style="color: #94C1EA; font-weight: bold;">Monthly Rainfall (2004-2019)</span>, we see the engine in action: every major rainfall collapse is preceded by the orange line diving below the baseline. These global pressure shifts are the primary force driving our local water descent.
+                        Think of the <span style="color: #E67E22; font-weight: bold;">Southern Oscillation Index (SOI)</span> as Australia's 'Climate Pulse', tracking pressure changes across the Pacific. It measures the atmospheric pressure difference across the Pacific. When this pulse flatlines into a <span style="color: #E67E22; font-weight: bold;">Negative phase (El Niño)</span>, the vital trade winds that deliver rain to Victoria effectively stall out. By mapping this index against our <span style="color: #94C1EA; font-weight: bold;">Monthly Rainfall (2004-2019)</span>, we see the engine in action: every major rainfall collapse is preceded by the orange line diving below the baseline. These global pressure shifts are the primary force driving our local water descent.
                     </p>
                 </div>
                 <div id="vis-chart-3" class="viz-canvas glass-canvas" style="min-height: 480px;">
@@ -301,19 +407,15 @@
 
     <section class="section-tank">
         <div class="custom-shape-divider-top">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-            </svg>
+            <div class="glass-wave-2"></div>
+            <div class="glass-wave"></div>
         </div>
+        <div id="rain-container"></div>
         
-        <div class="css-drop" style="left: 20%; top: 50px; animation-delay: 0.2s;"></div>
-        <div class="css-drop" style="left: 80%; top: 20px; animation-delay: 1.5s;"></div>
-        <div class="css-drop" style="left: 50%; top: 80px; animation-delay: 0.8s;"></div>
-
         <div class="container">
             <h2 style="text-align: center; display: block;">The Catchment Toll</h2>
             <p class="narrative-text" style="color: #E0F2FE;">
-                Meteorological deficits compound physical storage losses. Victoria's primary catchment basins are now bleeding critical reserves back into the atmosphere through accelerated evaporation.
+                When the sky fails, our reservoirs pay the price. Victoria's massive catchment basins are literally bleeding water back into the atmosphere as evaporation intensifies.
             </p>
 
             <div class="story-row" style="grid-template-columns: 1.6fr 1fr; align-items: flex-start; gap: 40px; margin-top: 60px;">
@@ -323,7 +425,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Evaporation Squeeze</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        This 40-year audit reveals the mechanics of our water debt. By mapping the <span style="color: #94C1EA; font-weight: bold;">Modern Record (1983-2025)</span>, we see a dangerous divergence: as the years progress, the bubbles climb higher on the <span style="color: #FE9F6D; font-weight: bold;">Evaporation Axis</span>. Notice how the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Yellow Peaks</span> (2009, 2019) consistently sit above the trendline. Crucially, the extreme thermal peaks inversely correlate with bubble scale, mathematically proving that the system surrenders the highest volume of water to evaporation precisely during years of minimum precipitation.
+                        This 40-year audit reveals the mechanics of our water debt. By mapping the <span style="color: #94C1EA; font-weight: bold;">Modern Record (1983-2025)</span>, we see a dangerous divergence: as the years progress, the bubbles climb higher on the <span style="color: #FE9F6D; font-weight: bold;">Evaporation Axis</span>. Notice how the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Yellow Peaks</span> (2009, 2019) consistently sit above the trendline. Crucially, some of our hottest years (the highest bubbles) physically shrink in size on the chart—proving a brutal reality: we lose the most water to evaporation precisely when we get the least rain.
                     </p>
                 </div>
             </div>
@@ -335,7 +437,7 @@
                 <div class="annotation" style="background: #17202A; color: #E0E6ED; border-left: 4px solid #3498DB; margin-top: 30px; padding: 20px; border-radius: 0 8px 8px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
                     <h3 style="color: #94C1EA; margin-bottom: 10px; font-size: 1.2rem;">The Multi-Year Deficit</h3>
                     <p style="font-size: 1.05rem; line-height: 1.7; margin: 0;">
-                        This composite view reveals the <span style="color: #3498DB; font-weight: bold;">Lag Effect</span>. During the <span style="color: #FCFDBF; font-weight: bold;">2006-2009 Millennial Peak</span>, a relentless cluster of <span style="color: #FE9F6D; font-weight: bold;">Rainfall Deficits</span> (Top) triggered a massive plunge in the <span style="color: #3498DB; font-weight: bold;">Reservoir Storage Line</span> (Bottom). Our catchments are massive thermal batteries: even when "average" rain returns, it can take half a decade of surplus to climb back to 100%. Victoria is currently operating under a state of permanent infrastructural debt, where the physical catchments are mathematically precluded from achieving full recharge.
+                        This composite view reveals the <span style="color: #3498DB; font-weight: bold;">Lag Effect</span>. During the <span style="color: #FCFDBF; font-weight: bold;">2006-2009 Millennial Peak</span>, a relentless cluster of <span style="color: #FE9F6D; font-weight: bold;">Rainfall Deficits</span> (Top) triggered a massive plunge in the <span style="color: #3498DB; font-weight: bold;">Reservoir Storage Line</span> (Bottom). Our catchments are massive thermal batteries: even when "average" rain returns, it can take half a decade of surplus to climb back to 100%. Victoria is now operating in a state of permanent 'water debt,' where our massive catchments are simply never given the time or rainfall needed to fully recharge.
                     </p>
                 </div>
             </div>
@@ -358,14 +460,14 @@
         <div class="container">
             <h2 style="text-align: center;">The Unseen Buffer</h2>
             <p class="narrative-text">
-                As surface storage fails, regional agriculture pivots to ancient subterranean aquifers. This intensive groundwater extraction mathematically masks the true severity of the drought from metropolitan observation.
+                When surface dams run dry, regional Victoria survives by tapping into ancient, hidden aquifers. This subterranean pumping masks the true brutality of the drought from city-dwellers.
             </p>
 
             <div class="story-row" style="grid-template-columns: 0.7fr 1.3fr; align-items: flex-start; gap: 40px; margin-top: 80px;">
                 <div class="text-block" style="background: rgba(45, 36, 30, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
                     <h2 style="color: #D7CCC8; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">Subterranean Stress</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #B0BEC5;">
-                        When the sky and catchments fail, Victoria taps into its secret buffer: ancient aquifers. This high-resolution scan reveals the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Critical Stress Zones</span> - regional hubs where <span style="color: #FCFDBF; font-weight: bold;">10 or more bore permits</span> have been issued in a single 15km grid area. This subsurface extraction masks the systemic deficit: while metropolitan policy focuses on reservoir levels, the agricultural sector relies entirely on the <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Purple Baselines</span>, which are being depleted at unsustainable extraction rates.
+                        When the sky and catchments fail, Victoria taps into its secret buffer: ancient aquifers. This high-resolution scan reveals the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Critical Stress Zones</span> - regional hubs where <span style="color: #FCFDBF; font-weight: bold;">10 or more bore permits</span> have been issued in a single 15km grid area. While city dashboards obsess over dam levels, our agricultural heartlands are surviving by draining these <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Purple Baselines</span> at potentially unsustainable rates.
                     </p>
                 </div>
                 <div id="vis-chart-7" class="viz-canvas" style="min-height: 480px;">
@@ -399,14 +501,23 @@
     </section>
 
     <section class="section-pipe">
-        <div class="industrial-pipe">
-            <div class="pipe-flow"></div>
+        <div class="industrial-pipe-network">
+            <div class="main-pipe">
+                <div class="liquid-flow"></div>
+                <div class="pipe-joint"></div>
+                <div class="pipe-joint"></div>
+            </div>
+            <div class="secondary-pipe">
+                <div class="pipe-joint" style="left: 30%; width: 25px;"></div>
+                <div class="pipe-joint" style="left: 80%; width: 25px;"></div>
+            </div>
         </div>
+        <div class="cyber-grid" id="interactive-grid"></div>
 
         <div class="container">
             <h2 style="text-align: center; color: var(--text-dark); margin-top: 20px;">Engineering Survival</h2>
             <p class="narrative-text" style="color: var(--text-dark);">
-                The natural hydrological cycle has fractured. To mathematically guarantee urban water security, Victoria has been forced to engineer a permanent, artificial catchment via desalination.
+                The natural water cycle is broken. To guarantee that Melbourne doesn't run dry, Victoria had to build a permanent, artificial catchment: the desalination plant.
             </p>
 
             <div class="full-width-viz" style="margin-top: 40px;">
@@ -416,7 +527,7 @@
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #3498DB; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
                     <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Desalination Pulse</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        To read this dashboard, compare the <span style="color: #7F8C8D; font-weight: bold;">Faint Grey Silhouette</span> (Total Urban Demand) with the <span style="color: #3498DB; font-weight: bold;">Pulsing Blue Core</span>. Empirical data confirms that by 2021, this engineered lifeline reached a critical operational peak, supplying nearly <span style="color: #3498DB; font-weight: bold;">30% of the state's total urban consumption</span>. Toggle the "Full Cycle" to observe the recent pivot: in the 2023-2024 recovery years, this pulse retracted to less than 5% as reservoirs recharged. This trajectory confirms that desalination has transitioned from an emergency contingency to a dynamic, structural valve, artificially regulating the state against climate failure.
+                        To read this dashboard, compare the <span style="color: #7F8C8D; font-weight: bold;">Faint Grey Silhouette</span> (Total Urban Demand) with the <span style="color: #3498DB; font-weight: bold;">Pulsing Blue Core</span>. The data shows that by 2021, this engineered lifeline wasn't just a backup—it supplied nearly <span style="color: #3498DB; font-weight: bold;">30% of the city's entire water consumption</span>. Toggle the "Full Cycle" to observe the recent pivot: in the 2023-2024 recovery years, this pulse retracted to less than 5% as reservoirs recharged. This trajectory proves that desalination is no longer an 'emergency' backup, but a dynamic, everyday valve that artificially keeps the state alive.
                     </p>
                 </div>
             </div>
@@ -817,6 +928,64 @@
             vegaEmbed('#vis-chart-9', 'vega-specs/chart9.json').then(res => registerView('chart9', res)).catch(console.error);
             vegaEmbed('#vis-chart-10', 'vega-specs/chart10.json').then(res => registerView('chart10', res)).catch(console.error);
         });
+    
+        // Interactive Elements Script
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Rain Generation
+            const rainContainer = document.getElementById('rain-container');
+            if (rainContainer) {
+                const dropCount = 80;
+                for (let i = 0; i < dropCount; i++) {
+                    let drop = document.createElement('div');
+                    drop.className = 'rain-drop';
+                    drop.style.left = Math.random() * 100 + '%';
+                    drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+                    drop.style.animationDelay = Math.random() * 2 + 's';
+                    drop.style.opacity = Math.random() * 0.5 + 0.3;
+                    rainContainer.appendChild(drop);
+                }
+            }
+
+            // 2. Cursor tracking for Clouds, Rain Wind, and Cyber Grid
+            const clouds = document.querySelectorAll('.css-cloud');
+            const grid = document.getElementById('interactive-grid');
+            
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth - 0.5;
+                const y = e.clientY / window.innerHeight - 0.5;
+
+                // Parallax Clouds
+                clouds.forEach(cloud => {
+                    const depth = parseFloat(cloud.getAttribute('data-depth'));
+                    cloud.style.transform = `translate(${x * depth * 100}px, ${y * depth * 50}px)`;
+                });
+
+                // Rain Wind (CSS Variable)
+                if (rainContainer) {
+                    const wind = x * 200 + 'px';
+                    document.documentElement.style.setProperty('--wind-x', wind);
+                }
+
+                // Cyber Grid 3D Tilt
+                if (grid) {
+                    grid.style.transform = `rotateX(${-y * 10}deg) rotateY(${x * 10}deg)`;
+                }
+            });
+            
+            // 3. Scroll reacting pipe flow speed
+            const pipeFlow = document.querySelector('.liquid-flow');
+            let lastScroll = window.scrollY;
+            window.addEventListener('scroll', () => {
+                if (pipeFlow) {
+                    let currentScroll = window.scrollY;
+                    let speed = Math.abs(currentScroll - lastScroll);
+                    let newDuration = Math.max(0.2, 2 - (speed * 0.05)); // Speeds up on scroll
+                    pipeFlow.style.animationDuration = newDuration + 's';
+                    lastScroll = currentScroll;
+                }
+            });
+        });
+
     </script>
 </body>
 </html>
