@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1200,
+  "width": 1150,
   "autosize": {"type": "fit-x", "contains": "padding"},
   "padding": {"left": 20, "top": 20, "right": 20, "bottom": 20},
   "spacing": 60,
@@ -15,7 +15,7 @@
         "subtitleFontSize": 16,
         "subtitleColor": "#A9CCE3"
       },
-      "width": 1200,
+      "width": 1150,
       "height": 300,
       "data": {"url": "data/final/chart5_caulfield_rain.csv"},
       "transform": [
@@ -80,7 +80,7 @@
         "subtitleFontSize": 16,
         "subtitleColor": "#A9CCE3"
       },
-      "width": 1200,
+      "width": 1150,
       "height": 200,
       "data": {"url": "data/final/chart5_Historical_Data.csv"},
       "transform": [
