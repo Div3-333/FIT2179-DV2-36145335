@@ -1,103 +1,91 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High-fidelity forensic console showing the Engineering Paradox: Production vs. Waste.",
-  "width": 1100,
-  "height": 400,
+  "description": "High-fidelity power-meter showing the tug-of-war between production and leakage.",
+  "width": 1000,
+  "height": 220,
   "background": "transparent",
+  "padding": {"left": 20, "top": 20, "right": 20, "bottom": 20},
+  "title": {
+    "text": "The Net Resilience Meter",
+    "subtitle": "Engineering Tug-of-War: Production (Gain) vs. Leakage (Drain) | Gigalitres (GL)",
+    "anchor": "start",
+    "color": "#D7CCC8",
+    "fontSize": 26,
+    "subtitleFontSize": 14,
+    "subtitleColor": "#B0BEC5",
+    "offset": 30
+  },
+  "data": {"url": "data/final/chart10_console_data.csv"},
   "params": [
     {
       "name": "selectYear",
       "value": 2021,
-      "bind": {"input": "range", "min": 2012, "max": 2021, "step": 1, "name": "Efficiency Audit: "}
+      "bind": {"input": "range", "min": 2012, "max": 2021, "step": 1, "name": "Audit Year: "}
     }
   ],
-  "hconcat": [
+  "transform": [
+    {"filter": "datum.YearInt == selectYear"},
+    {"calculate": "-datum.Non_Revenue_GL", "as": "LossNeg"},
+    {"calculate": "datum.Desalination_Delivered_GL - datum.Non_Revenue_GL", "as": "NetGain"}
+  ],
+  "layer": [
     {
-      "width": 450,
-      "height": 350,
-      "title": {
-        "text": "The Net Survival Gain (GL)",
-        "fontSize": 20,
-        "color": "#D7CCC8",
-        "anchor": "middle",
-        "offset": 20
-      },
-      "data": {"url": "data/final/chart10_console_data.csv"},
-      "transform": [
-        {"filter": "datum.YearInt == selectYear"},
-        {"calculate": "datum.Desalination_Delivered_GL - datum.Non_Revenue_GL", "as": "netGain"},
-        {"calculate": "datum.netGain > 0 ? 1 : 0", "as": "isPositive"}
-      ],
+      "name": "ZERO_LINE",
+      "mark": {"type": "rule", "color": "white", "strokeWidth": 2, "opacity": 0.3},
+      "encoding": {"x": {"datum": 0, "type": "quantitative", "scale": {"domain": [-100, 150]}, "axis": {"title": "Gigalitres (GL)", "labelColor": "#B0BEC5", "titleColor": "#B0BEC5", "grid": false}}}
+    },
+    {
+      "name": "DRAIN_BAR",
+      "mark": {"type": "bar", "height": 60, "color": "#E67E22", "opacity": 0.8, "cornerRadiusLeft": 5},
+      "encoding": {
+        "x": {"field": "LossNeg", "type": "quantitative"},
+        "x2": {"datum": 0}
+      }
+    },
+    {
+      "name": "GAIN_BAR",
+      "mark": {"type": "bar", "height": 60, "color": "#3498DB", "opacity": 0.8, "cornerRadiusRight": 5},
+      "encoding": {
+        "x": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
+        "x2": {"datum": 0}
+      }
+    },
+    {
+      "name": "NET_MARKER",
+      "mark": {"type": "rule", "color": "white", "strokeWidth": 4, "strokeCap": "round"},
+      "encoding": {"x": {"field": "NetGain", "type": "quantitative"}}
+    },
+    {
+      "name": "LABELS",
       "layer": [
         {
-          "mark": {"type": "arc", "innerRadius": 100, "outerRadius": 140, "theta": 1.57, "color": "rgba(255,255,255,0.05)"}
+          "mark": {"type": "text", "align": "right", "dx": -10, "fontSize": 24, "fontWeight": 900, "color": "#E67E22", "y": -20},
+          "encoding": {"x": {"field": "LossNeg", "type": "quantitative"}, "text": {"field": "Non_Revenue_GL", "type": "quantitative", "format": ".0f"}}
         },
         {
-          "mark": {"type": "arc", "innerRadius": 100, "outerRadius": 140, "theta": 1.57},
-          "encoding": {
-            "theta": {"datum": 1},
-            "color": {
-              "condition": {"test": "datum.isPositive == 1", "value": "#2ECC71"},
-              "value": "#E74C3C"
-            }
-          }
+          "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 24, "fontWeight": 900, "color": "#3498DB", "y": -20},
+          "encoding": {"x": {"field": "Desalination_Delivered_GL", "type": "quantitative"}, "text": {"field": "Desalination_Delivered_GL", "type": "quantitative", "format": ".0f"}}
         },
         {
-          "mark": {"type": "text", "fontSize": 56, "fontWeight": 900, "dy": -10},
-          "encoding": {
-            "text": {"field": "netGain", "type": "quantitative", "format": "+,.0f"},
-            "color": {
-              "condition": {"test": "datum.isPositive == 1", "value": "#2ECC71"},
-              "value": "#E74C3C"
-            }
-          }
-        },
-        {
-          "mark": {"type": "text", "fontSize": 14, "fontWeight": "bold", "color": "#B0BEC5", "dy": 40},
-          "encoding": {"text": {"value": "NET GL ADDED TO SYSTEM"}}
+          "mark": {"type": "text", "align": "center", "fontSize": 14, "fontWeight": "bold", "color": "white", "y": 60},
+          "encoding": {"x": {"field": "NetGain", "type": "quantitative"}, "text": {"datum": "NET BALANCE"}}
         }
       ]
     },
     {
-      "width": 550,
-      "height": 350,
-      "title": {
-        "text": "The Engineering Paradox (Production vs. Leakage)",
-        "fontSize": 20,
-        "color": "#D7CCC8",
-        "anchor": "start",
-        "offset": 20
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 100,
+        "fontWeight": 900,
+        "color": "rgba(255,255,255,0.05)",
+        "y": 100
       },
-      "data": {"url": "data/final/chart10_console_data.csv"},
-      "transform": [
-        {"filter": "datum.YearInt == selectYear"}
-      ],
-      "layer": [
-        {
-          "mark": {"type": "text", "align": "left", "fontSize": 18, "fontWeight": "bold", "color": "#3498DB", "y": 50},
-          "encoding": {"text": {"datum": "Engineered Production (Desal):"}}
-        },
-        {
-          "mark": {"type": "text", "align": "right", "fontSize": 26, "fontWeight": 900, "color": "#3498DB", "y": 50, "x": 480},
-          "encoding": {"text": {"field": "Desalination_Delivered_GL", "type": "quantitative", "format": ",.0f"}}
-        },
-        {
-          "mark": {"type": "text", "align": "left", "fontSize": 18, "fontWeight": "bold", "color": "#E67E22", "y": 130},
-          "encoding": {"text": {"datum": "Unseen Infrastructure Loss:"}}
-        },
-        {
-          "mark": {"type": "text", "align": "right", "fontSize": 26, "fontWeight": 900, "color": "#E67E22", "y": 130, "x": 480},
-          "encoding": {"text": {"field": "Non_Revenue_GL", "type": "quantitative", "format": ",.0f"}}
-        },
-        {
-          "mark": {"type": "text", "align": "left", "fontSize": 14, "fontStyle": "italic", "color": "#7F8C8D", "y": 160},
-          "encoding": {"text": {"datum": "(Water lost to leaks, theft, and errors)"}}
-        },
-        {
-          "mark": {"type": "text", "align": "center", "fontSize": 120, "fontWeight": 900, "color": "rgba(255,255,255,0.05)", "y": 280, "x": 275},
-          "encoding": {"text": {"field": "YearInt", "type": "nominal"}}
-        }
-      ]
+      "encoding": {
+        "x": {"datum": 25},
+        "text": {"field": "YearInt", "type": "nominal"}
+      }
     }
   ],
   "config": {
