@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1000,
-  "height": 140,
-  "padding": {"left": 20, "top": 10, "right": 20, "bottom": 20},
+  "width": 1100,
+  "height": 180,
+  "padding": {"left": 10, "top": 10, "right": 10, "bottom": 10},
   "title": {
     "text": "The Fluid Shift",
-    "subtitle": "Supply Proportion HUD (ML) | 2015 - 2023",
+    "subtitle": "Supply Proportion Forensic Dashboard | 2015 - 2023",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 24,
@@ -25,31 +25,36 @@
         "min": 2015,
         "max": 2022,
         "step": 0.1,
-        "name": "Analyze: "
+        "name": "Analyze Depth: "
       }
     }
   ],
   "transform": [
     {
       "filter": "abs(datum.YearStep - timeStep) < 0.05"
+    },
+    {
+      "calculate": "datum.Resource_Type == 'Surface water - consumptive' ? 30 : datum.Resource_Type == 'Surface water - environmental' ? 55 : datum.Resource_Type == 'Groundwater - consumptive' ? 80 : datum.Resource_Type == 'Recycled water - consumptive' ? 105 : 130",
+      "as": "rowY"
     }
   ],
   "layer": [
     {
       "mark": {
         "type": "bar",
-        "height": 80,
+        "height": 120,
         "cornerRadius": 10,
         "stroke": "white",
-        "strokeWidth": 2,
+        "strokeWidth": 1.5,
         "opacity": 0.9,
-        "y": 60
+        "y": 80
       },
       "encoding": {
         "x": {
           "field": "Volume_ML",
           "type": "quantitative",
           "stack": "normalize",
+          "scale": {"domain": [0, 1.45]},
           "axis": null
         },
         "color": {
@@ -81,22 +86,64 @@
     {
       "mark": {
         "type": "text",
-        "align": "center",
-        "baseline": "bottom",
-        "fontSize": 14,
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 13,
         "fontWeight": "bold",
-        "color": "white",
-        "y": 15
+        "color": "#D7CCC8"
       },
       "encoding": {
-        "x": {
-          "field": "Volume_ML",
-          "type": "quantitative",
-          "stack": "normalize",
-          "band": 0.5
-        },
-        "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.2s"},
-        "detail": {"field": "Resource_Type"}
+        "x": {"datum": 820, "type": "quantitative"},
+        "y": {"field": "rowY", "type": "quantitative"},
+        "text": {"field": "Resource_Type", "type": "nominal"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 14,
+        "fontWeight": "900",
+        "color": "white"
+      },
+      "encoding": {
+        "x": {"datum": 1100, "type": "quantitative"},
+        "y": {"field": "rowY", "type": "quantitative"},
+        "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.0f"},
+        "color": {"field": "Resource_Type", "type": "nominal", "legend": null}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#94C1EA",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {"datum": 820, "type": "quantitative"},
+        "y": {"datum": 5, "type": "quantitative"},
+        "text": {"datum": "Resource Stratum"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#94C1EA",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {"datum": 1100, "type": "quantitative"},
+        "y": {"datum": 5, "type": "quantitative"},
+        "text": {"datum": "Amount (ML)"}
       }
     },
     {
@@ -107,9 +154,10 @@
         "fontSize": 90,
         "fontWeight": 900,
         "color": "rgba(255,255,255,0.08)",
-        "y": 60
+        "y": 80
       },
       "encoding": {
+        "x": {"datum": 380, "type": "quantitative"},
         "text": {"field": "DisplayYear", "type": "nominal"}
       }
     }
