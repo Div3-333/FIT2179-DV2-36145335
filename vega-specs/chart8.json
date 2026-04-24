@@ -1,15 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 130,
-  "padding": {"left": 10, "top": 10, "right": 10, "bottom": 10},
+  "width": 1000,
+  "height": 140,
+  "padding": {"left": 20, "top": 10, "right": 20, "bottom": 20},
   "title": {
     "text": "The Fluid Shift",
     "subtitle": "Supply Proportion HUD (ML) | 2015 - 2023",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 24,
-    "subtitleFontSize": 12,
+    "subtitleFontSize": 13,
     "subtitleColor": "#B0BEC5",
     "offset": 20
   },
@@ -31,11 +31,7 @@
   ],
   "transform": [
     {
-      "filter": "abs(datum.YearStep - timeStep) < 0.01"
-    },
-    {
-      "calculate": "datum.Resource_Type == 'Surface water - consumptive' ? 20 : datum.Resource_Type == 'Surface water - environmental' ? 220 : datum.Resource_Type == 'Groundwater - consumptive' ? 420 : datum.Resource_Type == 'Recycled water - consumptive' ? 620 : 820",
-      "as": "hudX"
+      "filter": "abs(datum.YearStep - timeStep) < 0.05"
     }
   ],
   "layer": [
@@ -43,10 +39,11 @@
       "mark": {
         "type": "bar",
         "height": 80,
-        "cornerRadius": 8,
+        "cornerRadius": 10,
         "stroke": "white",
-        "strokeWidth": 1.5,
-        "opacity": 0.95
+        "strokeWidth": 2,
+        "opacity": 0.9,
+        "y": 60
       },
       "encoding": {
         "x": {
@@ -55,7 +52,6 @@
           "stack": "normalize",
           "axis": null
         },
-        "y": {"datum": 50, "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null},
         "color": {
           "field": "Resource_Type",
           "type": "nominal",
@@ -75,7 +71,7 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 5,
-            "offset": 20,
+            "offset": 40,
             "labelFontSize": 14,
             "symbolSize": 300
           }
@@ -85,25 +81,22 @@
     {
       "mark": {
         "type": "text",
-        "align": "left",
+        "align": "center",
         "baseline": "bottom",
         "fontSize": 14,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "color": "white",
+        "y": 15
       },
       "encoding": {
         "x": {
-          "field": "hudX", 
-          "type": "quantitative", 
-          "scale": {"domain": [0, 1000]},
-          "axis": null
+          "field": "Volume_ML",
+          "type": "quantitative",
+          "stack": "normalize",
+          "band": 0.5
         },
-        "y": {"datum": 95, "type": "quantitative"},
         "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.2s"},
-        "color": {
-          "field": "Resource_Type", 
-          "type": "nominal",
-          "legend": null
-        }
+        "detail": {"field": "Resource_Type"}
       }
     },
     {
@@ -113,11 +106,11 @@
         "baseline": "middle",
         "fontSize": 90,
         "fontWeight": 900,
-        "color": "rgba(255,255,255,0.08)"
+        "color": "rgba(255,255,255,0.08)",
+        "y": 60
       },
       "encoding": {
-        "text": {"field": "DisplayYear", "type": "nominal"},
-        "y": {"datum": 50, "type": "quantitative"}
+        "text": {"field": "DisplayYear", "type": "nominal"}
       }
     }
   ],
