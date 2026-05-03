@@ -282,7 +282,7 @@
         
         .section-earth::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.08) 35px, transparent 40px);
+            background-image: radial-gradient(rgba(255,255,255,0.045) 35px, transparent 40px);
             background-size: 80px 80px;
             animation: pulse-wedges 4s infinite alternate ease-in-out;
             pointer-events: none;
@@ -483,16 +483,45 @@
         }
 
         @media (max-width: 900px) {
-            .story-row { grid-template-columns: 1fr !important; }
+            .story-row {
+                display: block;
+                overflow-x: auto;
+                padding-bottom: 12px;
+                grid-template-columns: 1fr !important;
+                -webkit-overflow-scrolling: touch;
+            }
             .story-row > .viz-canvas,
             .story-row > .text-block { min-height: auto !important; }
+            .story-row > .viz-canvas {
+                min-width: 680px;
+                margin-bottom: 24px;
+            }
+            .story-row > .text-block {
+                width: 100%;
+                min-width: 0;
+            }
+            .full-width-viz {
+                overflow-x: auto;
+                padding-bottom: 12px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .full-width-viz > .viz-canvas {
+                min-width: 720px;
+            }
             .full-width-viz > .glass-canvas {
                 grid-template-columns: 1fr !important;
                 gap: 24px !important;
                 padding: 20px !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
             }
             .full-width-viz > .glass-canvas > div {
                 min-height: 420px !important;
+                min-width: 640px;
+            }
+            #vis-chart-8 {
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
             }
             .audit-grid { grid-template-columns: 1fr !important; }
         }
@@ -500,11 +529,11 @@
         /* Methodology Ledger Styling */
         .audit-card { border-bottom: 1px solid rgba(148, 193, 234, 0.2); padding: 20px 0; }
         .audit-card[open] { background: rgba(0,0,0,0.15); border-radius: 8px; padding: 20px; }
-        .audit-card summary { cursor: pointer; font-weight: bold; color: #E0E6ED; font-size: 1.2rem; list-style: none; display: flex; align-items: center; gap: 15px; transition: all 0.3s; font-family: 'Merriweather', serif; }
+        .audit-card summary { cursor: pointer; font-weight: bold; color: #E0E6ED; font-size: 1.2rem; line-height: 1.35; list-style: none; display: flex; align-items: center; gap: 15px; transition: all 0.3s; font-family: 'Merriweather', serif; }
         .audit-card summary:hover { color: #3498DB; padding-left: 5px; }
         .audit-card summary:hover { color: #3498DB; }
         .audit-card summary::-webkit-details-marker { display: none; }
-        .audit-content { padding: 30px; background: rgba(13, 27, 42, 0.6); border: 1px solid rgba(148, 193, 234, 0.1); border-radius: 12px; margin-top: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+        .audit-content { padding: 30px; background: rgba(13, 27, 42, 0.72); border: 1px solid rgba(148, 193, 234, 0.14); border-radius: 8px; margin-top: 20px; box-shadow: inset 0 0 12px rgba(0,0,0,0.35); }
         .audit-section-title { color: #3498DB; font-size: 0.75rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid rgba(52, 152, 219, 0.3); padding-bottom: 5px; }
         .audit-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 40px; align-items: start; }
         .audit-table { width: 100%; font-size: 0.85rem; border-collapse: collapse; }
@@ -607,7 +636,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Evaporation Squeeze</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The <span class="term term-blue" tabindex="0" data-tip="The plotted record runs from 1983 to 2025.">modern record</span> shows annual evaporation generally rising through time, with 2025 reaching the highest plotted evaporation value. The <span class="term term-yellow" tabindex="0" data-tip="Yellow marks the hottest summer maximum temperatures in this chart.">hottest years</span>, especially 2009 and 2019, sit high on the evaporation axis while their rainfall bubbles are small. Together, the encodings reveal a compound-stress pattern: several high-heat years also combine high evaporation with low annual rainfall.
+                        The <span class="term term-blue" tabindex="0" data-tip="The plotted record runs from 1983 to 2025.">modern record</span> shows annual evaporation generally rising through time, with 2025 reaching the highest plotted evaporation value. The <span class="term term-orange" tabindex="0" data-tip="The orange dashed line is an OLS trendline fitted to annual evaporation over the plotted years.">orange trendline</span> summarises that upward long-run movement. The <span class="term term-yellow" tabindex="0" data-tip="Yellow marks the hottest summer maximum temperatures in this chart.">hottest years</span>, especially 2009 and 2019, sit high on the evaporation axis while their rainfall bubbles are small. Together, the encodings reveal a compound-stress pattern: several high-heat years also combine high evaporation with low annual rainfall.
                     </p>
                 </div>
             </div>

@@ -199,6 +199,51 @@
         },
         {
           "data": {
+            "url": "data/final/chart3_soi_monthly.csv"
+          },
+          "transform": [
+            {
+              "calculate": "datetime(datum.Year, datum.Month - 1, 1)",
+              "as": "Date"
+            },
+            {
+              "filter": "datum.Year >= 2004 && datum.Year <= 2019"
+            }
+          ],
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 70,
+            "opacity": 0,
+            "tooltip": true
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "SOI",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Month",
+                "format": "%b %Y"
+              },
+              {
+                "field": "SOI",
+                "type": "quantitative",
+                "title": "SOI value",
+                "format": ".1f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
             "values": [
               {
                 "Date": "2015-10-01",

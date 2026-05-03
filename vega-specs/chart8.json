@@ -80,7 +80,31 @@
                 "labelFontSize": 12,
                 "symbolSize": 150
               }
-            }
+            },
+            "tooltip": [
+              {
+                "field": "DisplayYear",
+                "type": "nominal",
+                "title": "Water year"
+              },
+              {
+                "field": "Resource_Type",
+                "type": "nominal",
+                "title": "Resource"
+              },
+              {
+                "field": "Volume_ML",
+                "type": "quantitative",
+                "title": "Volume (ML)",
+                "format": ",.0f"
+              },
+              {
+                "field": "Share",
+                "type": "quantitative",
+                "title": "Share of total",
+                "format": ".1%"
+              }
+            ]
           },
           "data": {
             "url": "data/final/chart8_liquid_data.csv"
@@ -91,6 +115,19 @@
             },
             {
               "filter": "abs(datum.YearStep - timeStep) < 0.01"
+            },
+            {
+              "joinaggregate": [
+                {
+                  "op": "sum",
+                  "field": "Volume_ML",
+                  "as": "TotalVolume"
+                }
+              ]
+            },
+            {
+              "calculate": "datum.Volume_ML / datum.TotalVolume",
+              "as": "Share"
             }
           ]
         },
@@ -228,6 +265,19 @@
         {
           "calculate": "datum.Resource_Type == 'Desalinated water - consumptive' ? 0 : datum.Resource_Type == 'Recycled water - consumptive' ? 1 : datum.Resource_Type == 'Groundwater - consumptive' ? 2 : datum.Resource_Type == 'Surface water - environmental' ? 3 : 4",
           "as": "rowOrder"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "sum",
+              "field": "Volume_ML",
+              "as": "TotalVolume"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.Volume_ML / datum.TotalVolume",
+          "as": "Share"
         }
       ],
       "mark": {
@@ -267,7 +317,31 @@
             ]
           },
           "legend": null
-        }
+        },
+        "tooltip": [
+          {
+            "field": "DisplayYear",
+            "type": "nominal",
+            "title": "Water year"
+          },
+          {
+            "field": "Resource_Type",
+            "type": "nominal",
+            "title": "Resource"
+          },
+          {
+            "field": "Volume_ML",
+            "type": "quantitative",
+            "title": "Volume (ML)",
+            "format": ",.0f"
+          },
+          {
+            "field": "Share",
+            "type": "quantitative",
+            "title": "Share of total",
+            "format": ".1%"
+          }
+        ]
       },
       "data": {
         "url": "data/final/chart8_liquid_data.csv"
