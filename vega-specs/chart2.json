@@ -42,7 +42,7 @@
       },
       "encoding": {
         "x": {
-          "field": "Month",
+          "field": "MonthNum",
           "type": "ordinal",
           "title": "Month",
           "sort": [
@@ -61,14 +61,14 @@
           ],
           "axis": {
             "labelAngle": 0,
-            "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]"
+            "labelExpr": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.label]"
           }
         },
         "y": {
-          "field": "Year",
+          "field": "YearNum",
           "type": "ordinal",
           "title": null,
-          "sort": "descending",
+          "sort": "ascending",
           "axis": {
             "labelExpr": "datum.label % 10 == 0 || datum.label == 1910 ? datum.label : ''"
           }
@@ -93,11 +93,11 @@
         },
         "tooltip": [
           {
-            "field": "Year",
+            "field": "YearNum",
             "type": "ordinal"
           },
           {
-            "field": "Month",
+            "field": "MonthNum",
             "type": "ordinal",
             "title": "Month"
           },
@@ -108,31 +108,42 @@
             "format": ".1f"
           }
         ]
-      }
+      },
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "calculate": "toNumber(datum.Year)",
+          "as": "YearNum"
+        }
+      ]
     },
     {
       "data": {
         "values": [
           {
-            "Month": 1,
-            "Year": 2019,
-            "Month2": 3,
-            "Year2": 2021,
-            "labelMonth": 4,
-            "labelYear": 2021,
-            "text": "Recent warm band|2010s onward"
+            "MonthNum": 11,
+            "YearNum": 2018,
+            "Month2": 12,
+            "Year2": 2018
           }
         ]
       },
       "mark": {
         "type": "rule",
-        "color": "#E0F2FE",
+        "color": "#17202A",
         "strokeWidth": 2,
-        "opacity": 0.85
+        "opacity": 0.9,
+        "clip": false
       },
       "encoding": {
         "x": {
-          "field": "Month",
+          "field": "MonthNum",
           "type": "ordinal",
           "sort": [
             1,
@@ -147,12 +158,14 @@
             10,
             11,
             12
-          ]
+          ],
+          "axis": null
         },
         "y": {
-          "field": "Year",
+          "field": "YearNum",
           "type": "ordinal",
-          "sort": "descending"
+          "sort": "ascending",
+          "axis": null
         },
         "x2": {
           "field": "Month2"
@@ -166,12 +179,8 @@
       "data": {
         "values": [
           {
-            "Month": 1,
-            "Year": 2019,
-            "Month2": 3,
-            "Year2": 2021,
-            "labelMonth": 4,
-            "labelYear": 2021,
+            "MonthNum": 12,
+            "YearNum": 2018,
             "text": "Recent warm band|2010s onward"
           }
         ]
@@ -180,16 +189,18 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "dx": 6,
-        "dy": 0,
+        "dx": 10,
         "fontSize": 12,
         "fontWeight": "bold",
-        "color": "#E0F2FE",
-        "lineBreak": "|"
+        "color": "#17202A",
+        "stroke": "transparent",
+        "strokeWidth": 0,
+        "lineBreak": "|",
+        "clip": false
       },
       "encoding": {
         "x": {
-          "field": "labelMonth",
+          "field": "MonthNum",
           "type": "ordinal",
           "sort": [
             1,
@@ -204,12 +215,14 @@
             10,
             11,
             12
-          ]
+          ],
+          "axis": null
         },
         "y": {
-          "field": "labelYear",
+          "field": "YearNum",
           "type": "ordinal",
-          "sort": "descending"
+          "sort": "ascending",
+          "axis": null
         },
         "text": {
           "field": "text",
@@ -217,5 +230,11 @@
         }
       }
     }
-  ]
+  ],
+  "padding": {
+    "left": 5,
+    "right": 105,
+    "top": 5,
+    "bottom": 5
+  }
 }

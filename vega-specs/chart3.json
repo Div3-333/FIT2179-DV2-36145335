@@ -18,247 +18,258 @@
   },
   "layer": [
     {
-      "data": {
-        "url": "data/final/chart3_caulfield_rain.csv"
-      },
-      "transform": [
+      "layer": [
         {
-          "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
-          "as": "MonthNum"
-        },
-        {
-          "calculate": "datetime(datum.Year, datum.MonthNum, 1)",
-          "as": "Date"
-        },
-        {
-          "filter": "datum.Year >= 2004 && datum.Year <= 2019"
-        }
-      ],
-      "mark": {
-        "type": "bar",
-        "color": "#94C1EA",
-        "opacity": 0.6,
-        "width": 4
-      },
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal",
-          "title": "Year",
-          "axis": {
-            "grid": false
-          }
-        },
-        "y": {
-          "field": "Rainfall_mm",
-          "type": "quantitative",
-          "title": "Monthly Rainfall (mm)",
-          "axis": {
-            "titleColor": "#3498DB"
-          }
-        },
-        "tooltip": [
-          {
-            "field": "Date",
-            "type": "temporal",
-            "title": "Month",
-            "format": "%b %Y"
+          "data": {
+            "url": "data/final/chart3_caulfield_rain.csv"
           },
-          {
-            "field": "Rainfall_mm",
-            "type": "quantitative",
-            "title": "Rainfall (mm)"
-          }
-        ]
-      }
-    },
-    {
-      "data": {
-        "url": "data/final/chart3_soi_monthly.csv"
-      },
-      "transform": [
-        {
-          "calculate": "datetime(datum.Year, datum.Month - 1, 1)",
-          "as": "Date"
-        },
-        {
-          "filter": "datum.Year >= 2004 && datum.Year <= 2019"
-        }
-      ],
-      "mark": {
-        "type": "line",
-        "color": "#E67E22",
-        "strokeWidth": 2,
-        "interpolate": "monotone"
-      },
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal"
-        },
-        "y": {
-          "field": "SOI",
-          "type": "quantitative",
-          "title": "Southern Oscillation Index (SOI)",
-          "axis": {
-            "orient": "right",
-            "titleColor": "#E67E22"
-          }
-        },
-        "tooltip": [
-          {
-            "field": "Date",
-            "type": "temporal",
-            "title": "Month",
-            "format": "%b %Y"
+          "transform": [
+            {
+              "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
+              "as": "MonthNum"
+            },
+            {
+              "calculate": "datetime(datum.Year, datum.MonthNum, 1)",
+              "as": "Date"
+            },
+            {
+              "filter": "datum.Year >= 2004 && datum.Year <= 2019"
+            }
+          ],
+          "mark": {
+            "type": "bar",
+            "color": "#94C1EA",
+            "opacity": 0.6,
+            "width": 4
           },
-          {
-            "field": "SOI",
-            "type": "quantitative",
-            "title": "SOI Value"
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "title": "Year",
+              "axis": {
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "Rainfall_mm",
+              "type": "quantitative",
+              "title": "Monthly Rainfall (mm)",
+              "axis": {
+                "titleColor": "#3498DB"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Month",
+                "format": "%b %Y"
+              },
+              {
+                "field": "Rainfall_mm",
+                "type": "quantitative",
+                "title": "Rainfall (mm)"
+              }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "Date": "2018-05-01",
+                "Rainfall_mm": 0,
+                "Date2": "2016-08-01",
+                "Rainfall_mm2": 170
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#1F6FA8",
+            "strokeWidth": 2,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "axis": null
+            },
+            "y": {
+              "field": "Rainfall_mm",
+              "type": "quantitative",
+              "axis": null
+            },
+            "x2": {
+              "field": "Date2"
+            },
+            "y2": {
+              "field": "Rainfall_mm2"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "Date": "2016-08-01",
+                "Rainfall_mm": 170,
+                "text": "2018 dry months|local rainfall collapse"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#1F6FA8",
+            "lineBreak": "|"
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "axis": null
+            },
+            "y": {
+              "field": "Rainfall_mm",
+              "type": "quantitative",
+              "axis": null
+            },
+            "text": {
+              "field": "text"
+            }
+          }
+        }
+      ]
     },
     {
-      "data": {
-        "values": [
-          {
-            "Date": "2015-10-01",
-            "SOI": -20.2,
-            "Date2": "2014-10-01",
-            "SOI2": -30
+      "layer": [
+        {
+          "data": {
+            "url": "data/final/chart3_soi_monthly.csv"
+          },
+          "transform": [
+            {
+              "calculate": "datetime(datum.Year, datum.Month - 1, 1)",
+              "as": "Date"
+            },
+            {
+              "filter": "datum.Year >= 2004 && datum.Year <= 2019"
+            }
+          ],
+          "mark": {
+            "type": "line",
+            "color": "#E67E22",
+            "strokeWidth": 2,
+            "interpolate": "monotone"
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "axis": null
+            },
+            "y": {
+              "field": "SOI",
+              "type": "quantitative",
+              "title": "Southern Oscillation Index (SOI)",
+              "axis": {
+                "orient": "right",
+                "titleColor": "#E67E22"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Month",
+                "format": "%b %Y"
+              },
+              {
+                "field": "SOI",
+                "type": "quantitative",
+                "title": "SOI Value"
+              }
+            ]
           }
-        ]
-      },
-      "mark": {
-        "type": "rule",
-        "color": "#E67E22",
-        "strokeWidth": 2,
-        "opacity": 0.85
-      },
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal"
         },
-        "y": {
-          "field": "SOI",
-          "type": "quantitative"
-        },
-        "x2": {
-          "field": "Date2"
-        },
-        "y2": {
-          "field": "SOI2"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Date": "2014-10-01",
-            "SOI": -30,
-            "text": "2015 El Nino|SOI trough"
+        {
+          "data": {
+            "values": [
+              {
+                "Date": "2015-10-01",
+                "SOI": -20.2,
+                "Date2": "2013-08-01",
+                "SOI2": 23
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#E67E22",
+            "strokeWidth": 2,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "axis": null
+            },
+            "y": {
+              "field": "SOI",
+              "type": "quantitative",
+              "axis": null
+            },
+            "x2": {
+              "field": "Date2"
+            },
+            "y2": {
+              "field": "SOI2"
+            }
           }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 0,
-        "dy": 0,
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "#E67E22",
-        "lineBreak": "|"
-      },
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal"
         },
-        "y": {
-          "field": "SOI",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "text",
-          "type": "nominal"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Date": "2018-05-01",
-            "Rainfall_mm": 0,
-            "Date2": "2017-06-01",
-            "Rainfall_mm2": 125
+        {
+          "data": {
+            "values": [
+              {
+                "Date": "2013-08-01",
+                "SOI": 23,
+                "text": "2015 El Nino|SOI trough"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#A64F00",
+            "lineBreak": "|"
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "axis": null
+            },
+            "y": {
+              "field": "SOI",
+              "type": "quantitative",
+              "axis": null
+            },
+            "text": {
+              "field": "text"
+            }
           }
-        ]
-      },
-      "mark": {
-        "type": "rule",
-        "color": "#3498DB",
-        "strokeWidth": 2,
-        "opacity": 0.85
-      },
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal"
-        },
-        "y": {
-          "field": "Rainfall_mm",
-          "type": "quantitative"
-        },
-        "x2": {
-          "field": "Date2"
-        },
-        "y2": {
-          "field": "Rainfall_mm2"
         }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Date": "2017-06-01",
-            "Rainfall_mm": 125,
-            "text": "2018 dry months|not solely SOI-driven"
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 0,
-        "dy": 0,
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "#3498DB",
-        "lineBreak": "|"
-      },
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal"
-        },
-        "y": {
-          "field": "Rainfall_mm",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "text",
-          "type": "nominal"
-        }
-      }
+      ]
     }
   ],
   "resolve": {

@@ -33,7 +33,7 @@
   "hconcat": [
     {
       "width": 850,
-      "height": 100,
+      "height": 150,
       "layer": [
         {
           "mark": {
@@ -99,7 +99,7 @@
             "type": "text",
             "align": "center",
             "baseline": "middle",
-            "fontSize": 80,
+            "fontSize": 64,
             "fontWeight": 900
           },
           "encoding": {
@@ -110,9 +110,9 @@
             "color": {
               "condition": {
                 "test": "timeStep > 2018",
-                "value": "rgba(241, 196, 15, 0.1)"
+                  "value": "rgba(241, 196, 15, 0.07)"
               },
-              "value": "rgba(52, 152, 219, 0.06)"
+              "value": "rgba(52, 152, 219, 0.05)"
             }
           },
           "data": {
@@ -131,10 +131,8 @@
           "data": {
             "values": [
               {
-                "x": 0.72,
-                "y": 0,
-                "x2": 0.55,
-                "y2": 0
+                "x1": 0.7,
+                "x2": 0.45
               }
             ]
           },
@@ -142,29 +140,29 @@
             "type": "rule",
             "color": "#FCFDBF",
             "strokeWidth": 2,
-            "opacity": 0.85
+            "opacity": 0.9,
+            "clip": false
           },
           "encoding": {
             "x": {
-              "field": "x",
+              "field": "x1",
               "type": "quantitative",
               "scale": {
                 "domain": [
                   0,
                   1
                 ]
-              }
-            },
-            "y": {
-              "field": "y",
-              "type": "quantitative",
+              },
               "axis": null
             },
             "x2": {
               "field": "x2"
             },
+            "y": {
+              "value": 75
+            },
             "y2": {
-              "field": "y2"
+              "value": 30
             }
           }
         },
@@ -172,8 +170,7 @@
           "data": {
             "values": [
               {
-                "x": 0.55,
-                "y": 0,
+                "x": 0.42,
                 "text": "2020 alternatives|about 12.4%"
               }
             ]
@@ -181,13 +178,12 @@
           "mark": {
             "type": "text",
             "align": "left",
-            "baseline": "middle",
-            "dx": 0,
-            "dy": 0,
+            "baseline": "top",
             "fontSize": 12,
             "fontWeight": "bold",
             "color": "#FCFDBF",
-            "lineBreak": "|"
+            "lineBreak": "|",
+            "clip": false
           },
           "encoding": {
             "x": {
@@ -198,16 +194,14 @@
                   0,
                   1
                 ]
-              }
-            },
-            "y": {
-              "field": "y",
-              "type": "quantitative",
+              },
               "axis": null
             },
+            "y": {
+              "value": 4
+            },
             "text": {
-              "field": "text",
-              "type": "nominal"
+              "field": "text"
             }
           }
         }

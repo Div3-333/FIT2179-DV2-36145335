@@ -154,8 +154,8 @@
               {
                 "YearInt": 2020,
                 "Desalination_Delivered_GL": 125,
-                "YearInt2": 2017.4,
-                "Desalination_Delivered_GL2": 180
+                "YearInt2": 2017.65,
+                "Desalination_Delivered_GL2": 173
               }
             ]
           },
@@ -168,11 +168,13 @@
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "axis": null
             },
             "y": {
               "field": "Desalination_Delivered_GL",
-              "type": "quantitative"
+              "type": "quantitative",
+              "axis": null
             },
             "x2": {
               "field": "YearInt2"
@@ -186,18 +188,16 @@
           "data": {
             "values": [
               {
-                "YearInt": 2017.4,
-                "Desalination_Delivered_GL": 180,
+                "YearInt": 2017.45,
+                "Desalination_Delivered_GL": 190,
                 "text": "125 GL delivered|2020-2021 shown"
               }
             ]
           },
           "mark": {
             "type": "text",
-            "align": "left",
+            "align": "right",
             "baseline": "middle",
-            "dx": 0,
-            "dy": 0,
             "fontSize": 12,
             "fontWeight": "bold",
             "color": "#2980B9",
@@ -206,15 +206,16 @@
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "axis": null
             },
             "y": {
               "field": "Desalination_Delivered_GL",
-              "type": "quantitative"
+              "type": "quantitative",
+              "axis": null
             },
             "text": {
-              "field": "text",
-              "type": "nominal"
+              "field": "text"
             }
           }
         }
@@ -294,8 +295,8 @@
               {
                 "YearInt": 2020,
                 "ratio": 0.288,
-                "YearInt2": 2017.4,
-                "ratio2": 0.34
+                "YearInt2": 2017.55,
+                "ratio2": 0.355
               }
             ]
           },
@@ -308,11 +309,13 @@
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "axis": null
             },
             "y": {
               "field": "ratio",
-              "type": "quantitative"
+              "type": "quantitative",
+              "axis": null
             },
             "x2": {
               "field": "YearInt2"
@@ -326,18 +329,16 @@
           "data": {
             "values": [
               {
-                "YearInt": 2017.4,
-                "ratio": 0.34,
+                "YearInt": 2017.35,
+                "ratio": 0.36,
                 "text": "Peak share|28.8% in 2020"
               }
             ]
           },
           "mark": {
             "type": "text",
-            "align": "left",
+            "align": "right",
             "baseline": "middle",
-            "dx": 0,
-            "dy": 0,
             "fontSize": 12,
             "fontWeight": "bold",
             "color": "#2C3E50",
@@ -346,15 +347,16 @@
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "axis": null
             },
             "y": {
               "field": "ratio",
-              "type": "quantitative"
+              "type": "quantitative",
+              "axis": null
             },
             "text": {
-              "field": "text",
-              "type": "nominal"
+              "field": "text"
             }
           }
         }

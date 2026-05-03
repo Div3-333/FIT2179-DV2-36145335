@@ -18,38 +18,76 @@
   },
   "layer": [
     {
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"
+        },
+        {
+          "calculate": "datum.Year <= 1920 ? 'Historical (1910-20)' : 'Modern (2010-20)'",
+          "as": "Era"
+        },
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "Era"
+          ]
+        }
+      ],
       "mark": {
         "type": "line",
         "interpolate": "monotone",
-        "strokeWidth": 4
+        "strokeWidth": 3.5,
+        "color": "#263B4E"
       },
       "encoding": {
         "x": {
-          "field": "Month",
-          "type": "ordinal",
-          "sort": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12
-          ],
+          "field": "MonthNum",
+          "type": "quantitative",
+          "title": "Month",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          },
           "axis": {
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
             "labelAngle": 0,
-            "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]"
+            "labelExpr": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value]",
+            "title": "Month"
           }
         },
         "y": {
           "field": "AvgMax",
           "type": "quantitative",
-          "title": "Mean Max Temperature (\u00b0C)",
+          "title": "Mean Max Temperature (deg C)",
           "scale": {
             "domain": [
               10,
@@ -57,7 +95,7 @@
             ]
           }
         },
-        "color": {
+        "strokeDash": {
           "field": "Era",
           "type": "nominal",
           "scale": {
@@ -66,16 +104,27 @@
               "Modern (2010-20)"
             ],
             "range": [
-              "#3B0F70",
-              "#FE9F6D"
+              [
+                5,
+                4
+              ],
+              [
+                0
+              ]
             ]
           },
           "legend": {
             "orient": "top-right",
-            "title": null
+            "title": "Line style"
           }
+        },
+        "detail": {
+          "field": "Era",
+          "type": "nominal"
         }
-      },
+      }
+    },
+    {
       "data": {
         "url": "data/final/chart2_temperature.csv"
       },
@@ -88,6 +137,10 @@
           "as": "Era"
         },
         {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
           "aggregate": [
             {
               "op": "mean",
@@ -96,35 +149,43 @@
             }
           ],
           "groupby": [
-            "Month",
+            "MonthNum",
             "Era"
           ]
         }
-      ]
-    },
-    {
+      ],
       "mark": {
         "type": "point",
-        "size": 80,
-        "filled": true
+        "filled": true,
+        "size": 38,
+        "color": "#263B4E"
       },
       "encoding": {
         "x": {
-          "field": "Month",
-          "type": "ordinal"
+          "field": "MonthNum",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          },
+          "axis": null
         },
         "y": {
           "field": "AvgMax",
-          "type": "quantitative"
-        },
-        "color": {
-          "field": "Era",
-          "type": "nominal"
+          "type": "quantitative",
+          "axis": null
         },
         "tooltip": [
           {
             "field": "Era",
             "type": "nominal"
+          },
+          {
+            "field": "MonthNum",
+            "type": "quantitative",
+            "title": "Month"
           },
           {
             "field": "AvgMax",
@@ -133,90 +194,49 @@
             "format": ".1f"
           }
         ]
-      },
-      "data": {
-        "url": "data/final/chart2_temperature.csv"
-      },
-      "transform": [
-        {
-          "filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"
-        },
-        {
-          "calculate": "datum.Year <= 1920 ? 'Historical (1910-20)' : 'Modern (2010-20)'",
-          "as": "Era"
-        },
-        {
-          "aggregate": [
-            {
-              "op": "mean",
-              "field": "MaxTemp",
-              "as": "AvgMax"
-            }
-          ],
-          "groupby": [
-            "Month",
-            "Era"
-          ]
-        }
-      ]
+      }
     },
     {
       "data": {
         "values": [
           {
-            "Month": 1,
-            "AvgMax": 26.6,
-            "Month2": 3,
-            "AvgMax2": 29.5,
-            "labelMonth": 3,
-            "labelY": 30.4,
-            "text": "Modern line stays|above baseline"
+            "MonthNum": 11.7,
+            "AvgMax": 22.6,
+            "text": "Modern (solid)"
           },
           {
-            "Month": 8,
-            "AvgMax": 15.13,
-            "Month2": 9,
-            "AvgMax2": 18.0,
-            "labelMonth": 9,
-            "labelY": 18.8,
-            "text": "Smallest lift|still positive"
+            "MonthNum": 11.7,
+            "AvgMax": 20.9,
+            "text": "Historical (dotted)"
           }
         ]
       },
       "mark": {
-        "type": "rule",
-        "color": "#2C3E50",
-        "strokeWidth": 2,
-        "opacity": 0.85
+        "type": "text",
+        "align": "left",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#263B4E"
       },
       "encoding": {
         "x": {
-          "field": "Month",
-          "type": "ordinal",
-          "sort": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12
-          ]
+          "field": "MonthNum",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          },
+          "axis": null
         },
         "y": {
           "field": "AvgMax",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
-        "x2": {
-          "field": "Month2"
-        },
-        "y2": {
-          "field": "AvgMax2"
+        "text": {
+          "field": "text"
         }
       }
     },
@@ -224,22 +244,62 @@
       "data": {
         "values": [
           {
-            "Month": 1,
-            "AvgMax": 26.6,
-            "Month2": 3,
-            "AvgMax2": 29.5,
-            "labelMonth": 3,
-            "labelY": 30.4,
-            "text": "Modern line stays|above baseline"
+            "x1": 1,
+            "y1": 26.6,
+            "x2": 2.15,
+            "y2": 30.1
           },
           {
-            "Month": 8,
-            "AvgMax": 15.13,
-            "Month2": 9,
-            "AvgMax2": 18.0,
-            "labelMonth": 9,
-            "labelY": 18.8,
-            "text": "Smallest lift|still positive"
+            "x1": 8,
+            "y1": 15.13,
+            "x2": 9.3,
+            "y2": 12.2
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#263B4E",
+        "strokeWidth": 1.8,
+        "opacity": 0.8
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y1",
+          "type": "quantitative",
+          "axis": null
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y2": {
+          "field": "y2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2.25,
+            "y": 30.5,
+            "text": "Largest lift|January +2.2 deg C"
+          },
+          {
+            "x": 9.4,
+            "y": 12.1,
+            "text": "Smallest lift|August +0.4 deg C"
           }
         ]
       },
@@ -247,39 +307,30 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "dx": 0,
-        "dy": 0,
         "fontSize": 12,
         "fontWeight": "bold",
-        "color": "#2C3E50",
+        "color": "#263B4E",
         "lineBreak": "|"
       },
       "encoding": {
         "x": {
-          "field": "labelMonth",
-          "type": "ordinal",
-          "sort": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12
-          ]
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          },
+          "axis": null
         },
         "y": {
-          "field": "labelY",
-          "type": "quantitative"
+          "field": "y",
+          "type": "quantitative",
+          "axis": null
         },
         "text": {
-          "field": "text",
-          "type": "nominal"
+          "field": "text"
         }
       }
     }
@@ -292,7 +343,8 @@
     "axis": {
       "domainColor": "#2C3E50",
       "labelFont": "Source Sans Pro",
-      "titleFont": "Source Sans Pro"
+      "titleFont": "Source Sans Pro",
+      "titleColor": "#2C3E50"
     }
   }
 }

@@ -298,12 +298,21 @@
           {
             "Storage_Percentage": 67.5,
             "Desalination_Delivered_GL": 125,
-            "Storage2": 49,
-            "Desal2": 145,
+            "Storage2": 50,
+            "Desal2": 143,
             "Year": "2020"
           }
         ]
       },
+      "transform": [
+        {
+          "calculate": "toNumber(datum.Year)",
+          "as": "YearNum"
+        },
+        {
+          "filter": "showModern || datum.YearNum <= 2021"
+        }
+      ],
       "mark": {
         "type": "rule",
         "color": "#E74C3C",
@@ -313,11 +322,13 @@
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "y": {
           "field": "Desalination_Delivered_GL",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "x2": {
           "field": "Storage2"
@@ -325,6 +336,18 @@
         "y2": {
           "field": "Desal2"
         }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Storage_Percentage": 48,
+            "Desalination_Delivered_GL": 149,
+            "text": "2020 enters|high-desal response",
+            "Year": "2020"
+          }
+        ]
       },
       "transform": [
         {
@@ -334,25 +357,11 @@
         {
           "filter": "showModern || datum.YearNum <= 2021"
         }
-      ]
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "Storage_Percentage": 49,
-            "Desalination_Delivered_GL": 145,
-            "text": "2020 enters|high-desal response",
-            "Year": "2020"
-          }
-        ]
-      },
+      ],
       "mark": {
         "type": "text",
-        "align": "left",
+        "align": "right",
         "baseline": "middle",
-        "dx": 0,
-        "dy": 0,
         "fontSize": 12,
         "fontWeight": "bold",
         "color": "#E74C3C",
@@ -361,26 +370,18 @@
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "y": {
           "field": "Desalination_Delivered_GL",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "text": {
-          "field": "text",
-          "type": "nominal"
+          "field": "text"
         }
-      },
-      "transform": [
-        {
-          "calculate": "toNumber(datum.Year)",
-          "as": "YearNum"
-        },
-        {
-          "filter": "showModern || datum.YearNum <= 2021"
-        }
-      ]
+      }
     },
     {
       "data": {
@@ -388,26 +389,37 @@
           {
             "Storage_Percentage": 92.8,
             "Desalination_Delivered_GL": 15,
-            "Storage2": 85,
-            "Desal2": 38,
+            "Storage2": 84,
+            "Desal2": 36,
             "Year": "2023"
           }
         ]
       },
+      "transform": [
+        {
+          "calculate": "toNumber(datum.Year)",
+          "as": "YearNum"
+        },
+        {
+          "filter": "showModern || datum.YearNum <= 2021"
+        }
+      ],
       "mark": {
         "type": "rule",
-        "color": "#F1C40F",
+        "color": "#B9770E",
         "strokeWidth": 2,
         "opacity": 0.85
       },
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "y": {
           "field": "Desalination_Delivered_GL",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "x2": {
           "field": "Storage2"
@@ -415,52 +427,18 @@
         "y2": {
           "field": "Desal2"
         }
-      },
-      "transform": [
-        {
-          "calculate": "toNumber(datum.Year)",
-          "as": "YearNum"
-        },
-        {
-          "filter": "showModern || datum.YearNum <= 2021"
-        }
-      ]
+      }
     },
     {
       "data": {
         "values": [
           {
-            "Storage_Percentage": 85,
-            "Desalination_Delivered_GL": 38,
+            "Storage_Percentage": 83,
+            "Desalination_Delivered_GL": 48,
             "text": "Return years|back rightward",
             "Year": "2023"
           }
         ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 0,
-        "dy": 0,
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "#B9770E",
-        "lineBreak": "|"
-      },
-      "encoding": {
-        "x": {
-          "field": "Storage_Percentage",
-          "type": "quantitative"
-        },
-        "y": {
-          "field": "Desalination_Delivered_GL",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "text",
-          "type": "nominal"
-        }
       },
       "transform": [
         {
@@ -470,7 +448,31 @@
         {
           "filter": "showModern || datum.YearNum <= 2021"
         }
-      ]
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#8A5A00",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "Storage_Percentage",
+          "type": "quantitative",
+          "axis": null
+        },
+        "y": {
+          "field": "Desalination_Delivered_GL",
+          "type": "quantitative",
+          "axis": null
+        },
+        "text": {
+          "field": "text"
+        }
+      }
     }
   ],
   "config": {

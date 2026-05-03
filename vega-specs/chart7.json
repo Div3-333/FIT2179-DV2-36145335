@@ -112,8 +112,8 @@
           {
             "lon": 145.05,
             "lat": -36.25,
-            "lon2": 144.1,
-            "lat2": -35.95
+            "lon2": 144.25,
+            "lat2": -35.92
           }
         ]
       },
@@ -144,17 +144,17 @@
       "data": {
         "values": [
           {
-            "lon": 144.1,
-            "lat": -35.95,
+            "lon": 144.25,
+            "lat": -35.92,
             "text": "Highest grid cell|27 permits"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "align": "left",
+        "align": "right",
         "baseline": "middle",
-        "dx": 8,
+        "dx": -24,
         "fontSize": 12,
         "fontWeight": "bold",
         "color": "#FCFDBF",
@@ -170,8 +170,7 @@
           "type": "quantitative"
         },
         "text": {
-          "field": "text",
-          "type": "nominal"
+          "field": "text"
         }
       }
     }

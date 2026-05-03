@@ -199,8 +199,8 @@
           {
             "Year": 2019,
             "Annual_Evaporation_mm": 1124.8,
-            "Year2": 2012,
-            "Annual_Evaporation_mm2": 1160
+            "Year2": 2012.75,
+            "Annual_Evaporation_mm2": 1162
           }
         ]
       },
@@ -213,11 +213,13 @@
       "encoding": {
         "x": {
           "field": "Year",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "y": {
           "field": "Annual_Evaporation_mm",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "x2": {
           "field": "Year2"
@@ -231,18 +233,16 @@
       "data": {
         "values": [
           {
-            "Year": 2012,
-            "Annual_Evaporation_mm": 1160,
-            "text": "2019: hottest summer|low rainfall bubble"
+            "Year": 2012.25,
+            "Annual_Evaporation_mm": 1178,
+            "text": "2019: hottest summer|small rainfall bubble"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "align": "left",
+        "align": "right",
         "baseline": "middle",
-        "dx": 0,
-        "dy": 0,
         "fontSize": 12,
         "fontWeight": "bold",
         "color": "#FCFDBF",
@@ -251,15 +251,16 @@
       "encoding": {
         "x": {
           "field": "Year",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "y": {
           "field": "Annual_Evaporation_mm",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "text": {
-          "field": "text",
-          "type": "nominal"
+          "field": "text"
         }
       }
     },
@@ -269,8 +270,8 @@
           {
             "Year": 2025,
             "Annual_Evaporation_mm": 1158.2,
-            "Year2": 2021,
-            "Annual_Evaporation_mm2": 1190
+            "Year2": 2022.4,
+            "Annual_Evaporation_mm2": 1110
           }
         ]
       },
@@ -283,11 +284,13 @@
       "encoding": {
         "x": {
           "field": "Year",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "y": {
           "field": "Annual_Evaporation_mm",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "x2": {
           "field": "Year2"
@@ -301,8 +304,8 @@
       "data": {
         "values": [
           {
-            "Year": 2021,
-            "Annual_Evaporation_mm": 1190,
+            "Year": 2022.75,
+            "Annual_Evaporation_mm": 1094,
             "text": "2025: highest|evaporation value"
           }
         ]
@@ -311,8 +314,6 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "dx": 0,
-        "dy": 0,
         "fontSize": 12,
         "fontWeight": "bold",
         "color": "#E0F2FE",
@@ -321,15 +322,16 @@
       "encoding": {
         "x": {
           "field": "Year",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "y": {
           "field": "Annual_Evaporation_mm",
-          "type": "quantitative"
+          "type": "quantitative",
+          "axis": null
         },
         "text": {
-          "field": "text",
-          "type": "nominal"
+          "field": "text"
         }
       }
     }
