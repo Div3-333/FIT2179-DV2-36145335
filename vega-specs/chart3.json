@@ -8,7 +8,7 @@
   },
   "title": {
     "text": "The Atmospheric Engine",
-    "subtitle": "Correlation: Southern Oscillation Index (Line) vs. Rainfall (Bars) | 2004 - 2019",
+    "subtitle": "Temporal context: Southern Oscillation Index (Line) vs. rainfall (Bars) | 2004 - 2019",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -48,7 +48,8 @@
               "type": "temporal",
               "title": "Year",
               "axis": {
-                "grid": false
+                "grid": true,
+                "gridColor": "rgba(44,62,80,0.10)"
               }
             },
             "y": {
@@ -56,7 +57,9 @@
               "type": "quantitative",
               "title": "Monthly Rainfall (mm)",
               "axis": {
-                "titleColor": "#3498DB"
+                "titleColor": "#3498DB",
+                "grid": true,
+                "gridColor": "rgba(52,152,219,0.12)"
               }
             },
             "tooltip": [
@@ -94,13 +97,11 @@
           "encoding": {
             "x": {
               "field": "Date",
-              "type": "temporal",
-              "axis": null
+              "type": "temporal"
             },
             "y": {
               "field": "Rainfall_mm",
-              "type": "quantitative",
-              "axis": null
+              "type": "quantitative"
             },
             "x2": {
               "field": "Date2"
@@ -132,13 +133,11 @@
           "encoding": {
             "x": {
               "field": "Date",
-              "type": "temporal",
-              "axis": null
+              "type": "temporal"
             },
             "y": {
               "field": "Rainfall_mm",
-              "type": "quantitative",
-              "axis": null
+              "type": "quantitative"
             },
             "text": {
               "field": "text"
@@ -171,8 +170,7 @@
           "encoding": {
             "x": {
               "field": "Date",
-              "type": "temporal",
-              "axis": null
+              "type": "temporal"
             },
             "y": {
               "field": "SOI",
@@ -180,7 +178,8 @@
               "title": "Southern Oscillation Index (SOI)",
               "axis": {
                 "orient": "right",
-                "titleColor": "#E67E22"
+                "titleColor": "#E67E22",
+                "grid": false
               }
             },
             "tooltip": [
@@ -218,13 +217,11 @@
           "encoding": {
             "x": {
               "field": "Date",
-              "type": "temporal",
-              "axis": null
+              "type": "temporal"
             },
             "y": {
               "field": "SOI",
-              "type": "quantitative",
-              "axis": null
+              "type": "quantitative"
             },
             "x2": {
               "field": "Date2"
@@ -240,7 +237,7 @@
               {
                 "Date": "2013-08-01",
                 "SOI": 23,
-                "text": "2015 El Nino|SOI trough"
+                "text": "2015 El Nino|negative SOI phase"
               }
             ]
           },
@@ -256,13 +253,11 @@
           "encoding": {
             "x": {
               "field": "Date",
-              "type": "temporal",
-              "axis": null
+              "type": "temporal"
             },
             "y": {
               "field": "SOI",
-              "type": "quantitative",
-              "axis": null
+              "type": "quantitative"
             },
             "text": {
               "field": "text"

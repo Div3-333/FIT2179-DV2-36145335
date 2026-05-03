@@ -98,7 +98,7 @@
         "x": {
           "field": "Year",
           "type": "quantitative",
-          "title": "Timeline",
+          "title": "Year",
           "scale": {
             "domain": [
               1980,
@@ -108,6 +108,7 @@
           "axis": {
             "format": "d",
             "gridColor": "rgba(255,255,255,0.1)",
+            "grid": true,
             "tickCount": 10
           }
         },
@@ -122,7 +123,8 @@
             ]
           },
           "axis": {
-            "gridColor": "rgba(255,255,255,0.1)"
+            "gridColor": "rgba(255,255,255,0.1)",
+            "grid": true
           }
         },
         "color": {
@@ -213,13 +215,11 @@
       "encoding": {
         "x": {
           "field": "Year",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "y": {
           "field": "Annual_Evaporation_mm",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "x2": {
           "field": "Year2"
@@ -251,13 +251,11 @@
       "encoding": {
         "x": {
           "field": "Year",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "y": {
           "field": "Annual_Evaporation_mm",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "text": {
           "field": "text"
@@ -270,8 +268,8 @@
           {
             "Year": 2025,
             "Annual_Evaporation_mm": 1158.2,
-            "Year2": 2022.4,
-            "Annual_Evaporation_mm2": 1110
+            "Year2": 2022.6,
+            "Annual_Evaporation_mm2": 730
           }
         ]
       },
@@ -284,13 +282,11 @@
       "encoding": {
         "x": {
           "field": "Year",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "y": {
           "field": "Annual_Evaporation_mm",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "x2": {
           "field": "Year2"
@@ -304,15 +300,15 @@
       "data": {
         "values": [
           {
-            "Year": 2022.75,
-            "Annual_Evaporation_mm": 1094,
+            "Year": 2022.3,
+            "Annual_Evaporation_mm": 700,
             "text": "2025: highest|evaporation value"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "align": "left",
+        "align": "right",
         "baseline": "middle",
         "fontSize": 12,
         "fontWeight": "bold",
@@ -322,13 +318,11 @@
       "encoding": {
         "x": {
           "field": "Year",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "y": {
           "field": "Annual_Evaporation_mm",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "text": {
           "field": "text"

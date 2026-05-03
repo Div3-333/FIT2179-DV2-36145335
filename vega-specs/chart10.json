@@ -95,22 +95,22 @@
           {
             "x": 55,
             "y": 140,
-            "text": "ENGINEERED SURVIVAL"
+            "text": "ENGINEERED BUFFER"
           },
           {
             "x": 85,
             "y": 140,
-            "text": "ARTIFICIAL RECHARGE"
+            "text": "SUPPLY BUFFER"
           },
           {
             "x": 85,
             "y": 10,
-            "text": "SAFE ZONE"
+            "text": "STABLE STORAGE"
           },
           {
             "x": 55,
             "y": 10,
-            "text": "CRITICAL STRESS"
+            "text": "UNBUFFERED STRESS"
           }
         ]
       },
@@ -187,21 +187,23 @@
             "title": "Reservoir Health (Storage %)",
             "labelColor": "#2C3E50",
             "titleColor": "#2C3E50",
-            "grid": false,
-            "domain": false,
-            "ticks": false
+            "grid": true,
+            "gridColor": "rgba(44,62,80,0.10)",
+            "domain": true,
+            "ticks": true
           }
         },
         "y": {
           "field": "Desalination_Delivered_GL",
           "type": "quantitative",
           "axis": {
-            "title": "Engineering Injection (GL)",
+            "title": "Desalination Delivered (GL)",
             "labelColor": "#2C3E50",
             "titleColor": "#2C3E50",
-            "grid": false,
-            "domain": false,
-            "ticks": false
+            "grid": true,
+            "gridColor": "rgba(44,62,80,0.10)",
+            "domain": true,
+            "ticks": true
           }
         },
         "color": {
@@ -322,13 +324,11 @@
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "y": {
           "field": "Desalination_Delivered_GL",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "x2": {
           "field": "Storage2"
@@ -370,13 +370,11 @@
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "y": {
           "field": "Desalination_Delivered_GL",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "text": {
           "field": "text"
@@ -413,13 +411,11 @@
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "y": {
           "field": "Desalination_Delivered_GL",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "x2": {
           "field": "Storage2"
@@ -461,13 +457,11 @@
       "encoding": {
         "x": {
           "field": "Storage_Percentage",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "y": {
           "field": "Desalination_Delivered_GL",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "text": {
           "field": "text"

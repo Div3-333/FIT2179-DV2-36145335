@@ -553,7 +553,7 @@
                     <!-- Chart 1 Renders here -->
                 </div>
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Desiccated State</h2>
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Rainfall-Deficit Gradient</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
                         This spatial view shows a sharp rainfall-deficit gradient across Victoria. The <span class="term term-purple" tabindex="0" data-tip="Lower-deficit suburbs in the dataset sit around 87-100 mm below expected rainfall.">deep purple south-west</span> is still below normal, but the <span class="term term-orange" tabindex="0" data-tip="Orange marks higher deficits in the north-western part of the map.">orange north-west</span> and <span class="term term-yellow" tabindex="0" data-tip="The strongest mapped deficits exceed 220 mm near Mildura-area suburbs.">pale yellow Mallee cells</span> carry the largest losses. Together, these bands locate the current centre of the <span class="term term-blue" tabindex="0" data-tip="All mapped suburbs are below the rainfall baseline used for this deficit surface.">systemic rainfall deficit</span>: a north-western hotspot grading into central Victoria.
                     </p>
@@ -561,14 +561,14 @@
             </div>
 
             <div class="full-width-viz" style="margin-top: 100px;">
-                <div class="glass-canvas" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 30px; border-radius: 12px; align-items: start;">
+                <div class="glass-canvas" style="display: grid; grid-template-columns: 1.08fr 1fr; gap: 40px; padding: 30px; border-radius: 12px; align-items: start;">
                     <div id="vis-chart-2" style="min-height: 480px;"></div>
                     <div id="vis-chart-2-comparison" style="min-height: 480px;"></div>
                 </div>
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2); margin-top: 30px; width: 100%; box-sizing: border-box;">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">A Century of Heat & The Seasonal Fever</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The temperature profile has shifted upward in the ACORN-SAT monthly means. The <span class="term term-blue" tabindex="0" data-tip="The left heatmap shows mean maximum temperature by month and year, not daily heatwave counts.">116-year heatmap</span> shows warmer recent bands, while the <span class="term term-orange" tabindex="0" data-tip="The right-hand line chart aggregates two 11-year windows for a like-for-like monthly comparison.">seasonal comparison</span> makes the change explicit. Every month in the <span class="term term-purple" tabindex="0" data-tip="Historical anchor: mean monthly maximums from 1910 to 1920.">1910-1920 baseline</span> is cooler than the matching <span class="term term-orange" tabindex="0" data-tip="Modern comparison: mean monthly maximums from 2010 to 2020.">2010-2020 baseline</span>, with the largest lifts in January, March, October and November.
+                        The temperature profile has shifted upward in the ACORN-SAT monthly means. The <span class="term term-blue" tabindex="0" data-tip="The left heatmap shows mean maximum temperature by month and year, not daily heatwave counts.">116-year heatmap</span> shows warmer recent bands, while the <span class="term term-orange" tabindex="0" data-tip="The right-hand line chart aggregates two 11-year windows for a like-for-like monthly comparison.">seasonal comparison</span> makes the change explicit. Every month in the <span class="term term-purple" tabindex="0" data-tip="Historical anchor: mean monthly maximums from 1910 to 1920.">1910-1920 baseline</span> is cooler than the matching <span class="term term-orange" tabindex="0" data-tip="Modern comparison window: mean monthly maximums from 2010 to 2020.">2010-2020 comparison window</span>, with the largest lifts in January, March, October and November.
                     </p>
                 </div>
             </div>
@@ -675,7 +675,7 @@
                 <div class="annotation" style="background: rgba(45, 36, 30, 0.9); color: #E0E6ED; border-left: 4px solid #BB8FCE; margin-top: 10px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
                     <h3 style="color: #D7CCC8; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Proportional Pivot</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        This custom "Liquid Gauge" normalizes annual water-resource volumes into one stacked bar. At 2020, <span class="term term-yellow" tabindex="0" data-tip="Desalinated water is 125,000 ML in 2020, or about 3.1% of the normalized total.">desalinated water</span> appears as a small but visible emergency layer, while <span class="term term-purple" tabindex="0" data-tip="Groundwater is about 9.3% of the 2020 normalized total.">groundwater</span> remains the larger alternative supply. Toggle the "Full Cycle" to see the post-2023 recovery rows, where <span class="term term-blue" tabindex="0" data-tip="Surface water returns to about 75.9% in the 2023-2025 repeated recovery rows.">surface water</span> returns to roughly three quarters of the total and desalination drops back below 1%.
+                        This normalized stacked bar converts annual water-resource volumes into proportional composition. At 2020, <span class="term term-yellow" tabindex="0" data-tip="Desalinated water is 125,000 ML in 2020, or about 3.1% of the normalized total.">desalinated water</span> appears as a small but visible emergency layer, while <span class="term term-purple" tabindex="0" data-tip="Groundwater is about 9.3% of the 2020 normalized total.">groundwater</span> remains the larger alternative supply. Toggle the "Full Cycle" to see the repeated post-pulse composition for 2023-2025, where <span class="term term-blue" tabindex="0" data-tip="Surface water returns to about 75.9% in the 2023-2025 repeated recovery rows.">surface water</span> returns to roughly three quarters of the total and desalination drops back below 1%.
                     </p>
                 </div>
             </div>
@@ -726,13 +726,13 @@
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #F1C40F; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
                     <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Survival Cycle</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        This final "Resilience Scan" combines storage percentage with desalination delivered. To read this matrix, use the <span class="term term-dark" tabindex="0" data-tip="The vertical threshold is 70% storage; the horizontal threshold is 75 GL desalination delivered.">centred crosshairs</span> (70% Storage, 75 GL Injection) as guide lines:
+                        This final "Resilience Scan" combines storage percentage with desalination delivered. To read this matrix, use the <span class="term term-dark" tabindex="0" data-tip="The vertical threshold is 70% storage; the horizontal threshold is 75 GL desalination delivered.">centred crosshairs</span> (70% storage, 75 GL desalination delivered) as guide lines:
                     </p>
                     <ul style="font-size: 1rem; line-height: 1.8; margin-top: 15px; padding-left: 20px; color: #34495E;">
-                        <li><span class="term term-dark" tabindex="0" data-tip="Bottom-right means storage above 70% and desalination below 75 GL.">Safe Zone (Bottom-Right):</span> the <span class="term term-purple" tabindex="0" data-tip="2012-2015 all sit above 70% storage with no desalination delivered.">2012-2015 points</span> sit here. Toggle the return years to see the <span class="term term-yellow" tabindex="0" data-tip="2023-2025 also sit above 70% storage with comparatively low desalination.">2023-2025 points</span> return to the same quadrant.</li>
-                        <li><span class="term term-dark" tabindex="0" data-tip="Bottom-left means storage below 70% and desalination below 75 GL.">Critical Stress (Bottom-Left):</span> the <span class="term term-purple" tabindex="0" data-tip="2016-2019 move below the 70% storage threshold while desalination stays below 75 GL.">2016-2019 points</span> show low storage with limited desalination delivery.</li>
-                        <li><span class="term term-dark" tabindex="0" data-tip="Top-left means storage below 70% and desalination above 75 GL.">Engineered Survival (Top-Left):</span> the <span class="term term-orange" tabindex="0" data-tip="2020 is plotted at 67.5% storage and 125 GL desalination delivered.">2020 point</span> is the first high-desalination response while storage remains below the 70% guide line.</li>
-                        <li><span class="term term-dark" tabindex="0" data-tip="Top-right means storage above 70% and desalination above 75 GL.">Artificial Recharge (Top-Right):</span> the <span class="term term-orange" tabindex="0" data-tip="2021 and 2022 both show 125 GL desalination while storage rises above 70%.">2021-2022 points</span> show high desalination continuing while storage improves.</li>
+                        <li><span class="term term-dark" tabindex="0" data-tip="Bottom-right means storage above 70% and desalination below 75 GL.">Stable Storage (Bottom-Right):</span> the <span class="term term-purple" tabindex="0" data-tip="2012-2015 all sit above 70% storage with no desalination delivered.">2012-2015 points</span> sit here. Toggle the return years to see the <span class="term term-yellow" tabindex="0" data-tip="2023-2025 also sit above 70% storage with comparatively low desalination.">2023-2025 points</span> return to the same quadrant.</li>
+                        <li><span class="term term-dark" tabindex="0" data-tip="Bottom-left means storage below 70% and desalination below 75 GL.">Unbuffered Stress (Bottom-Left):</span> the <span class="term term-purple" tabindex="0" data-tip="2016-2019 move below the 70% storage threshold while desalination stays below 75 GL.">2016-2019 points</span> show low storage with limited desalination delivery.</li>
+                        <li><span class="term term-dark" tabindex="0" data-tip="Top-left means storage below 70% and desalination above 75 GL.">Engineered Buffer (Top-Left):</span> the <span class="term term-orange" tabindex="0" data-tip="2020 is plotted at 67.5% storage and 125 GL desalination delivered.">2020 point</span> is the first high-desalination response while storage remains below the 70% guide line.</li>
+                        <li><span class="term term-dark" tabindex="0" data-tip="Top-right means storage above 70% and desalination above 75 GL.">Supply Buffer (Top-Right):</span> the <span class="term term-orange" tabindex="0" data-tip="2021 and 2022 both show 125 GL desalination while storage rises above 70%.">2021-2022 points</span> show high desalination continuing while storage improves.</li>
                     </ul>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin-top: 15px; font-style: italic; border-top: 1px solid #ECF0F1; padding-top: 15px;">
                         The <span class="term term-dark" tabindex="0" data-tip="Project title for the linked water-stress narrative.">Victorian Water Descent</span> converges on one conclusion: Victoria's security is still tied to rain and reservoirs, but engineered supply can become a major stabiliser when natural storage falls.
@@ -793,11 +793,11 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Longitudinal aggregation was used to compare monthly maximum-temperature baselines across the full ACORN-SAT record. The heatmap visualises mean monthly intensity by year, while the seasonal comparison isolates the difference between 1910-1920 and 2010-2020. In the processed data, every modern monthly mean is higher than its historical counterpart.</p>
+                                    <p class="audit-desc">Longitudinal aggregation was used to compare monthly maximum-temperature baselines across the full ACORN-SAT record. The heatmap visualises mean monthly intensity by year, while the seasonal comparison isolates the difference between the 1910-1920 historical baseline and the 2010-2020 modern comparison window. In the processed data, every modern monthly mean is higher than its historical counterpart.</p>
                                     <div class="framework-box">
                                         <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Time (Ordinal), Temperature (Quantitative).<br>
-                                        <em>Why:</em> Discover trends and compare historical vs modern baselines.<br>
+                                        <em>Why:</em> Discover trends and compare a historical baseline with a modern window.<br>
                                         <em>How:</em> Idiom: Heatmap / Multi-series Line. Marks: Area (Rect) / Line. Channels: Color saturation, Y-position.
                                     </div>
                                 </div>
@@ -827,11 +827,11 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">The aim was to place local Caulfield rainfall beside a major climate-driver index. Monthly SOI archives were synchronised with rainfall records and restricted to the 2004-2019 overlap. The dual-axis idiom shows periods where negative SOI aligns with dry stretches, while also retaining the month-to-month variability expected in local rainfall records.</p>
+                                    <p class="audit-desc">The aim was to place local Caulfield rainfall beside a large-scale climate index. Monthly SOI archives were synchronised with rainfall records and restricted to the 2004-2019 overlap. The dual-axis idiom shows periods where negative SOI aligns with dry stretches, while also retaining the month-to-month variability expected in local rainfall records.</p>
                                     <div class="framework-box">
                                         <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> SOI (Quant), Rainfall (Quant), Time (Ordinal).<br>
-                                        <em>Why:</em> Compare correlations and identify leading indicators.<br>
+                                        <em>Why:</em> Compare temporal alignment and contextualise dry periods.<br>
                                         <em>How:</em> Idiom: Dual-Axis Chart. Marks: Line / Bar. Channels: Shared X-axis, Y-position, Color hue.
                                     </div>
                                 </div>
@@ -856,7 +856,7 @@
                                     <p style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px;">SILO. (2026). <em>Patched Point Data: Melbourne Botanical Gardens (86232).</em> Department of Environment, Queensland Government. <a href="https://www.longpaddock.qld.gov.au/silo/" target="_blank" style="color: #3498DB;">[Link]</a></p>
                                     <div class="audit-diag">
                                         <svg width="120" height="60" viewBox="0 0 120 60"><line x1="20" y1="50" x2="100" y2="10" stroke="#94C1EA" stroke-dasharray="4,2"/><circle cx="50" cy="35" r="6" fill="#F1C40F" opacity="0.5"/></svg>
-                                        <div style="font-size: 0.6rem; color: #94C1EA; margin-top: 5px;">CORRELATION SCAN</div>
+                                        <div style="font-size: 0.6rem; color: #94C1EA; margin-top: 5px;">RELATIONSHIP SCAN</div>
                                     </div>
                                 </div>
                                 <div>
@@ -865,7 +865,7 @@
                                     <div class="framework-box">
                                         <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Evap (Quant), Temp (Quant), Rain (Quant).<br>
-                                        <em>Why:</em> Compare correlation and identify anomalous deficit years.<br>
+                                        <em>Why:</em> Compare relationships and identify anomalous deficit years.<br>
                                         <em>How:</em> Idiom: Temporal Bubble Chart. Marks: Point (Bubble). Channels: X/Y-Position, Color, Size.
                                     </div>
                                 </div>
@@ -916,7 +916,7 @@
 
                     <!-- Chart 6 -->
                     <details class="audit-card">
-                        <summary><span class="chart-num">06</span> Reservoir Network: Hierarchical Aura Map</summary>
+                        <summary><span class="chart-num">06</span> Reservoir Network: Scaled Storage Map</summary>
                         <div class="audit-content">
                             <div class="audit-grid">
                                 <div>
@@ -997,7 +997,7 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">The normalized stacked bar was chosen to show proportional resource composition at a selected year. The source annual records were interpolated for smooth slider movement, and the post-2023 recovery rows extend the visual narrative through 2025. The key verified reading in the displayed 2020 row is desalination at about 3.1%, groundwater at about 9.3%, and surface water consumptive use at about 69.3%.</p>
+                                    <p class="audit-desc">The normalized stacked bar was chosen to show proportional resource composition at a selected year. The source annual records were interpolated for smooth slider movement, and the 2023-2025 rows repeat the recovery-state composition so the full-cycle toggle can be read as a stable post-pulse comparison. The key verified reading in the displayed 2020 row is desalination at about 3.1%, groundwater at about 9.3%, and surface water consumptive use at about 69.3%.</p>
                                     <div class="framework-box">
                                         <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Resource (Nominal), Volume % (Quant), Time (Ordinal).<br>
@@ -1009,7 +1009,7 @@
                                     <table class="audit-table">
                                         <tr><td class="audit-label">Algorithm</td><td>Linear Interp</td></tr>
                                         <tr><td class="audit-label">Steps</td><td>101 YearSteps</td></tr>
-                                        <tr><td class="audit-label">Validation</td><td>Recovery rows</td></tr>
+                                        <tr><td class="audit-label">Validation</td><td>Repeated recovery state</td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -1018,7 +1018,7 @@
 
                     <!-- Chart 9 -->
                     <details class="audit-card">
-                        <summary><span class="chart-num">09</span> Desalination Pulse: Harmonic Merge</summary>
+                        <summary><span class="chart-num">09</span> Desalination Pulse: Demand Join</summary>
                         <div class="audit-content">
                             <div class="audit-grid">
                                 <div>
@@ -1041,7 +1041,7 @@
                                 </div>
                                 <div>
                                     <table class="audit-table">
-                                        <tr><td class="audit-label">Join Type</td><td>Harmonic Merge</td></tr>
+                                        <tr><td class="audit-label">Join Type</td><td>Year-aligned join</td></tr>
                                         <tr><td class="audit-label">Peak</td><td>28.8%</td></tr>
                                         <tr><td class="audit-label">Demand</td><td>3 fields summed</td></tr>
                                     </table>
@@ -1052,7 +1052,7 @@
 
                     <!-- Chart 10 -->
                     <details class="audit-card">
-                        <summary><span class="chart-num">10</span> Survival Cycle: Bi-Variant Trajectory Mapping</summary>
+                        <summary><span class="chart-num">10</span> Survival Cycle: Bivariate Trajectory Mapping</summary>
                         <div class="audit-content">
                             <div class="audit-grid">
                                 <div>
@@ -1065,19 +1065,19 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">The matrix maps annual storage percentage against desalination delivered so the two system indicators can be read together. The 70% storage and 75 GL desalination lines are narrative thresholds that partition the space into four operational states. The trajectory shows the path from high storage with low desalination, through lower-storage years, into the 2020-2022 high-desalination response, and back to higher-storage, lower-desalination years after the toggle.</p>
+                                    <p class="audit-desc">The matrix maps annual storage percentage against desalination delivered so the two system indicators can be read together. The 70% storage and 75 GL desalination lines are interpretive thresholds that partition the space into four operational states. The trajectory shows the path from high storage with low desalination, through lower-storage years, into the 2020-2022 high-desalination response, and back to higher-storage, lower-desalination years after the toggle.</p>
                                     <div class="framework-box">
                                         <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Health % (Quant), Injection GL (Quant).<br>
                                         <em>Why:</em> Categorize system states and summarize 13-year trajectory.<br>
-                                        <em>How:</em> Idiom: Bi-Variant Matrix. Marks: Point (Circle) / Line. Channels: Position, Line path.
+                                        <em>How:</em> Idiom: Bivariate Matrix. Marks: Point (Circle) / Line. Channels: Position, Line path.
                                     </div>
                                 </div>
                                 <div>
                                     <table class="audit-table">
                                         <tr><td class="audit-label">Mapping</td><td>Quadrant Logic</td></tr>
                                         <tr><td class="audit-label">Centring</td><td>70 / 75 Thresholds</td></tr>
-                                        <tr><td class="audit-label">Res</td><td>Yearly Avg</td></tr>
+                                        <tr><td class="audit-label">Resolution</td><td>Yearly Avg</td></tr>
                                     </table>
                                 </div>
                             </div>

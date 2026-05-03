@@ -81,7 +81,9 @@
             ],
             "labelAngle": 0,
             "labelExpr": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value]",
-            "title": "Month"
+            "title": "Month",
+            "grid": true,
+            "gridColor": "rgba(44,62,80,0.12)"
           }
         },
         "y": {
@@ -93,6 +95,10 @@
               10,
               32
             ]
+          },
+          "axis": {
+            "grid": true,
+            "gridColor": "rgba(44,62,80,0.12)"
           }
         },
         "strokeDash": {
@@ -169,13 +175,11 @@
               1,
               12
             ]
-          },
-          "axis": null
+          }
         },
         "y": {
           "field": "AvgMax",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "tooltip": [
           {
@@ -227,13 +231,11 @@
               1,
               12
             ]
-          },
-          "axis": null
+          }
         },
         "y": {
           "field": "AvgMax",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "text": {
           "field": "text"
@@ -272,13 +274,11 @@
               1,
               12
             ]
-          },
-          "axis": null
+          }
         },
         "y": {
           "field": "y1",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "x2": {
           "field": "x2"
@@ -321,13 +321,11 @@
               1,
               12
             ]
-          },
-          "axis": null
+          }
         },
         "y": {
           "field": "y",
-          "type": "quantitative",
-          "axis": null
+          "type": "quantitative"
         },
         "text": {
           "field": "text"

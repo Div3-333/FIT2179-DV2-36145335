@@ -199,7 +199,7 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "dx": 18,
+        "dx": 6,
         "fontSize": 12,
         "fontWeight": "bold",
         "color": "#E0F2FE",
@@ -225,8 +225,8 @@
           {
             "lon": 145.13,
             "lat": -37.55,
-            "lon2": 144.88,
-            "lat2": -37.42
+            "lon2": 145.45,
+            "lat2": -37.48
           }
         ]
       },
@@ -257,17 +257,17 @@
       "data": {
         "values": [
           {
-            "lon": 144.88,
-            "lat": -37.42,
+            "lon": 145.45,
+            "lat": -37.48,
             "text": "Yan Yean|lowest % full"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "align": "right",
+        "align": "left",
         "baseline": "middle",
-        "dx": -16,
+        "dx": 6,
         "fontSize": 12,
         "fontWeight": "bold",
         "color": "#FCFDBF",

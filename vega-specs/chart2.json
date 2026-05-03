@@ -67,7 +67,7 @@
         "y": {
           "field": "YearNum",
           "type": "ordinal",
-          "title": null,
+            "title": "Year",
           "sort": "ascending",
           "axis": {
             "labelExpr": "datum.label % 10 == 0 || datum.label == 1910 ? datum.label : ''"
@@ -86,9 +86,9 @@
           },
           "legend": {
             "title": "Temp (\u00b0C)",
-            "orient": "left",
-            "offset": 40,
-            "gradientLength": 300
+            "orient": "bottom",
+            "offset": 16,
+            "gradientLength": 320
           }
         },
         "tooltip": [
@@ -158,14 +158,12 @@
             10,
             11,
             12
-          ],
-          "axis": null
+          ]
         },
         "y": {
           "field": "YearNum",
           "type": "ordinal",
-          "sort": "ascending",
-          "axis": null
+          "sort": "ascending"
         },
         "x2": {
           "field": "Month2"
@@ -215,14 +213,12 @@
             10,
             11,
             12
-          ],
-          "axis": null
+          ]
         },
         "y": {
           "field": "YearNum",
           "type": "ordinal",
-          "sort": "ascending",
-          "axis": null
+          "sort": "ascending"
         },
         "text": {
           "field": "text",
@@ -233,7 +229,7 @@
   ],
   "padding": {
     "left": 5,
-    "right": 105,
+    "right": 70,
     "top": 5,
     "bottom": 5
   }
