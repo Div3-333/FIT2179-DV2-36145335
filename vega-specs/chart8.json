@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "H-Sync Technical Dashboard with High-Emphasis Chromatic Shift.",
   "background": "transparent",
-  "spacing": 50,
+  "spacing": 18,
   "params": [
     {
       "name": "showModern",
@@ -32,7 +32,7 @@
   },
   "hconcat": [
     {
-      "width": 850,
+      "width": 590,
       "height": 150,
       "layer": [
         {
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "width": 200,
+      "width": 140,
       "height": 100,
       "title": {
         "text": "Technical Amount (ML)",
