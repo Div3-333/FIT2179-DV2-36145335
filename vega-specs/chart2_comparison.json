@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 400,
+  "height": 450,
   "autosize": {
     "type": "fit",
     "contains": "padding"
@@ -81,6 +81,8 @@
             ],
             "labelAngle": 0,
             "labelExpr": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value]",
+            "labelOverlap": false,
+            "tickCount": 12,
             "title": "Month",
             "grid": true,
             "gridColor": "rgba(44,62,80,0.12)"

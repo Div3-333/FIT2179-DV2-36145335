@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 450,
+  "height": 500,
   "autosize": {
     "type": "fit",
     "contains": "padding"
@@ -88,7 +88,7 @@
             "title": "Temp (\u00b0C)",
             "orient": "bottom",
             "offset": 16,
-            "gradientLength": 320
+            "gradientLength": 360
           }
         },
         "tooltip": [
@@ -229,7 +229,7 @@
   ],
   "padding": {
     "left": 5,
-    "right": 70,
+    "right": 82,
     "top": 5,
     "bottom": 5
   }
