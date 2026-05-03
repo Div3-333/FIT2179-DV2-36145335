@@ -5,3 +5,6 @@ __pycache__/
 scripts/*.py
 bin/
 *.py
+render-check-*.png
+server.log
+server.err

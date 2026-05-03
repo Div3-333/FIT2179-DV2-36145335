@@ -1,8 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1150,
-  "autosize": {"type": "fit-x", "contains": "padding"},
-  "padding": {"left": 20, "top": 20, "right": 20, "bottom": 20},
+  "width": "container",
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "padding": {
+    "left": 20,
+    "top": 20,
+    "right": 20,
+    "bottom": 20
+  },
   "spacing": 60,
   "vconcat": [
     {
@@ -15,60 +23,178 @@
         "subtitleFontSize": 16,
         "subtitleColor": "#A9CCE3"
       },
-      "width": 1150,
+      "width": "container",
       "height": 300,
-      "data": {"url": "data/final/chart5_caulfield_rain.csv"},
-      "transform": [
+      "layer": [
         {
-          "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
-          "as": "MonthNum"
-        },
-        {"calculate": "datetime(datum.Year, datum.MonthNum, 1)", "as": "Date"},
-        {"calculate": "datum.Rainfall_mm - 50.6", "as": "Anomaly"}
-      ],
-      "mark": {"type": "bar", "tooltip": true, "width": 6},
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal",
-          "axis": {"title": null, "labelExpr": "''", "ticks": false, "domain": false},
-          "scale": {"domain": ["2003-12-01", "2020-02-01"]}
-        },
-        "y": {
-          "field": "Anomaly",
-          "type": "quantitative",
-          "title": "Anomaly (mm)",
-          "axis": {
-            "gridColor": "rgba(255,255,255,0.1)", 
-            "labelFontSize": 11,
-            "labelColor": "white",
-            "titleColor": "white"
-          }
-        },
-        "color": {
-          "field": "MaxTemp",
-          "type": "quantitative",
-          "scale": {
-            "scheme": "magma",
-            "domain": [10, 35],
-            "reverse": false
+          "data": {
+            "url": "data/final/chart5_caulfield_rain.csv"
           },
-          "legend": {
-            "title": "Heat (°C)",
-            "orient": "bottom",
-            "direction": "horizontal",
-            "gradientLength": 500,
-            "labelColor": "white",
-            "titleColor": "white"
+          "transform": [
+            {
+              "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
+              "as": "MonthNum"
+            },
+            {
+              "calculate": "datetime(datum.Year, datum.MonthNum, 1)",
+              "as": "Date"
+            },
+            {
+              "calculate": "datum.Rainfall_mm - 50.6",
+              "as": "Anomaly"
+            }
+          ],
+          "mark": {
+            "type": "bar",
+            "tooltip": true,
+            "width": 6
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "axis": {
+                "title": null,
+                "labelExpr": "''",
+                "ticks": false,
+                "domain": false
+              },
+              "scale": {
+                "domain": [
+                  "2003-12-01",
+                  "2020-02-01"
+                ]
+              }
+            },
+            "y": {
+              "field": "Anomaly",
+              "type": "quantitative",
+              "title": "Anomaly (mm)",
+              "axis": {
+                "gridColor": "rgba(255,255,255,0.1)",
+                "labelFontSize": 11,
+                "labelColor": "white",
+                "titleColor": "white"
+              }
+            },
+            "color": {
+              "field": "MaxTemp",
+              "type": "quantitative",
+              "scale": {
+                "scheme": "magma",
+                "domain": [
+                  10,
+                  35
+                ],
+                "reverse": false
+              },
+              "legend": {
+                "title": "Heat (\u00b0C)",
+                "orient": "bottom",
+                "direction": "horizontal",
+                "gradientLength": 500,
+                "labelColor": "white",
+                "titleColor": "white"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Month",
+                "format": "%b %Y"
+              },
+              {
+                "field": "Rainfall_mm",
+                "type": "quantitative",
+                "title": "Total Rain (mm)"
+              },
+              {
+                "field": "Anomaly",
+                "type": "quantitative",
+                "title": "Anomaly (mm)",
+                "format": ".1f"
+              },
+              {
+                "field": "MaxTemp",
+                "type": "quantitative",
+                "title": "Avg Temp (\u00b0C)",
+                "format": ".1f"
+              }
+            ]
           }
         },
-        "tooltip": [
-          {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
-          {"field": "Rainfall_mm", "type": "quantitative", "title": "Total Rain (mm)"},
-          {"field": "Anomaly", "type": "quantitative", "title": "Anomaly (mm)", "format": ".1f"},
-          {"field": "MaxTemp", "type": "quantitative", "title": "Avg Temp (°C)", "format": ".1f"}
-        ]
-      }
+        {
+          "data": {
+            "values": [
+              {
+                "Date": "2006-10-01",
+                "Anomaly": -50,
+                "Date2": "2008-01-01",
+                "Anomaly2": -110
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#FCFDBF",
+            "strokeWidth": 2,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "Anomaly",
+              "type": "quantitative"
+            },
+            "x2": {
+              "field": "Date2"
+            },
+            "y2": {
+              "field": "Anomaly2"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "Date": "2008-01-01",
+                "Anomaly": -110,
+                "text": "Repeated deficits|2006-2009"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 0,
+            "dy": 0,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#FCFDBF",
+            "lineBreak": "|"
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "Anomaly",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "text",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
     },
     {
       "title": {
@@ -80,60 +206,175 @@
         "subtitleFontSize": 16,
         "subtitleColor": "#A9CCE3"
       },
-      "width": 1150,
+      "width": "container",
       "height": 200,
-      "data": {"url": "data/final/chart5_Historical_Data.csv"},
-      "transform": [
-        {"calculate": "datetime(datum.Year, datum.Month_Num - 1, 1)", "as": "Date"},
-        {"filter": "datum.Year >= 2004 && datum.Year <= 2019"}
-      ],
-      "mark": {
-        "type": "area",
-        "line": {"color": "#3498DB", "strokeWidth": 3},
-        "color": {
-          "gradient": "linear",
-          "stops": [
-            {"offset": 0, "color": "rgba(52, 152, 219, 0.4)"},
-            {"offset": 1, "color": "rgba(52, 152, 219, 0)"}
-          ]
-        },
-        "interpolate": "monotone"
-      },
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal",
-          "title": "Timeline",
-          "scale": {"domain": ["2003-12-01", "2020-02-01"]},
-          "axis": {
-            "domainColor": "#A9CCE3", 
-            "labelColor": "white", 
-            "titleColor": "white", 
-            "labelFontSize": 11,
-            "grid": false
+      "layer": [
+        {
+          "data": {
+            "url": "data/final/chart5_Historical_Data.csv"
+          },
+          "transform": [
+            {
+              "calculate": "datetime(datum.Year, datum.Month_Num - 1, 1)",
+              "as": "Date"
+            },
+            {
+              "filter": "datum.Year >= 2004 && datum.Year <= 2019"
+            }
+          ],
+          "mark": {
+            "type": "area",
+            "line": {
+              "color": "#3498DB",
+              "strokeWidth": 3
+            },
+            "color": {
+              "gradient": "linear",
+              "stops": [
+                {
+                  "offset": 0,
+                  "color": "rgba(52, 152, 219, 0.4)"
+                },
+                {
+                  "offset": 1,
+                  "color": "rgba(52, 152, 219, 0)"
+                }
+              ]
+            },
+            "interpolate": "monotone"
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "title": "Timeline",
+              "scale": {
+                "domain": [
+                  "2003-12-01",
+                  "2020-02-01"
+                ]
+              },
+              "axis": {
+                "domainColor": "#A9CCE3",
+                "labelColor": "white",
+                "titleColor": "white",
+                "labelFontSize": 11,
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "Storage_Percentage",
+              "type": "quantitative",
+              "title": "Storage %",
+              "scale": {
+                "domain": [
+                  0,
+                  100
+                ]
+              },
+              "axis": {
+                "titleColor": "white",
+                "labelColor": "white",
+                "labelFontSize": 11
+              }
+            },
+            "tooltip": [
+              {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Month",
+                "format": "%b %Y"
+              },
+              {
+                "field": "Storage_Percentage",
+                "type": "quantitative",
+                "title": "Storage %",
+                "format": ".1f"
+              }
+            ]
           }
         },
-        "y": {
-          "field": "Storage_Percentage",
-          "type": "quantitative",
-          "title": "Storage %",
-          "scale": {"domain": [0, 100]},
-          "axis": {
-            "titleColor": "white", 
-            "labelColor": "white", 
-            "labelFontSize": 11
+        {
+          "data": {
+            "values": [
+              {
+                "Date": "2009-06-01",
+                "Storage_Percentage": 26,
+                "Date2": "2006-06-01",
+                "Storage_Percentage2": 18
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#E0F2FE",
+            "strokeWidth": 2,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "Storage_Percentage",
+              "type": "quantitative"
+            },
+            "x2": {
+              "field": "Date2"
+            },
+            "y2": {
+              "field": "Storage_Percentage2"
+            }
           }
         },
-        "tooltip": [
-          {"field": "Date", "type": "temporal", "title": "Month", "format": "%b %Y"},
-          {"field": "Storage_Percentage", "type": "quantitative", "title": "Storage %", "format": ".1f"}
-        ]
-      }
+        {
+          "data": {
+            "values": [
+              {
+                "Date": "2006-06-01",
+                "Storage_Percentage": 18,
+                "text": "Storage low|~26% in Jun 2009"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 0,
+            "dy": 0,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#E0F2FE",
+            "lineBreak": "|"
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "Storage_Percentage",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "text",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
     }
   ],
   "config": {
     "background": "transparent",
-    "view": {"stroke": "transparent"},
-    "axis": {"labelFont": "Source Sans Pro", "titleFont": "Source Sans Pro"}
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "labelFont": "Source Sans Pro",
+      "titleFont": "Source Sans Pro"
+    }
   }
 }

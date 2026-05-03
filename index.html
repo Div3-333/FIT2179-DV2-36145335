@@ -33,10 +33,16 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            line-height: 1.7; letter-spacing: 0.01em;
+            line-height: 1.7;
+            letter-spacing: 0;
         }
 
-        h1, h2, h3 { font-family: 'Merriweather', serif; margin-top: 0; }
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+            margin-top: 0;
+            letter-spacing: 0 !important;
+            line-height: 1.25;
+        }
         
         .narrative-text {
             font-family: 'Merriweather', serif;
@@ -246,6 +252,8 @@
             display: inline-block;
             padding-bottom: 8px;
             margin-bottom: 25px;
+            font-size: 1.35rem;
+            font-weight: 700;
         }
 
         .css-drop {
@@ -316,12 +324,18 @@
 
         /* --- LAYOUT CONTAINERS --- */
         .container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
-        .story-row { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 80px; }
+        .story-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: stretch !important;
+            margin-bottom: 80px;
+        }
         .full-width-viz { margin-bottom: 80px; }
 
         .viz-canvas {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             min-height: 450px;
@@ -342,6 +356,26 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1) !important;
         }
 
+        .story-row > .viz-canvas,
+        .story-row > .text-block {
+            min-height: 520px !important;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .text-block,
+        .annotation {
+            border-radius: 8px !important;
+            box-sizing: border-box;
+        }
+
+        .text-block p,
+        .annotation p,
+        .annotation li {
+            font-size: 1.05rem !important;
+            line-height: 1.75 !important;
+        }
+
         .viz-canvas:hover {
             transform: translateY(-5px);
         }
@@ -355,6 +389,66 @@
             box-shadow: none;
         }
 
+        .section-earth .viz-canvas {
+            background: #241d19 !important;
+            border: 1px solid rgba(215, 204, 200, 0.35) !important;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35) !important;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        .term {
+            --term-color: #E0F2FE;
+            --term-bg: rgba(255,255,255,0.14);
+            position: relative;
+            display: inline-block;
+            color: var(--term-color) !important;
+            background: var(--term-bg);
+            padding: 0 0.28rem;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: help;
+            text-decoration: underline dotted;
+            text-underline-offset: 3px;
+        }
+
+        .term::after {
+            content: attr(data-tip);
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 10px);
+            width: max-content;
+            max-width: 260px;
+            transform: translateX(-50%) translateY(4px);
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: #F8F9FA;
+            color: #17202A;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.82rem;
+            line-height: 1.35;
+            font-weight: 600;
+            white-space: normal;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            z-index: 999;
+        }
+
+        .term:hover::after,
+        .term:focus::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .term-blue { --term-color: #A9DFFF; --term-bg: rgba(52, 152, 219, 0.18); }
+        .term-orange { --term-color: #FFC296; --term-bg: rgba(230, 126, 34, 0.2); }
+        .term-yellow { --term-color: #FFF2A3; --term-bg: rgba(252, 253, 191, 0.18); }
+        .term-purple { --term-color: #E6D4FF; --term-bg: rgba(187, 143, 206, 0.18); }
+        .term-grey { --term-color: #E7EDF1; --term-bg: rgba(127, 140, 141, 0.24); }
+        .term-dark { --term-color: #1F3A4A; --term-bg: rgba(148, 193, 234, 0.45); }
+
         .annotation {
             background: white; color: var(--text-dark);
             padding: 10px 15px; border-left: 4px solid var(--accent-drought);
@@ -364,7 +458,17 @@
         }
 
         @media (max-width: 900px) {
-            .story-row { grid-template-columns: 1fr; }
+            .story-row { grid-template-columns: 1fr !important; }
+            .story-row > .viz-canvas,
+            .story-row > .text-block { min-height: auto !important; }
+            .full-width-viz > .glass-canvas {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+                padding: 20px !important;
+            }
+            .full-width-viz > .glass-canvas > div {
+                min-height: 420px !important;
+            }
             .audit-grid { grid-template-columns: 1fr !important; }
         }
 
@@ -376,15 +480,15 @@
         .audit-card summary:hover { color: #3498DB; }
         .audit-card summary::-webkit-details-marker { display: none; }
         .audit-content { padding: 30px; background: rgba(13, 27, 42, 0.6); border: 1px solid rgba(148, 193, 234, 0.1); border-radius: 12px; margin-top: 20px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
-        .audit-section-title { color: #3498DB; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid rgba(52, 152, 219, 0.3); padding-bottom: 5px; }
+        .audit-section-title { color: #3498DB; font-size: 0.75rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid rgba(52, 152, 219, 0.3); padding-bottom: 5px; }
         .audit-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 40px; align-items: start; }
         .audit-table { width: 100%; font-size: 0.85rem; border-collapse: collapse; }
         .audit-table td { padding: 12px 0; border-bottom: 1px solid rgba(148, 193, 234, 0.1); vertical-align: top; font-family: monospace; font-size: 0.9rem; }
-        .audit-label { color: #94C1EA; font-weight: bold; width: 120px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+        .audit-label { color: #94C1EA; font-weight: bold; width: 120px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0; }
         .audit-desc { font-size: 0.95rem; line-height: 1.7; color: #B0BEC5; margin: 0; margin-bottom: 15px; }
         .audit-diag { background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
         .chart-num { color: #17202A; background: #94C1EA; border-radius: 50%; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 900; }
-        .framework-box { background: rgba(23, 32, 42, 0.8); border: 1px solid rgba(52, 152, 219, 0.3); border-left: 4px solid #3498DB; padding: 20px; margin-top: 20px; font-size: 0.95rem; font-family: monospace; line-height: 1.7; letter-spacing: 0.01em; color: #B0BEC5; }
+        .framework-box { background: rgba(23, 32, 42, 0.8); border: 1px solid rgba(52, 152, 219, 0.3); border-left: 4px solid #3498DB; padding: 20px; margin-top: 20px; font-size: 0.95rem; font-family: monospace; line-height: 1.7; letter-spacing: 0; color: #B0BEC5; }
     </style>
 </head>
 <body>
@@ -414,7 +518,7 @@
 
         
         <div class="container">
-            <h1 style="text-align: center; font-size: 3.5rem; letter-spacing: -1px; position: relative; z-index: 10;">From Sky to Tap</h1>
+            <h1 style="text-align: center; font-size: 3.5rem; letter-spacing: 0; position: relative; z-index: 10;">From Sky to Tap</h1>
             <p class="narrative-text" style="color: #34495E;">
                 Australia's weather patterns are rapidly shifting away from historical norms. As rain-bearing winds fail and intense heat drives up evaporation, Victoria's traditional water infrastructure is struggling to keep up. 
             </p>
@@ -424,9 +528,9 @@
                     <!-- Chart 1 Renders here -->
                 </div>
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Dessicated State</h2>
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Desiccated State</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        Victoria is currently trapped in a tightening squeeze of disappearing rainfall. While the <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Indigo South</span> still maintains a fragile equilibrium, the <span style="color: #FE9F6D; font-weight: bold;">Orange Scorched Mallee</span> and <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Sun-Bleached North</span> are hemorrhaging over 200mm of expected rainfall. This isn't just a local dry spell; it's a <span style="color: #D1BBFF; font-weight: bold; text-decoration: underline;">Systemic Rainfall Deficit</span> sweeping from the arid north-west straight into our crucial water catchments. As this dry zone expands, the reliable weather that once earned us the 'Garden State' title is evaporating, signalling a permanent shift in our climate.
+                        This spatial snapshot shows a sharp rainfall-deficit gradient across Victoria. The <span class="term term-purple" tabindex="0" data-tip="Lower-deficit suburbs in the dataset sit around 87-100 mm below expected rainfall.">deep purple south-west</span> is still below normal, but the <span class="term term-orange" tabindex="0" data-tip="Orange marks higher deficits in the north-western part of the map.">orange north-west</span> and <span class="term term-yellow" tabindex="0" data-tip="The strongest mapped deficits exceed 220 mm near Mildura-area suburbs.">pale yellow Mallee cells</span> carry the largest losses. Because this is a single choropleth snapshot, it does not show expansion through time; it shows where the <span class="term term-blue" tabindex="0" data-tip="All mapped suburbs are below the rainfall baseline used for this deficit surface.">systemic rainfall deficit</span> is most severe in this dataset.
                     </p>
                 </div>
             </div>
@@ -437,18 +541,18 @@
                     <div id="vis-chart-2-comparison" style="min-height: 480px;"></div>
                 </div>
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2); margin-top: 30px; width: 100%; box-sizing: border-box;">
-                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">A Century of Heat & The Seasonal Fever</h2>
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">A Century of Heat & The Seasonal Fever</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The temperature profile of Victoria has fundamentally changed. While 116 years of monthly data (Left) reveal the intensifying frequency of heat, the <span style="color: #94C1EA; font-weight: bold;">Seasonal Fever (Right)</span> isolates the damage. By comparing the average monthly cycles of the <span style="color: #D1BBFF; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Historical Anchor (1910-1920)</span> and the <span style="color: #FE9F6D; font-weight: bold;">Modern Furnace (2010-2020)</span>, we see a consistent, quantitative lift. Every single month is now hotter on average than it was a century ago. This relentless baseline heat is the invisible engine driving our state's permanent water descent.
+                        The temperature profile has shifted upward in the ACORN-SAT monthly means. The <span class="term term-blue" tabindex="0" data-tip="The left heatmap shows mean maximum temperature by month and year, not daily heatwave counts.">116-year heatmap</span> shows warmer recent bands, while the <span class="term term-orange" tabindex="0" data-tip="The right-hand line chart aggregates two 11-year windows for a like-for-like monthly comparison.">seasonal comparison</span> makes the change explicit. Every month in the <span class="term term-purple" tabindex="0" data-tip="Historical anchor: mean monthly maximums from 1910 to 1920.">1910-1920 baseline</span> is cooler than the matching <span class="term term-orange" tabindex="0" data-tip="Modern comparison: mean monthly maximums from 2010 to 2020.">2010-2020 baseline</span>, with the largest lifts in January, March, October and November.
                     </p>
                 </div>
             </div>
 
             <div class="story-row" style="grid-template-columns: 1fr 1.6fr; align-items: flex-start; gap: 40px; margin-top: 100px;">
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Atmospheric Engine</h2>
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Atmospheric Engine</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        Think of the <span style="color: #E67E22; font-weight: bold;">Southern Oscillation Index (SOI)</span> as Australia's 'Climate Pulse', tracking pressure changes across the Pacific. It measures the atmospheric pressure difference across the Pacific. When this pulse flatlines into a <span style="color: #E67E22; font-weight: bold;">Negative phase (El Niño)</span>, the vital trade winds that deliver rain to Victoria effectively stall out. By mapping this index against our <span style="color: #94C1EA; font-weight: bold;">Monthly Rainfall (2004-2019)</span>, we see the engine in action: every major rainfall collapse is preceded by the orange line diving below the baseline. These global pressure shifts are the primary force driving our local water descent.
+                        The <span class="term term-orange" tabindex="0" data-tip="SOI tracks pressure differences across the Pacific and is commonly used as an ENSO indicator.">Southern Oscillation Index (SOI)</span> gives the rainfall bars useful climate context. Negative phases, including the <span class="term term-orange" tabindex="0" data-tip="El Nino conditions are commonly associated with drier conditions in eastern Australia, but the relationship is not one-to-one.">2015 El Nino period</span>, line up with several dry stretches in Caulfield rainfall. The chart also shows exceptions, including dry months under neutral or positive SOI, so the honest reading is that <span class="term term-blue" tabindex="0" data-tip="The blue bars show measured monthly rainfall from 2004 to 2019.">monthly rainfall</span> responds to ENSO pressure but is not dictated by it month by month.
                     </p>
                 </div>
                 <div id="vis-chart-3" class="viz-canvas glass-canvas" style="min-height: 480px;">
@@ -468,7 +572,7 @@
         <div class="container">
             <h2 style="text-align: center; display: block;">The Catchment Toll</h2>
             <p class="narrative-text" style="color: #E0F2FE;">
-                When the sky fails, our reservoirs pay the price. Victoria's massive catchment basins are literally bleeding water back into the atmosphere as evaporation intensifies.
+                When rainfall weakens and heat intensifies, reservoirs respond slowly. The next charts connect monthly rain, storage levels, reservoir capacity and evaporation pressure without treating any single month as the whole story.
             </p>
 
             <div class="story-row" style="grid-template-columns: 1.6fr 1fr; align-items: flex-start; gap: 40px; margin-top: 60px;">
@@ -476,9 +580,9 @@
                     <!-- Chart 4 Renders here -->
                 </div>
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Evaporation Squeeze</h2>
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Evaporation Squeeze</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        This 40-year audit reveals the mechanics of our water debt. By mapping the <span style="color: #94C1EA; font-weight: bold;">Modern Record (1983-2025)</span>, we see a dangerous divergence: as the years progress, the bubbles climb higher on the <span style="color: #FE9F6D; font-weight: bold;">Evaporation Axis</span>. Notice how the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Bright Yellow Peaks</span> (2009, 2019) consistently sit above the trendline. Crucially, some of our hottest years (the highest bubbles) physically shrink in size on the chart—proving a brutal reality: we lose the most water to evaporation precisely when we get the least rain.
+                        The <span class="term term-blue" tabindex="0" data-tip="The plotted record runs from 1983 to 2025.">modern record</span> shows annual evaporation generally rising through time, with 2025 reaching the highest plotted evaporation value. The <span class="term term-yellow" tabindex="0" data-tip="Yellow marks the hottest summer maximum temperatures in this chart.">hottest years</span>, especially 2009 and 2019, sit high on the evaporation axis while their rainfall bubbles are small. That visible pattern supports a careful claim: in this dataset, several high-heat years also combine high evaporation with low annual rainfall.
                     </p>
                 </div>
             </div>
@@ -490,16 +594,16 @@
                 <div class="annotation" style="background: #17202A; color: #E0E6ED; border-left: 4px solid #3498DB; margin-top: 30px; padding: 20px; border-radius: 0 8px 8px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
                     <h3 style="color: #94C1EA; margin-bottom: 10px; font-size: 1.2rem;">The Multi-Year Deficit</h3>
                     <p style="font-size: 1.05rem; line-height: 1.7; margin: 0;">
-                        This composite view reveals the <span style="color: #3498DB; font-weight: bold;">Lag Effect</span>. During the <span style="color: #FCFDBF; font-weight: bold;">2006-2009 Millennial Peak</span>, a relentless cluster of <span style="color: #FE9F6D; font-weight: bold;">Rainfall Deficits</span> (Top) triggered a massive plunge in the <span style="color: #3498DB; font-weight: bold;">Reservoir Storage Line</span> (Bottom). Our catchments are massive thermal batteries: even when "average" rain returns, it can take half a decade of surplus to climb back to 100%. Victoria is now operating in a state of permanent 'water debt,' where our massive catchments are simply never given the time or rainfall needed to fully recharge.
+                        This composite view reveals the <span class="term term-blue" tabindex="0" data-tip="Storage responds after repeated rainfall deficits, rather than instantly month by month.">lag effect</span>. During the <span class="term term-yellow" tabindex="0" data-tip="The 2006-2009 period contains repeated below-baseline rainfall months.">2006-2009 Millennium Drought peak</span>, a cluster of <span class="term term-orange" tabindex="0" data-tip="Bars below zero are months below the 50.6 mm monthly baseline used in the chart.">rainfall deficits</span> coincides with the <span class="term term-blue" tabindex="0" data-tip="Melbourne storage bottoms near 26% in June 2009 in this dataset.">reservoir storage line</span> falling to its lowest point. Storage then takes until 2012 to climb back above 80%, and it never reaches 100% within the 2004-2019 window shown here.
                     </p>
                 </div>
             </div>
 
             <div class="story-row" style="grid-template-columns: 1fr 1.6fr; align-items: flex-start; gap: 40px; margin-top: 80px;">
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">The Reservoir Network</h2>
+                    <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Reservoir Network</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        This geographic audit shows the state of our "tanks" in real-time. By mapping the network, we see the uneven distribution of the recovery lag. While some <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Healthy Basins</span> (Yellow) maintain high levels, the massive <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Purple Anchors</span> like the Thomson Reservoir dictate our long-term security. The larger the bubble, the more critical its failure: as the color shifts toward the dark spectrum, the urban centers that rely on these points move closer to a forced engineering shift.
+                        This map compares each reservoir's storage percentage with its capacity. <span class="term term-yellow" tabindex="0" data-tip="Yellow marks high current storage percentages, including Maroondah, Tarago and O'Shannassy.">High-storage reservoirs</span> sit near the top of the colour scale, while <span class="term term-purple" tabindex="0" data-tip="Purple marks lower storage percentages, with Yan Yean the lowest at 67.1%.">lower-storage reservoirs</span> need closer attention. The large Thomson bubble matters because it is the biggest reservoir in the dataset at 1,068,000 ML and sits at 74.5% full, so a moderate percentage there represents a much larger volume than the same percentage in a small basin.
                     </p>
                 </div>
                 <div id="vis-chart-6" class="viz-canvas" style="min-height: 480px;">
@@ -513,14 +617,14 @@
         <div class="container">
             <h2 style="text-align: center;">The Unseen Buffer</h2>
             <p class="narrative-text">
-                When surface dams run dry, regional Victoria survives by tapping into ancient, hidden aquifers. This subterranean pumping masks the true brutality of the drought from city-dwellers.
+                Surface reservoirs are only one part of Victoria's water system. The groundwater map shifts attention to bore-permit density, showing where pressure on hidden aquifers is concentrated.
             </p>
 
             <div class="story-row" style="grid-template-columns: 0.7fr 1.3fr; align-items: flex-start; gap: 40px; margin-top: 80px;">
                 <div class="text-block" style="background: rgba(45, 36, 30, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
-                    <h2 style="color: #D7CCC8; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 1px;">Subterranean Stress</h2>
+                    <h2 style="color: #D7CCC8; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">Subterranean Stress</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #B0BEC5;">
-                        When the sky and catchments fail, Victoria taps into its secret buffer: ancient aquifers. This high-resolution scan reveals the <span style="color: #FCFDBF; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px;">Critical Stress Zones</span> - regional hubs where <span style="color: #FCFDBF; font-weight: bold;">10 or more bore permits</span> have been issued in a single 15km grid area. While city dashboards obsess over dam levels, our agricultural heartlands are surviving by draining these <span style="color: #3B0F70; font-weight: bold; background: rgba(255,255,255,0.1); padding: 0 4px; border-radius: 4px;">Deep Purple Baselines</span> at potentially unsustainable rates.
+                        This high-resolution grid reveals <span class="term term-yellow" tabindex="0" data-tip="Yellow cells mark the highest bore-permit counts, with the maximum cell reaching 27 permits.">critical bore-density zones</span> where 10 or more permits fall inside a 0.1-degree grid cell. The map does not measure extraction volume or sustainability directly; it shows permit concentration. <span class="term term-purple" tabindex="0" data-tip="Purple cells indicate lower permit density, not deeper water or baseline extraction.">Purple cells</span> are lower-density areas, while the yellow-orange cluster marks the strongest visible groundwater-pressure signal.
                     </p>
                 </div>
                 <div id="vis-chart-7" class="viz-canvas" style="min-height: 480px;">
@@ -546,7 +650,7 @@
                 <div class="annotation" style="background: rgba(45, 36, 30, 0.9); color: #E0E6ED; border-left: 4px solid #BB8FCE; margin-top: 10px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
                     <h3 style="color: #D7CCC8; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Proportional Pivot</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        As the surface fails, the state performs a desperate pivot. This custom "Liquid Gauge" reveals our shifting dependency by normalizing volumes into a continuous flow. Move the slider to 2020: notice the <span style="color: #FCFDBF; background: #2C3E50; padding: 0 4px; border-radius: 4px;">Desalinated</span> and <span style="color: #BB8FCE; background: #2C3E50; padding: 0 4px; border-radius: 4px;">Groundwater</span> layers physically expand to consume nearly 20% of the total consumptive supply. Toggle the "Full Cycle" above to see the 2023-2025 recovery: as rain returned, <span style="color: #3498DB; font-weight: bold;">Surface Water</span> reclaimed its 75% baseline, proving that engineering successfully bridged the descent until the natural cycle restored our water capital.
+                        This custom "Liquid Gauge" normalizes annual water-resource volumes into one stacked bar. At 2020, <span class="term term-yellow" tabindex="0" data-tip="Desalinated water is 125,000 ML in 2020, or about 3.1% of the normalized total.">desalinated water</span> appears as a small but visible emergency layer, while <span class="term term-purple" tabindex="0" data-tip="Groundwater is about 9.3% of the 2020 normalized total.">groundwater</span> remains the larger alternative supply. Toggle the "Full Cycle" to see the post-2023 modeled recovery state, where <span class="term term-blue" tabindex="0" data-tip="Surface water returns to about 75.9% in the 2023-2025 repeated recovery rows.">surface water</span> returns to roughly three quarters of the total and desalination drops back below 1%.
                     </p>
                 </div>
             </div>
@@ -575,7 +679,7 @@
         <div class="container">
             <h2 style="text-align: center; margin-top: 20px;">Engineering Survival</h2>
             <p class="narrative-text">
-                The natural water cycle is broken. To guarantee that Melbourne doesn't run dry, Victoria had to build a permanent, artificial catchment: the desalination plant.
+                When natural storage weakens, Melbourne can add manufactured supply through desalination. These final views show when that engineered option became large enough to alter the system.
             </p>
 
             <div class="full-width-viz" style="margin-top: 40px;">
@@ -585,7 +689,7 @@
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #3498DB; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
                     <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Desalination Pulse</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        To read this dashboard, compare the <span style="color: #7F8C8D; font-weight: bold;">Faint Grey Silhouette</span> (Total Urban Demand) with the <span style="color: #3498DB; font-weight: bold;">Pulsing Blue Core</span>. The data shows that by 2021, this engineered lifeline wasn't just a backup—it supplied nearly <span style="color: #3498DB; font-weight: bold;">30% of the city's entire water consumption</span>. Toggle the "Full Cycle" to observe the recent pivot: in the 2023-2024 recovery years, this pulse retracted to less than 5% as reservoirs recharged. This trajectory proves that desalination is no longer an 'emergency' backup, but a dynamic, everyday valve that artificially keeps the state alive.
+                        To read this dashboard, compare the <span class="term term-grey" tabindex="0" data-tip="The grey area is total urban demand: residential, non-residential and non-revenue water.">grey demand silhouette</span> with the <span class="term term-blue" tabindex="0" data-tip="The blue area is desalination delivered in gigalitres.">blue desalination pulse</span>. The data shows that in 2020 and 2021, desalination supplied about <span class="term term-blue" tabindex="0" data-tip="125 GL divided by total demand is 28.8% in 2020 and 28.1% in 2021.">28-29% of urban demand</span>. Toggle the "Full Cycle" to observe the later pivot: in 2023 and 2024, that share falls to about 3%, showing a valve that scales up during stress and retracts when less engineered supply is delivered.
                     </p>
                 </div>
             </div>
@@ -597,16 +701,16 @@
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #F1C40F; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
                     <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Survival Cycle</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        This final "Resilience Scan" serves as the technical audit of the Victorian Water Descent. To read this matrix, observe the four operational stages divided by the <span style="font-weight: bold;">Centred Crosshairs</span> (70% Storage, 75 GL Injection):
+                        This final "Resilience Scan" combines storage percentage with desalination delivered. To read this matrix, use the <span class="term term-dark" tabindex="0" data-tip="The vertical threshold is 70% storage; the horizontal threshold is 75 GL desalination delivered.">centred crosshairs</span> (70% Storage, 75 GL Injection) as guide lines:
                     </p>
                     <ul style="font-size: 1rem; line-height: 1.8; margin-top: 15px; padding-left: 20px; color: #34495E;">
-                        <li><span style="font-weight: bold; color: #000004;">The Safe Zone (Bottom-Right):</span> Occupied by the <span style="color: #3B0F70; font-weight: bold;">Dark Purple era (2012-2015)</span>. Toggle the "Return" to see the <span style="color: #FCFDBF; background: #2C3E50; padding: 0 4px; border-radius: 4px;">Bright Yellow points (2023-2025)</span> completing the cycle. This proves the state physically returned to safety after a decade of stress.</li>
-                        <li><span style="font-weight: bold; color: #B63679;">Critical Stress (Bottom-Left):</span> As the rainfall deficit intensified, the <span style="color: #B63679; font-weight: bold;">Dark Red points (2016-2019)</span> slid into this quadrant. Nature failed to meet demand, yet the state's engineering response was still ramping up.</li>
-                        <li><span style="font-weight: bold; color: #E74C3C;">Engineered Survival (Top-Left):</span> The <span style="color: #E74C3C; font-weight: bold;">Bright Red point (2020)</span> marks the tipping point. With storage hitting dangerous lows, the state physically forced 125 GL of seawater inland to prevent system collapse.</li>
-                        <li><span style="font-weight: bold; color: #E67E22;">Artificial Recharge (Top-Right):</span> The <span style="color: #E67E22; font-weight: bold;">Orange points (2021-2022)</span> show a tactical pivot. Even as rain returned, maximum desalination was maintained to build a future buffer, "buying" resilience through technology.</li>
+                        <li><span class="term term-dark" tabindex="0" data-tip="Bottom-right means storage above 70% and desalination below 75 GL.">Safe Zone (Bottom-Right):</span> the <span class="term term-purple" tabindex="0" data-tip="2012-2015 all sit above 70% storage with no desalination delivered.">2012-2015 points</span> sit here. Toggle the return years to see the <span class="term term-yellow" tabindex="0" data-tip="2023-2025 also sit above 70% storage with comparatively low desalination.">2023-2025 points</span> return to the same quadrant.</li>
+                        <li><span class="term term-dark" tabindex="0" data-tip="Bottom-left means storage below 70% and desalination below 75 GL.">Critical Stress (Bottom-Left):</span> the <span class="term term-purple" tabindex="0" data-tip="2016-2019 move below the 70% storage threshold while desalination stays below 75 GL.">2016-2019 points</span> show low storage with limited desalination delivery.</li>
+                        <li><span class="term term-dark" tabindex="0" data-tip="Top-left means storage below 70% and desalination above 75 GL.">Engineered Survival (Top-Left):</span> the <span class="term term-orange" tabindex="0" data-tip="2020 is plotted at 67.5% storage and 125 GL desalination delivered.">2020 point</span> is the first high-desalination response while storage remains below the 70% guide line.</li>
+                        <li><span class="term term-dark" tabindex="0" data-tip="Top-right means storage above 70% and desalination above 75 GL.">Artificial Recharge (Top-Right):</span> the <span class="term term-orange" tabindex="0" data-tip="2021 and 2022 both show 125 GL desalination while storage rises above 70%.">2021-2022 points</span> show high desalination continuing while storage improves.</li>
                     </ul>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin-top: 15px; font-style: italic; border-top: 1px solid #ECF0F1; padding-top: 15px;">
-                        The story of the <span style="font-weight: bold;">Victorian Water Descent</span> is now complete. From the first deficit (Chart 1) to this engineered recovery, the trajectory proves that Victoria's survival no longer exists within the natural envelope, but is guaranteed by a continuous, synthetic pulse.
+                        The story of the <span class="term term-dark" tabindex="0" data-tip="This phrase names the project narrative, not a formal government metric.">Victorian Water Descent</span> ends with a more precise claim: Victoria's security is still tied to rain and reservoirs, but the data shows engineered supply can become a major stabiliser when natural storage falls.
                     </p>
                 </div>
             </div>
@@ -630,9 +734,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">The objective was to establish the spatial extent of the rainfall deficit, as aggregate state-wide averages obscure critical regional failures. Station-level data presented a disjointed narrative; therefore, an Inverse Distance Weighting (IDW) spatial model was engineered via <code>scipy.spatial</code> to calculate Euclidean distances between 6 primary weather hubs and 2,957 suburb centroids. This continuous surface visualizes the drought progression creeping from the arid north-west into the central catchments.</p>
+                                    <p class="audit-desc">The objective was to establish the spatial extent of the rainfall deficit, as aggregate state-wide averages obscure regional variation. Station-level inputs were interpolated into an Inverse Distance Weighting (IDW) spatial surface using distances between 6 primary weather hubs and 2,957 suburb centroids. This produces a static deficit gradient, with the strongest values in the north-west and lower values in the south-west.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Suburb Centroids (Nominal), Deficit (Quantitative).<br>
                                         <em>Why:</em> Analyze spatial distribution and identify regional hotspots.<br>
                                         <em>How:</em> Idiom: Choropleth. Marks: Area (Geoshape). Channels: Spatial position, Color saturation.
@@ -642,7 +746,7 @@
                                     <table class="audit-table">
                                         <tr><td class="audit-label">Algorithm</td><td>Gaussian IDW</td></tr>
                                         <tr><td class="audit-label">Resolution</td><td>Suburb Level</td></tr>
-                                        <tr><td class="audit-label">Validation</td><td>R-Squared 0.88</td></tr>
+                                        <tr><td class="audit-label">Rows</td><td>2,957 suburbs</td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -664,9 +768,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">To demonstrate that the climate shift is a permanent structural paradigm rather than a temporary anomaly, longitudinal aggregation was necessary. While a century-scale heatmap visualises the macro-frequency of heat events, a seasonal comparison idiom isolates the micro-impact, establishing that every monthly baseline has elevated. Processing 116 years of ACORN-SAT daily maximums via <code>pandas.groupby</code> allowed for the harmonisation of historical (1910-1920) and modern (2010-2020) strata, empirically proving the thermal engine driving contemporary evaporation.</p>
+                                    <p class="audit-desc">Longitudinal aggregation was used to compare monthly maximum-temperature baselines across the full ACORN-SAT record. The heatmap visualises mean monthly intensity by year, while the seasonal comparison isolates the difference between 1910-1920 and 2010-2020. In the processed data, every modern monthly mean is higher than its historical counterpart.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Time (Ordinal), Temperature (Quantitative).<br>
                                         <em>Why:</em> Discover trends and compare historical vs modern baselines.<br>
                                         <em>How:</em> Idiom: Heatmap / Multi-series Line. Marks: Area (Rect) / Line. Channels: Color saturation, Y-position.
@@ -676,7 +780,7 @@
                                     <table class="audit-table">
                                         <tr><td class="audit-label">Algorithm</td><td>Mean Pivot</td></tr>
                                         <tr><td class="audit-label">Span</td><td>116 Years</td></tr>
-                                        <tr><td class="audit-label">Integrity</td><td>Validated</td></tr>
+                                        <tr><td class="audit-label">Check</td><td>All months hotter</td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -698,9 +802,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Establishing the causality of the systemic rainfall collapse required connecting macroscopic Pacific Ocean phenomena to local Victorian hydrology. Raw monthly SOI archives were temporally synchronised with local rainfall records, restricted to the 2004-2019 epoch to isolate Millennium Drought causality. A dual-axis idiom was explicitly engineered to visualise the phase-lag correlation, providing statistical proof that negative SOI oscillations (El Niño events) dictate inevitable catchment failure.</p>
+                                    <p class="audit-desc">The aim was to place local Caulfield rainfall beside a major climate-driver index without overstating causality. Monthly SOI archives were synchronised with rainfall records and restricted to the 2004-2019 overlap. The dual-axis idiom shows periods where negative SOI aligns with dry stretches, while also preserving visible exceptions such as dry months under neutral or positive SOI.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> SOI (Quant), Rainfall (Quant), Time (Ordinal).<br>
                                         <em>Why:</em> Compare correlations and identify leading indicators.<br>
                                         <em>How:</em> Idiom: Dual-Axis Chart. Marks: Line / Bar. Channels: Shared X-axis, Y-position, Color hue.
@@ -709,8 +813,8 @@
                                 <div>
                                     <table class="audit-table">
                                         <tr><td class="audit-label">Join Type</td><td>Inner Temporal</td></tr>
-                                        <tr><td class="audit-label">Driver</td><td>El Niño/La Niña</td></tr>
-                                        <tr><td class="audit-label">Metric</td><td>Std Dev</td></tr>
+                                        <tr><td class="audit-label">Driver</td><td>El Nino/La Nina</td></tr>
+                                        <tr><td class="audit-label">Metric</td><td>SOI value</td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -732,18 +836,18 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Visualising the compound effect of thermal stress required modelling how elevated temperatures weaponise dry periods. A scatter plot idiom was selected to expose multi-attribute correlation across 40 years of SILO point-data. Applying an Ordinary Least Squares (OLS) linear regression trendline—coupled with bubble sizing mapped to precipitation—yields a triple-encoded mathematical proof: Victoria surrenders the highest volume of water to atmospheric evaporation precisely during the years it receives the least rain.</p>
+                                    <p class="audit-desc">The scatter plot was selected to compare annual evaporation, summer maximum temperature and annual rainfall in one view. The OLS trendline shows the upward evaporation trend across the plotted years, while bubble size and colour make high-heat, low-rainfall years such as 2009 and 2019 visible without claiming direct proof from correlation alone.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Evap (Quant), Temp (Quant), Rain (Quant).<br>
-                                        <em>Why:</em> Verify correlation and identify anomalous deficit years.<br>
+                                        <em>Why:</em> Compare correlation and identify anomalous deficit years.<br>
                                         <em>How:</em> Idiom: Temporal Bubble Chart. Marks: Point (Bubble). Channels: X/Y-Position, Color, Size.
                                     </div>
                                 </div>
                                 <div>
                                     <table class="audit-table">
                                         <tr><td class="audit-label">Regression</td><td>Linear OLS</td></tr>
-                                        <tr><td class="audit-label">R-Squared</td><td>0.74</td></tr>
+                                        <tr><td class="audit-label">Key Years</td><td>2009, 2019, 2025</td></tr>
                                         <tr><td class="audit-label">Scope</td><td>40 Years</td></tr>
                                     </table>
                                 </div>
@@ -766,9 +870,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Demonstrating the hydrological inertia of catchment systems was required to disprove the assumption that a single surplus rainfall year nullifies multi-year drought. Monthly storage records since 1990 were aggregated, mapping diverging rainfall anomalies against a 700mm climatological baseline. The engineered vertical composite synchronises these meteorological anomalies (bar idiom) with physical storage responses (line idiom), empirically proving the "Lag Effect" and confirming that Victorian catchments operate in a sustained state of infrastructural deficit.</p>
+                                    <p class="audit-desc">The composite chart was designed to compare monthly rainfall anomalies with reservoir storage response over the same 2004-2019 window. Rainfall anomalies are calculated against the 50.6 mm monthly baseline used in the spec, and the lower panel shows storage falling to about 26% in 2009 before recovering above 80% in 2012.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Storage % (Quant), Anomaly (Quant), Year (Ordinal).<br>
                                         <em>Why:</em> Summarize trends and analyze recovery lag times.<br>
                                         <em>How:</em> Idiom: Dual-Domain Composite. Marks: Line / Bar (Area). Channels: Y-position, Color hue.
@@ -776,9 +880,9 @@
                                 </div>
                                 <div>
                                     <table class="audit-table">
-                                        <tr><td class="audit-label">Baseline</td><td>30-Year Mean</td></tr>
+                                        <tr><td class="audit-label">Baseline</td><td>50.6 mm/mo</td></tr>
                                         <tr><td class="audit-label">Metric</td><td>Recovery Lag</td></tr>
-                                        <tr><td class="audit-label">Integrity</td><td>Validated</td></tr>
+                                        <tr><td class="audit-label">Low Point</td><td>26% storage</td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -800,9 +904,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Contextualising abstract storage metrics within physical geography was necessary, given the extreme volumetric disparity between reservoir basins. Geocoordinates for the 10 primary nodes were sourced, with logarithmic point scaling implemented to normalise capacity variance. The application of an 'Aura-Halo' continuous colour ramp to encode operational health successfully isolates the massive Thomson Reservoir as the critical failure node driving the state’s mandatory shift toward engineered supply.</p>
+                                    <p class="audit-desc">Contextualising storage metrics within physical geography was necessary because reservoir capacities differ dramatically. The map uses 10 primary storage nodes, point size for capacity and colour for current percentage full. This makes Thomson's scale visible while also showing lower-percentage reservoirs such as Yan Yean without claiming that any single reservoir alone forces an engineered shift.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Lat/Long (Spatial), Capacity (Quant), Health (Quant).<br>
                                         <em>Why:</em> Locate critical nodes and rank node importance.<br>
                                         <em>How:</em> Idiom: Point Map. Marks: Point. Channels: Spatial position, Size, Color.
@@ -821,7 +925,7 @@
 
                     <!-- Chart 7 -->
                     <details class="audit-card">
-                        <summary><span class="chart-num">07</span> Subterranean Stress: KDE Mesh Estimation</summary>
+                        <summary><span class="chart-num">07</span> Subterranean Stress: Grid Density</summary>
                         <div class="audit-content">
                             <div class="audit-grid">
                                 <div>
@@ -829,24 +933,24 @@
                                     <p style="font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px;">Bureau of Meteorology. (2026). <em>Australian Groundwater Explorer.</em> Australian Government. <a href="http://www.bom.gov.au/water/groundwater/explorer/" target="_blank" style="color: #3498DB;">[Link]</a></p>
                                     <div class="audit-diag">
                                         <svg width="120" height="60" viewBox="0 0 120 60"><rect x="30" y="10" width="15" height="15" fill="#3B0F70" opacity="0.6"/><rect x="45" y="10" width="15" height="15" fill="#FCFDBF"/></svg>
-                                        <div style="font-size: 0.6rem; color: #94C1EA; margin-top: 5px;">KDE DENSITY MESH</div>
+                                        <div style="font-size: 0.6rem; color: #94C1EA; margin-top: 5px;">GRID DENSITY MESH</div>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">While surface reservoirs failed, regional agriculture relied heavily on groundwater reserves. To resolve the extreme overplotting of 42,000 discrete bore locations, the spatial data was aggregated via Kernel Density Estimation (KDE) using <code>scipy.stats</code>. This process binned the coordinates into a precise 0.1-degree spatial mesh leveraging KDTree algorithms. The resulting grid-based heatmap idiom effectively uncovers the "Unseen Buffer," successfully identifying the hidden spatial hubs subjected to intense subterranean stress.</p>
+                                    <p class="audit-desc">The groundwater view uses 720 validated bore-permit coordinates aggregated into a 0.1-degree spatial grid. This reduces overplotting and lets the colour channel show permit concentration, with 18 cells at 10 or more permits and a maximum cell count of 27. The chart identifies density hotspots, not extraction volume or sustainability.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
-                                        <em>What:</em> 42,000 Bore Points (Nominal), Density (Quant).<br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
+                                        <em>What:</em> 720 Bore Points (Nominal), Density (Quant).<br>
                                         <em>Why:</em> Discover hidden spatial patterns of subterranean stress.<br>
                                         <em>How:</em> Idiom: Grid Heatmap. Marks: Area (Rect). Channels: Spatial position, Color saturation.
                                     </div>
                                 </div>
                                 <div>
                                     <table class="audit-table">
-                                        <tr><td class="audit-label">Kernel</td><td>Gaussian</td></tr>
+                                        <tr><td class="audit-label">Method</td><td>Grid Count</td></tr>
                                         <tr><td class="audit-label">Mesh Size</td><td>0.1 Degree</td></tr>
-                                        <tr><td class="audit-label">Records</td><td>42,000+</td></tr>
+                                        <tr><td class="audit-label">Records</td><td>720</td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -868,9 +972,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Quantifying the precise inflection point where Victoria transitioned from natural to engineered water dependence required a continuous strata idiom. Standard stacked bars fail to communicate proportional fluidity; therefore, data from 8 annual Victorian Water Accounts was processed with linear temporal interpolation (0.1yr resolution) to generate 130 discrete steps, alongside a baseline extrapolation to 2025. This engineered "Liquid Gauge" visually expands the desalination and groundwater layers, mathematically substantiating the verified 20% alternative supply threshold.</p>
+                                    <p class="audit-desc">The normalized stacked bar was chosen to show proportional resource composition at a selected year. The source annual records were interpolated for smooth slider movement, and the post-2023 rows are treated as a recovery scenario in the visual narrative. The key verified reading in the displayed 2020 row is desalination at about 3.1%, groundwater at about 9.3%, and surface water consumptive use at about 69.3%.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Resource (Nominal), Volume % (Quant), Time (Ordinal).<br>
                                         <em>Why:</em> Analyze changes in resource composition over time.<br>
                                         <em>How:</em> Idiom: Normalized Stacked Bar. Marks: Area / Bar. Channels: X-position, Color hue.
@@ -879,8 +983,8 @@
                                 <div>
                                     <table class="audit-table">
                                         <tr><td class="audit-label">Algorithm</td><td>Linear Interp</td></tr>
-                                        <tr><td class="audit-label">Steps</td><td>130 Intervals</td></tr>
-                                        <tr><td class="audit-label">Validation</td><td>Verified</td></tr>
+                                        <tr><td class="audit-label">Steps</td><td>101 YearSteps</td></tr>
+                                        <tr><td class="audit-label">Validation</td><td>Scenario noted</td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -902,9 +1006,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Quantifying the engineered desalination lifeline against total systemic urban demand necessitated a harmonic time-series join. By aggregating Residential, Commercial, and Non-Revenue data, a 'Total Demand' baseline was computed to serve as a high-fidelity contextual silhouette. The vertical concatenation of this demand envelope against the precise AquaSure delivery data ("The Pulse") provides unassailable visual proof that engineered dependence peaked at nearly 30% of total urban consumption during the crisis.</p>
+                                    <p class="audit-desc">Desalination delivery was joined with total urban demand, calculated from Residential, Non-Residential and Non-Revenue categories. The upper panel compares volumes, while the lower dependency-ratio panel shows the peak share clearly: 28.8% in 2020 and 28.1% in 2021, then about 3% in 2023-2024.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Total Demand (Quant), Desal GL (Quant).<br>
                                         <em>Why:</em> Compare engineered intervention against natural supply.<br>
                                         <em>How:</em> Idiom: Vertical Concatenation. Marks: Area / Bar. Channels: Y-position, Color hue.
@@ -913,8 +1017,8 @@
                                 <div>
                                     <table class="audit-table">
                                         <tr><td class="audit-label">Join Type</td><td>Harmonic Merge</td></tr>
-                                        <tr><td class="audit-label">Peak</td><td>30% Dependency</td></tr>
-                                        <tr><td class="audit-label">Verif</td><td>MW Portal</td></tr>
+                                        <tr><td class="audit-label">Peak</td><td>28.8%</td></tr>
+                                        <tr><td class="audit-label">Demand</td><td>3 fields summed</td></tr>
                                     </table>
                                 </div>
                             </div>
@@ -936,9 +1040,9 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Synthesising the complete 13-year systemic trajectory required a definitive diagnostic idiom. A bi-variant scatter matrix was engineered, mapping catchment Health against Engineering Injection. By extracting annual means and anchoring the axes at mathematically determined critical thresholds (70% Storage, 75 GL Injection), the domain was partitioned into four distinct operational quadrants. The resulting temporal trajectory empirically maps the state's cyclical journey from natural safety, into critical deficit, and finally recovering via engineered survival.</p>
+                                    <p class="audit-desc">The matrix maps annual storage percentage against desalination delivered so the two system indicators can be read together. The 70% storage and 75 GL desalination lines are narrative thresholds that partition the space into four operational states. The trajectory shows the path from high storage with low desalination, through lower-storage years, into the 2020-2022 high-desalination response, and back to higher-storage, lower-desalination years after the toggle.</p>
                                     <div class="framework-box">
-                                        <strong style="color: #E0E6ED; letter-spacing: 0.5px;">Tamara Munzner's Design Framework:</strong><br>
+                                        <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Health % (Quant), Injection GL (Quant).<br>
                                         <em>Why:</em> Categorize system states and summarize 13-year trajectory.<br>
                                         <em>How:</em> Idiom: Bi-Variant Matrix. Marks: Point (Circle) / Line. Channels: Position, Line path.

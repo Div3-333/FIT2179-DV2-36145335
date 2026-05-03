@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 500,
+  "width": "container",
   "height": 400,
-  "autosize": {"type": "fit", "contains": "padding"},
-  "data": {
-    "url": "data/final/chart2_temperature.csv"
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   },
   "title": {
     "text": "The Seasonal Fever: 100 Year Shift",
@@ -16,19 +16,6 @@
     "subtitleColor": "#5D6D7E",
     "offset": 20
   },
-  "transform": [
-    {
-      "filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"
-    },
-    {
-      "calculate": "datum.Year <= 1920 ? 'Historical (1910-20)' : 'Modern (2010-20)'",
-      "as": "Era"
-    },
-    {
-      "aggregate": [{"op": "mean", "field": "MaxTemp", "as": "AvgMax"}],
-      "groupby": ["Month", "Era"]
-    }
-  ],
   "layer": [
     {
       "mark": {
@@ -40,7 +27,20 @@
         "x": {
           "field": "Month",
           "type": "ordinal",
-          "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
           "axis": {
             "labelAngle": 0,
             "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]"
@@ -49,36 +49,246 @@
         "y": {
           "field": "AvgMax",
           "type": "quantitative",
-          "title": "Mean Max Temperature (°C)",
-          "scale": {"domain": [10, 32]}
+          "title": "Mean Max Temperature (\u00b0C)",
+          "scale": {
+            "domain": [
+              10,
+              32
+            ]
+          }
         },
         "color": {
           "field": "Era",
           "type": "nominal",
           "scale": {
-            "domain": ["Historical (1910-20)", "Modern (2010-20)"],
-            "range": ["#3B0F70", "#FE9F6D"]
+            "domain": [
+              "Historical (1910-20)",
+              "Modern (2010-20)"
+            ],
+            "range": [
+              "#3B0F70",
+              "#FE9F6D"
+            ]
           },
-          "legend": {"orient": "top-right", "title": null}
+          "legend": {
+            "orient": "top-right",
+            "title": null
+          }
+        }
+      },
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"
+        },
+        {
+          "calculate": "datum.Year <= 1920 ? 'Historical (1910-20)' : 'Modern (2010-20)'",
+          "as": "Era"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "Month",
+            "Era"
+          ]
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "point",
+        "size": 80,
+        "filled": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "AvgMax",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Era",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {
+            "field": "Era",
+            "type": "nominal"
+          },
+          {
+            "field": "AvgMax",
+            "type": "quantitative",
+            "title": "Avg Temp",
+            "format": ".1f"
+          }
+        ]
+      },
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"
+        },
+        {
+          "calculate": "datum.Year <= 1920 ? 'Historical (1910-20)' : 'Modern (2010-20)'",
+          "as": "Era"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "Month",
+            "Era"
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Month": 1,
+            "AvgMax": 26.6,
+            "Month2": 3,
+            "AvgMax2": 29.5,
+            "labelMonth": 3,
+            "labelY": 30.4,
+            "text": "Modern line stays|above baseline"
+          },
+          {
+            "Month": 8,
+            "AvgMax": 15.13,
+            "Month2": 9,
+            "AvgMax2": 18.0,
+            "labelMonth": 9,
+            "labelY": 18.8,
+            "text": "Smallest lift|still positive"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#2C3E50",
+        "strokeWidth": 2,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal",
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "y": {
+          "field": "AvgMax",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "Month2"
+        },
+        "y2": {
+          "field": "AvgMax2"
         }
       }
     },
     {
-      "mark": {"type": "point", "size": 80, "filled": true},
-      "encoding": {
-        "x": {"field": "Month", "type": "ordinal"},
-        "y": {"field": "AvgMax", "type": "quantitative"},
-        "color": {"field": "Era", "type": "nominal"},
-        "tooltip": [
-          {"field": "Era", "type": "nominal"},
-          {"field": "AvgMax", "type": "quantitative", "title": "Avg Temp", "format": ".1f"}
+      "data": {
+        "values": [
+          {
+            "Month": 1,
+            "AvgMax": 26.6,
+            "Month2": 3,
+            "AvgMax2": 29.5,
+            "labelMonth": 3,
+            "labelY": 30.4,
+            "text": "Modern line stays|above baseline"
+          },
+          {
+            "Month": 8,
+            "AvgMax": 15.13,
+            "Month2": 9,
+            "AvgMax2": 18.0,
+            "labelMonth": 9,
+            "labelY": 18.8,
+            "text": "Smallest lift|still positive"
+          }
         ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#2C3E50",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "labelMonth",
+          "type": "ordinal",
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "y": {
+          "field": "labelY",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
       }
     }
   ],
   "config": {
     "background": "transparent",
-    "view": {"stroke": "transparent"},
+    "view": {
+      "stroke": "transparent"
+    },
     "axis": {
       "domainColor": "#2C3E50",
       "labelFont": "Source Sans Pro",

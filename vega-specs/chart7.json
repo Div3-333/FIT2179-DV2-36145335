@@ -2,10 +2,13 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 450,
-  "autosize": {"type": "fit", "contains": "padding"},
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "title": {
     "text": "Subterranean Stress Field",
-    "subtitle": "High-Resolution Extraction Intensity (0.1° Grid) | Victoria",
+    "subtitle": "High-Resolution Extraction Intensity (0.1\u00b0 Grid) | Victoria",
     "anchor": "start",
     "color": "#D7CCC8",
     "fontSize": 24,
@@ -15,14 +18,20 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [144.5, -36.5],
+    "center": [
+      144.5,
+      -36.5
+    ],
     "scale": 4000
   },
   "layer": [
     {
       "data": {
         "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
-        "format": {"type": "json", "property": "features"}
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
       },
       "mark": {
         "type": "geoshape",
@@ -42,36 +51,136 @@
         "cornerRadius": 1
       },
       "encoding": {
-        "longitude": {"field": "lon1", "type": "quantitative"},
-        "latitude": {"field": "lat1", "type": "quantitative"},
-        "longitude2": {"field": "lon2"},
-        "latitude2": {"field": "lat2"},
+        "longitude": {
+          "field": "lon1",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat1",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        },
         "color": {
           "field": "StressLevel",
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [0, 2, 8, 15],
-            "range": ["#3B0F70", "#8C2981", "#FE9F6D", "#FCFDBF"]
+            "domain": [
+              0,
+              2,
+              8,
+              15
+            ],
+            "range": [
+              "#3B0F70",
+              "#8C2981",
+              "#FE9F6D",
+              "#FCFDBF"
+            ]
           },
           "legend": {
-            "title": "Bore Permits", 
-            "labelColor": "#D7CCC8", 
+            "title": "Bore Permits",
+            "labelColor": "#D7CCC8",
             "titleColor": "#D7CCC8",
             "orient": "right",
             "gradientLength": 250,
-            "values": [0, 5, 10, 15]
+            "values": [
+              0,
+              5,
+              10,
+              15
+            ]
           }
         },
         "tooltip": [
-          {"field": "StressLevel", "type": "quantitative", "title": "Bore Permits in Area"}
+          {
+            "field": "StressLevel",
+            "type": "quantitative",
+            "title": "Bore Permits in Area"
+          }
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 145.05,
+            "lat": -36.25,
+            "lon2": 144.1,
+            "lat2": -35.95
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#FCFDBF",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 144.1,
+            "lat": -35.95,
+            "text": "Highest grid cell|27 permits"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#FCFDBF",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
       }
     }
   ],
   "config": {
-    "background": "transparent",
-    "view": {"stroke": "transparent"},
+    "background": "#241d19",
+    "view": {
+      "stroke": "transparent"
+    },
     "font": "Source Sans Pro"
   }
 }

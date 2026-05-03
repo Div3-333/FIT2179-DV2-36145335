@@ -13,25 +13,12 @@
     "subtitleColor": "#5D6D7E",
     "offset": 30
   },
-  "data": {
-    "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
-    "format": {"type": "json", "property": "features"}
-  },
-  "transform": [
-    {
-      "lookup": "properties.vic_loca_2",
-      "from": {
-        "data": {
-          "url": "data/final/chart1_vic_rainfall_deficit.csv"
-        },
-        "key": "LGA",
-        "fields": ["Rainfall_Deficit_mm"]
-      }
-    }
-  ],
   "projection": {
     "type": "mercator",
-    "center": [145.4, -36.6],
+    "center": [
+      145.4,
+      -36.6
+    ],
     "scale": 4200
   },
   "layer": [
@@ -47,14 +34,26 @@
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [40, 100, 160, 220],
-            "range": ["#3B0F70", "#8C2981", "#FE9F6D", "#FCFDBF"]
+            "domain": [
+              40,
+              100,
+              160,
+              220
+            ],
+            "range": [
+              "#3B0F70",
+              "#8C2981",
+              "#FE9F6D",
+              "#FCFDBF"
+            ]
           },
           "legend": {
             "title": "Rainfall Deficit (mm)",
             "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": {"signal": "width * 0.8"},
+            "gradientLength": {
+              "signal": "width * 0.8"
+            },
             "titleColor": "#2C3E50",
             "labelColor": "#2C3E50",
             "titleFontSize": 12,
@@ -63,15 +62,184 @@
           }
         },
         "tooltip": [
-          {"field": "properties.vic_loca_2", "type": "nominal", "title": "Suburb"},
-          {"field": "Rainfall_Deficit_mm", "type": "quantitative", "title": "Deficit (mm)"}
+          {
+            "field": "properties.vic_loca_2",
+            "type": "nominal",
+            "title": "Suburb"
+          },
+          {
+            "field": "Rainfall_Deficit_mm",
+            "type": "quantitative",
+            "title": "Deficit (mm)"
+          }
         ]
+      },
+      "data": {
+        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.vic_loca_2",
+          "from": {
+            "data": {
+              "url": "data/final/chart1_vic_rainfall_deficit.csv"
+            },
+            "key": "LGA",
+            "fields": [
+              "Rainfall_Deficit_mm"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 141.9,
+            "lat": -34.3,
+            "lon2": 142.45,
+            "lat2": -34.65
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#17202A",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 142.45,
+            "lat": -34.65,
+            "text": "North-west hotspot|>220 mm deficit"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#17202A",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 142.0,
+            "lat": -37.8,
+            "lon2": 142.7,
+            "lat2": -38.05
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#17202A",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 142.7,
+            "lat": -38.05,
+            "text": "Lower-deficit south-west|~87-100 mm"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#17202A",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
       }
     }
   ],
   "config": {
     "background": "transparent",
-    "view": {"stroke": "transparent"},
+    "view": {
+      "stroke": "transparent"
+    },
     "font": "Source Sans Pro"
   }
 }

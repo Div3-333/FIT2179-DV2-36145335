@@ -41,7 +41,7 @@
           "field": "MaxTemp",
           "type": "quantitative",
           "scale": {"scheme": "magma", "domain": [12, 32]},
-          "legend": {"title": "Temp (°C)"}
+          "legend": {"title": "Temp (deg C)"}
         }
       }
     },

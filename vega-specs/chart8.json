@@ -3,7 +3,6 @@
   "description": "H-Sync Technical Dashboard with High-Emphasis Chromatic Shift.",
   "background": "transparent",
   "spacing": 50,
-  "data": {"url": "data/final/chart8_liquid_data.csv"},
   "params": [
     {
       "name": "showModern",
@@ -11,7 +10,7 @@
     },
     {
       "name": "timeStep",
-      "value": 2015,
+      "value": 2020,
       "bind": {
         "input": "range",
         "min": 2015,
@@ -31,10 +30,6 @@
     "subtitleColor": "#B0BEC5",
     "offset": 30
   },
-  "transform": [
-    {"filter": "showModern || datum.YearStep <= 2021"},
-    {"filter": "abs(datum.YearStep - timeStep) < 0.01"}
-  ],
   "hconcat": [
     {
       "width": 850,
@@ -67,7 +62,13 @@
                   "Surface water - environmental",
                   "Surface water - consumptive"
                 ],
-                "range": ["#F1C40F", "#A569BD", "#BB8FCE", "#2E86C1", "#3498DB"]
+                "range": [
+                  "#F1C40F",
+                  "#A569BD",
+                  "#BB8FCE",
+                  "#2E86C1",
+                  "#3498DB"
+                ]
               },
               "legend": {
                 "title": null,
@@ -80,7 +81,18 @@
                 "symbolSize": 150
               }
             }
-          }
+          },
+          "data": {
+            "url": "data/final/chart8_liquid_data.csv"
+          },
+          "transform": [
+            {
+              "filter": "showModern || datum.YearStep <= 2021"
+            },
+            {
+              "filter": "abs(datum.YearStep - timeStep) < 0.01"
+            }
+          ]
         },
         {
           "mark": {
@@ -91,10 +103,111 @@
             "fontWeight": 900
           },
           "encoding": {
-            "text": {"field": "DisplayYear", "type": "nominal"},
+            "text": {
+              "field": "DisplayYear",
+              "type": "nominal"
+            },
             "color": {
-              "condition": {"test": "timeStep > 2018", "value": "rgba(241, 196, 15, 0.1)"},
+              "condition": {
+                "test": "timeStep > 2018",
+                "value": "rgba(241, 196, 15, 0.1)"
+              },
               "value": "rgba(52, 152, 219, 0.06)"
+            }
+          },
+          "data": {
+            "url": "data/final/chart8_liquid_data.csv"
+          },
+          "transform": [
+            {
+              "filter": "showModern || datum.YearStep <= 2021"
+            },
+            {
+              "filter": "abs(datum.YearStep - timeStep) < 0.01"
+            }
+          ]
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "x": 0.72,
+                "y": 0,
+                "x2": 0.55,
+                "y2": 0
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#FCFDBF",
+            "strokeWidth": 2,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  1
+                ]
+              }
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "axis": null
+            },
+            "x2": {
+              "field": "x2"
+            },
+            "y2": {
+              "field": "y2"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "x": 0.55,
+                "y": 0,
+                "text": "2020 alternatives|about 12.4%"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 0,
+            "dy": 0,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#FCFDBF",
+            "lineBreak": "|"
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  1
+                ]
+              }
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "axis": null
+            },
+            "text": {
+              "field": "text",
+              "type": "nominal"
             }
           }
         }
@@ -112,12 +225,34 @@
         "offset": 10
       },
       "transform": [
-        {"calculate": "datum.Resource_Type == 'Desalinated water - consumptive' ? 0 : datum.Resource_Type == 'Recycled water - consumptive' ? 1 : datum.Resource_Type == 'Groundwater - consumptive' ? 2 : datum.Resource_Type == 'Surface water - environmental' ? 3 : 4", "as": "rowOrder"}
+        {
+          "filter": "showModern || datum.YearStep <= 2021"
+        },
+        {
+          "filter": "abs(datum.YearStep - timeStep) < 0.01"
+        },
+        {
+          "calculate": "datum.Resource_Type == 'Desalinated water - consumptive' ? 0 : datum.Resource_Type == 'Recycled water - consumptive' ? 1 : datum.Resource_Type == 'Groundwater - consumptive' ? 2 : datum.Resource_Type == 'Surface water - environmental' ? 3 : 4",
+          "as": "rowOrder"
+        }
       ],
-      "mark": {"type": "text", "align": "right", "fontSize": 14, "fontWeight": "900"},
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "fontSize": 14,
+        "fontWeight": "900"
+      },
       "encoding": {
-        "y": {"field": "rowOrder", "type": "ordinal", "axis": null},
-        "text": {"field": "Volume_ML", "type": "quantitative", "format": ",.0f"},
+        "y": {
+          "field": "rowOrder",
+          "type": "ordinal",
+          "axis": null
+        },
+        "text": {
+          "field": "Volume_ML",
+          "type": "quantitative",
+          "format": ",.0f"
+        },
         "color": {
           "field": "Resource_Type",
           "type": "nominal",
@@ -129,16 +264,27 @@
               "Surface water - environmental",
               "Surface water - consumptive"
             ],
-            "range": ["#F1C40F", "#A569BD", "#BB8FCE", "#2E86C1", "#3498DB"]
+            "range": [
+              "#F1C40F",
+              "#A569BD",
+              "#BB8FCE",
+              "#2E86C1",
+              "#3498DB"
+            ]
           },
           "legend": null
         }
+      },
+      "data": {
+        "url": "data/final/chart8_liquid_data.csv"
       }
     }
   ],
   "config": {
     "background": "transparent",
-    "view": {"stroke": "transparent"},
+    "view": {
+      "stroke": "transparent"
+    },
     "font": "Source Sans Pro"
   }
 }

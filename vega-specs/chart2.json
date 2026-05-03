@@ -2,13 +2,16 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 450,
-  "autosize": {"type": "fit", "contains": "padding"},
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "data": {
     "url": "data/final/chart2_temperature.csv"
   },
   "title": {
     "text": "116 Years of Melbourne Temperature",
-    "subtitle": "Mean Maximum Temperature (°C) by Month and Year (1910-2026)",
+    "subtitle": "Mean Maximum Temperature (\u00b0C) by Month and Year (1910-2026)",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -16,54 +19,11 @@
     "subtitleColor": "#5D6D7E",
     "offset": 20
   },
-  "mark": {
-    "type": "rect",
-    "tooltip": true
-  },
-  "encoding": {
-    "x": {
-      "field": "Month",
-      "type": "ordinal",
-      "title": "Month",
-      "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "axis": {
-        "labelAngle": 0,
-        "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]"
-      }
-    },
-    "y": {
-      "field": "Year",
-      "type": "ordinal",
-      "title": null,
-      "sort": "descending",
-      "axis": {
-        "labelExpr": "datum.label % 10 == 0 || datum.label == 1910 ? datum.label : ''"
-      }
-    },
-    "color": {
-      "field": "MaxTemp",
-      "type": "quantitative",
-      "scale": {
-        "scheme": "magma",
-        "reverse": false,
-        "domain": [12, 32]
-      },
-      "legend": {
-        "title": "Temp (°C)",
-        "orient": "left",
-        "offset": 40,
-        "gradientLength": 300
-      }
-    },
-    "tooltip": [
-      {"field": "Year", "type": "ordinal"},
-      {"field": "Month", "type": "ordinal", "title": "Month"},
-      {"field": "MaxTemp", "type": "quantitative", "title": "Mean Max Temp (°C)", "format": ".1f"}
-    ]
-  },
   "config": {
     "background": "transparent",
-    "view": {"stroke": "transparent"},
+    "view": {
+      "stroke": "transparent"
+    },
     "axis": {
       "domainColor": "#2C3E50",
       "tickColor": "#2C3E50",
@@ -73,5 +33,189 @@
       "labelFont": "Source Sans Pro",
       "titleFont": "Source Sans Pro"
     }
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal",
+          "title": "Month",
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "axis": {
+            "labelAngle": 0,
+            "labelExpr": "['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][datum.label]"
+          }
+        },
+        "y": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": null,
+          "sort": "descending",
+          "axis": {
+            "labelExpr": "datum.label % 10 == 0 || datum.label == 1910 ? datum.label : ''"
+          }
+        },
+        "color": {
+          "field": "MaxTemp",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "magma",
+            "reverse": false,
+            "domain": [
+              12,
+              32
+            ]
+          },
+          "legend": {
+            "title": "Temp (\u00b0C)",
+            "orient": "left",
+            "offset": 40,
+            "gradientLength": 300
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "ordinal"
+          },
+          {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+          },
+          {
+            "field": "MaxTemp",
+            "type": "quantitative",
+            "title": "Mean Max Temp (\u00b0C)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Month": 1,
+            "Year": 2019,
+            "Month2": 3,
+            "Year2": 2021,
+            "labelMonth": 4,
+            "labelYear": 2021,
+            "text": "Recent warm band|2010s onward"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#E0F2FE",
+        "strokeWidth": 2,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "ordinal",
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "y": {
+          "field": "Year",
+          "type": "ordinal",
+          "sort": "descending"
+        },
+        "x2": {
+          "field": "Month2"
+        },
+        "y2": {
+          "field": "Year2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Month": 1,
+            "Year": 2019,
+            "Month2": 3,
+            "Year2": 2021,
+            "labelMonth": 4,
+            "labelYear": 2021,
+            "text": "Recent warm band|2010s onward"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 6,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#E0F2FE",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "labelMonth",
+          "type": "ordinal",
+          "sort": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "y": {
+          "field": "labelYear",
+          "type": "ordinal",
+          "sort": "descending"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
 }

@@ -1,9 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Unique multi-idiom visualization of the Desalination Surge",
-  "width": 1100,
+  "width": "container",
   "height": 450,
-  "autosize": {"type": "fit", "contains": "padding"},
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "params": [
     {
       "name": "showModern",
@@ -20,13 +23,17 @@
     "subtitleColor": "#7F8C8D",
     "offset": 40
   },
-  "data": {"url": "data/final/chart9_supply_dynamics.csv"},
+  "data": {
+    "url": "data/final/chart9_supply_dynamics.csv"
+  },
   "transform": [
-    {"filter": "showModern || datum.YearInt <= 2021"}
+    {
+      "filter": "showModern || datum.YearInt <= 2021"
+    }
   ],
   "vconcat": [
     {
-      "width": 1100,
+      "width": "container",
       "height": 220,
       "title": {
         "text": "The Supply Collision: Traditional Catchments vs. The Pulse",
@@ -36,30 +43,79 @@
       },
       "layer": [
         {
-          "mark": {"type": "area", "color": "#BDC3C7", "opacity": 0.2, "interpolate": "monotone"},
+          "mark": {
+            "type": "area",
+            "color": "#BDC3C7",
+            "opacity": 0.2,
+            "interpolate": "monotone"
+          },
           "encoding": {
             "x": {
-              "field": "YearInt", 
-              "type": "quantitative", 
-              "scale": {"domain": [2012, 2024]},
-              "axis": {"format": "d", "title": null, "grid": false}
+              "field": "YearInt",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2012,
+                  2024
+                ]
+              },
+              "axis": {
+                "format": "d",
+                "title": null,
+                "grid": false
+              }
             },
-            "y": {"field": "Total_Demand_GL", "type": "quantitative", "title": "Gigalitres (GL)"},
+            "y": {
+              "field": "Total_Demand_GL",
+              "type": "quantitative",
+              "title": "Gigalitres (GL)"
+            },
             "tooltip": [
-              {"field": "YearInt", "type": "quantitative", "title": "Year"},
-              {"field": "Total_Demand_GL", "type": "quantitative", "title": "Total Demand (GL)"}
+              {
+                "field": "YearInt",
+                "type": "quantitative",
+                "title": "Year"
+              },
+              {
+                "field": "Total_Demand_GL",
+                "type": "quantitative",
+                "title": "Total Demand (GL)"
+              }
             ]
           }
         },
         {
-          "mark": {"type": "area", "color": "#3498DB", "opacity": 0.8, "interpolate": "step-after"},
+          "mark": {
+            "type": "area",
+            "color": "#3498DB",
+            "opacity": 0.8,
+            "interpolate": "step-after"
+          },
           "encoding": {
-            "x": {"field": "YearInt", "type": "quantitative"},
-            "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
+            "x": {
+              "field": "YearInt",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "Desalination_Delivered_GL",
+              "type": "quantitative"
+            },
             "tooltip": [
-              {"field": "YearInt", "type": "quantitative", "title": "Year"},
-              {"field": "Desalination_Delivered_GL", "type": "quantitative", "title": "Desal GL"},
-              {"field": "Total_Demand_GL", "type": "quantitative", "title": "Total Demand GL"}
+              {
+                "field": "YearInt",
+                "type": "quantitative",
+                "title": "Year"
+              },
+              {
+                "field": "Desalination_Delivered_GL",
+                "type": "quantitative",
+                "title": "Desal GL"
+              },
+              {
+                "field": "Total_Demand_GL",
+                "type": "quantitative",
+                "title": "Total Demand GL"
+              }
             ]
           }
         },
@@ -74,18 +130,98 @@
             "color": "#2980B9"
           },
           "encoding": {
-            "x": {"field": "YearInt", "type": "quantitative"},
-            "y": {"field": "Desalination_Delivered_GL", "type": "quantitative"},
+            "x": {
+              "field": "YearInt",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "Desalination_Delivered_GL",
+              "type": "quantitative"
+            },
             "text": {
-              "condition": {"test": "datum.Desalination_Delivered_GL > 0", "field": "Desalination_Delivered_GL", "type": "quantitative"},
+              "condition": {
+                "test": "datum.Desalination_Delivered_GL > 0",
+                "field": "Desalination_Delivered_GL",
+                "type": "quantitative"
+              },
               "value": ""
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "YearInt": 2020,
+                "Desalination_Delivered_GL": 125,
+                "YearInt2": 2017.4,
+                "Desalination_Delivered_GL2": 180
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#2980B9",
+            "strokeWidth": 2,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "x": {
+              "field": "YearInt",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "Desalination_Delivered_GL",
+              "type": "quantitative"
+            },
+            "x2": {
+              "field": "YearInt2"
+            },
+            "y2": {
+              "field": "Desalination_Delivered_GL2"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "YearInt": 2017.4,
+                "Desalination_Delivered_GL": 180,
+                "text": "125 GL delivered|2020-2021 shown"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 0,
+            "dy": 0,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#2980B9",
+            "lineBreak": "|"
+          },
+          "encoding": {
+            "x": {
+              "field": "YearInt",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "Desalination_Delivered_GL",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "text",
+              "type": "nominal"
             }
           }
         }
       ]
     },
     {
-      "width": 1100,
+      "width": "container",
       "height": 100,
       "title": {
         "text": "The Dependency Ratio (Desalination as % of Urban Demand)",
@@ -93,34 +229,143 @@
         "anchor": "start",
         "color": "#34495E"
       },
-      "transform": [
-        {"calculate": "datum.Desalination_Delivered_GL / datum.Total_Demand_GL", "as": "ratio"}
-      ],
-      "mark": {"type": "bar", "size": 30, "cornerRadius": 5},
-      "encoding": {
-        "x": {
-          "field": "YearInt", 
-          "type": "quantitative", 
-          "scale": {"domain": [2012, 2024]},
-          "axis": {"format": "d", "title": "Fiscal Year"}
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "size": 30,
+            "cornerRadius": 5
+          },
+          "encoding": {
+            "x": {
+              "field": "YearInt",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2012,
+                  2024
+                ]
+              },
+              "axis": {
+                "format": "d",
+                "title": "Fiscal Year"
+              }
+            },
+            "y": {
+              "field": "ratio",
+              "type": "quantitative",
+              "axis": {
+                "format": "%",
+                "title": "% Dependency"
+              }
+            },
+            "color": {
+              "field": "ratio",
+              "type": "quantitative",
+              "scale": {
+                "scheme": "blues"
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {
+                "field": "YearInt",
+                "type": "quantitative",
+                "title": "Year"
+              },
+              {
+                "field": "ratio",
+                "type": "quantitative",
+                "title": "Dependency",
+                "format": ".1%"
+              }
+            ]
+          },
+          "transform": [
+            {
+              "calculate": "datum.Desalination_Delivered_GL / datum.Total_Demand_GL",
+              "as": "ratio"
+            }
+          ]
         },
-        "y": {"field": "ratio", "type": "quantitative", "axis": {"format": "%", "title": "% Dependency"}},
-        "color": {
-          "field": "ratio",
-          "type": "quantitative",
-          "scale": {"scheme": "blues"},
-          "legend": null
+        {
+          "data": {
+            "values": [
+              {
+                "YearInt": 2020,
+                "ratio": 0.288,
+                "YearInt2": 2017.4,
+                "ratio2": 0.34
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#2C3E50",
+            "strokeWidth": 2,
+            "opacity": 0.85
+          },
+          "encoding": {
+            "x": {
+              "field": "YearInt",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "ratio",
+              "type": "quantitative"
+            },
+            "x2": {
+              "field": "YearInt2"
+            },
+            "y2": {
+              "field": "ratio2"
+            }
+          }
         },
-        "tooltip": [
-          {"field": "YearInt", "type": "quantitative", "title": "Year"},
-          {"field": "ratio", "type": "quantitative", "title": "Dependency", "format": ".1%"}
-        ]
-      }
+        {
+          "data": {
+            "values": [
+              {
+                "YearInt": 2017.4,
+                "ratio": 0.34,
+                "text": "Peak share|28.8% in 2020"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 0,
+            "dy": 0,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "color": "#2C3E50",
+            "lineBreak": "|"
+          },
+          "encoding": {
+            "x": {
+              "field": "YearInt",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "ratio",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "text",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
     }
   ],
   "config": {
     "background": "white",
-    "view": {"stroke": "transparent"},
+    "view": {
+      "stroke": "transparent"
+    },
     "font": "Source Sans Pro"
   }
 }

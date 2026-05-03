@@ -2,7 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 450,
-  "autosize": {"type": "fit", "contains": "padding"},
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "padding": 20,
   "title": {
     "text": "The Evaporation Squeeze",
@@ -18,7 +21,9 @@
     "url": "data/final/chart4_evaporation_temp.csv"
   },
   "transform": [
-    {"filter": "datum.Year < 2026"}
+    {
+      "filter": "datum.Year < 2026"
+    }
   ],
   "layer": [
     {
@@ -28,8 +33,29 @@
         "strokeWidth": 1
       },
       "encoding": {
-        "x": {"field": "Year", "type": "quantitative", "scale": {"domain": [1980, 2028]}, "axis": {"format": "d"}},
-        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative", "scale": {"domain": [600, 1200]}}
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1980,
+              2028
+            ]
+          },
+          "axis": {
+            "format": "d"
+          }
+        },
+        "y": {
+          "field": "Annual_Evaporation_mm",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              600,
+              1200
+            ]
+          }
+        }
       }
     },
     {
@@ -38,7 +64,10 @@
         "color": "#E67E22",
         "strokeWidth": 3,
         "opacity": 0.4,
-        "strokeDash": [4, 2]
+        "strokeDash": [
+          4,
+          2
+        ]
       },
       "transform": [
         {
@@ -47,8 +76,14 @@
         }
       ],
       "encoding": {
-        "x": {"field": "Year", "type": "quantitative"},
-        "y": {"field": "Annual_Evaporation_mm", "type": "quantitative"}
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Annual_Evaporation_mm",
+          "type": "quantitative"
+        }
       }
     },
     {
@@ -64,7 +99,12 @@
           "field": "Year",
           "type": "quantitative",
           "title": "Timeline",
-          "scale": {"domain": [1980, 2028]},
+          "scale": {
+            "domain": [
+              1980,
+              2028
+            ]
+          },
           "axis": {
             "format": "d",
             "gridColor": "rgba(255,255,255,0.1)",
@@ -75,40 +115,230 @@
           "field": "Annual_Evaporation_mm",
           "type": "quantitative",
           "title": "Annual Evaporation (mm)",
-          "scale": {"domain": [600, 1200]},
-          "axis": {"gridColor": "rgba(255,255,255,0.1)"}
+          "scale": {
+            "domain": [
+              600,
+              1200
+            ]
+          },
+          "axis": {
+            "gridColor": "rgba(255,255,255,0.1)"
+          }
         },
         "color": {
           "field": "Avg_Summer_Max_Temp",
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [25, 28, 31],
-            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
+            "domain": [
+              25,
+              28,
+              31
+            ],
+            "range": [
+              "#3B0F70",
+              "#FE9F6D",
+              "#FCFDBF"
+            ]
           },
-          "legend": {"title": "Summer Heat (°C)", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
+          "legend": {
+            "title": "Summer Heat (\u00b0C)",
+            "labelColor": "#E0F2FE",
+            "titleColor": "#E0F2FE"
+          }
         },
         "size": {
           "field": "Annual_Rainfall_mm",
           "type": "quantitative",
           "scale": {
-            "domain": [350, 950],
-            "range": [50, 800]
+            "domain": [
+              350,
+              950
+            ],
+            "range": [
+              50,
+              800
+            ]
           },
-          "legend": {"title": "Annual Rain (mm)", "labelColor": "#E0F2FE", "titleColor": "#E0F2FE"}
+          "legend": {
+            "title": "Annual Rain (mm)",
+            "labelColor": "#E0F2FE",
+            "titleColor": "#E0F2FE"
+          }
         },
         "tooltip": [
-          {"field": "Year", "type": "quantitative", "title": "Year"},
-          {"field": "Annual_Evaporation_mm", "type": "quantitative", "title": "Total Evaporation (mm)", "format": ".0f"},
-          {"field": "Avg_Summer_Max_Temp", "type": "quantitative", "title": "Avg Summer Max (°C)", "format": ".1f"},
-          {"field": "Annual_Rainfall_mm", "type": "quantitative", "title": "Annual Rain (mm)", "format": ".0f"}
+          {
+            "field": "Year",
+            "type": "quantitative",
+            "title": "Year"
+          },
+          {
+            "field": "Annual_Evaporation_mm",
+            "type": "quantitative",
+            "title": "Total Evaporation (mm)",
+            "format": ".0f"
+          },
+          {
+            "field": "Avg_Summer_Max_Temp",
+            "type": "quantitative",
+            "title": "Avg Summer Max (\u00b0C)",
+            "format": ".1f"
+          },
+          {
+            "field": "Annual_Rainfall_mm",
+            "type": "quantitative",
+            "title": "Annual Rain (mm)",
+            "format": ".0f"
+          }
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2019,
+            "Annual_Evaporation_mm": 1124.8,
+            "Year2": 2012,
+            "Annual_Evaporation_mm2": 1160
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#FCFDBF",
+        "strokeWidth": 2,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Annual_Evaporation_mm",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "Year2"
+        },
+        "y2": {
+          "field": "Annual_Evaporation_mm2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2012,
+            "Annual_Evaporation_mm": 1160,
+            "text": "2019: hottest summer|low rainfall bubble"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#FCFDBF",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Annual_Evaporation_mm",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2025,
+            "Annual_Evaporation_mm": 1158.2,
+            "Year2": 2021,
+            "Annual_Evaporation_mm2": 1190
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#E0F2FE",
+        "strokeWidth": 2,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Annual_Evaporation_mm",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "Year2"
+        },
+        "y2": {
+          "field": "Annual_Evaporation_mm2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Year": 2021,
+            "Annual_Evaporation_mm": 1190,
+            "text": "2025: highest|evaporation value"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#E0F2FE",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Annual_Evaporation_mm",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
       }
     }
   ],
   "config": {
     "background": "transparent",
-    "view": {"stroke": "transparent"},
+    "view": {
+      "stroke": "transparent"
+    },
     "axis": {
       "domainColor": "#A9CCE3",
       "tickColor": "#A9CCE3",

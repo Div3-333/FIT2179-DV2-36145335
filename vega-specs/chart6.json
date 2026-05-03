@@ -2,7 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 550,
-  "autosize": {"type": "fit", "contains": "padding"},
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "padding": 0,
   "title": {
     "text": "The Reservoir Network",
@@ -16,14 +19,20 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [145.7, -37.85],
+    "center": [
+      145.7,
+      -37.85
+    ],
     "scale": 16000
   },
   "layer": [
     {
       "data": {
         "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/suburb-10-vic.geojson",
-        "format": {"type": "json", "property": "features"}
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
       },
       "mark": {
         "type": "geoshape",
@@ -33,7 +42,9 @@
       }
     },
     {
-      "data": {"url": "data/final/chart6_dam_locations.csv"},
+      "data": {
+        "url": "data/final/chart6_dam_locations.csv"
+      },
       "mark": {
         "type": "circle",
         "filled": true,
@@ -42,16 +53,27 @@
         "strokeWidth": 1.5
       },
       "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "longitude": {
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Latitude",
+          "type": "quantitative"
+        },
         "size": {
           "field": "Capacity_ML",
           "type": "quantitative",
-          "scale": {"range": [200, 5000]},
+          "scale": {
+            "range": [
+              200,
+              5000
+            ]
+          },
           "legend": {
-            "title": "Capacity (ML)", 
-            "labelColor": "#E0F2FE", 
-            "titleColor": "#E0F2FE", 
+            "title": "Capacity (ML)",
+            "labelColor": "#E0F2FE",
+            "titleColor": "#E0F2FE",
             "format": ".1s",
             "orient": "none",
             "legendX": 550,
@@ -64,12 +86,20 @@
           "type": "quantitative",
           "scale": {
             "type": "linear",
-            "domain": [65, 80, 100],
-            "range": ["#3B0F70", "#FE9F6D", "#FCFDBF"]
+            "domain": [
+              65,
+              80,
+              100
+            ],
+            "range": [
+              "#3B0F70",
+              "#FE9F6D",
+              "#FCFDBF"
+            ]
           },
           "legend": {
-            "title": "% Full", 
-            "labelColor": "#E0F2FE", 
+            "title": "% Full",
+            "labelColor": "#E0F2FE",
             "titleColor": "#E0F2FE",
             "orient": "none",
             "legendX": 10,
@@ -77,14 +107,29 @@
           }
         },
         "tooltip": [
-          {"field": "Reservoir", "type": "nominal"},
-          {"field": "Percent_Full", "type": "quantitative", "title": "Current Status (%)", "format": ".1f"},
-          {"field": "Capacity_ML", "type": "quantitative", "title": "Max Volume (ML)", "format": ","}
+          {
+            "field": "Reservoir",
+            "type": "nominal"
+          },
+          {
+            "field": "Percent_Full",
+            "type": "quantitative",
+            "title": "Current Status (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Capacity_ML",
+            "type": "quantitative",
+            "title": "Max Volume (ML)",
+            "format": ","
+          }
         ]
       }
     },
     {
-      "data": {"url": "data/final/chart6_dam_locations.csv"},
+      "data": {
+        "url": "data/final/chart6_dam_locations.csv"
+      },
       "mark": {
         "type": "text",
         "dy": -25,
@@ -92,15 +137,164 @@
         "color": "#00E5FF"
       },
       "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
-        "text": {"field": "Reservoir", "type": "nominal"}
+        "longitude": {
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Reservoir",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 146.392,
+            "lat": -37.766,
+            "lon2": 145.95,
+            "lat2": -37.55
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#E0F2FE",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 145.95,
+            "lat": -37.55,
+            "text": "Thomson|largest capacity"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#E0F2FE",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 145.13,
+            "lat": -37.55,
+            "lon2": 144.95,
+            "lat2": -37.4
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#FCFDBF",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 144.95,
+            "lat": -37.4,
+            "text": "Yan Yean|lowest % full"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#FCFDBF",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
       }
     }
   ],
   "config": {
     "background": "transparent",
-    "view": {"stroke": "transparent"},
+    "view": {
+      "stroke": "transparent"
+    },
     "font": "Source Sans Pro"
   }
 }
