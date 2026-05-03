@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "H-Sync Technical Dashboard with High-Emphasis Chromatic Shift.",
   "background": "transparent",
-  "spacing": 18,
+  "spacing": 46,
   "params": [
     {
       "name": "showModern",
@@ -32,14 +32,14 @@
   },
   "hconcat": [
     {
-      "width": 590,
-      "height": 150,
+      "width": 710,
+      "height": 180,
       "layer": [
         {
           "mark": {
             "type": "bar",
-            "height": 80,
-            "cornerRadius": 10,
+            "height": 104,
+            "cornerRadius": 11,
             "stroke": "white",
             "strokeWidth": 1.5,
             "opacity": 0.9
@@ -136,7 +136,7 @@
             "type": "text",
             "align": "center",
             "baseline": "middle",
-            "fontSize": 64,
+            "fontSize": 78,
             "fontWeight": 900
           },
           "encoding": {
@@ -196,10 +196,10 @@
               "field": "x2"
             },
             "y": {
-              "value": 75
+              "value": 92
             },
             "y2": {
-              "value": 30
+              "value": 40
             }
           }
         },
@@ -235,7 +235,7 @@
               "axis": null
             },
             "y": {
-              "value": 4
+              "value": 8
             },
             "text": {
               "field": "text"
@@ -245,11 +245,11 @@
       ]
     },
     {
-      "width": 140,
-      "height": 100,
+      "width": 160,
+      "height": 130,
       "title": {
         "text": "Technical Amount (ML)",
-        "fontSize": 14,
+        "fontSize": 15,
         "color": "#94C1EA",
         "anchor": "start",
         "fontStyle": "italic",
@@ -283,7 +283,7 @@
       "mark": {
         "type": "text",
         "align": "right",
-        "fontSize": 14,
+        "fontSize": 15,
         "fontWeight": "900"
       },
       "encoding": {
