@@ -25,6 +25,28 @@
         ],
         "name": "Pulse filter "
       }
+    },
+    {
+      "name": "desalStartYear",
+      "value": 2012,
+      "bind": {
+        "input": "range",
+        "min": 2012,
+        "max": 2024,
+        "step": 0.1,
+        "name": "Start year "
+      }
+    },
+    {
+      "name": "desalEndYear",
+      "value": 2024,
+      "bind": {
+        "input": "range",
+        "min": 2012,
+        "max": 2024,
+        "step": 0.1,
+        "name": "End year "
+      }
     }
   ],
   "title": {
@@ -50,6 +72,9 @@
     },
     {
       "filter": "pulseFocus == 'All' || datum.PulseClass == pulseFocus || (pulseFocus == 'Any desalination' && datum.Desalination_Delivered_GL > 0)"
+    },
+    {
+      "filter": "datum.YearInt >= (desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) && datum.YearInt <= (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear)"
     }
   ],
   "vconcat": [
@@ -68,17 +93,17 @@
             "type": "area",
             "color": "#BDC3C7",
             "opacity": 0.2,
-            "interpolate": "monotone"
+            "interpolate": "monotone",
+            "clip": true
           },
           "encoding": {
             "x": {
               "field": "YearInt",
               "type": "quantitative",
               "scale": {
-                "domain": [
-                  2011.7,
-                  2024.55
-                ],
+                "domain": {
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                },
                 "nice": false
               },
               "axis": {
@@ -100,7 +125,10 @@
                   2024
                 ],
                 "grid": true,
-                "gridColor": "rgba(44,62,80,0.10)"
+                "gridColor": "rgba(44,62,80,0.10)",
+                "labelFlush": true,
+                "labelFlushOffset": 12,
+                "labelBound": true
               }
             },
             "y": {
@@ -131,12 +159,23 @@
             "type": "area",
             "color": "#3498DB",
             "opacity": 0.8,
-            "interpolate": "step-after"
+            "interpolate": "step-after",
+            "clip": true
           },
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                }
+              },
+              "axis": {
+                "labelFlush": true,
+                "labelFlushOffset": 12,
+                "labelBound": true
+              }
             },
             "y": {
               "field": "Desalination_Delivered_GL",
@@ -169,12 +208,23 @@
             "dy": -10,
             "fontSize": 11,
             "fontWeight": "bold",
-            "color": "#2980B9"
+            "color": "#2980B9",
+            "clip": true
           },
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                }
+              },
+              "axis": {
+                "labelFlush": true,
+                "labelFlushOffset": 12,
+                "labelBound": true
+              }
             },
             "y": {
               "field": "Desalination_Delivered_GL",
@@ -205,12 +255,23 @@
             "type": "rule",
             "color": "#2980B9",
             "strokeWidth": 2,
-            "opacity": 0.85
+            "opacity": 0.85,
+            "clip": true
           },
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                }
+              },
+              "axis": {
+                "labelFlush": true,
+                "labelFlushOffset": 12,
+                "labelBound": true
+              }
             },
             "y": {
               "field": "Desalination_Delivered_GL",
@@ -241,12 +302,23 @@
             "fontSize": 12,
             "fontWeight": "bold",
             "color": "#2980B9",
-            "lineBreak": "|"
+            "lineBreak": "|",
+            "clip": true
           },
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                }
+              },
+              "axis": {
+                "labelFlush": true,
+                "labelFlushOffset": 12,
+                "labelBound": true
+              }
             },
             "y": {
               "field": "Desalination_Delivered_GL",
@@ -273,17 +345,17 @@
           "mark": {
             "type": "bar",
             "size": 30,
-            "cornerRadius": 5
+            "cornerRadius": 5,
+            "clip": true
           },
           "encoding": {
             "x": {
               "field": "YearInt",
               "type": "quantitative",
               "scale": {
-                "domain": [
-                  2011.7,
-                  2024.55
-                ],
+                "domain": {
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                },
                 "nice": false
               },
               "axis": {
@@ -305,7 +377,10 @@
                   2024
                 ],
                 "grid": true,
-                "gridColor": "rgba(44,62,80,0.10)"
+                "gridColor": "rgba(44,62,80,0.10)",
+                "labelFlush": true,
+                "labelFlushOffset": 12,
+                "labelBound": true
               }
             },
             "y": {
@@ -362,12 +437,23 @@
             "type": "rule",
             "color": "#2C3E50",
             "strokeWidth": 2,
-            "opacity": 0.85
+            "opacity": 0.85,
+            "clip": true
           },
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                }
+              },
+              "axis": {
+                "labelFlush": true,
+                "labelFlushOffset": 12,
+                "labelBound": true
+              }
             },
             "y": {
               "field": "ratio",
@@ -398,12 +484,23 @@
             "fontSize": 12,
             "fontWeight": "bold",
             "color": "#2C3E50",
-            "lineBreak": "|"
+            "lineBreak": "|",
+            "clip": true
           },
           "encoding": {
             "x": {
               "field": "YearInt",
-              "type": "quantitative"
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                }
+              },
+              "axis": {
+                "labelFlush": true,
+                "labelFlushOffset": 12,
+                "labelBound": true
+              }
             },
             "y": {
               "field": "ratio",
@@ -423,5 +520,11 @@
       "stroke": "transparent"
     },
     "font": "Source Sans Pro"
+  },
+  "padding": {
+    "left": 20,
+    "right": 64,
+    "top": 10,
+    "bottom": 12
   }
 }

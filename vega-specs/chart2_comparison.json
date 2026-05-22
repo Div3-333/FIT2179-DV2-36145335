@@ -6,9 +6,53 @@
     "type": "fit",
     "contains": "padding"
   },
+  "params": [
+    {
+      "name": "referenceDecade",
+      "value": 1910,
+      "bind": {
+        "input": "select",
+        "options": [
+          1910,
+          1920,
+          1930,
+          1940,
+          1950,
+          1960,
+          1970,
+          1980,
+          1990,
+          2000,
+          2010
+        ],
+        "name": "Reference decade "
+      }
+    },
+    {
+      "name": "comparisonDecade",
+      "value": 2010,
+      "bind": {
+        "input": "select",
+        "options": [
+          1910,
+          1920,
+          1930,
+          1940,
+          1950,
+          1960,
+          1970,
+          1980,
+          1990,
+          2000,
+          2010
+        ],
+        "name": "Comparison decade "
+      }
+    }
+  ],
   "title": {
-    "text": "The Seasonal Fever: 100 Year Shift",
-    "subtitle": "Average Monthly Max Temp: 1910-1920 vs. 2010-2020",
+    "text": "The Seasonal Fever: Decades",
+    "subtitle": "Select two decades to compare monthly maxima",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -23,15 +67,19 @@
       },
       "transform": [
         {
-          "filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"
-        },
-        {
-          "calculate": "datum.Year <= 1920 ? 'Historical (1910-20)' : 'Modern (2010-20)'",
-          "as": "Era"
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
         },
         {
           "calculate": "toNumber(datum.Month)",
           "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "calculate": "datum.DecadeRole == 'Comparison decade' ? comparisonDecade : referenceDecade",
+          "as": "DecadeStart"
         },
         {
           "aggregate": [
@@ -43,7 +91,8 @@
           ],
           "groupby": [
             "MonthNum",
-            "Era"
+            "DecadeRole",
+            "DecadeStart"
           ]
         }
       ],
@@ -104,12 +153,12 @@
           }
         },
         "strokeDash": {
-          "field": "Era",
+          "field": "DecadeRole",
           "type": "nominal",
           "scale": {
             "domain": [
-              "Historical (1910-20)",
-              "Modern (2010-20)"
+              "Reference decade",
+              "Comparison decade"
             ],
             "range": [
               [
@@ -129,16 +178,32 @@
           }
         },
         "detail": {
-          "field": "Era",
+          "field": "DecadeRole",
           "type": "nominal"
         },
-        "opacity": {
-          "condition": {
-            "test": "eraFocus == 'All' || datum.Era == eraFocus",
-            "value": 1
+        "tooltip": [
+          {
+            "field": "DecadeRole",
+            "type": "nominal",
+            "title": "Line"
           },
-          "value": 0.18
-        }
+          {
+            "field": "DecadeStart",
+            "type": "quantitative",
+            "title": "Decade"
+          },
+          {
+            "field": "MonthNum",
+            "type": "quantitative",
+            "title": "Month"
+          },
+          {
+            "field": "AvgMax",
+            "type": "quantitative",
+            "title": "Avg max temp",
+            "format": ".1f"
+          }
+        ]
       }
     },
     {
@@ -147,15 +212,19 @@
       },
       "transform": [
         {
-          "filter": "(datum.Year >= 1910 && datum.Year <= 1920) || (datum.Year >= 2010 && datum.Year <= 2020)"
-        },
-        {
-          "calculate": "datum.Year <= 1920 ? 'Historical (1910-20)' : 'Modern (2010-20)'",
-          "as": "Era"
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
         },
         {
           "calculate": "toNumber(datum.Month)",
           "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "calculate": "datum.DecadeRole == 'Comparison decade' ? comparisonDecade : referenceDecade",
+          "as": "DecadeStart"
         },
         {
           "aggregate": [
@@ -167,7 +236,8 @@
           ],
           "groupby": [
             "MonthNum",
-            "Era"
+            "DecadeRole",
+            "DecadeStart"
           ]
         }
       ],
@@ -194,8 +264,14 @@
         },
         "tooltip": [
           {
-            "field": "Era",
-            "type": "nominal"
+            "field": "DecadeRole",
+            "type": "nominal",
+            "title": "Line"
+          },
+          {
+            "field": "DecadeStart",
+            "type": "quantitative",
+            "title": "Decade"
           },
           {
             "field": "MonthNum",
@@ -205,37 +281,58 @@
           {
             "field": "AvgMax",
             "type": "quantitative",
-            "title": "Avg Temp",
+            "title": "Avg max temp",
             "format": ".1f"
           }
-        ],
-        "opacity": {
-          "condition": {
-            "test": "eraFocus == 'All' || datum.Era == eraFocus",
-            "value": 1
-          },
-          "value": 0.18
-        }
+        ]
       }
     },
     {
       "data": {
-        "values": [
-          {
-            "MonthNum": 11.7,
-            "AvgMax": 22.6,
-            "text": "Modern (solid)"
-          },
-          {
-            "MonthNum": 11.7,
-            "AvgMax": 20.9,
-            "text": "Historical (dotted)"
-          }
-        ]
+        "url": "data/final/chart2_temperature.csv"
       },
+      "transform": [
+        {
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
+        },
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "calculate": "datum.DecadeRole == 'Comparison decade' ? comparisonDecade : referenceDecade",
+          "as": "DecadeStart"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "DecadeRole",
+            "DecadeStart"
+          ]
+        },
+        {
+          "filter": "datum.MonthNum == 12"
+        },
+        {
+          "calculate": "datum.DecadeRole == 'Comparison decade' ? 'Comparison ' + datum.DecadeStart + 's (solid)' : 'Reference ' + datum.DecadeStart + 's (dotted)'",
+          "as": "LineLabel"
+        }
+      ],
       "mark": {
         "type": "text",
         "align": "left",
+        "dx": 8,
         "fontSize": 11,
         "fontWeight": "bold",
         "color": "#263B4E"
@@ -256,75 +353,89 @@
           "type": "quantitative"
         },
         "text": {
-          "field": "text"
+          "field": "LineLabel"
         }
       }
     },
     {
       "data": {
-        "values": [
-          {
-            "x1": 1,
-            "y1": 26.6,
-            "x2": 2.15,
-            "y2": 30.1
-          },
-          {
-            "x1": 8,
-            "y1": 15.13,
-            "x2": 9.3,
-            "y2": 12.2
-          }
-        ]
+        "url": "data/final/chart2_temperature.csv"
       },
-      "mark": {
-        "type": "rule",
-        "color": "#263B4E",
-        "strokeWidth": 1.8,
-        "opacity": 0.8
-      },
-      "encoding": {
-        "x": {
-          "field": "x1",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              1,
-              12
-            ]
-          }
+      "transform": [
+        {
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
         },
-        "y": {
-          "field": "y1",
-          "type": "quantitative"
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
         },
-        "x2": {
-          "field": "x2"
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
         },
-        "y2": {
-          "field": "y2"
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "DecadeRole"
+          ]
+        },
+        {
+          "pivot": "DecadeRole",
+          "value": "AvgMax",
+          "groupby": [
+            "MonthNum"
+          ]
+        },
+        {
+          "filter": "isValid(datum['Comparison decade']) && isValid(datum['Reference decade'])"
+        },
+        {
+          "calculate": "datum['Comparison decade'] - datum['Reference decade']",
+          "as": "Delta"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "Delta",
+              "as": "MaxDelta"
+            },
+            {
+              "op": "min",
+              "field": "Delta",
+              "as": "MinDelta"
+            }
+          ]
+        },
+        {
+          "calculate": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.MonthNum]",
+          "as": "MonthLabel"
+        },
+        {
+          "calculate": "datum.Delta >= 0 ? '+' + format(datum.Delta, '.1f') : format(datum.Delta, '.1f')",
+          "as": "DeltaText"
+        },
+        {
+          "filter": "datum.Delta == datum.MaxDelta"
+        },
+        {
+          "calculate": "'Largest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "as": "Annotation"
         }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "x": 2.25,
-            "y": 30.5,
-            "text": "Largest lift|January +2.2 deg C"
-          },
-          {
-            "x": 9.4,
-            "y": 12.1,
-            "text": "Smallest lift|August +0.4 deg C"
-          }
-        ]
-      },
+      ],
       "mark": {
         "type": "text",
         "align": "left",
         "baseline": "middle",
+        "dx": 8,
+        "dy": -24,
         "fontSize": 12,
         "fontWeight": "bold",
         "color": "#263B4E",
@@ -332,7 +443,7 @@
       },
       "encoding": {
         "x": {
-          "field": "x",
+          "field": "MonthNum",
           "type": "quantitative",
           "scale": {
             "domain": [
@@ -342,11 +453,115 @@
           }
         },
         "y": {
-          "field": "y",
+          "field": "Comparison decade",
           "type": "quantitative"
         },
         "text": {
-          "field": "text"
+          "field": "Annotation"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
+        },
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "DecadeRole"
+          ]
+        },
+        {
+          "pivot": "DecadeRole",
+          "value": "AvgMax",
+          "groupby": [
+            "MonthNum"
+          ]
+        },
+        {
+          "filter": "isValid(datum['Comparison decade']) && isValid(datum['Reference decade'])"
+        },
+        {
+          "calculate": "datum['Comparison decade'] - datum['Reference decade']",
+          "as": "Delta"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "Delta",
+              "as": "MaxDelta"
+            },
+            {
+              "op": "min",
+              "field": "Delta",
+              "as": "MinDelta"
+            }
+          ]
+        },
+        {
+          "calculate": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.MonthNum]",
+          "as": "MonthLabel"
+        },
+        {
+          "calculate": "datum.Delta >= 0 ? '+' + format(datum.Delta, '.1f') : format(datum.Delta, '.1f')",
+          "as": "DeltaText"
+        },
+        {
+          "filter": "datum.Delta == datum.MinDelta"
+        },
+        {
+          "calculate": "'Smallest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "as": "Annotation"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+        "dy": 28,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#263B4E",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "MonthNum",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          }
+        },
+        "y": {
+          "field": "Comparison decade",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Annotation"
         }
       }
     }
@@ -362,20 +577,5 @@
       "titleFont": "Source Sans Pro",
       "titleColor": "#2C3E50"
     }
-  },
-  "params": [
-    {
-      "name": "eraFocus",
-      "value": "All",
-      "bind": {
-        "input": "select",
-        "options": [
-          "All",
-          "Historical (1910-20)",
-          "Modern (2010-20)"
-        ],
-        "name": "Focus era "
-      }
-    }
-  ]
+  }
 }

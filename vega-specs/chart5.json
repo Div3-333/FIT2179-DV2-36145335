@@ -26,6 +26,28 @@
         ],
         "name": "Zoom period "
       }
+    },
+    {
+      "name": "catchStartYear",
+      "value": 2004,
+      "bind": {
+        "input": "range",
+        "min": 2004,
+        "max": 2020,
+        "step": 0.1,
+        "name": "Start year "
+      }
+    },
+    {
+      "name": "catchEndYear",
+      "value": 2020,
+      "bind": {
+        "input": "range",
+        "min": 2004,
+        "max": 2020,
+        "step": 0.1,
+        "name": "End year "
+      }
     }
   ],
   "vconcat": [
@@ -56,11 +78,18 @@
               "as": "Date"
             },
             {
+              "calculate": "toNumber(datum.Year) + datum.MonthNum / 12",
+              "as": "DecimalYear"
+            },
+            {
               "calculate": "datum.Rainfall_mm - 50.6",
               "as": "Anomaly"
             },
             {
               "filter": "datum.Year >= 2004 && datum.Year <= 2019 && (periodFocus == 'Overview (2004-2020)' || (periodFocus == 'Millennium Drought (2006-2009)' && datum.Year >= 2006 && datum.Year <= 2009) || (periodFocus == 'Recovery ramp (2010-2012)' && datum.Year >= 2010 && datum.Year <= 2012) || (periodFocus == 'Late dry-down (2017-2020)' && datum.Year >= 2017 && datum.Year <= 2019))"
+            },
+            {
+              "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
             }
           ],
           "mark": {
@@ -146,13 +175,17 @@
                 "Anomaly": -50,
                 "Date2": "2008-01-01",
                 "Anomaly2": -110,
-                "Period": "Millennium Drought (2006-2009)"
+                "Period": "Millennium Drought (2006-2009)",
+                "DecimalYear": 2008.0
               }
             ]
           },
           "transform": [
             {
               "filter": "periodFocus == 'Overview (2004-2020)' || periodFocus == datum.Period"
+            },
+            {
+              "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
             }
           ],
           "mark": {
@@ -185,13 +218,17 @@
                 "Date": "2008-01-01",
                 "Anomaly": -110,
                 "text": "Repeated deficits|2006-2009",
-                "Period": "Millennium Drought (2006-2009)"
+                "Period": "Millennium Drought (2006-2009)",
+                "DecimalYear": 2008.0
               }
             ]
           },
           "transform": [
             {
               "filter": "periodFocus == 'Overview (2004-2020)' || periodFocus == datum.Period"
+            },
+            {
+              "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
             }
           ],
           "mark": {
@@ -242,7 +279,14 @@
               "as": "Date"
             },
             {
+              "calculate": "toNumber(datum.Year) + (datum.Month_Num - 1) / 12",
+              "as": "DecimalYear"
+            },
+            {
               "filter": "isValid(datum.Storage_Percentage) && datum.Year >= 2004 && datum.Year <= 2020 && (periodFocus == 'Overview (2004-2020)' || (periodFocus == 'Millennium Drought (2006-2009)' && datum.Year >= 2006 && datum.Year <= 2009) || (periodFocus == 'Recovery ramp (2010-2012)' && datum.Year >= 2010 && datum.Year <= 2012) || (periodFocus == 'Late dry-down (2017-2020)' && datum.Year >= 2017 && datum.Year <= 2020))"
+            },
+            {
+              "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
             }
           ],
           "mark": {
@@ -319,13 +363,17 @@
                 "Storage_Percentage": 26,
                 "Date2": "2006-06-01",
                 "Storage_Percentage2": 18,
-                "Period": "Millennium Drought (2006-2009)"
+                "Period": "Millennium Drought (2006-2009)",
+                "DecimalYear": 2009.45
               }
             ]
           },
           "transform": [
             {
               "filter": "periodFocus == 'Overview (2004-2020)' || periodFocus == datum.Period"
+            },
+            {
+              "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
             }
           ],
           "mark": {
@@ -358,13 +406,17 @@
                 "Date": "2006-06-01",
                 "Storage_Percentage": 18,
                 "text": "Storage low|~26% in Jun 2009",
-                "Period": "Millennium Drought (2006-2009)"
+                "Period": "Millennium Drought (2006-2009)",
+                "DecimalYear": 2009.45
               }
             ]
           },
           "transform": [
             {
               "filter": "periodFocus == 'Overview (2004-2020)' || periodFocus == datum.Period"
+            },
+            {
+              "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
             }
           ],
           "mark": {
