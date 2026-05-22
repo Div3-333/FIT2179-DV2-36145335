@@ -407,15 +407,35 @@
             box-shadow: 0 0 14px rgba(252,253,191,0.55), 0 0 28px rgba(52,152,219,0.35);
         }
 
+        #vis-chart-1.map-pan-zoom::after {
+            top: 92px;
+            right: 26px;
+            bottom: auto;
+        }
+
+        #vis-chart-6.map-pan-zoom::after,
+        #vis-chart-7.map-pan-zoom::after {
+            top: 92px;
+            right: 26px;
+            left: auto;
+            bottom: auto;
+        }
+
+        #vis-chart-7.map-pan-zoom::after {
+            left: 26px;
+            right: auto;
+        }
+
         #cycle-toggle-shell {
             position: fixed !important;
             left: 18px;
             top: 50vh;
             transform: translateY(-50%);
             z-index: 2000 !important;
-            width: 210px !important;
+            width: 134px !important;
             margin: 0 !important;
-            padding: 14px 16px !important;
+            padding: 12px 13px !important;
+            box-sizing: border-box;
             border-radius: 14px !important;
             opacity: 0;
             pointer-events: none;
@@ -430,8 +450,8 @@
         #cycle-toggle-shell label {
             flex-direction: column;
             align-items: flex-start !important;
-            gap: 8px !important;
-            font-size: 0.92rem !important;
+            gap: 7px !important;
+            font-size: 0.82rem !important;
             line-height: 1.25;
         }
 
@@ -554,6 +574,20 @@
             max-width: none !important;
             margin-left: 10% !important;
             margin-right: 10% !important;
+            overflow: hidden;
+        }
+
+        .section-pipe #vis-chart-9 .vega-embed,
+        .section-pipe #vis-chart-10 .vega-embed {
+            width: 100%;
+        }
+
+        .section-pipe #vis-chart-9 .vega-embed > svg,
+        .section-pipe #vis-chart-10 .vega-embed > svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
         }
 
         .section-pipe #vis-chart-9 .vega-bind-name,
@@ -568,7 +602,7 @@
                 left: 10px;
                 top: 50vh;
                 transform: translateY(-50%);
-                width: 190px !important;
+                width: 124px !important;
             }
             .section-pipe #vis-chart-9,
             .section-pipe #vis-chart-10 {
@@ -782,7 +816,7 @@
                 <label style="cursor: pointer; font-weight: bold; color: #D7CCC8; font-family: 'Source Sans Pro'; display: flex; align-items: center; gap: 15px; font-size: 1.1rem;">
                     <input type="checkbox" id="global-cycle-toggle" style="width: 25px; height: 25px; cursor: pointer;">
                     <span class="cycle-click-me">CLICK ME!</span>
-                    <span>Show 2021+ return years across Charts 8, 9, and 10</span>
+                    <span>Show 2021+ return years</span>
                 </label>
             </div>
 
@@ -1216,7 +1250,8 @@
 
     <script>
         let chartViews = {};
-        function registerView(name, res) { chartViews[name] = res.view; }
+        window.chartViews = chartViews;
+        function registerView(name, res) { chartViews[name] = res.view; window.chartViews = chartViews; }
         function clamp(value, min, max) {
             return Math.min(max, Math.max(min, value));
         }
@@ -1231,25 +1266,50 @@
             let dragging = false;
             let lastX = 0;
             let lastY = 0;
+            let frameId = 0;
+            let running = false;
+            let runAgain = false;
 
             const isControlTarget = (target) => Boolean(target && target.closest('.vega-bindings, input, select, button, label'));
-            const updateMap = () => {
+            const isMapSurface = (target) => Boolean(target && target.closest('svg, canvas'));
+            const flushMap = () => {
+                frameId = 0;
+                if (running) {
+                    runAgain = true;
+                    return;
+                }
+                running = true;
                 view.signal(config.zoomSignal, zoom)
                     .signal(config.lonSignal, lon)
                     .signal(config.latSignal, lat)
-                    .runAsync();
+                    .runAsync()
+                    .finally(() => {
+                        running = false;
+                        if (runAgain) {
+                            runAgain = false;
+                            scheduleMapUpdate();
+                        }
+                    });
+            };
+            const scheduleMapUpdate = () => {
+                if (!frameId) frameId = window.requestAnimationFrame(flushMap);
             };
 
             shell.addEventListener('wheel', (event) => {
                 if (isControlTarget(event.target)) return;
                 event.preventDefault();
-                const factor = Math.exp(-event.deltaY * 0.0012);
+                const delta = event.deltaMode === 1 ? event.deltaY * 16 : event.deltaMode === 2 ? event.deltaY * window.innerHeight : event.deltaY;
+                const factor = Math.exp(-delta * 0.0016);
                 zoom = clamp(zoom * factor, config.minZoom, config.maxZoom);
-                updateMap();
+                scheduleMapUpdate();
             }, { passive: false });
 
             shell.addEventListener('pointerdown', (event) => {
-                if (isControlTarget(event.target)) return;
+                if (event.button !== 0 || isControlTarget(event.target) || !isMapSurface(event.target)) {
+                    dragging = false;
+                    shell.classList.remove('is-dragging');
+                    return;
+                }
                 dragging = true;
                 lastX = event.clientX;
                 lastY = event.clientY;
@@ -1258,7 +1318,10 @@
             });
 
             shell.addEventListener('pointermove', (event) => {
-                if (!dragging || isControlTarget(event.target)) return;
+                if (!dragging || isControlTarget(event.target) || event.buttons !== 1) {
+                    if (dragging && event.buttons !== 1) stopDrag(event);
+                    return;
+                }
                 const dx = event.clientX - lastX;
                 const dy = event.clientY - lastY;
                 lastX = event.clientX;
@@ -1266,7 +1329,7 @@
                 const degreesPerPixel = config.panFactor / zoom;
                 lon = clamp(lon - dx * degreesPerPixel, config.minLon, config.maxLon);
                 lat = clamp(lat + dy * degreesPerPixel, config.minLat, config.maxLat);
-                updateMap();
+                scheduleMapUpdate();
             });
 
             const stopDrag = (event) => {
@@ -1276,6 +1339,9 @@
             };
             shell.addEventListener('pointerup', stopDrag);
             shell.addEventListener('pointercancel', stopDrag);
+            window.addEventListener('pointerup', stopDrag);
+            window.addEventListener('pointercancel', stopDrag);
+            window.addEventListener('blur', stopDrag);
             shell.addEventListener('pointerleave', () => {
                 dragging = false;
                 shell.classList.remove('is-dragging');

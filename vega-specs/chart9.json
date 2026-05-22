@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Unique multi-idiom visualization of the Desalination Surge",
-  "width": "container",
+  "width": 820,
   "height": 450,
   "autosize": {
-    "type": "fit",
+    "type": "pad",
     "contains": "padding"
   },
   "params": [
@@ -74,12 +74,12 @@
       "filter": "pulseFocus == 'All' || datum.PulseClass == pulseFocus || (pulseFocus == 'Any desalination' && datum.Desalination_Delivered_GL > 0)"
     },
     {
-      "filter": "datum.YearInt >= (desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) && datum.YearInt <= (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear)"
+      "filter": "datum.YearInt >= (desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) && datum.YearInt <= ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021)"
     }
   ],
   "vconcat": [
     {
-      "width": "container",
+      "width": 820,
       "height": 220,
       "title": {
         "text": "The Supply Collision: Traditional Catchments vs. The Pulse",
@@ -102,7 +102,7 @@
               "type": "quantitative",
               "scale": {
                 "domain": {
-                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.45, ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021) + 0.45]"
                 },
                 "nice": false
               },
@@ -168,7 +168,7 @@
               "type": "quantitative",
               "scale": {
                 "domain": {
-                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.45, ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021) + 0.45]"
                 }
               },
               "axis": {
@@ -203,8 +203,8 @@
         {
           "mark": {
             "type": "text",
-            "align": "left",
-            "dx": 5,
+            "align": "right",
+            "dx": -6,
             "dy": -10,
             "fontSize": 11,
             "fontWeight": "bold",
@@ -217,7 +217,7 @@
               "type": "quantitative",
               "scale": {
                 "domain": {
-                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.45, ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021) + 0.45]"
                 }
               },
               "axis": {
@@ -264,7 +264,7 @@
               "type": "quantitative",
               "scale": {
                 "domain": {
-                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.45, ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021) + 0.45]"
                 }
               },
               "axis": {
@@ -311,7 +311,7 @@
               "type": "quantitative",
               "scale": {
                 "domain": {
-                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.45, ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021) + 0.45]"
                 }
               },
               "axis": {
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "width": "container",
+      "width": 820,
       "height": 100,
       "title": {
         "text": "The Dependency Ratio (Desalination as % of Urban Demand)",
@@ -342,19 +342,121 @@
       },
       "layer": [
         {
+          "data": {
+            "values": [
+              {
+                "YearInt": 2012,
+                "ratio": 0,
+                "Desalination_Delivered_GL": 0,
+                "PulseClass": "No desalination"
+              },
+              {
+                "YearInt": 2013,
+                "ratio": 0,
+                "Desalination_Delivered_GL": 0,
+                "PulseClass": "No desalination"
+              },
+              {
+                "YearInt": 2014,
+                "ratio": 0,
+                "Desalination_Delivered_GL": 0,
+                "PulseClass": "No desalination"
+              },
+              {
+                "YearInt": 2015,
+                "ratio": 0,
+                "Desalination_Delivered_GL": 0,
+                "PulseClass": "No desalination"
+              },
+              {
+                "YearInt": 2016,
+                "ratio": 0,
+                "Desalination_Delivered_GL": 0,
+                "PulseClass": "No desalination"
+              },
+              {
+                "YearInt": 2017,
+                "ratio": 0.1106,
+                "Desalination_Delivered_GL": 50,
+                "PulseClass": "Any desalination"
+              },
+              {
+                "YearInt": 2018,
+                "ratio": 0.0327,
+                "Desalination_Delivered_GL": 15,
+                "PulseClass": "Any desalination"
+              },
+              {
+                "YearInt": 2019,
+                "ratio": 0.0342,
+                "Desalination_Delivered_GL": 15,
+                "PulseClass": "Any desalination"
+              },
+              {
+                "YearInt": 2020,
+                "ratio": 0.288,
+                "Desalination_Delivered_GL": 125,
+                "PulseClass": "High pulse only"
+              },
+              {
+                "YearInt": 2021,
+                "ratio": 0.2809,
+                "Desalination_Delivered_GL": 125,
+                "PulseClass": "High pulse only"
+              },
+              {
+                "YearInt": 2022,
+                "ratio": 0.2772,
+                "Desalination_Delivered_GL": 125,
+                "PulseClass": "High pulse only"
+              },
+              {
+                "YearInt": 2023,
+                "ratio": 0.0318,
+                "Desalination_Delivered_GL": 15,
+                "PulseClass": "Any desalination"
+              },
+              {
+                "YearInt": 2024,
+                "ratio": 0.0302,
+                "Desalination_Delivered_GL": 15,
+                "PulseClass": "Any desalination"
+              }
+            ]
+          },
+          "transform": [
+            {
+              "filter": "showModern || datum.YearInt <= 2021"
+            },
+            {
+              "filter": "pulseFocus == 'All' || datum.PulseClass == pulseFocus || (pulseFocus == 'Any desalination' && datum.Desalination_Delivered_GL > 0)"
+            },
+            {
+              "filter": "datum.YearInt >= (desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) && datum.YearInt <= ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021)"
+            },
+            {
+              "calculate": "datum.YearInt - 0.32",
+              "as": "YearStart"
+            },
+            {
+              "calculate": "datum.YearInt + 0.32",
+              "as": "YearEnd"
+            }
+          ],
           "mark": {
-            "type": "bar",
-            "size": 30,
+            "type": "rect",
             "cornerRadius": 5,
-            "clip": true
+            "clip": true,
+            "color": "#3498DB",
+            "opacity": 0.72
           },
           "encoding": {
             "x": {
-              "field": "YearInt",
+              "field": "YearStart",
               "type": "quantitative",
               "scale": {
                 "domain": {
-                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.45, ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021) + 0.45]"
                 },
                 "nice": false
               },
@@ -383,9 +485,18 @@
                 "labelBound": true
               }
             },
+            "x2": {
+              "field": "YearEnd"
+            },
             "y": {
               "field": "ratio",
               "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  0.4
+                ]
+              },
               "axis": {
                 "format": "%",
                 "title": "% Dependency",
@@ -393,13 +504,8 @@
                 "gridColor": "rgba(44,62,80,0.10)"
               }
             },
-            "color": {
-              "field": "ratio",
-              "type": "quantitative",
-              "scale": {
-                "scheme": "blues"
-              },
-              "legend": null
+            "y2": {
+              "datum": 0
             },
             "tooltip": [
               {
@@ -414,13 +520,7 @@
                 "format": ".1%"
               }
             ]
-          },
-          "transform": [
-            {
-              "calculate": "datum.Desalination_Delivered_GL / datum.Total_Demand_GL",
-              "as": "ratio"
-            }
-          ]
+          }
         },
         {
           "data": {
@@ -446,7 +546,7 @@
               "type": "quantitative",
               "scale": {
                 "domain": {
-                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.45, ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021) + 0.45]"
                 }
               },
               "axis": {
@@ -493,7 +593,7 @@
               "type": "quantitative",
               "scale": {
                 "domain": {
-                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.05, (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) + 0.05]"
+                  "expr": "[(desalStartYear <= desalEndYear ? desalStartYear : desalEndYear) - 0.45, ((showModern || (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) <= 2021) ? (desalStartYear <= desalEndYear ? desalEndYear : desalStartYear) : 2021) + 0.45]"
                 }
               },
               "axis": {

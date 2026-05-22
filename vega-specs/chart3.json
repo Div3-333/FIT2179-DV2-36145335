@@ -54,7 +54,7 @@
       ],
       "mark": {
         "type": "rect",
-        "opacity": 0.16,
+        "opacity": 0.1,
         "clip": true
       },
       "encoding": {
@@ -80,8 +80,8 @@
               "2018 local dry phase"
             ],
             "range": [
-              "#E67E22",
-              "#3498DB"
+              "#8E44AD",
+              "#27AE60"
             ]
           },
           "legend": null

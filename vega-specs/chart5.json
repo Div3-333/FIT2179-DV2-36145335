@@ -96,7 +96,7 @@
             "type": "bar",
             "tooltip": true,
             "width": {
-              "expr": "periodFocus == 'Overview (2004-2020)' ? 6 : 13"
+              "expr": "max(5, min(22, 260 / max(1, abs(catchEndYear - catchStartYear) * 12)))"
             }
           },
           "encoding": {

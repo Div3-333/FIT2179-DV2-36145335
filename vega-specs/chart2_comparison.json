@@ -304,10 +304,6 @@
           "as": "DecadeRole"
         },
         {
-          "calculate": "datum.DecadeRole == 'Comparison decade' ? comparisonDecade : referenceDecade",
-          "as": "DecadeStart"
-        },
-        {
           "aggregate": [
             {
               "op": "mean",
@@ -317,25 +313,87 @@
           ],
           "groupby": [
             "MonthNum",
-            "DecadeRole",
-            "DecadeStart"
+            "DecadeRole"
           ]
         },
         {
-          "filter": "datum.MonthNum == 12"
+          "pivot": "DecadeRole",
+          "value": "AvgMax",
+          "groupby": [
+            "MonthNum"
+          ]
         },
         {
-          "calculate": "datum.DecadeRole == 'Comparison decade' ? 'Comparison ' + datum.DecadeStart + 's (solid)' : 'Reference ' + datum.DecadeStart + 's (dotted)'",
-          "as": "LineLabel"
+          "filter": "isValid(datum['Comparison decade']) && isValid(datum['Reference decade'])"
+        },
+        {
+          "calculate": "datum['Comparison decade'] - datum['Reference decade']",
+          "as": "Delta"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "Delta",
+              "as": "MaxDelta"
+            },
+            {
+              "op": "min",
+              "field": "Delta",
+              "as": "MinDelta"
+            }
+          ]
+        },
+        {
+          "calculate": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.MonthNum]",
+          "as": "MonthLabel"
+        },
+        {
+          "calculate": "datum.Delta >= 0 ? '+' + format(datum.Delta, '.1f') : format(datum.Delta, '.1f')",
+          "as": "DeltaText"
+        },
+        {
+          "filter": "datum.Delta == datum.MaxDelta"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "GapRank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "MonthNum",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.GapRank == 1"
+        },
+        {
+          "calculate": "'Largest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "as": "Annotation"
+        },
+        {
+          "calculate": "datum['Comparison decade']",
+          "as": "TargetY"
+        },
+        {
+          "calculate": "4.45",
+          "as": "CalloutX"
+        },
+        {
+          "calculate": "29.55",
+          "as": "CalloutY"
         }
       ],
       "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 8,
-        "fontSize": 11,
-        "fontWeight": "bold",
-        "color": "#263B4E"
+        "type": "rule",
+        "color": "#263B4E",
+        "strokeWidth": 1.5,
+        "opacity": 0.75
       },
       "encoding": {
         "x": {
@@ -349,11 +407,14 @@
           }
         },
         "y": {
-          "field": "AvgMax",
+          "field": "TargetY",
           "type": "quantitative"
         },
-        "text": {
-          "field": "LineLabel"
+        "x2": {
+          "field": "CalloutX"
+        },
+        "y2": {
+          "field": "CalloutY"
         }
       }
     },
@@ -426,16 +487,175 @@
           "filter": "datum.Delta == datum.MaxDelta"
         },
         {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "GapRank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "MonthNum",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.GapRank == 1"
+        },
+        {
           "calculate": "'Largest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
           "as": "Annotation"
+        },
+        {
+          "calculate": "1.15",
+          "as": "BoxX"
+        },
+        {
+          "calculate": "4.55",
+          "as": "BoxX2"
+        },
+        {
+          "calculate": "31.45",
+          "as": "BoxY"
+        },
+        {
+          "calculate": "29.05",
+          "as": "BoxY2"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "rgba(255,255,255,0.88)",
+        "stroke": "#263B4E",
+        "strokeWidth": 0.7,
+        "cornerRadius": 5
+      },
+      "encoding": {
+        "x": {
+          "field": "BoxX",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          }
+        },
+        "x2": {
+          "field": "BoxX2"
+        },
+        "y": {
+          "field": "BoxY",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "BoxY2"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
+        },
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "DecadeRole"
+          ]
+        },
+        {
+          "pivot": "DecadeRole",
+          "value": "AvgMax",
+          "groupby": [
+            "MonthNum"
+          ]
+        },
+        {
+          "filter": "isValid(datum['Comparison decade']) && isValid(datum['Reference decade'])"
+        },
+        {
+          "calculate": "datum['Comparison decade'] - datum['Reference decade']",
+          "as": "Delta"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "Delta",
+              "as": "MaxDelta"
+            },
+            {
+              "op": "min",
+              "field": "Delta",
+              "as": "MinDelta"
+            }
+          ]
+        },
+        {
+          "calculate": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.MonthNum]",
+          "as": "MonthLabel"
+        },
+        {
+          "calculate": "datum.Delta >= 0 ? '+' + format(datum.Delta, '.1f') : format(datum.Delta, '.1f')",
+          "as": "DeltaText"
+        },
+        {
+          "filter": "datum.Delta == datum.MaxDelta"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "GapRank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "MonthNum",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.GapRank == 1"
+        },
+        {
+          "calculate": "'Largest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "as": "Annotation"
+        },
+        {
+          "calculate": "1.36",
+          "as": "LabelX"
+        },
+        {
+          "calculate": "30.25",
+          "as": "LabelY"
         }
       ],
       "mark": {
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "dx": 8,
-        "dy": -24,
         "fontSize": 12,
         "fontWeight": "bold",
         "color": "#263B4E",
@@ -443,7 +663,7 @@
       },
       "encoding": {
         "x": {
-          "field": "MonthNum",
+          "field": "LabelX",
           "type": "quantitative",
           "scale": {
             "domain": [
@@ -453,7 +673,7 @@
           }
         },
         "y": {
-          "field": "Comparison decade",
+          "field": "LabelY",
           "type": "quantitative"
         },
         "text": {
@@ -530,20 +750,44 @@
           "filter": "datum.Delta == datum.MinDelta"
         },
         {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "GapRank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "MonthNum",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.GapRank == 1"
+        },
+        {
           "calculate": "'Smallest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
           "as": "Annotation"
+        },
+        {
+          "calculate": "datum['Comparison decade']",
+          "as": "TargetY"
+        },
+        {
+          "calculate": "7.6",
+          "as": "CalloutX"
+        },
+        {
+          "calculate": "13.65",
+          "as": "CalloutY"
         }
       ],
       "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 8,
-        "dy": 28,
-        "fontSize": 12,
-        "fontWeight": "bold",
+        "type": "rule",
         "color": "#263B4E",
-        "lineBreak": "|"
+        "strokeWidth": 1.5,
+        "opacity": 0.75
       },
       "encoding": {
         "x": {
@@ -557,11 +801,367 @@
           }
         },
         "y": {
-          "field": "Comparison decade",
+          "field": "TargetY",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "CalloutX"
+        },
+        "y2": {
+          "field": "CalloutY"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
+        },
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "DecadeRole"
+          ]
+        },
+        {
+          "pivot": "DecadeRole",
+          "value": "AvgMax",
+          "groupby": [
+            "MonthNum"
+          ]
+        },
+        {
+          "filter": "isValid(datum['Comparison decade']) && isValid(datum['Reference decade'])"
+        },
+        {
+          "calculate": "datum['Comparison decade'] - datum['Reference decade']",
+          "as": "Delta"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "Delta",
+              "as": "MaxDelta"
+            },
+            {
+              "op": "min",
+              "field": "Delta",
+              "as": "MinDelta"
+            }
+          ]
+        },
+        {
+          "calculate": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.MonthNum]",
+          "as": "MonthLabel"
+        },
+        {
+          "calculate": "datum.Delta >= 0 ? '+' + format(datum.Delta, '.1f') : format(datum.Delta, '.1f')",
+          "as": "DeltaText"
+        },
+        {
+          "filter": "datum.Delta == datum.MinDelta"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "GapRank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "MonthNum",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.GapRank == 1"
+        },
+        {
+          "calculate": "'Smallest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "as": "Annotation"
+        },
+        {
+          "calculate": "7.45",
+          "as": "BoxX"
+        },
+        {
+          "calculate": "11.85",
+          "as": "BoxX2"
+        },
+        {
+          "calculate": "14.85",
+          "as": "BoxY"
+        },
+        {
+          "calculate": "12.35",
+          "as": "BoxY2"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "rgba(255,255,255,0.88)",
+        "stroke": "#263B4E",
+        "strokeWidth": 0.7,
+        "cornerRadius": 5
+      },
+      "encoding": {
+        "x": {
+          "field": "BoxX",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          }
+        },
+        "x2": {
+          "field": "BoxX2"
+        },
+        "y": {
+          "field": "BoxY",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "BoxY2"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
+        },
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "DecadeRole"
+          ]
+        },
+        {
+          "pivot": "DecadeRole",
+          "value": "AvgMax",
+          "groupby": [
+            "MonthNum"
+          ]
+        },
+        {
+          "filter": "isValid(datum['Comparison decade']) && isValid(datum['Reference decade'])"
+        },
+        {
+          "calculate": "datum['Comparison decade'] - datum['Reference decade']",
+          "as": "Delta"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "Delta",
+              "as": "MaxDelta"
+            },
+            {
+              "op": "min",
+              "field": "Delta",
+              "as": "MinDelta"
+            }
+          ]
+        },
+        {
+          "calculate": "['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.MonthNum]",
+          "as": "MonthLabel"
+        },
+        {
+          "calculate": "datum.Delta >= 0 ? '+' + format(datum.Delta, '.1f') : format(datum.Delta, '.1f')",
+          "as": "DeltaText"
+        },
+        {
+          "filter": "datum.Delta == datum.MinDelta"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "GapRank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "MonthNum",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.GapRank == 1"
+        },
+        {
+          "calculate": "'Smallest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "as": "Annotation"
+        },
+        {
+          "calculate": "7.65",
+          "as": "LabelX"
+        },
+        {
+          "calculate": "13.55",
+          "as": "LabelY"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#263B4E",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "LabelX",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          }
+        },
+        "y": {
+          "field": "LabelY",
           "type": "quantitative"
         },
         "text": {
           "field": "Annotation"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1.2,
+            "x2": 5.9,
+            "y": 31.3,
+            "y2": 29.15
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "referenceDecade == comparisonDecade"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "rgba(255,255,255,0.92)",
+        "stroke": "#263B4E",
+        "strokeWidth": 0.7,
+        "cornerRadius": 5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          }
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "y2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1.42,
+            "y": 30.25,
+            "text": "Select two different decades|to compare seasonal gaps"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "referenceDecade == comparisonDecade"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#263B4E",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
         }
       }
     }
