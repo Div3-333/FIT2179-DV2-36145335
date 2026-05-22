@@ -19,11 +19,12 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [
-      145.7,
-      -37.85
-    ],
-    "scale": 16000
+    "center": {
+      "expr": "[reservoirLon, reservoirLat]"
+    },
+    "scale": {
+      "expr": "reservoirZoom"
+    }
   },
   "layer": [
     {
@@ -124,7 +125,12 @@
             "format": ","
           }
         ]
-      }
+      },
+      "transform": [
+        {
+          "filter": "datum.Percent_Full >= minReservoirFull"
+        }
+      ]
     },
     {
       "data": {
@@ -149,7 +155,12 @@
           "field": "Reservoir",
           "type": "nominal"
         }
-      }
+      },
+      "transform": [
+        {
+          "filter": "datum.Percent_Full >= minReservoirFull"
+        }
+      ]
     },
     {
       "data": {
@@ -294,5 +305,51 @@
       "stroke": "transparent"
     },
     "font": "Source Sans Pro"
-  }
+  },
+  "params": [
+    {
+      "name": "reservoirZoom",
+      "value": 16000,
+      "bind": {
+        "input": "range",
+        "min": 9000,
+        "max": 26000,
+        "step": 500,
+        "name": "Map zoom "
+      }
+    },
+    {
+      "name": "reservoirLon",
+      "value": 145.7,
+      "bind": {
+        "input": "range",
+        "min": 144.5,
+        "max": 146.7,
+        "step": 0.05,
+        "name": "Pan east-west "
+      }
+    },
+    {
+      "name": "reservoirLat",
+      "value": -37.85,
+      "bind": {
+        "input": "range",
+        "min": -38.3,
+        "max": -37.2,
+        "step": 0.05,
+        "name": "Pan north-south "
+      }
+    },
+    {
+      "name": "minReservoirFull",
+      "value": 65,
+      "bind": {
+        "input": "range",
+        "min": 65,
+        "max": 100,
+        "step": 1,
+        "name": "Minimum % full "
+      }
+    }
+  ]
 }

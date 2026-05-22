@@ -42,6 +42,9 @@
             {
               "calculate": "datum.Rainfall_mm - 50.6",
               "as": "Anomaly"
+            },
+            {
+              "filter": "abs(datum.Anomaly) >= minAnomalyAbs"
             }
           ],
           "mark": {
@@ -376,5 +379,18 @@
       "labelFont": "Source Sans Pro",
       "titleFont": "Source Sans Pro"
     }
-  }
+  },
+  "params": [
+    {
+      "name": "minAnomalyAbs",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "name": "Minimum anomaly magnitude (mm) "
+      }
+    }
+  ]
 }

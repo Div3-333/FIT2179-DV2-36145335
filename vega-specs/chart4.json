@@ -22,7 +22,7 @@
   },
   "transform": [
     {
-      "filter": "datum.Year < 2026"
+      "filter": "datum.Year < 2026 && datum.Avg_Summer_Max_Temp >= minSummerHeat && datum.Annual_Rainfall_mm <= maxAnnualRain"
     }
   ],
   "layer": [
@@ -343,5 +343,29 @@
       "labelFont": "Source Sans Pro",
       "titleFont": "Source Sans Pro"
     }
-  }
+  },
+  "params": [
+    {
+      "name": "minSummerHeat",
+      "value": 25,
+      "bind": {
+        "input": "range",
+        "min": 25,
+        "max": 31,
+        "step": 0.1,
+        "name": "Minimum summer heat (C) "
+      }
+    },
+    {
+      "name": "maxAnnualRain",
+      "value": 950,
+      "bind": {
+        "input": "range",
+        "min": 350,
+        "max": 950,
+        "step": 25,
+        "name": "Maximum annual rain (mm) "
+      }
+    }
+  ]
 }

@@ -67,7 +67,7 @@
         "y": {
           "field": "YearNum",
           "type": "ordinal",
-            "title": "Year",
+          "title": "Year",
           "sort": "ascending",
           "axis": {
             "labelExpr": "datum.label % 10 == 0 || datum.label == 1910 ? datum.label : ''"
@@ -120,6 +120,9 @@
         {
           "calculate": "toNumber(datum.Year)",
           "as": "YearNum"
+        },
+        {
+          "filter": "datum.YearNum >= heatYearStart && datum.YearNum <= heatYearEnd"
         }
       ]
     },
@@ -232,5 +235,29 @@
     "right": 82,
     "top": 5,
     "bottom": 5
-  }
+  },
+  "params": [
+    {
+      "name": "heatYearStart",
+      "value": 1910,
+      "bind": {
+        "input": "range",
+        "min": 1910,
+        "max": 2020,
+        "step": 1,
+        "name": "Start year "
+      }
+    },
+    {
+      "name": "heatYearEnd",
+      "value": 2026,
+      "bind": {
+        "input": "range",
+        "min": 1920,
+        "max": 2026,
+        "step": 1,
+        "name": "End year "
+      }
+    }
+  ]
 }

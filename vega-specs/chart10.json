@@ -31,6 +31,21 @@
     {
       "name": "showModern",
       "value": false
+    },
+    {
+      "name": "stateFocus",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Stable Storage",
+          "Unbuffered Stress",
+          "Engineered Buffer",
+          "Supply Buffer"
+        ],
+        "name": "Operational state "
+      }
     }
   ],
   "transform": [
@@ -39,7 +54,14 @@
       "as": "YearNum"
     },
     {
+      "calculate": "datum.Storage_Percentage >= 70 && datum.Desalination_Delivered_GL < 75 ? 'Stable Storage' : datum.Storage_Percentage < 70 && datum.Desalination_Delivered_GL < 75 ? 'Unbuffered Stress' : datum.Storage_Percentage < 70 && datum.Desalination_Delivered_GL >= 75 ? 'Engineered Buffer' : 'Supply Buffer'",
+      "as": "State"
+    },
+    {
       "filter": "showModern || datum.YearNum <= 2021"
+    },
+    {
+      "filter": "stateFocus == 'All' || datum.State == stateFocus"
     }
   ],
   "layer": [

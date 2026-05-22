@@ -344,7 +344,6 @@
             margin: 0 auto;
             box-sizing: border-box;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
             overflow: hidden;
         }
 
@@ -377,7 +376,46 @@
         }
 
         .viz-canvas:hover {
-            transform: translateY(-5px);
+            transform: none;
+        }
+
+        #cycle-toggle-shell {
+            position: fixed !important;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2000 !important;
+            width: 210px !important;
+            margin: 0 !important;
+            padding: 14px 16px !important;
+            border-radius: 14px !important;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        #cycle-toggle-shell.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #cycle-toggle-shell label {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 8px !important;
+            font-size: 0.92rem !important;
+            line-height: 1.25;
+        }
+
+        .cycle-click-me {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: #FCFDBF;
+            color: #17202A;
+            font-weight: 900;
+            letter-spacing: 0;
+            box-shadow: 0 0 18px rgba(252,253,191,0.45);
         }
         
         .section-tank .viz-canvas, .section-earth .viz-canvas {
@@ -483,6 +521,13 @@
         }
 
         @media (max-width: 900px) {
+            #cycle-toggle-shell {
+                left: 10px;
+                bottom: 10px;
+                top: auto;
+                transform: none;
+                width: 190px !important;
+            }
             .story-row {
                 display: block;
                 grid-template-columns: 1fr !important;
@@ -529,7 +574,7 @@
         .audit-card { border-bottom: 1px solid rgba(148, 193, 234, 0.2); padding: 20px 0; }
         .audit-card[open] { background: rgba(0,0,0,0.15); border-radius: 8px; padding: 20px; }
         .audit-card summary { cursor: pointer; font-weight: bold; color: #E0E6ED; font-size: 1.2rem; line-height: 1.35; list-style: none; display: flex; align-items: center; gap: 15px; transition: all 0.3s; font-family: 'Merriweather', serif; }
-        .audit-card summary:hover { color: #3498DB; padding-left: 5px; }
+        .audit-card summary:hover { color: #3498DB; }
         .audit-card summary::-webkit-details-marker { display: none; }
         .audit-content { padding: 30px; background: rgba(13, 27, 42, 0.72); border: 1px solid rgba(148, 193, 234, 0.14); border-radius: 8px; margin-top: 20px; box-shadow: inset 0 0 12px rgba(0,0,0,0.35); }
         .audit-section-title { color: #3498DB; font-size: 0.75rem; font-weight: 700; letter-spacing: 0; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid rgba(52, 152, 219, 0.3); padding-bottom: 5px; }
@@ -685,10 +730,11 @@
             </div>
 
             <!-- Global Narrative Toggle (Strategic Placement) -->
-            <div style="text-align: center; margin-top: 60px; margin-bottom: 40px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 20px 40px; border-radius: 50px; display: block; margin-left: auto; margin-right: auto; width: fit-content; border: 2px solid #3498DB; box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 1000; position: relative;">
+            <div id="cycle-toggle-shell" style="text-align: center; margin-top: 60px; margin-bottom: 40px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 20px 40px; border-radius: 50px; display: block; margin-left: auto; margin-right: auto; width: fit-content; border: 2px solid #3498DB; box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 1000; position: relative;">
                 <label style="cursor: pointer; font-weight: bold; color: #D7CCC8; font-family: 'Source Sans Pro'; display: flex; align-items: center; gap: 15px; font-size: 1.1rem;">
                     <input type="checkbox" id="global-cycle-toggle" style="width: 25px; height: 25px; cursor: pointer;">
-                    Reveal Full 13-Year Resilience Cycle (Syncs Charts 8, 9, and 10)
+                    <span class="cycle-click-me">CLICK ME!</span>
+                    <span>Show 2021+ return years across Charts 8, 9, and 10</span>
                 </label>
             </div>
 
@@ -736,7 +782,7 @@
             </p>
 
             <div class="full-width-viz" style="margin-top: 40px;">
-                <div id="vis-chart-9" class="viz-canvas" style="min-height: 550px; background: white;">
+                <div id="vis-chart-9" class="viz-canvas" style="min-height: 550px; background: white; max-width: 80%; margin-left: auto; margin-right: auto;">
                     <!-- Chart 9 Renders here -->
                 </div>
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #3498DB; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
@@ -748,7 +794,7 @@
             </div>
 
             <div class="full-width-viz" style="margin-top: 80px;">
-                <div id="vis-chart-10" class="viz-canvas" style="min-height: 500px; background: white;">
+                <div id="vis-chart-10" class="viz-canvas" style="min-height: 500px; background: white; max-width: 80%; margin-left: auto; margin-right: auto;">
                     <!-- Chart 10 Renders here -->
                 </div>
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #F1C40F; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
@@ -1129,6 +1175,17 @@
                 if (chartViews[id]) { chartViews[id].signal('showModern', show).runAsync(); }
             });
         });
+
+        const cycleToggleShell = document.getElementById('cycle-toggle-shell');
+        const updateCycleToggleVisibility = () => {
+            const pivot = document.getElementById('vis-chart-8');
+            if (!cycleToggleShell || !pivot) return;
+            const revealAt = pivot.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.45;
+            cycleToggleShell.classList.toggle('is-visible', window.scrollY >= revealAt);
+        };
+        window.addEventListener('scroll', updateCycleToggleVisibility, { passive: true });
+        window.addEventListener('resize', updateCycleToggleVisibility);
+        updateCycleToggleVisibility();
 
         document.addEventListener('DOMContentLoaded', function() {
             vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').catch(console.error);

@@ -15,11 +15,12 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [
-      145.4,
-      -36.6
-    ],
-    "scale": 4200
+    "center": {
+      "expr": "[rainMapLon, rainMapLat]"
+    },
+    "scale": {
+      "expr": "rainMapZoom"
+    }
   },
   "layer": [
     {
@@ -93,6 +94,9 @@
               "Rainfall_Deficit_mm"
             ]
           }
+        },
+        {
+          "filter": "datum.Rainfall_Deficit_mm >= minDeficit"
         }
       ]
     },
@@ -241,5 +245,51 @@
       "stroke": "transparent"
     },
     "font": "Source Sans Pro"
-  }
+  },
+  "params": [
+    {
+      "name": "rainMapZoom",
+      "value": 4200,
+      "bind": {
+        "input": "range",
+        "min": 2600,
+        "max": 8500,
+        "step": 100,
+        "name": "Map zoom "
+      }
+    },
+    {
+      "name": "rainMapLon",
+      "value": 145.4,
+      "bind": {
+        "input": "range",
+        "min": 141.0,
+        "max": 149.5,
+        "step": 0.1,
+        "name": "Pan east-west "
+      }
+    },
+    {
+      "name": "rainMapLat",
+      "value": -36.6,
+      "bind": {
+        "input": "range",
+        "min": -39.2,
+        "max": -34.0,
+        "step": 0.1,
+        "name": "Pan north-south "
+      }
+    },
+    {
+      "name": "minDeficit",
+      "value": 87,
+      "bind": {
+        "input": "range",
+        "min": 87,
+        "max": 220,
+        "step": 5,
+        "name": "Minimum deficit (mm) "
+      }
+    }
+  ]
 }

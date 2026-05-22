@@ -11,6 +11,20 @@
     {
       "name": "showModern",
       "value": false
+    },
+    {
+      "name": "pulseFocus",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Any desalination",
+          "High pulse only",
+          "No desalination"
+        ],
+        "name": "Pulse filter "
+      }
     }
   ],
   "title": {
@@ -29,6 +43,13 @@
   "transform": [
     {
       "filter": "showModern || datum.YearInt <= 2021"
+    },
+    {
+      "calculate": "datum.Desalination_Delivered_GL >= 100 ? 'High pulse only' : datum.Desalination_Delivered_GL > 0 ? 'Any desalination' : 'No desalination'",
+      "as": "PulseClass"
+    },
+    {
+      "filter": "pulseFocus == 'All' || datum.PulseClass == pulseFocus || (pulseFocus == 'Any desalination' && datum.Desalination_Delivered_GL > 0)"
     }
   ],
   "vconcat": [

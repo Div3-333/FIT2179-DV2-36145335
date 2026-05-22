@@ -129,6 +129,13 @@
         "detail": {
           "field": "Era",
           "type": "nominal"
+        },
+        "opacity": {
+          "condition": {
+            "param": "eraFocus",
+            "value": 1
+          },
+          "value": 0.18
         }
       }
     },
@@ -199,7 +206,14 @@
             "title": "Avg Temp",
             "format": ".1f"
           }
-        ]
+        ],
+        "opacity": {
+          "condition": {
+            "param": "eraFocus",
+            "value": 1
+          },
+          "value": 0.18
+        }
       }
     },
     {
@@ -346,5 +360,17 @@
       "titleFont": "Source Sans Pro",
       "titleColor": "#2C3E50"
     }
-  }
+  },
+  "params": [
+    {
+      "name": "eraFocus",
+      "select": {
+        "type": "point",
+        "fields": [
+          "Era"
+        ]
+      },
+      "bind": "legend"
+    }
+  ]
 }

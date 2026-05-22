@@ -147,7 +147,7 @@
             "color": {
               "condition": {
                 "test": "timeStep > 2018",
-                  "value": "rgba(241, 196, 15, 0.07)"
+                "value": "rgba(241, 196, 15, 0.07)"
               },
               "value": "rgba(52, 152, 219, 0.05)"
             }

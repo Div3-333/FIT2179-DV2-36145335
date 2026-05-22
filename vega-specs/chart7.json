@@ -18,11 +18,12 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [
-      144.5,
-      -36.5
-    ],
-    "scale": 4000
+    "center": {
+      "expr": "[groundLon, groundLat]"
+    },
+    "scale": {
+      "expr": "groundZoom"
+    }
   },
   "layer": [
     {
@@ -104,7 +105,12 @@
             "title": "Bore Permits in Area"
           }
         ]
-      }
+      },
+      "transform": [
+        {
+          "filter": "datum.StressLevel >= minBoreStress"
+        }
+      ]
     },
     {
       "data": {
@@ -181,5 +187,51 @@
       "stroke": "transparent"
     },
     "font": "Source Sans Pro"
-  }
+  },
+  "params": [
+    {
+      "name": "groundZoom",
+      "value": 4000,
+      "bind": {
+        "input": "range",
+        "min": 2600,
+        "max": 7500,
+        "step": 100,
+        "name": "Map zoom "
+      }
+    },
+    {
+      "name": "groundLon",
+      "value": 144.5,
+      "bind": {
+        "input": "range",
+        "min": 141.0,
+        "max": 149.0,
+        "step": 0.1,
+        "name": "Pan east-west "
+      }
+    },
+    {
+      "name": "groundLat",
+      "value": -36.5,
+      "bind": {
+        "input": "range",
+        "min": -39.0,
+        "max": -34.0,
+        "step": 0.1,
+        "name": "Pan north-south "
+      }
+    },
+    {
+      "name": "minBoreStress",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 15,
+        "step": 1,
+        "name": "Minimum bore permits "
+      }
+    }
+  ]
 }

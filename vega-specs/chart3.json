@@ -34,6 +34,9 @@
             },
             {
               "filter": "datum.Year >= 2004 && datum.Year <= 2019"
+            },
+            {
+              "filter": "datum.Rainfall_mm >= rainFloor"
             }
           ],
           "mark": {
@@ -327,5 +330,18 @@
       "labelFont": "Source Sans Pro",
       "titleFont": "Source Sans Pro"
     }
-  }
+  },
+  "params": [
+    {
+      "name": "rainFloor",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 120,
+        "step": 5,
+        "name": "Minimum rainfall bar (mm) "
+      }
+    }
+  ]
 }
