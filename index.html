@@ -379,10 +379,19 @@
             transform: none;
         }
 
+        .map-pan-zoom {
+            cursor: grab;
+            touch-action: none;
+        }
+
+        .map-pan-zoom.is-dragging {
+            cursor: grabbing;
+        }
+
         #cycle-toggle-shell {
             position: fixed !important;
             left: 18px;
-            top: 50%;
+            top: 50vh;
             transform: translateY(-50%);
             z-index: 2000 !important;
             width: 210px !important;
@@ -520,13 +529,26 @@
             max-width: 80%; margin-left: auto; margin-right: auto;
         }
 
+        .section-pipe #vis-chart-9,
+        .section-pipe #vis-chart-10 {
+            width: 80% !important;
+            max-width: none !important;
+            margin-left: 10% !important;
+            margin-right: 10% !important;
+        }
+
         @media (max-width: 900px) {
             #cycle-toggle-shell {
                 left: 10px;
-                bottom: 10px;
-                top: auto;
-                transform: none;
+                top: 50vh;
+                transform: translateY(-50%);
                 width: 190px !important;
+            }
+            .section-pipe #vis-chart-9,
+            .section-pipe #vis-chart-10 {
+                width: 100% !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
             }
             .story-row {
                 display: block;
@@ -691,7 +713,7 @@
                 <div class="annotation" style="background: #17202A; color: #E0E6ED; border-left: 4px solid #3498DB; margin-top: 30px; padding: 20px; border-radius: 0 8px 8px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
                     <h3 style="color: #94C1EA; margin-bottom: 10px; font-size: 1.2rem;">The Multi-Year Deficit</h3>
                     <p style="font-size: 1.05rem; line-height: 1.7; margin: 0;">
-                        This composite view reveals the <span class="term term-blue" tabindex="0" data-tip="Storage responds after repeated rainfall deficits, rather than instantly month by month.">lag effect</span>. During the <span class="term term-yellow" tabindex="0" data-tip="The 2006-2009 period contains repeated below-baseline rainfall months.">2006-2009 Millennium Drought peak</span>, a cluster of <span class="term term-orange" tabindex="0" data-tip="Bars below zero are months below the 50.6 mm monthly baseline used in the chart.">rainfall deficits</span> coincides with the <span class="term term-blue" tabindex="0" data-tip="Melbourne storage bottoms near 26% in June 2009 in this dataset.">reservoir storage line</span> falling to its lowest point. Storage then takes until 2012 to climb back above 80%, and it never reaches 100% within the 2004-2019 window shown here.
+                        This composite view reveals the <span class="term term-blue" tabindex="0" data-tip="Storage responds after repeated rainfall deficits, rather than instantly month by month.">lag effect</span>. During the <span class="term term-yellow" tabindex="0" data-tip="The 2006-2009 period contains repeated below-baseline rainfall months.">2006-2009 Millennium Drought peak</span>, a cluster of <span class="term term-orange" tabindex="0" data-tip="Bars below zero are months below the 50.6 mm monthly baseline used in the chart.">rainfall deficits</span> coincides with the <span class="term term-blue" tabindex="0" data-tip="Melbourne storage bottoms near 26% in June 2009 in this dataset.">reservoir storage line</span> falling to its lowest point. Storage then takes until 2012 to climb back above 80%, and it never reaches 100% within the 2004-2020 display.
                     </p>
                 </div>
             </div>
@@ -782,7 +804,7 @@
             </p>
 
             <div class="full-width-viz" style="margin-top: 40px;">
-                <div id="vis-chart-9" class="viz-canvas" style="min-height: 550px; background: white; max-width: 80%; margin-left: auto; margin-right: auto;">
+                <div id="vis-chart-9" class="viz-canvas" style="min-height: 550px; background: white; width: 80%; max-width: 80%; margin-left: auto; margin-right: auto;">
                     <!-- Chart 9 Renders here -->
                 </div>
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #3498DB; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
@@ -794,7 +816,7 @@
             </div>
 
             <div class="full-width-viz" style="margin-top: 80px;">
-                <div id="vis-chart-10" class="viz-canvas" style="min-height: 500px; background: white; max-width: 80%; margin-left: auto; margin-right: auto;">
+                <div id="vis-chart-10" class="viz-canvas" style="min-height: 500px; background: white; width: 80%; max-width: 80%; margin-left: auto; margin-right: auto;">
                     <!-- Chart 10 Renders here -->
                 </div>
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #F1C40F; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
@@ -969,7 +991,7 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">The composite chart was designed to compare monthly rainfall anomalies with reservoir storage response over the same 2004-2019 window. Rainfall anomalies are calculated against the 50.6 mm monthly baseline used in the spec, and the lower panel shows storage falling to about 26% in 2009 before recovering above 80% in 2012.</p>
+                                    <p class="audit-desc">The composite chart was designed to compare monthly rainfall anomalies with reservoir storage response across an aligned 2004-2020 display. Rainfall anomalies are calculated against the 50.6 mm monthly baseline in the 2004-2019 Caulfield record, and the lower panel shows storage falling to about 26% in 2009 before recovering above 80% in 2012.</p>
                                     <div class="framework-box">
                                         <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Storage % (Quant), Anomaly (Quant), Year (Ordinal).<br>
@@ -1169,11 +1191,87 @@
     <script>
         let chartViews = {};
         function registerView(name, res) { chartViews[name] = res.view; }
+        function clamp(value, min, max) {
+            return Math.min(max, Math.max(min, value));
+        }
+        function attachMapPanZoom(selector, view, config) {
+            const shell = document.querySelector(selector);
+            if (!shell || !view) return;
+            shell.classList.add('map-pan-zoom');
+
+            let zoom = view.signal(config.zoomSignal);
+            let lon = view.signal(config.lonSignal);
+            let lat = view.signal(config.latSignal);
+            let dragging = false;
+            let lastX = 0;
+            let lastY = 0;
+
+            const updateMap = () => {
+                view.signal(config.zoomSignal, zoom)
+                    .signal(config.lonSignal, lon)
+                    .signal(config.latSignal, lat)
+                    .runAsync();
+            };
+
+            shell.addEventListener('wheel', (event) => {
+                event.preventDefault();
+                const factor = Math.exp(-event.deltaY * 0.0012);
+                zoom = clamp(zoom * factor, config.minZoom, config.maxZoom);
+                updateMap();
+            }, { passive: false });
+
+            shell.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                lastX = event.clientX;
+                lastY = event.clientY;
+                shell.classList.add('is-dragging');
+                if (shell.setPointerCapture) shell.setPointerCapture(event.pointerId);
+            });
+
+            shell.addEventListener('pointermove', (event) => {
+                if (!dragging) return;
+                const dx = event.clientX - lastX;
+                const dy = event.clientY - lastY;
+                lastX = event.clientX;
+                lastY = event.clientY;
+                const degreesPerPixel = config.panFactor / zoom;
+                lon = clamp(lon - dx * degreesPerPixel, config.minLon, config.maxLon);
+                lat = clamp(lat + dy * degreesPerPixel, config.minLat, config.maxLat);
+                updateMap();
+            });
+
+            const stopDrag = (event) => {
+                dragging = false;
+                shell.classList.remove('is-dragging');
+                if (shell.releasePointerCapture && event.pointerId !== undefined) shell.releasePointerCapture(event.pointerId);
+            };
+            shell.addEventListener('pointerup', stopDrag);
+            shell.addEventListener('pointercancel', stopDrag);
+            shell.addEventListener('pointerleave', () => {
+                dragging = false;
+                shell.classList.remove('is-dragging');
+            });
+        }
+        function updatePivotSliderLimit(showModern) {
+            const slider = document.querySelector('#vis-chart-8 input[type="range"]');
+            const max = showModern ? 2025 : 2021;
+            if (slider) {
+                slider.max = String(max);
+                if (Number(slider.value) > max) {
+                    slider.value = String(max);
+                    slider.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            }
+            if (chartViews.chart8 && chartViews.chart8.signal('timeStep') > max) {
+                chartViews.chart8.signal('timeStep', max).runAsync();
+            }
+        }
         document.getElementById('global-cycle-toggle').addEventListener('change', (e) => {
             const show = e.target.checked;
             ['chart8', 'chart9', 'chart10'].forEach(id => {
                 if (chartViews[id]) { chartViews[id].signal('showModern', show).runAsync(); }
             });
+            updatePivotSliderLimit(show);
         });
 
         const cycleToggleShell = document.getElementById('cycle-toggle-shell');
@@ -1188,15 +1286,39 @@
         updateCycleToggleVisibility();
 
         document.addEventListener('DOMContentLoaded', function() {
-            vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').catch(console.error);
+            vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').then(res => {
+                registerView('chart1', res);
+                attachMapPanZoom('#vis-chart-1', res.view, {
+                    zoomSignal: 'rainMapZoom', lonSignal: 'rainMapLon', latSignal: 'rainMapLat',
+                    minZoom: 2600, maxZoom: 8500, minLon: 141.0, maxLon: 149.5,
+                    minLat: -39.2, maxLat: -34.0, panFactor: 260
+                });
+            }).catch(console.error);
             vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
             vegaEmbed('#vis-chart-2-comparison', 'vega-specs/chart2_comparison.json').catch(console.error);
             vegaEmbed('#vis-chart-3', 'vega-specs/chart3.json').catch(console.error);
             vegaEmbed('#vis-chart-4', 'vega-specs/chart4.json').catch(console.error);
             vegaEmbed('#vis-chart-5', 'vega-specs/chart5.json').catch(console.error);
-            vegaEmbed('#vis-chart-6', 'vega-specs/chart6.json').catch(console.error);
-            vegaEmbed('#vis-chart-7', 'vega-specs/chart7.json').catch(console.error);
-            vegaEmbed('#vis-chart-8', 'vega-specs/chart8.json').then(res => registerView('chart8', res)).catch(console.error);
+            vegaEmbed('#vis-chart-6', 'vega-specs/chart6.json').then(res => {
+                registerView('chart6', res);
+                attachMapPanZoom('#vis-chart-6', res.view, {
+                    zoomSignal: 'reservoirZoom', lonSignal: 'reservoirLon', latSignal: 'reservoirLat',
+                    minZoom: 9000, maxZoom: 26000, minLon: 144.5, maxLon: 146.7,
+                    minLat: -38.3, maxLat: -37.2, panFactor: 180
+                });
+            }).catch(console.error);
+            vegaEmbed('#vis-chart-7', 'vega-specs/chart7.json').then(res => {
+                registerView('chart7', res);
+                attachMapPanZoom('#vis-chart-7', res.view, {
+                    zoomSignal: 'groundZoom', lonSignal: 'groundLon', latSignal: 'groundLat',
+                    minZoom: 2600, maxZoom: 7500, minLon: 141.0, maxLon: 149.0,
+                    minLat: -39.0, maxLat: -34.0, panFactor: 260
+                });
+            }).catch(console.error);
+            vegaEmbed('#vis-chart-8', 'vega-specs/chart8.json').then(res => {
+                registerView('chart8', res);
+                updatePivotSliderLimit(document.getElementById('global-cycle-toggle').checked);
+            }).catch(console.error);
             vegaEmbed('#vis-chart-9', 'vega-specs/chart9.json').then(res => registerView('chart9', res)).catch(console.error);
             vegaEmbed('#vis-chart-10', 'vega-specs/chart10.json').then(res => registerView('chart10', res)).catch(console.error);
         });

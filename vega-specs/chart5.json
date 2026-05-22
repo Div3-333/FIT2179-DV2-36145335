@@ -12,11 +12,27 @@
     "bottom": 20
   },
   "spacing": 60,
+  "params": [
+    {
+      "name": "periodFocus",
+      "value": "Overview (2004-2020)",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Overview (2004-2020)",
+          "Millennium Drought (2006-2009)",
+          "Recovery ramp (2010-2012)",
+          "Late dry-down (2017-2020)"
+        ],
+        "name": "Zoom period "
+      }
+    }
+  ],
   "vconcat": [
     {
       "title": {
         "text": "The Catchment Stress",
-        "subtitle": "Rainfall Anomaly vs. Thermal Intensity | 2004 - 2019",
+        "subtitle": "Rainfall Anomaly vs. Thermal Intensity | 2004 - 2020",
         "anchor": "start",
         "color": "#E0F2FE",
         "fontSize": 24,
@@ -44,13 +60,15 @@
               "as": "Anomaly"
             },
             {
-              "filter": "abs(datum.Anomaly) >= minAnomalyAbs"
+              "filter": "datum.Year >= 2004 && datum.Year <= 2019 && (periodFocus == 'Overview (2004-2020)' || (periodFocus == 'Millennium Drought (2006-2009)' && datum.Year >= 2006 && datum.Year <= 2009) || (periodFocus == 'Recovery ramp (2010-2012)' && datum.Year >= 2010 && datum.Year <= 2012) || (periodFocus == 'Late dry-down (2017-2020)' && datum.Year >= 2017 && datum.Year <= 2019))"
             }
           ],
           "mark": {
             "type": "bar",
             "tooltip": true,
-            "width": 6
+            "width": {
+              "expr": "periodFocus == 'Overview (2004-2020)' ? 6 : 13"
+            }
           },
           "encoding": {
             "x": {
@@ -61,12 +79,6 @@
                 "labelExpr": "''",
                 "ticks": false,
                 "domain": false
-              },
-              "scale": {
-                "domain": [
-                  "2003-12-01",
-                  "2020-02-01"
-                ]
               }
             },
             "y": {
@@ -88,8 +100,7 @@
                 "domain": [
                   10,
                   35
-                ],
-                "reverse": false
+                ]
               },
               "legend": {
                 "title": "Heat (\u00b0C)",
@@ -134,10 +145,16 @@
                 "Date": "2006-10-01",
                 "Anomaly": -50,
                 "Date2": "2008-01-01",
-                "Anomaly2": -110
+                "Anomaly2": -110,
+                "Period": "Millennium Drought (2006-2009)"
               }
             ]
           },
+          "transform": [
+            {
+              "filter": "periodFocus == 'Overview (2004-2020)' || periodFocus == datum.Period"
+            }
+          ],
           "mark": {
             "type": "rule",
             "color": "#FCFDBF",
@@ -167,16 +184,20 @@
               {
                 "Date": "2008-01-01",
                 "Anomaly": -110,
-                "text": "Repeated deficits|2006-2009"
+                "text": "Repeated deficits|2006-2009",
+                "Period": "Millennium Drought (2006-2009)"
               }
             ]
           },
+          "transform": [
+            {
+              "filter": "periodFocus == 'Overview (2004-2020)' || periodFocus == datum.Period"
+            }
+          ],
           "mark": {
             "type": "text",
             "align": "left",
             "baseline": "middle",
-            "dx": 0,
-            "dy": 0,
             "fontSize": 12,
             "fontWeight": "bold",
             "color": "#FCFDBF",
@@ -192,8 +213,7 @@
               "type": "quantitative"
             },
             "text": {
-              "field": "text",
-              "type": "nominal"
+              "field": "text"
             }
           }
         }
@@ -222,7 +242,7 @@
               "as": "Date"
             },
             {
-              "filter": "datum.Year >= 2004 && datum.Year <= 2019"
+              "filter": "isValid(datum.Storage_Percentage) && datum.Year >= 2004 && datum.Year <= 2020 && (periodFocus == 'Overview (2004-2020)' || (periodFocus == 'Millennium Drought (2006-2009)' && datum.Year >= 2006 && datum.Year <= 2009) || (periodFocus == 'Recovery ramp (2010-2012)' && datum.Year >= 2010 && datum.Year <= 2012) || (periodFocus == 'Late dry-down (2017-2020)' && datum.Year >= 2017 && datum.Year <= 2020))"
             }
           ],
           "mark": {
@@ -251,12 +271,6 @@
               "field": "Date",
               "type": "temporal",
               "title": "Timeline",
-              "scale": {
-                "domain": [
-                  "2003-12-01",
-                  "2020-02-01"
-                ]
-              },
               "axis": {
                 "domainColor": "#A9CCE3",
                 "labelColor": "white",
@@ -304,10 +318,16 @@
                 "Date": "2009-06-01",
                 "Storage_Percentage": 26,
                 "Date2": "2006-06-01",
-                "Storage_Percentage2": 18
+                "Storage_Percentage2": 18,
+                "Period": "Millennium Drought (2006-2009)"
               }
             ]
           },
+          "transform": [
+            {
+              "filter": "periodFocus == 'Overview (2004-2020)' || periodFocus == datum.Period"
+            }
+          ],
           "mark": {
             "type": "rule",
             "color": "#E0F2FE",
@@ -337,16 +357,20 @@
               {
                 "Date": "2006-06-01",
                 "Storage_Percentage": 18,
-                "text": "Storage low|~26% in Jun 2009"
+                "text": "Storage low|~26% in Jun 2009",
+                "Period": "Millennium Drought (2006-2009)"
               }
             ]
           },
+          "transform": [
+            {
+              "filter": "periodFocus == 'Overview (2004-2020)' || periodFocus == datum.Period"
+            }
+          ],
           "mark": {
             "type": "text",
             "align": "left",
             "baseline": "middle",
-            "dx": 0,
-            "dy": 0,
             "fontSize": 12,
             "fontWeight": "bold",
             "color": "#E0F2FE",
@@ -362,14 +386,18 @@
               "type": "quantitative"
             },
             "text": {
-              "field": "text",
-              "type": "nominal"
+              "field": "text"
             }
           }
         }
       ]
     }
   ],
+  "resolve": {
+    "scale": {
+      "x": "shared"
+    }
+  },
   "config": {
     "background": "transparent",
     "view": {
@@ -379,18 +407,5 @@
       "labelFont": "Source Sans Pro",
       "titleFont": "Source Sans Pro"
     }
-  },
-  "params": [
-    {
-      "name": "minAnomalyAbs",
-      "value": 0,
-      "bind": {
-        "input": "range",
-        "min": 0,
-        "max": 100,
-        "step": 5,
-        "name": "Minimum anomaly magnitude (mm) "
-      }
-    }
-  ]
+  }
 }

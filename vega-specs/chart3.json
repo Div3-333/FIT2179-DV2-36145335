@@ -6,6 +6,21 @@
     "type": "fit",
     "contains": "padding"
   },
+  "params": [
+    {
+      "name": "phaseFocus",
+      "value": "Overview",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Overview",
+          "2015 El Nino negative SOI",
+          "2018 local dry phase"
+        ],
+        "name": "Phase focus "
+      }
+    }
+  ],
   "title": {
     "text": "The Atmospheric Engine",
     "subtitle": "Temporal context: Southern Oscillation Index (Line) vs. rainfall (Bars) | 2004 - 2019",
@@ -18,301 +33,437 @@
   },
   "layer": [
     {
-      "layer": [
-        {
-          "data": {
-            "url": "data/final/chart3_caulfield_rain.csv"
+      "data": {
+        "values": [
+          {
+            "Date": "2014-10-01",
+            "Date2": "2016-05-01",
+            "Phase": "2015 El Nino negative SOI"
           },
-          "transform": [
-            {
-              "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
-              "as": "MonthNum"
-            },
-            {
-              "calculate": "datetime(datum.Year, datum.MonthNum, 1)",
-              "as": "Date"
-            },
-            {
-              "filter": "datum.Year >= 2004 && datum.Year <= 2019"
-            },
-            {
-              "filter": "datum.Rainfall_mm >= rainFloor"
-            }
-          ],
-          "mark": {
-            "type": "bar",
-            "color": "#94C1EA",
-            "opacity": 0.6,
-            "width": 4
-          },
-          "encoding": {
-            "x": {
-              "field": "Date",
-              "type": "temporal",
-              "title": "Year",
-              "axis": {
-                "grid": true,
-                "gridColor": "rgba(44,62,80,0.10)"
-              }
-            },
-            "y": {
-              "field": "Rainfall_mm",
-              "type": "quantitative",
-              "title": "Monthly Rainfall (mm)",
-              "axis": {
-                "titleColor": "#3498DB",
-                "grid": true,
-                "gridColor": "rgba(52,152,219,0.12)"
-              }
-            },
-            "tooltip": [
-              {
-                "field": "Date",
-                "type": "temporal",
-                "title": "Month",
-                "format": "%b %Y"
-              },
-              {
-                "field": "Rainfall_mm",
-                "type": "quantitative",
-                "title": "Rainfall (mm)"
-              }
-            ]
+          {
+            "Date": "2017-11-01",
+            "Date2": "2018-09-01",
+            "Phase": "2018 local dry phase"
           }
-        },
+        ]
+      },
+      "transform": [
         {
-          "data": {
-            "values": [
-              {
-                "Date": "2018-05-01",
-                "Rainfall_mm": 0,
-                "Date2": "2016-08-01",
-                "Rainfall_mm2": 170
-              }
-            ]
-          },
-          "mark": {
-            "type": "rule",
-            "color": "#1F6FA8",
-            "strokeWidth": 2,
-            "opacity": 0.85
-          },
-          "encoding": {
-            "x": {
-              "field": "Date",
-              "type": "temporal"
-            },
-            "y": {
-              "field": "Rainfall_mm",
-              "type": "quantitative"
-            },
-            "x2": {
-              "field": "Date2"
-            },
-            "y2": {
-              "field": "Rainfall_mm2"
-            }
-          }
-        },
-        {
-          "data": {
-            "values": [
-              {
-                "Date": "2016-08-01",
-                "Rainfall_mm": 170,
-                "text": "2018 dry months|local rainfall collapse"
-              }
-            ]
-          },
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "middle",
-            "fontSize": 12,
-            "fontWeight": "bold",
-            "color": "#1F6FA8",
-            "lineBreak": "|"
-          },
-          "encoding": {
-            "x": {
-              "field": "Date",
-              "type": "temporal"
-            },
-            "y": {
-              "field": "Rainfall_mm",
-              "type": "quantitative"
-            },
-            "text": {
-              "field": "text"
-            }
-          }
+          "filter": "phaseFocus == 'Overview' || datum.Phase == phaseFocus"
         }
-      ]
+      ],
+      "mark": {
+        "type": "rect",
+        "opacity": 0.16,
+        "clip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal"
+        },
+        "x2": {
+          "field": "Date2"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 450
+        },
+        "color": {
+          "field": "Phase",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "2015 El Nino negative SOI",
+              "2018 local dry phase"
+            ],
+            "range": [
+              "#E67E22",
+              "#3498DB"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "Phase",
+            "type": "nominal",
+            "title": "Highlighted phase"
+          }
+        ]
+      }
     },
     {
-      "layer": [
+      "data": {
+        "url": "data/final/chart3_caulfield_rain.csv"
+      },
+      "transform": [
         {
-          "data": {
-            "url": "data/final/chart3_soi_monthly.csv"
-          },
-          "transform": [
-            {
-              "calculate": "datetime(datum.Year, datum.Month - 1, 1)",
-              "as": "Date"
-            },
-            {
-              "filter": "datum.Year >= 2004 && datum.Year <= 2019"
-            }
-          ],
-          "mark": {
-            "type": "line",
-            "color": "#E67E22",
-            "strokeWidth": 2,
-            "interpolate": "monotone"
-          },
-          "encoding": {
-            "x": {
-              "field": "Date",
-              "type": "temporal"
-            },
-            "y": {
-              "field": "SOI",
-              "type": "quantitative",
-              "title": "Southern Oscillation Index (SOI)",
-              "axis": {
-                "orient": "right",
-                "titleColor": "#E67E22",
-                "grid": false
-              }
-            },
-            "tooltip": [
-              {
-                "field": "Date",
-                "type": "temporal",
-                "title": "Month",
-                "format": "%b %Y"
-              },
-              {
-                "field": "SOI",
-                "type": "quantitative",
-                "title": "SOI Value"
-              }
-            ]
-          }
+          "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
+          "as": "MonthNum"
         },
         {
-          "data": {
-            "url": "data/final/chart3_soi_monthly.csv"
-          },
-          "transform": [
-            {
-              "calculate": "datetime(datum.Year, datum.Month - 1, 1)",
-              "as": "Date"
-            },
-            {
-              "filter": "datum.Year >= 2004 && datum.Year <= 2019"
-            }
-          ],
-          "mark": {
-            "type": "point",
-            "filled": true,
-            "size": 70,
-            "opacity": 0,
-            "tooltip": true
-          },
-          "encoding": {
-            "x": {
-              "field": "Date",
-              "type": "temporal"
-            },
-            "y": {
-              "field": "SOI",
-              "type": "quantitative"
-            },
-            "tooltip": [
-              {
-                "field": "Date",
-                "type": "temporal",
-                "title": "Month",
-                "format": "%b %Y"
-              },
-              {
-                "field": "SOI",
-                "type": "quantitative",
-                "title": "SOI value",
-                "format": ".1f"
-              }
-            ]
-          }
+          "calculate": "datetime(datum.Year, datum.MonthNum, 1)",
+          "as": "Date"
         },
         {
-          "data": {
-            "values": [
-              {
-                "Date": "2015-10-01",
-                "SOI": -20.2,
-                "Date2": "2013-08-01",
-                "SOI2": 23
-              }
-            ]
-          },
-          "mark": {
-            "type": "rule",
-            "color": "#E67E22",
-            "strokeWidth": 2,
-            "opacity": 0.85
-          },
-          "encoding": {
-            "x": {
-              "field": "Date",
-              "type": "temporal"
-            },
-            "y": {
-              "field": "SOI",
-              "type": "quantitative"
-            },
-            "x2": {
-              "field": "Date2"
-            },
-            "y2": {
-              "field": "SOI2"
-            }
-          }
-        },
-        {
-          "data": {
-            "values": [
-              {
-                "Date": "2013-08-01",
-                "SOI": 23,
-                "text": "2015 El Nino|negative SOI phase"
-              }
-            ]
-          },
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "middle",
-            "fontSize": 12,
-            "fontWeight": "bold",
-            "color": "#A64F00",
-            "lineBreak": "|"
-          },
-          "encoding": {
-            "x": {
-              "field": "Date",
-              "type": "temporal"
-            },
-            "y": {
-              "field": "SOI",
-              "type": "quantitative"
-            },
-            "text": {
-              "field": "text"
-            }
-          }
+          "filter": "datum.Year >= 2004 && datum.Year <= 2019 && (phaseFocus == 'Overview' || (phaseFocus == '2015 El Nino negative SOI' && ((datum.Year == 2014 && datum.MonthNum >= 9) || datum.Year == 2015 || (datum.Year == 2016 && datum.MonthNum <= 4))) || (phaseFocus == '2018 local dry phase' && ((datum.Year == 2017 && datum.MonthNum >= 10) || (datum.Year == 2018 && datum.MonthNum <= 7))))"
         }
-      ]
+      ],
+      "mark": {
+        "type": "bar",
+        "color": "#94C1EA",
+        "opacity": 0.62,
+        "width": {
+          "expr": "phaseFocus == 'Overview' ? 4 : 12"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "title": "Year",
+          "axis": {
+            "grid": true,
+            "gridColor": "rgba(44,62,80,0.10)"
+          }
+        },
+        "y": {
+          "field": "Rainfall_mm",
+          "type": "quantitative",
+          "title": "Monthly Rainfall (mm)",
+          "axis": {
+            "titleColor": "#3498DB",
+            "grid": true,
+            "gridColor": "rgba(52,152,219,0.12)"
+          },
+          "scale": {
+            "domain": [
+              0,
+              200
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%b %Y"
+          },
+          {
+            "field": "Rainfall_mm",
+            "type": "quantitative",
+            "title": "Rainfall (mm)"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart3_soi_monthly.csv"
+      },
+      "transform": [
+        {
+          "calculate": "datum.Month - 1",
+          "as": "MonthZero"
+        },
+        {
+          "calculate": "datetime(datum.Year, datum.MonthZero, 1)",
+          "as": "Date"
+        },
+        {
+          "filter": "datum.Year >= 2004 && datum.Year <= 2019 && (phaseFocus == 'Overview' || (phaseFocus == '2015 El Nino negative SOI' && ((datum.Year == 2014 && datum.MonthZero >= 9) || datum.Year == 2015 || (datum.Year == 2016 && datum.MonthZero <= 4))) || (phaseFocus == '2018 local dry phase' && ((datum.Year == 2017 && datum.MonthZero >= 10) || (datum.Year == 2018 && datum.MonthZero <= 7))))"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#E67E22",
+        "strokeWidth": 2.4,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "SOI",
+          "type": "quantitative",
+          "title": "Southern Oscillation Index (SOI)",
+          "axis": {
+            "orient": "right",
+            "titleColor": "#E67E22",
+            "grid": false,
+            "title": "SOI",
+            "titlePadding": 18,
+            "labelPadding": 6
+          },
+          "scale": {
+            "domain": [
+              -30,
+              30
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%b %Y"
+          },
+          {
+            "field": "SOI",
+            "type": "quantitative",
+            "title": "SOI Value"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart3_soi_monthly.csv"
+      },
+      "transform": [
+        {
+          "calculate": "datum.Month - 1",
+          "as": "MonthZero"
+        },
+        {
+          "calculate": "datetime(datum.Year, datum.MonthZero, 1)",
+          "as": "Date"
+        },
+        {
+          "filter": "datum.Year >= 2004 && datum.Year <= 2019 && (phaseFocus == 'Overview' || (phaseFocus == '2015 El Nino negative SOI' && ((datum.Year == 2014 && datum.MonthZero >= 9) || datum.Year == 2015 || (datum.Year == 2016 && datum.MonthZero <= 4))) || (phaseFocus == '2018 local dry phase' && ((datum.Year == 2017 && datum.MonthZero >= 10) || (datum.Year == 2018 && datum.MonthZero <= 7))))"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 90,
+        "opacity": 0,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "SOI",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              -30,
+              30
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%b %Y"
+          },
+          {
+            "field": "SOI",
+            "type": "quantitative",
+            "title": "SOI value",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Date": "2015-10-01",
+            "SOI": -20.2,
+            "Date2": "2014-12-01",
+            "SOI2": 23,
+            "Phase": "2015 El Nino negative SOI"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "phaseFocus == 'Overview' || datum.Phase == phaseFocus"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#E67E22",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "SOI",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              -30,
+              30
+            ]
+          }
+        },
+        "x2": {
+          "field": "Date2"
+        },
+        "y2": {
+          "field": "SOI2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Date": "2014-12-01",
+            "SOI": 23,
+            "text": "2015 El Nino|negative SOI phase",
+            "Phase": "2015 El Nino negative SOI"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "phaseFocus == 'Overview' || datum.Phase == phaseFocus"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#A64F00",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "SOI",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              -30,
+              30
+            ]
+          }
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Date": "2018-05-01",
+            "Rainfall_mm": 0,
+            "Date2": "2018-01-01",
+            "Rainfall_mm2": 120,
+            "Phase": "2018 local dry phase"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "phaseFocus == 'Overview' || datum.Phase == phaseFocus"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#1F6FA8",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "Rainfall_mm",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              200
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "Date2"
+        },
+        "y2": {
+          "field": "Rainfall_mm2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Date": "2018-01-01",
+            "Rainfall_mm": 120,
+            "text": "2018 dry months|local rainfall collapse",
+            "Phase": "2018 local dry phase"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "filter": "phaseFocus == 'Overview' || datum.Phase == phaseFocus"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#1F6FA8",
+        "lineBreak": "|"
+      },
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "Rainfall_mm",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              200
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "text"
+        }
+      }
     }
   ],
   "resolve": {
@@ -331,17 +482,10 @@
       "titleFont": "Source Sans Pro"
     }
   },
-  "params": [
-    {
-      "name": "rainFloor",
-      "value": 0,
-      "bind": {
-        "input": "range",
-        "min": 0,
-        "max": 120,
-        "step": 5,
-        "name": "Minimum rainfall bar (mm) "
-      }
-    }
-  ]
+  "padding": {
+    "left": 36,
+    "right": 92,
+    "top": 10,
+    "bottom": 10
+  }
 }

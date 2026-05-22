@@ -14,7 +14,7 @@
       "bind": {
         "input": "range",
         "min": 2015,
-        "max": 2025,
+        "max": 2021,
         "step": 0.1,
         "name": "Analyze Year: "
       }

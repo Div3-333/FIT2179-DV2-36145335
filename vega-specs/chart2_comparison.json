@@ -123,7 +123,9 @@
           },
           "legend": {
             "orient": "top-right",
-            "title": "Line style"
+            "title": "Line style",
+            "labelColor": "#2C3E50",
+            "titleColor": "#2C3E50"
           }
         },
         "detail": {
@@ -132,7 +134,7 @@
         },
         "opacity": {
           "condition": {
-            "param": "eraFocus",
+            "test": "eraFocus == 'All' || datum.Era == eraFocus",
             "value": 1
           },
           "value": 0.18
@@ -209,7 +211,7 @@
         ],
         "opacity": {
           "condition": {
-            "param": "eraFocus",
+            "test": "eraFocus == 'All' || datum.Era == eraFocus",
             "value": 1
           },
           "value": 0.18
@@ -364,13 +366,16 @@
   "params": [
     {
       "name": "eraFocus",
-      "select": {
-        "type": "point",
-        "fields": [
-          "Era"
-        ]
-      },
-      "bind": "legend"
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Historical (1910-20)",
+          "Modern (2010-20)"
+        ],
+        "name": "Focus era "
+      }
     }
   ]
 }

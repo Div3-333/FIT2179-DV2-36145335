@@ -249,36 +249,15 @@
   "params": [
     {
       "name": "rainMapZoom",
-      "value": 4200,
-      "bind": {
-        "input": "range",
-        "min": 2600,
-        "max": 8500,
-        "step": 100,
-        "name": "Map zoom "
-      }
+      "value": 4200
     },
     {
       "name": "rainMapLon",
-      "value": 145.4,
-      "bind": {
-        "input": "range",
-        "min": 141.0,
-        "max": 149.5,
-        "step": 0.1,
-        "name": "Pan east-west "
-      }
+      "value": 145.4
     },
     {
       "name": "rainMapLat",
-      "value": -36.6,
-      "bind": {
-        "input": "range",
-        "min": -39.2,
-        "max": -34.0,
-        "step": 0.1,
-        "name": "Pan north-south "
-      }
+      "value": -36.6
     },
     {
       "name": "minDeficit",

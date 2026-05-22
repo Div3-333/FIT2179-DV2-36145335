@@ -309,36 +309,15 @@
   "params": [
     {
       "name": "reservoirZoom",
-      "value": 16000,
-      "bind": {
-        "input": "range",
-        "min": 9000,
-        "max": 26000,
-        "step": 500,
-        "name": "Map zoom "
-      }
+      "value": 16000
     },
     {
       "name": "reservoirLon",
-      "value": 145.7,
-      "bind": {
-        "input": "range",
-        "min": 144.5,
-        "max": 146.7,
-        "step": 0.05,
-        "name": "Pan east-west "
-      }
+      "value": 145.7
     },
     {
       "name": "reservoirLat",
-      "value": -37.85,
-      "bind": {
-        "input": "range",
-        "min": -38.3,
-        "max": -37.2,
-        "step": 0.05,
-        "name": "Pan north-south "
-      }
+      "value": -37.85
     },
     {
       "name": "minReservoirFull",
