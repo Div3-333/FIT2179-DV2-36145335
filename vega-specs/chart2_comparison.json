@@ -385,7 +385,7 @@
           "as": "CalloutX"
         },
         {
-          "calculate": "29.55",
+          "calculate": "30.18",
           "as": "CalloutY"
         }
       ],
@@ -516,11 +516,11 @@
           "as": "BoxX2"
         },
         {
-          "calculate": "31.45",
+          "calculate": "31.85",
           "as": "BoxY"
         },
         {
-          "calculate": "29.05",
+          "calculate": "30.05",
           "as": "BoxY2"
         }
       ],
@@ -648,7 +648,7 @@
           "as": "LabelX"
         },
         {
-          "calculate": "30.25",
+          "calculate": "30.95",
           "as": "LabelY"
         }
       ],
@@ -656,7 +656,7 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#263B4E",
         "lineBreak": "|"
@@ -779,7 +779,7 @@
           "as": "CalloutX"
         },
         {
-          "calculate": "13.65",
+          "calculate": "12.28",
           "as": "CalloutY"
         }
       ],
@@ -910,11 +910,11 @@
           "as": "BoxX2"
         },
         {
-          "calculate": "14.85",
+          "calculate": "12.45",
           "as": "BoxY"
         },
         {
-          "calculate": "12.35",
+          "calculate": "10.85",
           "as": "BoxY2"
         }
       ],
@@ -1042,7 +1042,7 @@
           "as": "LabelX"
         },
         {
-          "calculate": "13.55",
+          "calculate": "11.62",
           "as": "LabelY"
         }
       ],
@@ -1050,7 +1050,7 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#263B4E",
         "lineBreak": "|"
@@ -1081,8 +1081,8 @@
           {
             "x": 1.2,
             "x2": 5.9,
-            "y": 31.3,
-            "y2": 29.15
+            "y": 31.85,
+            "y2": 30.05
           }
         ]
       },
@@ -1126,7 +1126,7 @@
         "values": [
           {
             "x": 1.42,
-            "y": 30.25,
+            "y": 30.95,
             "text": "Select two different decades|to compare seasonal gaps"
           }
         ]
@@ -1140,7 +1140,7 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#263B4E",
         "lineBreak": "|"

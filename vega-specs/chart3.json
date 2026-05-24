@@ -114,8 +114,8 @@
       ],
       "mark": {
         "type": "bar",
-        "color": "#94C1EA",
-        "opacity": 0.62,
+        "color": "#1F6FA8",
+        "opacity": 0.86,
         "width": {
           "expr": "phaseFocus == 'Overview' ? 4 : 12"
         }
