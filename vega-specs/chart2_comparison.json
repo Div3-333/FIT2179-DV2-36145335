@@ -526,9 +526,9 @@
       ],
       "mark": {
         "type": "rect",
-        "fill": "rgba(255,255,255,0.88)",
-        "stroke": "#263B4E",
-        "strokeWidth": 0.7,
+        "fill": "rgba(255,255,255,0)",
+        "stroke": "rgba(255,255,255,0)",
+        "strokeWidth": 0,
         "cornerRadius": 5
       },
       "encoding": {
@@ -920,9 +920,9 @@
       ],
       "mark": {
         "type": "rect",
-        "fill": "rgba(255,255,255,0.88)",
-        "stroke": "#263B4E",
-        "strokeWidth": 0.7,
+        "fill": "rgba(255,255,255,0)",
+        "stroke": "rgba(255,255,255,0)",
+        "strokeWidth": 0,
         "cornerRadius": 5
       },
       "encoding": {
@@ -1093,9 +1093,9 @@
       ],
       "mark": {
         "type": "rect",
-        "fill": "rgba(255,255,255,0.92)",
-        "stroke": "#263B4E",
-        "strokeWidth": 0.7,
+        "fill": "rgba(255,255,255,0)",
+        "stroke": "rgba(255,255,255,0)",
+        "strokeWidth": 0,
         "cornerRadius": 5
       },
       "encoding": {

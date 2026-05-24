@@ -422,11 +422,17 @@
         }
 
         #vis-chart-7.map-pan-zoom::after {
-            top: 66px;
-            left: 26px;
-            right: auto;
+            top: auto;
+            left: auto;
+            right: 22px;
+            bottom: 22px;
             padding: 5px 10px;
             font-size: 0.78rem;
+        }
+
+        .vega-embed details,
+        .vega-actions {
+            display: none !important;
         }
 
         #cycle-toggle-shell {
@@ -1387,7 +1393,8 @@
         updateCycleToggleVisibility();
 
         document.addEventListener('DOMContentLoaded', function() {
-            vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json').then(res => {
+            const embedOptions = { actions: false };
+            vegaEmbed('#vis-chart-1', 'vega-specs/chart1.json', embedOptions).then(res => {
                 registerView('chart1', res);
                 attachMapPanZoom('#vis-chart-1', res.view, {
                     zoomSignal: 'rainMapZoom', lonSignal: 'rainMapLon', latSignal: 'rainMapLat',
@@ -1395,12 +1402,12 @@
                     minLat: -39.2, maxLat: -34.0, panFactor: 260
                 });
             }).catch(console.error);
-            vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json').catch(console.error);
-            vegaEmbed('#vis-chart-2-comparison', 'vega-specs/chart2_comparison.json').catch(console.error);
-            vegaEmbed('#vis-chart-3', 'vega-specs/chart3.json').catch(console.error);
-            vegaEmbed('#vis-chart-4', 'vega-specs/chart4.json').catch(console.error);
-            vegaEmbed('#vis-chart-5', 'vega-specs/chart5.json').catch(console.error);
-            vegaEmbed('#vis-chart-6', 'vega-specs/chart6.json').then(res => {
+            vegaEmbed('#vis-chart-2', 'vega-specs/chart2.json', embedOptions).catch(console.error);
+            vegaEmbed('#vis-chart-2-comparison', 'vega-specs/chart2_comparison.json', embedOptions).catch(console.error);
+            vegaEmbed('#vis-chart-3', 'vega-specs/chart3.json', embedOptions).catch(console.error);
+            vegaEmbed('#vis-chart-4', 'vega-specs/chart4.json', embedOptions).catch(console.error);
+            vegaEmbed('#vis-chart-5', 'vega-specs/chart5.json', embedOptions).catch(console.error);
+            vegaEmbed('#vis-chart-6', 'vega-specs/chart6.json', embedOptions).then(res => {
                 registerView('chart6', res);
                 attachMapPanZoom('#vis-chart-6', res.view, {
                     zoomSignal: 'reservoirZoom', lonSignal: 'reservoirLon', latSignal: 'reservoirLat',
@@ -1408,7 +1415,7 @@
                     minLat: -38.3, maxLat: -37.2, panFactor: 180
                 });
             }).catch(console.error);
-            vegaEmbed('#vis-chart-7', 'vega-specs/chart7.json').then(res => {
+            vegaEmbed('#vis-chart-7', 'vega-specs/chart7.json', embedOptions).then(res => {
                 registerView('chart7', res);
                 attachMapPanZoom('#vis-chart-7', res.view, {
                     zoomSignal: 'groundZoom', lonSignal: 'groundLon', latSignal: 'groundLat',
@@ -1416,12 +1423,12 @@
                     minLat: -39.0, maxLat: -34.0, panFactor: 260
                 });
             }).catch(console.error);
-            vegaEmbed('#vis-chart-8', 'vega-specs/chart8.json').then(res => {
+            vegaEmbed('#vis-chart-8', 'vega-specs/chart8.json', embedOptions).then(res => {
                 registerView('chart8', res);
                 updatePivotSliderLimit(document.getElementById('global-cycle-toggle').checked);
             }).catch(console.error);
-            vegaEmbed('#vis-chart-9', 'vega-specs/chart9.json').then(res => registerView('chart9', res)).catch(console.error);
-            vegaEmbed('#vis-chart-10', 'vega-specs/chart10.json').then(res => registerView('chart10', res)).catch(console.error);
+            vegaEmbed('#vis-chart-9', 'vega-specs/chart9.json', embedOptions).then(res => registerView('chart9', res)).catch(console.error);
+            vegaEmbed('#vis-chart-10', 'vega-specs/chart10.json', embedOptions).then(res => registerView('chart10', res)).catch(console.error);
         });
     
         // Interactive Elements Script
