@@ -7,6 +7,9 @@
     "type": "pad",
     "contains": "padding"
   },
+  "align": "all",
+  "bounds": "full",
+  "center": true,
   "params": [
     {
       "name": "showModern",
@@ -614,6 +617,11 @@
       ]
     }
   ],
+  "resolve": {
+    "scale": {
+      "x": "shared"
+    }
+  },
   "config": {
     "background": "white",
     "view": {

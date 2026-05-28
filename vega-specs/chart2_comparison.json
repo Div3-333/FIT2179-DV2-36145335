@@ -52,7 +52,7 @@
   ],
   "title": {
     "text": "The Seasonal Fever: Decades",
-    "subtitle": "Select two decades to compare monthly maxima",
+    "subtitle": "Select two decades; shaded bands mark max/min comparison-reference differences",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
@@ -61,6 +61,236 @@
     "offset": 20
   },
   "layer": [
+    {
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
+        },
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "DecadeRole"
+          ]
+        },
+        {
+          "pivot": "DecadeRole",
+          "value": "AvgMax",
+          "groupby": [
+            "MonthNum"
+          ]
+        },
+        {
+          "filter": "isValid(datum['Comparison decade']) && isValid(datum['Reference decade'])"
+        },
+        {
+          "calculate": "datum['Comparison decade'] - datum['Reference decade']",
+          "as": "Delta"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "Delta",
+              "as": "MaxDelta"
+            }
+          ]
+        },
+        {
+          "filter": "datum.Delta == datum.MaxDelta"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "GapRank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "MonthNum",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.GapRank == 1"
+        },
+        {
+          "calculate": "datum.MonthNum - 0.45",
+          "as": "BandStart"
+        },
+        {
+          "calculate": "datum.MonthNum + 0.45",
+          "as": "BandEnd"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "#F59E0B",
+        "opacity": 0.16
+      },
+      "encoding": {
+        "x": {
+          "field": "BandStart",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          }
+        },
+        "x2": {
+          "field": "BandEnd"
+        },
+        "y": {
+          "datum": 32,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              10,
+              32
+            ]
+          }
+        },
+        "y2": {
+          "datum": 10
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/final/chart2_temperature.csv"
+      },
+      "transform": [
+        {
+          "filter": "((datum.Year >= referenceDecade && datum.Year <= referenceDecade + 9) || (datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9))"
+        },
+        {
+          "calculate": "toNumber(datum.Month)",
+          "as": "MonthNum"
+        },
+        {
+          "calculate": "datum.Year >= comparisonDecade && datum.Year <= comparisonDecade + 9 ? 'Comparison decade' : 'Reference decade'",
+          "as": "DecadeRole"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "MaxTemp",
+              "as": "AvgMax"
+            }
+          ],
+          "groupby": [
+            "MonthNum",
+            "DecadeRole"
+          ]
+        },
+        {
+          "pivot": "DecadeRole",
+          "value": "AvgMax",
+          "groupby": [
+            "MonthNum"
+          ]
+        },
+        {
+          "filter": "isValid(datum['Comparison decade']) && isValid(datum['Reference decade'])"
+        },
+        {
+          "calculate": "datum['Comparison decade'] - datum['Reference decade']",
+          "as": "Delta"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "Delta",
+              "as": "MinDelta"
+            }
+          ]
+        },
+        {
+          "filter": "datum.Delta == datum.MinDelta"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "GapRank"
+            }
+          ],
+          "sort": [
+            {
+              "field": "MonthNum",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.GapRank == 1"
+        },
+        {
+          "calculate": "datum.MonthNum - 0.45",
+          "as": "BandStart"
+        },
+        {
+          "calculate": "datum.MonthNum + 0.45",
+          "as": "BandEnd"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "#2563EB",
+        "opacity": 0.1
+      },
+      "encoding": {
+        "x": {
+          "field": "BandStart",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ]
+          }
+        },
+        "x2": {
+          "field": "BandEnd"
+        },
+        "y": {
+          "datum": 32,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              10,
+              32
+            ]
+          }
+        },
+        "y2": {
+          "datum": 10
+        }
+      }
+    },
     {
       "data": {
         "url": "data/final/chart2_temperature.csv"
@@ -373,7 +603,7 @@
           "filter": "datum.GapRank == 1"
         },
         {
-          "calculate": "'Largest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "calculate": "'Max comparison-reference|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
           "as": "Annotation"
         },
         {
@@ -504,7 +734,7 @@
           "filter": "datum.GapRank == 1"
         },
         {
-          "calculate": "'Largest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "calculate": "'Max comparison-reference|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
           "as": "Annotation"
         },
         {
@@ -640,7 +870,7 @@
           "filter": "datum.GapRank == 1"
         },
         {
-          "calculate": "'Largest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "calculate": "'Max comparison-reference|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
           "as": "Annotation"
         },
         {
@@ -767,7 +997,7 @@
           "filter": "datum.GapRank == 1"
         },
         {
-          "calculate": "'Smallest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "calculate": "'Min comparison-reference|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
           "as": "Annotation"
         },
         {
@@ -898,7 +1128,7 @@
           "filter": "datum.GapRank == 1"
         },
         {
-          "calculate": "'Smallest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "calculate": "'Min comparison-reference|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
           "as": "Annotation"
         },
         {
@@ -1034,7 +1264,7 @@
           "filter": "datum.GapRank == 1"
         },
         {
-          "calculate": "'Smallest gap|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
+          "calculate": "'Min comparison-reference|' + datum.MonthLabel + ' ' + datum.DeltaText + ' deg C'",
           "as": "Annotation"
         },
         {

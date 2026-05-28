@@ -54,7 +54,7 @@
     {
       "title": {
         "text": "The Catchment Stress",
-        "subtitle": "Rainfall Anomaly vs. Thermal Intensity | 2004 - 2020",
+        "subtitle": "Rainfall Anomaly vs. Thermal Intensity | drag across bars to filter the reservoir panel",
         "anchor": "start",
         "color": "#E0F2FE",
         "fontSize": 24,
@@ -68,6 +68,23 @@
           "data": {
             "url": "data/final/chart5_caulfield_rain.csv"
           },
+          "params": [
+            {
+              "name": "catchmentBrush",
+              "select": {
+                "type": "interval",
+                "encodings": [
+                  "x"
+                ],
+                "mark": {
+                  "fill": "#E0F2FE",
+                  "fillOpacity": 0.12,
+                  "stroke": "#FCFDBF",
+                  "strokeWidth": 1
+                }
+              }
+            }
+          ],
           "transform": [
             {
               "calculate": "{'Jan':0,'Feb':1,'Mar':2,'Apr':3,'May':4,'Jun':5,'Jul':6,'Aug':7,'Sep':8,'Oct':9,'Nov':10,'Dec':11}[datum.Month]",
@@ -259,7 +276,7 @@
     {
       "title": {
         "text": "The Reservoir Response",
-        "subtitle": "Melbourne Reservoir Storage Levels (%)",
+        "subtitle": "Melbourne Reservoir Storage Levels (%) | responds to the brush above",
         "anchor": "start",
         "color": "#E0F2FE",
         "fontSize": 24,
@@ -287,6 +304,11 @@
             },
             {
               "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
+            },
+            {
+              "filter": {
+                "param": "catchmentBrush"
+              }
             }
           ],
           "mark": {
@@ -374,6 +396,11 @@
             },
             {
               "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
+            },
+            {
+              "filter": {
+                "param": "catchmentBrush"
+              }
             }
           ],
           "mark": {
@@ -417,6 +444,11 @@
             },
             {
               "filter": "datum.DecimalYear >= (catchStartYear <= catchEndYear ? catchStartYear : catchEndYear) && datum.DecimalYear <= (catchStartYear <= catchEndYear ? catchEndYear : catchStartYear)"
+            },
+            {
+              "filter": {
+                "param": "catchmentBrush"
+              }
             }
           ],
           "mark": {
