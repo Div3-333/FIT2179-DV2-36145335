@@ -332,6 +332,48 @@
             margin-bottom: 80px;
         }
         .full-width-viz { margin-bottom: 80px; }
+        .brush-callout-host {
+            position: relative;
+            padding-top: 122px;
+        }
+        .brush-nudge {
+            position: absolute;
+            top: 0;
+            right: 18px;
+            z-index: 18;
+            max-width: 300px;
+            padding: 12px 18px 14px;
+            background: #FFF7A8;
+            color: #17202A;
+            border: 3px solid #17202A;
+            border-radius: 18px 14px 20px 12px;
+            box-shadow: 5px 6px 0 #FF6B35, 0 10px 24px rgba(0,0,0,0.18);
+            transform: rotate(1.8deg);
+            font-family: 'Comic Sans MS', 'Segoe Print', cursive;
+            pointer-events: none;
+        }
+        .brush-nudge strong {
+            display: block;
+            color: #C0392B;
+            font-size: 1.18rem;
+            line-height: 1.05;
+            text-transform: uppercase;
+        }
+        .brush-nudge span {
+            display: block;
+            margin-top: 3px;
+            font-size: 0.94rem;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+        .brush-nudge-arrow {
+            position: absolute;
+            right: 38px;
+            bottom: -48px;
+            width: 104px;
+            height: 58px;
+            overflow: visible;
+        }
 
         .viz-canvas {
             background: rgba(255, 255, 255, 0.95);
@@ -639,6 +681,18 @@
                 min-height: 420px !important;
             }
             .audit-grid { grid-template-columns: 1fr !important; }
+            .brush-callout-host {
+                padding-top: 0;
+            }
+            .brush-nudge {
+                position: relative;
+                top: auto;
+                right: auto;
+                width: fit-content;
+                max-width: min(92%, 360px);
+                margin: 0 0 18px auto;
+            }
+            .brush-nudge-arrow { display: none; }
         }
 
         @media (max-width: 640px) {
@@ -775,7 +829,15 @@
                 </div>
             </div>
 
-            <div class="full-width-viz" style="margin-top: 80px;">
+            <div class="full-width-viz brush-callout-host" style="margin-top: 80px;">
+                <div class="brush-nudge" aria-hidden="true">
+                    <strong>Drag the bars</strong>
+                    <span>Brush rainfall months and watch the reservoir panel filter below.</span>
+                    <svg class="brush-nudge-arrow" viewBox="0 0 120 70" focusable="false" aria-hidden="true">
+                        <path d="M12 8 C40 36, 70 42, 96 55" fill="none" stroke="#C0392B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M83 37 L101 58 L72 57" fill="none" stroke="#C0392B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
                 <div id="vis-chart-5" class="viz-canvas" style="min-height: 650px;">
                     <!-- Chart 5 Renders here -->
                 </div>
@@ -879,7 +941,7 @@
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #3498DB; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
                     <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Desalination Pulse</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        To read this dashboard, compare the <span class="term term-grey" tabindex="0" data-tip="The grey area is total urban demand: residential, non-residential and non-revenue water.">grey demand silhouette</span> with the <span class="term term-blue" tabindex="0" data-tip="The blue area is desalination delivered in gigalitres.">blue desalination pulse</span>. Use the pulse filter and year sliders to test whether desalination behaves as a temporary surge or a persistent demand substitute. The data shows that in 2020-21 and 2021-22, desalination supplied about <span class="term term-blue" tabindex="0" data-tip="125 GL divided by total demand is 28.8% in 2020-21 and 28.1% in 2021-22.">28-29% of urban demand</span>. Toggle the "Full Cycle" to observe the later pivot: in 2023-24 and 2024-25, that share falls to about 3%, showing a valve that scales up during stress and retracts when less engineered supply is delivered.
+                        To read this dashboard, compare the <span class="term term-grey" tabindex="0" data-tip="The grey area is total urban demand: residential, non-residential and non-revenue water.">grey demand silhouette</span> with the <span class="term term-blue" tabindex="0" data-tip="The blue area is desalination delivered in gigalitres.">blue desalination pulse</span>. Use the pulse filter and year sliders to test whether desalination behaves as a temporary surge or a persistent demand substitute; click any year marker in the upper panel to highlight the matching dependency bar below. The data shows that in 2020-21 and 2021-22, desalination supplied about <span class="term term-blue" tabindex="0" data-tip="125 GL divided by total demand is 28.8% in 2020-21 and 28.1% in 2021-22.">28-29% of urban demand</span>. Toggle the "Full Cycle" to observe the later pivot: in 2023-24 and 2024-25, that share falls to about 3%, showing a valve that scales up during stress and retracts when less engineered supply is delivered.
                     </p>
                 </div>
             </div>
@@ -1196,7 +1258,7 @@
                                 </div>
                                 <div>
                                     <div class="audit-section-title">Thinking Process</div>
-                                    <p class="audit-desc">Desalination delivery was joined with total urban demand, calculated from Residential, Non-Residential and Non-Revenue categories. The upper panel compares volumes, while the lower dependency-ratio panel shows the peak share clearly: 28.8% in 2020 and 28.1% in 2021, then about 3% in 2023-2024. The pulse filter and paired year sliders expose whether this was a short operational surge or a continuing dependency.</p>
+                                    <p class="audit-desc">Desalination delivery was joined with total urban demand, calculated from Residential, Non-Residential and Non-Revenue categories. The upper panel compares volumes, while the lower dependency-ratio panel shows the peak share clearly: 28.8% in 2020 and 28.1% in 2021, then about 3% in 2023-2024. The pulse filter and paired year sliders expose whether this was a short operational surge or a continuing dependency, and a linked year-click selection lets the reader transfer focus from the supply panel to the dependency panel.</p>
                                     <div class="framework-box">
                                         <strong style="color: #E0E6ED; letter-spacing: 0;">Tamara Munzner's Design Framework:</strong><br>
                                         <em>What:</em> Total Demand (Quant), Desal GL (Quant).<br>
