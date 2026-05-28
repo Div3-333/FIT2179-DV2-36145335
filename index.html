@@ -25,6 +25,10 @@
             --text-dark: #2C3E50;
             --text-light: #F8F9FA;
             --accent-drought: #E67E22;
+            --card-radius: 8px;
+            --sketch-ink: #17202A;
+            --sketch-paper: #FFF7A8;
+            --sketch-hot: #FF6B35;
         }
 
         body {
@@ -35,6 +39,20 @@
             overflow-x: hidden;
             line-height: 1.7;
             letter-spacing: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.035;
+            background-image:
+                radial-gradient(circle at 12px 18px, rgba(23,32,42,0.55) 0 1px, transparent 1.4px),
+                linear-gradient(105deg, transparent 0 48%, rgba(23,32,42,0.18) 49%, transparent 51%);
+            background-size: 42px 38px, 180px 180px;
+            mix-blend-mode: multiply;
         }
 
         h1, h2, h3 {
@@ -332,41 +350,51 @@
             margin-bottom: 80px;
         }
         .full-width-viz { margin-bottom: 80px; }
+        .interaction-callout-host,
         .brush-callout-host {
             position: relative;
             padding-top: 122px;
         }
-        .brush-nudge {
+        .desal-callout-host {
+            position: relative;
+            padding-top: 118px;
+        }
+        .handdrawn-prompt {
             position: absolute;
             top: 0;
             right: 18px;
             z-index: 18;
             max-width: 300px;
             padding: 12px 18px 14px;
-            background: #FFF7A8;
-            color: #17202A;
-            border: 3px solid #17202A;
+            background: var(--sketch-paper);
+            color: var(--sketch-ink);
+            border: 3px solid var(--sketch-ink);
             border-radius: 18px 14px 20px 12px;
-            box-shadow: 5px 6px 0 #FF6B35, 0 10px 24px rgba(0,0,0,0.18);
+            box-shadow: 5px 6px 0 var(--sketch-hot), 0 10px 24px rgba(0,0,0,0.18);
             transform: rotate(1.8deg);
-            font-family: 'Comic Sans MS', 'Segoe Print', cursive;
+            font-family: 'Segoe Print', 'Bradley Hand ITC', 'Comic Sans MS', cursive;
             pointer-events: none;
         }
-        .brush-nudge strong {
+        .desal-nudge {
+            right: calc(10% + 18px);
+            box-shadow: 5px 6px 0 #3498DB, 0 10px 24px rgba(0,0,0,0.18);
+            transform: rotate(-1.4deg);
+        }
+        .handdrawn-prompt strong {
             display: block;
             color: #C0392B;
             font-size: 1.18rem;
             line-height: 1.05;
             text-transform: uppercase;
         }
-        .brush-nudge span {
+        .handdrawn-prompt span {
             display: block;
             margin-top: 3px;
             font-size: 0.94rem;
             font-weight: 700;
             line-height: 1.15;
         }
-        .brush-nudge-arrow {
+        .handdrawn-prompt-arrow {
             position: absolute;
             right: 38px;
             bottom: -48px;
@@ -374,10 +402,15 @@
             height: 58px;
             overflow: visible;
         }
+        .desal-nudge .handdrawn-prompt-arrow {
+            right: 54px;
+            bottom: -52px;
+            transform: rotate(-8deg);
+        }
 
         .viz-canvas {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 8px;
+            border-radius: var(--card-radius);
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             min-height: 450px;
@@ -406,8 +439,10 @@
 
         .text-block,
         .annotation {
-            border-radius: 8px !important;
+            border-radius: var(--card-radius) !important;
             box-sizing: border-box;
+            outline: 1px solid rgba(255,255,255,0.10);
+            outline-offset: -6px;
         }
 
         .text-block p,
@@ -438,15 +473,18 @@
             bottom: 22px;
             z-index: 30;
             pointer-events: none;
-            padding: 7px 12px;
-            border-radius: 999px;
-            background: rgba(13, 27, 42, 0.82);
-            color: #FCFDBF;
-            border: 1px solid rgba(252,253,191,0.75);
+            padding: 8px 12px;
+            border-radius: 15px 12px 17px 11px;
+            background: var(--sketch-paper);
+            color: var(--sketch-ink);
+            border: 2px solid var(--sketch-ink);
             font-size: 0.86rem;
             font-weight: 900;
             letter-spacing: 0;
-            box-shadow: 0 0 14px rgba(252,253,191,0.55), 0 0 28px rgba(52,152,219,0.35);
+            font-family: 'Segoe Print', 'Bradley Hand ITC', 'Comic Sans MS', cursive;
+            text-transform: uppercase;
+            box-shadow: 3px 4px 0 #3498DB, 0 0 18px rgba(252,253,191,0.42);
+            transform: rotate(-1.2deg);
         }
 
         #vis-chart-1.map-pan-zoom::after {
@@ -481,13 +519,18 @@
             position: fixed !important;
             left: 18px;
             top: 50vh;
-            transform: translateY(-50%);
+            transform: translateY(-50%) rotate(-1.8deg);
             z-index: 2000 !important;
             width: 134px !important;
             margin: 0 !important;
             padding: 12px 13px !important;
             box-sizing: border-box;
-            border-radius: 14px !important;
+            border-radius: 18px 14px 20px 12px !important;
+            background: var(--sketch-paper) !important;
+            border: 3px solid var(--sketch-ink) !important;
+            box-shadow: 5px 6px 0 var(--sketch-hot), 0 10px 24px rgba(0,0,0,0.22) !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s ease;
@@ -504,17 +547,25 @@
             gap: 7px !important;
             font-size: 0.82rem !important;
             line-height: 1.25;
+            color: var(--sketch-ink) !important;
+            font-family: 'Segoe Print', 'Bradley Hand ITC', 'Comic Sans MS', cursive !important;
+            font-weight: 900 !important;
+        }
+
+        #cycle-toggle-shell input {
+            accent-color: var(--sketch-hot);
+            border: 2px solid var(--sketch-ink);
         }
 
         .cycle-click-me {
             display: inline-block;
-            padding: 4px 8px;
-            border-radius: 6px;
-            background: #FCFDBF;
-            color: #17202A;
+            padding: 0;
+            background: transparent;
+            color: #C0392B;
             font-weight: 900;
             letter-spacing: 0;
-            box-shadow: 0 0 18px rgba(252,253,191,0.45);
+            text-transform: uppercase;
+            box-shadow: none;
         }
         
         .section-tank .viz-canvas, .section-earth .viz-canvas {
@@ -681,10 +732,12 @@
                 min-height: 420px !important;
             }
             .audit-grid { grid-template-columns: 1fr !important; }
-            .brush-callout-host {
+            .interaction-callout-host,
+            .brush-callout-host,
+            .desal-callout-host {
                 padding-top: 0;
             }
-            .brush-nudge {
+            .handdrawn-prompt {
                 position: relative;
                 top: auto;
                 right: auto;
@@ -692,7 +745,7 @@
                 max-width: min(92%, 360px);
                 margin: 0 0 18px auto;
             }
-            .brush-nudge-arrow { display: none; }
+            .handdrawn-prompt-arrow { display: none; }
         }
 
         @media (max-width: 640px) {
@@ -762,7 +815,7 @@
         <div class="container">
             <h1 style="text-align: center; font-size: 3.5rem; letter-spacing: 0; position: relative; z-index: 10;">From Sky to Tap</h1>
             <p class="narrative-text" style="color: #34495E;">
-                Australia's weather patterns are rapidly shifting away from historical norms. As rain-bearing winds fail and intense heat drives up evaporation, Victoria's traditional water infrastructure is struggling to keep up. 
+                Australia's weather patterns are rapidly shifting away from historical norms. As rain-bearing winds fail and intense heat drives up evaporation, Victoria's traditional water infrastructure is struggling to keep up. Use the controls in each view as tests: narrow the evidence, compare the alternative state, and watch whether the claimed pattern still holds.
             </p>
 
             <div class="story-row" style="grid-template-columns: 1.4fr 1fr; align-items: flex-start; gap: 30px;">
@@ -772,7 +825,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Rainfall-Deficit Gradient</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        This spatial view shows a sharp rainfall-deficit gradient across Victoria. The <span class="term term-purple" tabindex="0" data-tip="Lower-deficit suburbs in the dataset sit around 87-100 mm below expected rainfall.">deep purple south-west</span> is still below normal, but the <span class="term term-orange" tabindex="0" data-tip="Orange marks higher deficits in the north-western part of the map.">orange north-west</span> and <span class="term term-yellow" tabindex="0" data-tip="The strongest mapped deficits exceed 220 mm near Mildura-area suburbs.">pale yellow Mallee cells</span> carry the largest losses. Use the deficit threshold and map pan/zoom to test whether the hotspot remains coherent when lower-deficit suburbs are removed. Together, these bands locate the current centre of the <span class="term term-blue" tabindex="0" data-tip="All mapped suburbs are below the rainfall baseline used for this deficit surface.">systemic rainfall deficit</span>: a north-western hotspot grading into central Victoria.
+                        This spatial view shows a sharp rainfall-deficit gradient across Victoria. The <span class="term term-purple" tabindex="0" data-tip="Lower-deficit suburbs in the dataset sit around 87-100 mm below expected rainfall.">deep purple south-west</span> is still below normal, but the <span class="term term-orange" tabindex="0" data-tip="Orange marks higher deficits in the north-western part of the map.">orange north-west</span> and <span class="term term-yellow" tabindex="0" data-tip="The strongest mapped deficits exceed 220 mm near Mildura-area suburbs.">pale yellow Mallee cells</span> carry the largest losses. Raise the deficit threshold to separate broad dryness from the most severe hotspot, then pan/zoom to inspect whether that hotspot stays spatially coherent. Together, these bands locate the current centre of the <span class="term term-blue" tabindex="0" data-tip="All mapped suburbs are below the rainfall baseline used for this deficit surface.">systemic rainfall deficit</span>: a north-western concentration grading into central Victoria.
                     </p>
                 </div>
             </div>
@@ -785,7 +838,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2); margin-top: 30px; width: 100%; box-sizing: border-box;">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">A Century of Heat & The Seasonal Fever</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The temperature profile has shifted upward in the ACORN-SAT monthly means. The <span class="term term-blue" tabindex="0" data-tip="The left heatmap shows mean maximum temperature by month and year, not daily heatwave counts.">116-year heatmap</span> shows warmer recent bands, while the <span class="term term-orange" tabindex="0" data-tip="The right-hand line chart compares whichever two decades the viewer selects.">seasonal comparison</span> lets the viewer test the baseline shift across decades. Change both decade selectors to ask whether the uplift is a persistent structural shift or a comparison-specific result; the shaded bands mark the largest and smallest comparison-reference differences for the selected pair. With the default selection, every month in the <span class="term term-purple" tabindex="0" data-tip="Default reference: mean monthly maximums from 1910 to 1919.">1910s reference decade</span> is cooler than the matching <span class="term term-orange" tabindex="0" data-tip="Default comparison: mean monthly maximums from 2010 to 2019.">2010s comparison decade</span>, with the largest lifts in January, March, October and November.
+                        The temperature profile has shifted upward in the ACORN-SAT monthly means. The <span class="term term-blue" tabindex="0" data-tip="The left heatmap shows mean maximum temperature by month and year, not daily heatwave counts.">116-year heatmap</span> shows warmer recent bands, while the <span class="term term-orange" tabindex="0" data-tip="The right-hand line chart compares whichever two decades the viewer selects.">seasonal comparison</span> is a sensitivity test for the warming claim. Change both decade selectors to see whether the uplift survives different baselines; the shaded bands mark where the chosen comparison-reference gap is strongest and weakest. With the default selection, every month in the <span class="term term-purple" tabindex="0" data-tip="Default reference: mean monthly maximums from 1910 to 1919.">1910s reference decade</span> is cooler than the matching <span class="term term-orange" tabindex="0" data-tip="Default comparison: mean monthly maximums from 2010 to 2019.">2010s comparison decade</span>, with the largest lifts in January, March, October and November.
                     </p>
                 </div>
             </div>
@@ -794,7 +847,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Atmospheric Engine</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The <span class="term term-orange" tabindex="0" data-tip="SOI tracks pressure differences across the Pacific and is commonly used as an ENSO indicator.">Southern Oscillation Index (SOI)</span> gives the rainfall bars their climate setting. Use the phase selector to isolate the 2015 and 2018 windows, then compare whether negative SOI and rainfall suppression strengthen together or diverge. Negative phases, including the <span class="term term-orange" tabindex="0" data-tip="El Nino conditions are commonly associated with drier conditions in eastern Australia.">2015 El Nino period</span>, align with several dry stretches in Caulfield rainfall. The pattern is strongest at seasonal scale: ENSO pressure shapes the rainfall regime, while <span class="term term-blue" tabindex="0" data-tip="The blue bars show measured monthly rainfall from 2004 to 2019.">monthly rainfall</span> still carries local variability.
+                        The <span class="term term-orange" tabindex="0" data-tip="SOI tracks pressure differences across the Pacific and is commonly used as an ENSO indicator.">Southern Oscillation Index (SOI)</span> gives the rainfall bars their climate setting. The phase selector is used here as a mechanism check: isolate 2015 or 2018 and ask whether the negative-SOI window is matched by a rainfall response, rather than assuming every dry month has the same driver. Negative phases, including the <span class="term term-orange" tabindex="0" data-tip="El Nino conditions are commonly associated with drier conditions in eastern Australia.">2015 El Nino period</span>, align with several dry stretches in Caulfield rainfall, while <span class="term term-blue" tabindex="0" data-tip="The blue bars show measured monthly rainfall from 2004 to 2019.">monthly rainfall</span> still carries local variability.
                     </p>
                 </div>
                 <div id="vis-chart-3" class="viz-canvas glass-canvas" style="min-height: 480px;">
@@ -814,7 +867,7 @@
         <div class="container">
             <h2 style="text-align: center; display: block;">The Catchment Toll</h2>
             <p class="narrative-text" style="color: #E0F2FE;">
-                When rainfall weakens and heat intensifies, reservoirs respond slowly. Read as a sequence, the next charts show how repeated dry months translate into delayed storage stress.
+                When rainfall weakens and heat intensifies, reservoirs respond slowly. The controls in this section turn that lag into something testable: filter for severe heat-rain combinations, then brush periods of rainfall debt to see how storage catches up.
             </p>
 
             <div class="story-row" style="grid-template-columns: 1.6fr 1fr; align-items: flex-start; gap: 40px; margin-top: 60px;">
@@ -824,16 +877,16 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Evaporation Squeeze</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        The <span class="term term-blue" tabindex="0" data-tip="The plotted record runs from 1983 to 2025.">modern record</span> shows annual evaporation generally rising through time, with 2025 reaching the highest plotted evaporation value. The <span class="term term-orange" tabindex="0" data-tip="The orange dashed line is an OLS trendline fitted to annual evaporation over the plotted years.">orange trendline</span> summarises that upward long-run movement. Tighten the heat and rainfall sliders to test whether the compound-stress pattern survives under stricter thresholds. The <span class="term term-yellow" tabindex="0" data-tip="Yellow marks the hottest summer maximum temperatures in this chart.">hottest years</span>, especially 2009 and 2019, sit high on the evaporation axis while their rainfall bubbles are small.
+                        The <span class="term term-blue" tabindex="0" data-tip="The plotted record runs from 1983 to 2025.">modern record</span> shows annual evaporation generally rising through time, with 2025 reaching the highest plotted evaporation value. The <span class="term term-orange" tabindex="0" data-tip="The orange dashed line is an OLS trendline fitted to annual evaporation over the plotted years.">orange trendline</span> summarises that upward long-run movement. Treat the heat and rainfall sliders as a stress gate: tighten them to ask which years remain when the climate is simultaneously hot and dry. The <span class="term term-yellow" tabindex="0" data-tip="Yellow marks the hottest summer maximum temperatures in this chart.">hottest years</span>, especially 2009 and 2019, sit high on the evaporation axis while their rainfall bubbles are small.
                     </p>
                 </div>
             </div>
 
             <div class="full-width-viz brush-callout-host" style="margin-top: 80px;">
-                <div class="brush-nudge" aria-hidden="true">
+                <div class="handdrawn-prompt brush-nudge" aria-hidden="true">
                     <strong>Drag the bars</strong>
                     <span>Brush rainfall months and watch the reservoir panel filter below.</span>
-                    <svg class="brush-nudge-arrow" viewBox="0 0 120 70" focusable="false" aria-hidden="true">
+                    <svg class="handdrawn-prompt-arrow" viewBox="0 0 120 70" focusable="false" aria-hidden="true">
                         <path d="M12 8 C40 36, 70 42, 96 55" fill="none" stroke="#C0392B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M83 37 L101 58 L72 57" fill="none" stroke="#C0392B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -844,7 +897,7 @@
                 <div class="annotation" style="background: #17202A; color: #E0E6ED; border-left: 4px solid #3498DB; margin-top: 30px; padding: 20px; border-radius: 0 8px 8px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
                     <h3 style="color: #94C1EA; margin-bottom: 10px; font-size: 1.2rem;">The Multi-Year Deficit</h3>
                     <p style="font-size: 1.05rem; line-height: 1.7; margin: 0;">
-                        This composite view reveals the <span class="term term-blue" tabindex="0" data-tip="Storage responds after repeated rainfall deficits, rather than instantly month by month.">lag effect</span>. Drag a brush across the rainfall bars to make the reservoir panel below isolate the same interval, then use the year sliders to compare short drought bursts with longer recovery windows. During the <span class="term term-yellow" tabindex="0" data-tip="The 2006-2009 period contains repeated below-baseline rainfall months.">2006-2009 Millennium Drought peak</span>, a cluster of <span class="term term-orange" tabindex="0" data-tip="Bars below zero are months below the 50.6 mm monthly baseline used in the chart.">rainfall deficits</span> coincides with the <span class="term term-blue" tabindex="0" data-tip="Melbourne storage bottoms near 26% in June 2009 in this dataset.">reservoir storage line</span> falling to its lowest point. Storage then takes until 2012 to climb back above 80%, and it never reaches 100% within the 2004-2020 display.
+                        This composite view reveals the <span class="term term-blue" tabindex="0" data-tip="Storage responds after repeated rainfall deficits, rather than instantly month by month.">lag effect</span>. Drag a brush across the rainfall bars to ask a precise question: when rainfall debt is isolated above, how much of the reservoir response remains below? Use the year sliders for a wider comparison between short drought bursts and longer recovery windows. During the <span class="term term-yellow" tabindex="0" data-tip="The 2006-2009 period contains repeated below-baseline rainfall months.">2006-2009 Millennium Drought peak</span>, a cluster of <span class="term term-orange" tabindex="0" data-tip="Bars below zero are months below the 50.6 mm monthly baseline used in the chart.">rainfall deficits</span> coincides with the <span class="term term-blue" tabindex="0" data-tip="Melbourne storage bottoms near 26% in June 2009 in this dataset.">reservoir storage line</span> falling to its lowest point. Storage then takes until 2012 to climb back above 80%, and it never reaches 100% within the 2004-2020 display.
                     </p>
                 </div>
             </div>
@@ -853,7 +906,7 @@
                 <div class="text-block" style="background: rgba(13, 27, 42, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                     <h2 style="color: #94C1EA; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">The Reservoir Network</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #E0E6ED;">
-                        This map compares each reservoir's storage percentage with its capacity. Use the minimum-storage slider to ask which reservoirs remain visible under a stricter security threshold, then pan and zoom to inspect the network geography. <span class="term term-yellow" tabindex="0" data-tip="Yellow marks high current storage percentages, including Maroondah, Tarago and O'Shannassy.">High-storage reservoirs</span> sit near the top of the colour scale, while <span class="term term-purple" tabindex="0" data-tip="Purple marks lower storage percentages, with Yan Yean the lowest at 67.1%.">lower-storage reservoirs</span> need closer attention. The large Thomson bubble matters because it is the biggest reservoir in the dataset at 1,068,000 ML and sits at 74.5% full, so a moderate percentage there represents a much larger volume than the same percentage in a small basin.
+                        This map compares each reservoir's storage percentage with its capacity. The minimum-storage slider converts the map into a triage view: raise it to see which reservoirs stay above stricter security thresholds, then pan/zoom to inspect whether risk is concentrated in one part of the network. <span class="term term-yellow" tabindex="0" data-tip="Yellow marks high current storage percentages, including Maroondah, Tarago and O'Shannassy.">High-storage reservoirs</span> sit near the top of the colour scale, while <span class="term term-purple" tabindex="0" data-tip="Purple marks lower storage percentages, with Yan Yean the lowest at 67.1%.">lower-storage reservoirs</span> need closer attention. The large Thomson bubble matters because it is the biggest reservoir in the dataset at 1,068,000 ML and sits at 74.5% full, so a moderate percentage there represents a much larger volume than the same percentage in a small basin.
                     </p>
                 </div>
                 <div id="vis-chart-6" class="viz-canvas" style="min-height: 480px;">
@@ -867,14 +920,14 @@
         <div class="container">
             <h2 style="text-align: center;">The Unseen Buffer</h2>
             <p class="narrative-text">
-                Surface reservoirs are only one part of Victoria's water system. The groundwater map shifts attention to bore-permit density, showing where pressure on hidden aquifers is concentrated.
+                Surface reservoirs are only one part of Victoria's water system. The groundwater map shifts attention to bore-permit density, using the threshold control to distinguish scattered access from concentrated pressure on hidden aquifers.
             </p>
 
             <div class="story-row" style="grid-template-columns: 0.7fr 1.3fr; align-items: flex-start; gap: 40px; margin-top: 80px;">
                 <div class="text-block" style="background: rgba(45, 36, 30, 0.85); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
                     <h2 style="color: #D7CCC8; margin-bottom: 20px; font-variant: small-caps; letter-spacing: 0;">Subterranean Stress</h2>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #B0BEC5;">
-                        This high-resolution grid reveals <span class="term term-yellow" tabindex="0" data-tip="Yellow cells mark the highest bore-permit counts, with the maximum cell reaching 27 permits.">critical bore-density zones</span> where 10 or more permits fall inside a 0.1-degree grid cell. Raise the bore-permit threshold to distinguish broad access pressure from the densest cells, then use map zoom to inspect whether the remaining cluster is spatially compact or dispersed. Permit concentration becomes the pressure signal: <span class="term term-purple" tabindex="0" data-tip="Purple cells indicate lower permit density.">purple cells</span> mark lower-density areas, while the yellow-orange cluster marks the strongest visible groundwater-pressure signal.
+                        This high-resolution grid reveals <span class="term term-yellow" tabindex="0" data-tip="Yellow cells mark the highest bore-permit counts, with the maximum cell reaching 27 permits.">critical bore-density zones</span> where 10 or more permits fall inside a 0.1-degree grid cell. Raise the bore-permit threshold to test whether the pressure signal is a broad field or a small set of concentrated cells, then use map zoom to inspect the remaining cluster. Permit concentration becomes the pressure signal: <span class="term term-purple" tabindex="0" data-tip="Purple cells indicate lower permit density.">purple cells</span> mark lower-density areas, while the yellow-orange cluster marks the strongest visible groundwater-pressure signal.
                     </p>
                 </div>
                 <div id="vis-chart-7" class="viz-canvas" style="min-height: 480px;">
@@ -902,7 +955,7 @@
                 <div class="annotation" style="background: rgba(45, 36, 30, 0.9); color: #E0E6ED; border-left: 4px solid #BB8FCE; margin-top: 10px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
                     <h3 style="color: #D7CCC8; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Proportional Pivot</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        This normalized stacked bar converts annual water-resource volumes into proportional composition. Scrub the year slider to watch the supply mix pivot before, during and after the desalination pulse; the fixed "Show 2021+" control extends the sequence only when the reader is ready to compare the return years. At 2020, <span class="term term-yellow" tabindex="0" data-tip="Desalinated water is 125,000 ML in 2020, or about 3.1% of the normalized total.">desalinated water</span> appears as a small but visible emergency layer, while <span class="term term-purple" tabindex="0" data-tip="Groundwater is about 9.3% of the 2020 normalized total.">groundwater</span> remains the larger alternative supply. Toggle the "Full Cycle" to see the repeated post-pulse composition for 2023-2025, where <span class="term term-blue" tabindex="0" data-tip="Surface water returns to about 75.9% in the 2023-2025 repeated recovery rows.">surface water</span> returns to roughly three quarters of the total and desalination drops back below 1%.
+                        This normalized stacked bar converts annual water-resource volumes into proportional composition. Scrub the year slider to watch the supply mix pivot before, during and after the desalination pulse; the fixed 2021+ prompt deliberately withholds the return years until the pre-2021 stress pattern is clear. At 2020, <span class="term term-yellow" tabindex="0" data-tip="Desalinated water is 125,000 ML in 2020, or about 3.1% of the normalized total.">desalinated water</span> appears as a small but visible emergency layer, while <span class="term term-purple" tabindex="0" data-tip="Groundwater is about 9.3% of the 2020 normalized total.">groundwater</span> remains the larger alternative supply. Toggle the return years to test whether the post-pulse composition stabilises, where <span class="term term-blue" tabindex="0" data-tip="Surface water returns to about 75.9% in the 2023-2025 repeated recovery rows.">surface water</span> returns to roughly three quarters of the total and desalination drops back below 1%.
                     </p>
                 </div>
             </div>
@@ -931,17 +984,25 @@
         <div class="container">
             <h2 style="text-align: center; margin-top: 20px;">Engineering Survival</h2>
             <p class="narrative-text">
-                When natural storage weakens, Melbourne can add manufactured supply through desalination. These final views show when that engineered option became large enough to alter the system.
+                When natural storage weakens, Melbourne can add manufactured supply through desalination. The final controls connect volume, dependency and operating state, so the reader can test whether desalination is a temporary pulse or a durable change in system behaviour.
             </p>
 
-            <div class="full-width-viz" style="margin-top: 40px;">
+            <div class="full-width-viz desal-callout-host" style="margin-top: 40px;">
+                <div class="handdrawn-prompt desal-nudge" aria-hidden="true">
+                    <strong>Click a year</strong>
+                    <span>Pick a dot up top; the dependency bar below lights up.</span>
+                    <svg class="handdrawn-prompt-arrow" viewBox="0 0 120 70" focusable="false" aria-hidden="true">
+                        <path d="M14 10 C43 25, 74 36, 102 56" fill="none" stroke="#C0392B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M87 35 L106 58 L77 56" fill="none" stroke="#C0392B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
                 <div id="vis-chart-9" class="viz-canvas" style="min-height: 550px; background: white; width: 80%; max-width: 80%; margin-left: auto; margin-right: auto;">
                     <!-- Chart 9 Renders here -->
                 </div>
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #3498DB; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
                     <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Desalination Pulse</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        To read this dashboard, compare the <span class="term term-grey" tabindex="0" data-tip="The grey area is total urban demand: residential, non-residential and non-revenue water.">grey demand silhouette</span> with the <span class="term term-blue" tabindex="0" data-tip="The blue area is desalination delivered in gigalitres.">blue desalination pulse</span>. Use the pulse filter and year sliders to test whether desalination behaves as a temporary surge or a persistent demand substitute; click any year marker in the upper panel to highlight the matching dependency bar below. The data shows that in 2020-21 and 2021-22, desalination supplied about <span class="term term-blue" tabindex="0" data-tip="125 GL divided by total demand is 28.8% in 2020-21 and 28.1% in 2021-22.">28-29% of urban demand</span>. Toggle the "Full Cycle" to observe the later pivot: in 2023-24 and 2024-25, that share falls to about 3%, showing a valve that scales up during stress and retracts when less engineered supply is delivered.
+                        To read this dashboard, compare the <span class="term term-grey" tabindex="0" data-tip="The grey area is total urban demand: residential, non-residential and non-revenue water.">grey demand silhouette</span> with the <span class="term term-blue" tabindex="0" data-tip="The blue area is desalination delivered in gigalitres.">blue desalination pulse</span>. The pulse filter asks whether the system is in no-delivery, low-delivery or high-delivery mode; the year sliders test how much that judgement depends on the time window. Click any year marker in the upper panel to transfer attention to the matching dependency bar below. The data shows that in 2020-21 and 2021-22, desalination supplied about <span class="term term-blue" tabindex="0" data-tip="125 GL divided by total demand is 28.8% in 2020-21 and 28.1% in 2021-22.">28-29% of urban demand</span>. Toggle the return years to observe the later pivot: in 2023-24 and 2024-25, that share falls to about 3%, showing a valve that scales up during stress and retracts when less engineered supply is delivered.
                     </p>
                 </div>
             </div>
@@ -953,7 +1014,7 @@
                 <div class="annotation" style="background: #F8F9FA; color: #2C3E50; border-left: 4px solid #F1C40F; margin-top: 30px; padding: 25px; border-radius: 0 8px 8px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
                     <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.3rem; font-variant: small-caps;">The Survival Cycle</h3>
                     <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-                        This final "Resilience Scan" combines storage percentage with desalination delivered. Use the operational-state selector and point hover to isolate which years occupy each quadrant, then toggle the return years to see whether the system exits the high-desalination state. To read this matrix, use the <span class="term term-dark" tabindex="0" data-tip="The vertical threshold is 70% storage; the horizontal threshold is 75 GL desalination delivered.">centred crosshairs</span> (70% storage, 75 GL desalination delivered) as guide lines:
+                        This final "Resilience Scan" combines storage percentage with desalination delivered. Use the operational-state selector as a state machine: isolate one quadrant at a time, then toggle the return years to see whether the system exits the high-desalination state. To read this matrix, use the <span class="term term-dark" tabindex="0" data-tip="The vertical threshold is 70% storage; the horizontal threshold is 75 GL desalination delivered.">centred crosshairs</span> (70% storage, 75 GL desalination delivered) as guide lines:
                     </p>
                     <ul style="font-size: 1rem; line-height: 1.8; margin-top: 15px; padding-left: 20px; color: #34495E;">
                         <li><span class="term term-dark" tabindex="0" data-tip="Bottom-right means storage above 70% and desalination below 75 GL.">Stable Storage (Bottom-Right):</span> the <span class="term term-purple" tabindex="0" data-tip="2012-2015 all sit above 70% storage with no desalination delivered.">2012-2015 points</span> sit here. Toggle the return years to see the <span class="term term-yellow" tabindex="0" data-tip="2023-2025 also sit above 70% storage with comparatively low desalination.">2023-2025 points</span> return to the same quadrant.</li>
