@@ -52,7 +52,7 @@
   ],
   "title": {
     "text": "The Seasonal Fever: Decades",
-    "subtitle": "Select two decades; shaded bands mark max/min comparison-reference differences",
+    "subtitle": "Select two decades; shaded bands mark strongest and weakest gaps",
     "anchor": "start",
     "color": "#2C3E50",
     "fontSize": 28,
