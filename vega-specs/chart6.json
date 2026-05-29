@@ -67,8 +67,8 @@
           "type": "quantitative",
           "scale": {
             "range": [
-              200,
-              5000
+              180,
+              4200
             ]
           },
           "legend": {
@@ -77,8 +77,14 @@
             "titleColor": "#E0F2FE",
             "format": ".1s",
             "orient": "none",
-            "legendX": 550,
-            "legendY": 230,
+            "legendX": 455,
+            "legendY": 240,
+            "values": [
+              0,
+              200000,
+              400000,
+              600000
+            ],
             "symbolFillColor": "rgba(255,255,255,0.2)"
           }
         },
@@ -309,11 +315,11 @@
   "params": [
     {
       "name": "reservoirZoom",
-      "value": 16000
+      "value": 15000
     },
     {
       "name": "reservoirLon",
-      "value": 145.7
+      "value": 145.65
     },
     {
       "name": "reservoirLat",

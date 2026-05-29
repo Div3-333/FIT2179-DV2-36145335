@@ -85,11 +85,12 @@
             ]
           },
           "legend": {
-            "title": "Bore Permits",
+            "title": null,
             "labelColor": "#D7CCC8",
-            "titleColor": "#D7CCC8",
-            "orient": "right",
-            "gradientLength": 250,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 260,
+            "gradientThickness": 12,
             "values": [
               0,
               5,

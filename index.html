@@ -437,6 +437,16 @@
             box-sizing: border-box;
         }
 
+        .story-row > .text-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #vis-chart-6 {
+            min-height: 640px !important;
+        }
+
         .text-block,
         .annotation {
             border-radius: var(--card-radius) !important;
@@ -700,6 +710,36 @@
         }
 
         @media (max-width: 1100px) {
+            .section-tank {
+                padding-bottom: 56px;
+            }
+            .section-earth {
+                padding-top: 72px;
+            }
+            .story-row {
+                display: block;
+                grid-template-columns: 1fr !important;
+                gap: 0;
+            }
+            .section-tank .story-row:last-child {
+                margin-bottom: 24px;
+            }
+            .story-row > .viz-canvas,
+            .story-row > .text-block {
+                min-height: auto !important;
+                height: auto;
+            }
+            .story-row > .viz-canvas {
+                margin-bottom: 24px;
+            }
+            .full-width-viz > .glass-canvas {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+                padding: 20px !important;
+            }
+            .full-width-viz > .glass-canvas > div {
+                min-height: 500px !important;
+            }
             .section-pipe #vis-chart-9,
             .section-pipe #vis-chart-10 {
                 width: 100% !important;
@@ -727,24 +767,9 @@
                 margin-left: 0 !important;
                 margin-right: 0 !important;
             }
-            .story-row {
-                display: block;
-                grid-template-columns: 1fr !important;
-            }
-            .story-row > .viz-canvas,
-            .story-row > .text-block { min-height: auto !important; }
-            .story-row > .viz-canvas { margin-bottom: 24px; }
             .story-row > .text-block {
                 width: 100%;
                 min-width: 0;
-            }
-            .full-width-viz > .glass-canvas {
-                grid-template-columns: 1fr !important;
-                gap: 24px !important;
-                padding: 20px !important;
-            }
-            .full-width-viz > .glass-canvas > div {
-                min-height: 420px !important;
             }
             .audit-grid { grid-template-columns: 1fr !important; }
             .interaction-callout-host,
