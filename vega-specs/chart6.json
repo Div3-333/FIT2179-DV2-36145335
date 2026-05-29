@@ -29,7 +29,7 @@
   "layer": [
     {
       "data": {
-        "url": "data/final/vic_suburbs_simplified.geojson",
+        "url": "data/final/vic_suburbs_simplified.geojson?v=2",
         "format": {
           "type": "json",
           "property": "features"
